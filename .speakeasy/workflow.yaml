@@ -39,6 +39,8 @@ sources:
     lending-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Lending.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/lending-source
     platform-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Platform.yaml

@@ -32,7 +32,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -50,8 +49,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -65,14 +63,17 @@ func main() {
 | `request`                                                                                          | [operations.GenerateLoanSummaryRequest](../../pkg/models/operations/generateloansummaryrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.GenerateLoanSummaryResponse](../../pkg/models/operations/generateloansummaryresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GenerateLoanTransactions
 
@@ -94,7 +95,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -112,8 +112,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -127,14 +126,17 @@ func main() {
 | `request`                                                                                                    | [operations.GenerateLoanTransactionsRequest](../../pkg/models/operations/generateloantransactionsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.GenerateLoanTransactionsResponse](../../pkg/models/operations/generateloantransactionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetLoanSummary
 
@@ -173,7 +175,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.LoanSummary != nil {
         // handle response
     }
@@ -188,14 +189,17 @@ func main() {
 | `request`                                                                                | [operations.GetLoanSummaryRequest](../../pkg/models/operations/getloansummaryrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetLoanSummaryResponse](../../pkg/models/operations/getloansummaryresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ListLoanTransactions
 
@@ -234,7 +238,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.LoanTransactions != nil {
         // handle response
     }
@@ -249,10 +252,12 @@ func main() {
 | `request`                                                                                            | [operations.ListLoanTransactionsRequest](../../pkg/models/operations/listloantransactionsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.ListLoanTransactionsResponse](../../pkg/models/operations/listloantransactionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

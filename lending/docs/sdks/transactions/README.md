@@ -1,5 +1,2 @@
 # Transactions
 (*Transactions*)
-
-### Available Operations
-

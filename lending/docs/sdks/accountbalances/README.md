@@ -1,6 +1,8 @@
 # AccountBalances
 (*Banking.AccountBalances*)
 
+## Overview
+
 ### Available Operations
 
 * [List](#list) - List account balances
@@ -41,11 +43,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BankingAccountBalances != nil {
         // handle response
     }
@@ -60,10 +62,12 @@ func main() {
 | `request`                                                                                                        | [operations.ListBankingAccountBalancesRequest](../../pkg/models/operations/listbankingaccountbalancesrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `opts`                                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
-
 ### Response
 
 **[*operations.ListBankingAccountBalancesResponse](../../pkg/models/operations/listbankingaccountbalancesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |

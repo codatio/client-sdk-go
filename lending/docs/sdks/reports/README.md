@@ -1,6 +1,8 @@
 # Reports
 (*AccountsReceivable.Reports*)
 
+## Overview
+
 ### Available Operations
 
 * [GetAgedCreditors](#getagedcreditors) - Aged creditors report
@@ -43,7 +45,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAgedCreditorReport != nil {
         // handle response
     }
@@ -58,14 +59,17 @@ func main() {
 | `request`                                                                                                                    | [operations.GetAccountingAgedCreditorsReportRequest](../../pkg/models/operations/getaccountingagedcreditorsreportrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
 | `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
-
 ### Response
 
 **[*operations.GetAccountingAgedCreditorsReportResponse](../../pkg/models/operations/getaccountingagedcreditorsreportresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetAgedDebtors
 
@@ -102,7 +106,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAgedDebtorReport != nil {
         // handle response
     }
@@ -117,14 +120,17 @@ func main() {
 | `request`                                                                                                                | [operations.GetAccountingAgedDebtorsReportRequest](../../pkg/models/operations/getaccountingageddebtorsreportrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `opts`                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
 
-
 ### Response
 
 **[*operations.GetAccountingAgedDebtorsReportResponse](../../pkg/models/operations/getaccountingageddebtorsreportresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## IsAgedCreditorsAvailable
 
@@ -157,7 +163,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Boolean != nil {
         // handle response
     }
@@ -172,14 +177,17 @@ func main() {
 | `request`                                                                                                                | [operations.IsAgedCreditorsReportAvailableRequest](../../pkg/models/operations/isagedcreditorsreportavailablerequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `opts`                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
 
-
 ### Response
 
 **[*operations.IsAgedCreditorsReportAvailableResponse](../../pkg/models/operations/isagedcreditorsreportavailableresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## IsAgedDebtorsAvailable
 
@@ -212,7 +220,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Boolean != nil {
         // handle response
     }
@@ -227,10 +234,12 @@ func main() {
 | `request`                                                                                                            | [operations.IsAgedDebtorsReportAvailableRequest](../../pkg/models/operations/isageddebtorsreportavailablerequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 | `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
-
 ### Response
 
 **[*operations.IsAgedDebtorsReportAvailableResponse](../../pkg/models/operations/isageddebtorsreportavailableresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

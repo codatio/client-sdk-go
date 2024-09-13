@@ -2,7 +2,7 @@
 
 The Aged Debtors report shows the total outstanding balance due from customers to the business over time. 
 
-You can generate it for a company based on recently synced data from your customers' accounting platforms. The report is available in the **Reports** tab in the Codat portal.
+You can generate it for a company based on recently synced data from your customers' accounting software. The report is available in the **Reports** tab in the Codat portal.
 
 Total assets or liabilities are grouped into 30-day periods for each customer, up to the current date. You can adjust the report date, period length, and number of periods to show on each report. The data can be grouped by customer or currency.
 

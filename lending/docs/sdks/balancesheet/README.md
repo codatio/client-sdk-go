@@ -1,6 +1,8 @@
 # BalanceSheet
 (*FinancialStatements.BalanceSheet*)
 
+## Overview
+
 ### Available Operations
 
 * [Get](#get) - Get balance sheet
@@ -40,7 +42,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingBalanceSheet != nil {
         // handle response
     }
@@ -55,14 +56,17 @@ func main() {
 | `request`                                                                                                      | [operations.GetAccountingBalanceSheetRequest](../../pkg/models/operations/getaccountingbalancesheetrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.GetAccountingBalanceSheetResponse](../../pkg/models/operations/getaccountingbalancesheetresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCategorizedAccounts
 
@@ -98,7 +102,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.EnhancedFinancialReport != nil {
         // handle response
     }
@@ -113,10 +116,12 @@ func main() {
 | `request`                                                                                                                          | [operations.GetCategorizedBalanceSheetStatementRequest](../../pkg/models/operations/getcategorizedbalancesheetstatementrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
 | `opts`                                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                                 | The options for this request.                                                                                                      |
 
-
 ### Response
 
 **[*operations.GetCategorizedBalanceSheetStatementResponse](../../pkg/models/operations/getcategorizedbalancesheetstatementresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

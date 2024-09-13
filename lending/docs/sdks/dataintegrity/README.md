@@ -44,11 +44,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataIntegrityDetails != nil {
         // handle response
     }
@@ -63,14 +63,17 @@ func main() {
 | `request`                                                                                                    | [operations.ListDataIntegrityDetailsRequest](../../pkg/models/operations/listdataintegritydetailsrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.ListDataIntegrityDetailsResponse](../../pkg/models/operations/listdataintegritydetailsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Status
 
@@ -111,7 +114,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataIntegrityStatuses != nil {
         // handle response
     }
@@ -126,14 +128,17 @@ func main() {
 | `request`                                                                                                | [operations.GetDataIntegrityStatusRequest](../../pkg/models/operations/getdataintegritystatusrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.GetDataIntegrityStatusResponse](../../pkg/models/operations/getdataintegritystatusresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Summaries
 
@@ -167,11 +172,11 @@ func main() {
     res, err := s.DataIntegrity.Summaries(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataIntegritySummaries != nil {
         // handle response
     }
@@ -186,10 +191,12 @@ func main() {
 | `request`                                                                                                      | [operations.GetDataIntegritySummariesRequest](../../pkg/models/operations/getdataintegritysummariesrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.GetDataIntegritySummariesResponse](../../pkg/models/operations/getdataintegritysummariesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

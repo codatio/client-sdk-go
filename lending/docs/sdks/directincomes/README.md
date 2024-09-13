@@ -1,6 +1,8 @@
 # DirectIncomes
 (*AccountsReceivable.DirectIncomes*)
 
+## Overview
+
 ### Available Operations
 
 * [DownloadAttachment](#downloadattachment) - Download direct income attachment
@@ -43,12 +45,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "string",
+        DirectIncomeID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -63,14 +64,17 @@ func main() {
 | `request`                                                                                                                                    | [operations.DownloadAccountingDirectIncomeAttachmentRequest](../../pkg/models/operations/downloadaccountingdirectincomeattachmentrequest.md) | :heavy_check_mark:                                                                                                                           | The request object to use for the request.                                                                                                   |
 | `opts`                                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                                 | :heavy_minus_sign:                                                                                                                           | The options for this request.                                                                                                                |
 
-
 ### Response
 
 **[*operations.DownloadAccountingDirectIncomeAttachmentResponse](../../pkg/models/operations/downloadaccountingdirectincomeattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -107,12 +111,11 @@ func main() {
     res, err := s.AccountsReceivable.DirectIncomes.Get(ctx, operations.GetAccountingDirectIncomeRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "string",
+        DirectIncomeID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingDirectIncome != nil {
         // handle response
     }
@@ -127,14 +130,17 @@ func main() {
 | `request`                                                                                                      | [operations.GetAccountingDirectIncomeRequest](../../pkg/models/operations/getaccountingdirectincomerequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.GetAccountingDirectIncomeResponse](../../pkg/models/operations/getaccountingdirectincomeresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAttachment
 
@@ -170,12 +176,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "string",
+        DirectIncomeID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAttachment != nil {
         // handle response
     }
@@ -190,14 +195,17 @@ func main() {
 | `request`                                                                                                                          | [operations.GetAccountingDirectIncomeAttachmentRequest](../../pkg/models/operations/getaccountingdirectincomeattachmentrequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
 | `opts`                                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                                       | :heavy_minus_sign:                                                                                                                 | The options for this request.                                                                                                      |
 
-
 ### Response
 
 **[*operations.GetAccountingDirectIncomeAttachmentResponse](../../pkg/models/operations/getaccountingdirectincomeattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -235,11 +243,11 @@ func main() {
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
+        Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingDirectIncomes != nil {
         // handle response
     }
@@ -254,14 +262,17 @@ func main() {
 | `request`                                                                                                          | [operations.ListAccountingDirectIncomesRequest](../../pkg/models/operations/listaccountingdirectincomesrequest.md) | :heavy_check_mark:                                                                                                 | The request object to use for the request.                                                                         |
 | `opts`                                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                                       | :heavy_minus_sign:                                                                                                 | The options for this request.                                                                                      |
 
-
 ### Response
 
 **[*operations.ListAccountingDirectIncomesResponse](../../pkg/models/operations/listaccountingdirectincomesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
 | sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListAttachments
 
@@ -296,12 +307,11 @@ func main() {
     res, err := s.AccountsReceivable.DirectIncomes.ListAttachments(ctx, operations.ListAccountingDirectIncomeAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        DirectIncomeID: "string",
+        DirectIncomeID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachments != nil {
         // handle response
     }
@@ -316,10 +326,12 @@ func main() {
 | `request`                                                                                                                              | [operations.ListAccountingDirectIncomeAttachmentsRequest](../../pkg/models/operations/listaccountingdirectincomeattachmentsrequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
 | `opts`                                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                                           | :heavy_minus_sign:                                                                                                                     | The options for this request.                                                                                                          |
 
-
 ### Response
 
 **[*operations.ListAccountingDirectIncomeAttachmentsResponse](../../pkg/models/operations/listaccountingdirectincomeattachmentsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |

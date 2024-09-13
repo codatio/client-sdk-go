@@ -1,5 +1,2 @@
 # LoanWriteback
 (*LoanWriteback*)
-
-### Available Operations
-
