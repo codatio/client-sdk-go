@@ -43,7 +43,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -58,15 +57,18 @@ func main() {
 | `request`                                                                              | [operations.DownloadFilesRequest](../../pkg/models/operations/downloadfilesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.DownloadFilesResponse](../../pkg/models/operations/downloadfilesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.Schema                    | 400,401,402,404,429,500,503         | application/json                    |
 | sdkerrors.DownloadFilesErrorMessage | 403                                 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListFiles
 
@@ -99,7 +101,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Files != nil {
         // handle response
     }
@@ -114,15 +115,18 @@ func main() {
 | `request`                                                                      | [operations.ListFilesRequest](../../pkg/models/operations/listfilesrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*operations.ListFilesResponse](../../pkg/models/operations/listfilesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.Schema                | 401,402,404,429,500,503         | application/json                |
 | sdkerrors.ListFilesErrorMessage | 403                             | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## UploadFiles
 
@@ -142,10 +146,10 @@ package main
 import(
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/files"
+	"os"
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -155,22 +159,20 @@ func main() {
         }),
     )
 
+    content, fileErr := os.Open("example.file")
+    if fileErr != nil {
+        panic(fileErr)
+    }
+
     ctx := context.Background()
     res, err := s.Files.UploadFiles(ctx, operations.UploadFilesRequest{
-        FileUpload: &shared.FileUpload{
-            File: shared.CodatFile{
-                Content: []byte("0x6261bDdB39"),
-                FileName: "syndicate_central_defect.wav",
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -184,12 +186,14 @@ func main() {
 | `request`                                                                          | [operations.UploadFilesRequest](../../pkg/models/operations/uploadfilesrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.UploadFilesResponse](../../pkg/models/operations/uploadfilesresponse.md), error**
+
+### Errors
+
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | sdkerrors.Schema                  | 400,401,402,404,429,500,503       | application/json                  |
 | sdkerrors.UploadFilesErrorMessage | 403                               | application/json                  |
-| sdkerrors.SDKError                | 400-600                           | */*                               |
+| sdkerrors.SDKError                | 4xx-5xx                           | */*                               |

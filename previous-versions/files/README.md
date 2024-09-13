@@ -4,9 +4,48 @@
 ﻿Use Codat's Files API to upload your SMB customers' files.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Files API: > ### New to Codat?
+>
+> Our Files API reference is relevant only to our existing clients.
+> Please reach out to your Codat contact so that we can find the right product for you.
+
+An API for uploading and downloading files from 'File Upload' Integrations.
+
+The Accounting file upload, Banking file upload, and Business documents file upload integrations provide simple file upload functionality.
+
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Files | Endpoints to manage uploaded files. |
+<!-- End Codat Tags Table -->
+[Read more...](https://docs.codat.io/other/file-upload)
+
+[See our OpenAPI spec](https://github.com/codatio/oas)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/previous-versions/files
 ```
@@ -44,7 +83,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Data != nil {
 		// handle response
 	}
@@ -56,11 +94,17 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+
 ### [Files](docs/sdks/files/README.md)
 
 * [DownloadFiles](docs/sdks/files/README.md#downloadfiles) - Download all files for a company
 * [ListFiles](docs/sdks/files/README.md#listfiles) - List all files uploaded by a company
 * [UploadFiles](docs/sdks/files/README.md#uploadfiles) - Upload files for a company
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -76,9 +120,9 @@ func main() {
 <!-- Start Retries [retries] -->
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -87,7 +131,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/files"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -104,9 +148,9 @@ func main() {
 		CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
 		Date:      files.String("2022-10-23T00:00:00Z"),
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -117,7 +161,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Data != nil {
 		// handle response
 	}
@@ -125,7 +168,7 @@ func main() {
 
 ```
 
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
 ```go
 package main
 
@@ -134,16 +177,16 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/files"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/files/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := files.New(
 		files.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -164,7 +207,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Data != nil {
 		// handle response
 	}
@@ -182,7 +224,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.Schema                    | 400,401,402,404,429,500,503         | application/json                    |
 | sdkerrors.DownloadFilesErrorMessage | 403                                 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
 
 ### Example
 
@@ -276,7 +318,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Data != nil {
 		// handle response
 	}
@@ -315,7 +356,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Data != nil {
 		// handle response
 	}
@@ -391,7 +431,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Data != nil {
 		// handle response
 	}
