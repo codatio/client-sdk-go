@@ -8,7 +8,6 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -26,8 +25,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }

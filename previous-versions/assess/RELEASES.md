@@ -391,3 +391,13 @@ Based on:
 - [go v0.27.0] previous-versions/assess
 ### Releases
 - [Go v0.27.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/assess/v0.27.0 - previous-versions/assess
+
+## 2024-09-13 15:17:13
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.396.7 (2.415.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.28.0] previous-versions/assess
+### Releases
+- [Go v0.28.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/assess/v0.28.0 - previous-versions/assess

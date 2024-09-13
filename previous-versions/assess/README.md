@@ -5,9 +5,51 @@
 You can use that data for automating decisioning and surfacing new insights on the customer, all via one API.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Assess API: Codat's financial insights API
+
+> ### New to Codat?
+>
+> Our Assess API reference is relevant only to our existing clients.
+> Please reach out to your Codat contact so that we can find the right product for you.
+
+Check that you have enabled the [data types required by Assess](https://docs.codat.io/assess/get-started#prerequisites) for all of its features to work.  
+
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Reports | Enriched reports and analyses of financial data. |
+| Excel reports | Downloadable reports. |
+| Data integrity | Match mutable accounting data with immutable banking data to increase confidence in financial data. |
+<!-- End Codat Tags Table -->
+
+[Read more...](https://www.docs.codat.io/assess/)
+
+[See our OpenAPI spec](https://github.com/codatio/oas)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/previous-versions/assess
 ```
@@ -28,7 +70,6 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -46,8 +87,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }
@@ -57,6 +97,23 @@ func main() {
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
+
+
+### [DataIntegrity](docs/sdks/dataintegrity/README.md)
+
+* [Details](docs/sdks/dataintegrity/README.md#details) - List data type data integrity
+* [Status](docs/sdks/dataintegrity/README.md#status) - Get data integrity status
+* [Summary](docs/sdks/dataintegrity/README.md#summary) - Get data integrity summary
+
+### [ExcelReports](docs/sdks/excelreports/README.md)
+
+* [GenerateExcelReport](docs/sdks/excelreports/README.md#generateexcelreport) - Generate Excel report
+* [GetAccountingMarketingMetrics](docs/sdks/excelreports/README.md#getaccountingmarketingmetrics) - Get marketing metrics report
+* [GetExcelReport](docs/sdks/excelreports/README.md#getexcelreport) - Download Excel report
+* [GetExcelReportGenerationStatus](docs/sdks/excelreports/README.md#getexcelreportgenerationstatus) - Get Excel report status
 
 ### [Reports](docs/sdks/reports/README.md)
 
@@ -76,18 +133,7 @@ func main() {
 * [ListLoanTransactions](docs/sdks/reports/README.md#listloantransactions) - List loan transactions
 * [RequestRecurringRevenueMetrics](docs/sdks/reports/README.md#requestrecurringrevenuemetrics) - Generate key subscription revenue metrics
 
-### [DataIntegrity](docs/sdks/dataintegrity/README.md)
-
-* [Details](docs/sdks/dataintegrity/README.md#details) - List data type data integrity
-* [Status](docs/sdks/dataintegrity/README.md#status) - Get data integrity status
-* [Summary](docs/sdks/dataintegrity/README.md#summary) - Get data integrity summary
-
-### [ExcelReports](docs/sdks/excelreports/README.md)
-
-* [GenerateExcelReport](docs/sdks/excelreports/README.md#generateexcelreport) - Generate Excel report
-* [GetAccountingMarketingMetrics](docs/sdks/excelreports/README.md#getaccountingmarketingmetrics) - Get marketing metrics report
-* [GetExcelReport](docs/sdks/excelreports/README.md#getexcelreport) - Download Excel report
-* [GetExcelReportGenerationStatus](docs/sdks/excelreports/README.md#getexcelreportgenerationstatus) - Get Excel report status
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -103,9 +149,9 @@ func main() {
 <!-- Start Retries [retries] -->
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -114,9 +160,8 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/retry"
 	"log"
-	"net/http"
 	"pkg/models/operations"
 )
 
@@ -132,9 +177,9 @@ func main() {
 		CompanyID:  "8a210b68-6988-11ed-a1eb-0242ac120002",
 		SourceType: operations.SourceTypeAccounting,
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -145,15 +190,14 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }
 
 ```
 
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
 ```go
 package main
 
@@ -162,17 +206,16 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/retry"
 	"log"
-	"net/http"
 )
 
 func main() {
 	s := assess.New(
 		assess.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -193,8 +236,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }
@@ -210,7 +252,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ### Example
 
@@ -280,7 +322,6 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -299,8 +340,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }
@@ -320,7 +360,6 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -339,8 +378,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }
@@ -398,7 +436,6 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/assess/pkg/models/shared"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -416,8 +453,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.StatusCode == http.StatusOK {
+	if res != nil {
 		// handle response
 	}
 }

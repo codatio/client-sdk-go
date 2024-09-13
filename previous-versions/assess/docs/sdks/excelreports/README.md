@@ -3,7 +3,7 @@
 
 ## Overview
 
-Downloadable reports
+Downloadable reports.
 
 ### Available Operations
 
@@ -44,7 +44,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ExcelStatus != nil {
         // handle response
     }
@@ -59,14 +58,17 @@ func main() {
 | `request`                                                                                          | [operations.GenerateExcelReportRequest](../../pkg/models/operations/generateexcelreportrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.GenerateExcelReportResponse](../../pkg/models/operations/generateexcelreportresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAccountingMarketingMetrics
 
@@ -98,15 +100,14 @@ func main() {
     res, err := s.ExcelReports.GetAccountingMarketingMetrics(ctx, operations.GetAccountingMarketingMetricsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        NumberOfPeriods: 644039,
-        PeriodLength: 244044,
-        PeriodUnit: shared.PeriodUnitWeek,
+        NumberOfPeriods: 495559,
+        PeriodLength: 644039,
+        PeriodUnit: shared.PeriodUnitMonth,
         ReportDate: "29-09-2020",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Report != nil {
         // handle response
     }
@@ -121,14 +122,17 @@ func main() {
 | `request`                                                                                                              | [operations.GetAccountingMarketingMetricsRequest](../../pkg/models/operations/getaccountingmarketingmetricsrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.GetAccountingMarketingMetricsResponse](../../pkg/models/operations/getaccountingmarketingmetricsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetExcelReport
 
@@ -162,7 +166,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Body != nil {
         // handle response
     }
@@ -177,14 +180,17 @@ func main() {
 | `request`                                                                                | [operations.GetExcelReportRequest](../../pkg/models/operations/getexcelreportrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetExcelReportResponse](../../pkg/models/operations/getexcelreportresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetExcelReportGenerationStatus
 
@@ -218,7 +224,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.ExcelStatus != nil {
         // handle response
     }
@@ -233,11 +238,13 @@ func main() {
 | `request`                                                                                                                | [operations.GetExcelReportGenerationStatusRequest](../../pkg/models/operations/getexcelreportgenerationstatusrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `opts`                                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                                             | :heavy_minus_sign:                                                                                                       | The options for this request.                                                                                            |
 
-
 ### Response
 
 **[*operations.GetExcelReportGenerationStatusResponse](../../pkg/models/operations/getexcelreportgenerationstatusresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

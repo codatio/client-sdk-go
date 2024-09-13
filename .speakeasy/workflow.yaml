@@ -9,6 +9,8 @@ sources:
     assess-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Assess.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/assess-source
     bank-feeds-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Bank-Feeds.yaml
