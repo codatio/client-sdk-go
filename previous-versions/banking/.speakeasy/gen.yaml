@@ -1,25 +1,32 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 2031a20e1e5287065532bb2f442cfd2c
-  docVersion: 3.0.0
-  speakeasyVersion: 1.100.2
-  generationVersion: 2.159.2
+configVersion: 2.0.0
 generation:
   sdkClassName: CodatBanking
-  singleTagPerOp: false
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   telemetryEnabled: true
-features:
-  go:
-    constsAndDefaults: 0.1.1
-    core: 2.91.5
-    deprecations: 2.81.1
-    examples: 2.81.2
-    globalSecurity: 2.82.2
-    globalServerURLs: 2.82.0
-    nameOverrides: 2.81.1
-    retries: 2.82.1
 go:
-  version: 0.23.0
+  version: 0.24.0
+  additionalDependencies: {}
+  allowUnknownFieldsInWeakUnions: false
+  clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: pkg/models/callbacks
+      errors: pkg/models/sdkerrors
+      operations: pkg/models/operations
+      shared: pkg/models/shared
+      webhooks: pkg/models/webhooks
+  inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
+  outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/previous-versions/banking
+  responseFormat: envelope

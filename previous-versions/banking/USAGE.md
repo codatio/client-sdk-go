@@ -1,6 +1,4 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```go
 package main
 
@@ -26,15 +24,15 @@ func main() {
 		OrderBy:      banking.String("-modifiedDate"),
 		Page:         banking.Int(1),
 		PageSize:     banking.Int(100),
+		Query:        banking.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountBalances != nil {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
