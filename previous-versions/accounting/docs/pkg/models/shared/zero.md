@@ -1,6 +1,8 @@
 # Zero
 
-Reference to the purchase order line this line was generated from.
+Links the current record line to the underlying record line that created it. 
+
+For example, if a bill is generated from a purchase order, this property allows you to connect the bill line item to the purchase order line item in our data model. 
 
 
 ## Fields

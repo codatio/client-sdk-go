@@ -15,13 +15,13 @@ A profit and loss report shows a company's total income and expenses for a speci
 
 
 **Structure of this report**  
-This report will reflect the structure and line descriptions that the business has set in their own accounting platform.
+This report will reflect the structure and line descriptions that the business has set in their own accounting software.
 
 **History**  
 By default, Codat pulls (up to) 24 months of profit and loss history for a company. You can adjust this to fetch more history, where available, by updating the `monthsToSync` value for `profitAndLoss` on the [data type settings endpoint](https://docs.codat.io/codat-api#/operations/post-profile-syncSettings).
 
 **Want to pull this in a standardised structure?**  
-Our [Enhanced Financials](https://docs.codat.io/assess/reports/enhanced-financials/financials) endpoints provide the same report under standardized headings, allowing you to pull it in the same format for all of your business customers.
+Our [Enhanced Financials](https://docs.codat.io/lending/features/financial-statements-overview) endpoints provide the same report under standardized headings, allowing you to pull it in the same format for all of your business customers.
 
 
 ## Fields

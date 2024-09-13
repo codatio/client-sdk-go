@@ -6,9 +6,74 @@ It gives you a simple way to view, create, update adn delete data without having
 
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Accounting API: > ### New to Codat?
+>
+> Our Accounting API reference is relevant only to our existing clients.
+> Please reach out to your Codat contact so that we can find the right product for you.
+
+A flexible API for pulling accounting data, normalized and aggregated from 20 accounting integrations.
+
+Standardize how you connect to your customers’ accounting software. View, create, update, and delete data in the same way for all the leading accounting software.
+
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Accounts | Access standardized Accounts from linked accounting software. |
+| Account transactions | Access standardized Account transactions from linked accounting software. |
+| Bank accounts | Access standardized Bank accounts from linked accounting software. |
+| Bank account transactions | Access standardized Bank transactions for bank accounts from linked accounting software. |
+| Bills | Access standardized Bills from linked accounting software. |
+| Bill credit notes | Access standardized Bill credit notes from linked accounting software. |
+| Bill payments | Access standardized Bill payments from linked accounting software. |
+| Credit notes | Access standardized Credit notes from linked accounting software. |
+| Customers | Access standardized Customers from linked accounting software. |
+| Direct costs | Access standardized Direct costs from linked accounting software. |
+| Direct incomes | Access standardized Direct incomes from linked accounting software. |
+| Company info | Access standardized Company info from linked accounting software. |
+| Invoices | Access standardized Invoices from linked accounting software. |
+| Item receipts | Access standardized Item receipts from linked accounting software. |
+| Items | Access standardized Items from linked accounting software. |
+| Journals | Access standardized Journals from linked accounting software. |
+| Journal entries | Access standardized Journal entries from linked accounting software. |
+| Payments | Access standardized Payments from linked accounting software. |
+| Payment methods | Access standardized Payment methods from linked accounting software. |
+| Purchase orders | Access standardized Purchase orders from linked accounting software. |
+| Sales orders | Access standardized Sales orders from linked accounting software. |
+| Suppliers | Access standardized Suppliers from linked accounting software. |
+| Tax rates | Access standardized Tax rates from linked accounting software. |
+| Tracking categories | Access standardized Tracking categories from linked accounting software. |
+| Transfers | Access standardized Transfers from linked accounting software. |
+| Reports | Access standardized Reports from linked accounting software. |
+<!-- End Codat Tags Table -->
+
+[Read more...](https://docs.codat.io/accounting-api/overview)
+
+[See our OpenAPI spec](https://github.com/codatio/oas)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/previous-versions/accounting
 ```
@@ -40,14 +105,13 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountTransaction != nil {
 		// handle response
 	}
@@ -58,6 +122,16 @@ func main() {
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
+
+### [Accounts](docs/sdks/accounts/README.md)
+
+* [Create](docs/sdks/accounts/README.md#create) - Create account
+* [Get](docs/sdks/accounts/README.md#get) - Get account
+* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
+* [List](docs/sdks/accounts/README.md#list) - List accounts
 
 ### [AccountTransactions](docs/sdks/accounttransactions/README.md)
 
@@ -78,6 +152,23 @@ func main() {
 * [GetCreateModel](docs/sdks/bankaccounttransactions/README.md#getcreatemodel) - Get create bank account transactions model
 * [List](docs/sdks/bankaccounttransactions/README.md#list) - List bank account transactions
 
+### [BillCreditNotes](docs/sdks/billcreditnotes/README.md)
+
+* [Create](docs/sdks/billcreditnotes/README.md#create) - Create bill credit note
+* [Get](docs/sdks/billcreditnotes/README.md#get) - Get bill credit note
+* [GetCreateUpdateModel](docs/sdks/billcreditnotes/README.md#getcreateupdatemodel) - Get create/update bill credit note model
+* [List](docs/sdks/billcreditnotes/README.md#list) - List bill credit notes
+* [Update](docs/sdks/billcreditnotes/README.md#update) - Update bill credit note
+* [UploadAttachment](docs/sdks/billcreditnotes/README.md#uploadattachment) - Upload bill credit note attachment
+
+### [BillPayments](docs/sdks/billpayments/README.md)
+
+* [Create](docs/sdks/billpayments/README.md#create) - Create bill payments
+* [Delete](docs/sdks/billpayments/README.md#delete) - Delete bill payment
+* [Get](docs/sdks/billpayments/README.md#get) - Get bill payment
+* [GetCreateModel](docs/sdks/billpayments/README.md#getcreatemodel) - Get create bill payment model
+* [List](docs/sdks/billpayments/README.md#list) - List bill payments
+
 ### [Bills](docs/sdks/bills/README.md)
 
 * [Create](docs/sdks/bills/README.md#create) - Create bill
@@ -90,6 +181,20 @@ func main() {
 * [ListAttachments](docs/sdks/bills/README.md#listattachments) - List bill attachments
 * [Update](docs/sdks/bills/README.md#update) - Update bill
 * [UploadAttachment](docs/sdks/bills/README.md#uploadattachment) - Upload bill attachment
+
+
+### [CompanyInfo](docs/sdks/companyinfo/README.md)
+
+* [Get](docs/sdks/companyinfo/README.md#get) - Get company info
+* [Refresh](docs/sdks/companyinfo/README.md#refresh) - Refresh company info
+
+### [CreditNotes](docs/sdks/creditnotes/README.md)
+
+* [Create](docs/sdks/creditnotes/README.md#create) - Create credit note
+* [Get](docs/sdks/creditnotes/README.md#get) - Get credit note
+* [GetCreateUpdateModel](docs/sdks/creditnotes/README.md#getcreateupdatemodel) - Get create/update credit note model
+* [List](docs/sdks/creditnotes/README.md#list) - List credit notes
+* [Update](docs/sdks/creditnotes/README.md#update) - Update credit note
 
 ### [Customers](docs/sdks/customers/README.md)
 
@@ -105,6 +210,7 @@ func main() {
 ### [DirectCosts](docs/sdks/directcosts/README.md)
 
 * [Create](docs/sdks/directcosts/README.md#create) - Create direct cost
+* [Delete](docs/sdks/directcosts/README.md#delete) - Delete direct cost
 * [DownloadAttachment](docs/sdks/directcosts/README.md#downloadattachment) - Download direct cost attachment
 * [Get](docs/sdks/directcosts/README.md#get) - Get direct cost
 * [GetAttachment](docs/sdks/directcosts/README.md#getattachment) - Get direct cost attachment
@@ -143,69 +249,6 @@ func main() {
 * [Get](docs/sdks/itemreceipts/README.md#get) - Get item receipt
 * [List](docs/sdks/itemreceipts/README.md#list) - List item receipts
 
-### [PurchaseOrders](docs/sdks/purchaseorders/README.md)
-
-* [Create](docs/sdks/purchaseorders/README.md#create) - Create purchase order
-* [DownloadAttachment](docs/sdks/purchaseorders/README.md#downloadattachment) - Download purchase order attachment
-* [DownloadPurchaseOrderPdf](docs/sdks/purchaseorders/README.md#downloadpurchaseorderpdf) - Download purchase order as PDF
-* [Get](docs/sdks/purchaseorders/README.md#get) - Get purchase order
-* [GetAttachment](docs/sdks/purchaseorders/README.md#getattachment) - Get purchase order attachment
-* [GetCreateUpdateModel](docs/sdks/purchaseorders/README.md#getcreateupdatemodel) - Get create/update purchase order model
-* [List](docs/sdks/purchaseorders/README.md#list) - List purchase orders
-* [ListAttachments](docs/sdks/purchaseorders/README.md#listattachments) - List purchase order attachments
-* [Update](docs/sdks/purchaseorders/README.md#update) - Update purchase order
-
-### [Suppliers](docs/sdks/suppliers/README.md)
-
-* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
-* [DownloadAttachment](docs/sdks/suppliers/README.md#downloadattachment) - Download supplier attachment
-* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
-* [GetAttachment](docs/sdks/suppliers/README.md#getattachment) - Get supplier attachment
-* [GetCreateUpdateModel](docs/sdks/suppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
-* [List](docs/sdks/suppliers/README.md#list) - List suppliers
-* [ListAttachments](docs/sdks/suppliers/README.md#listattachments) - List supplier attachments
-* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
-
-### [Transfers](docs/sdks/transfers/README.md)
-
-* [Create](docs/sdks/transfers/README.md#create) - Create transfer
-* [Get](docs/sdks/transfers/README.md#get) - Get transfer
-* [GetCreateModel](docs/sdks/transfers/README.md#getcreatemodel) - Get create transfer model
-* [List](docs/sdks/transfers/README.md#list) - List transfers
-* [UploadAttachment](docs/sdks/transfers/README.md#uploadattachment) - Upload invoice attachment
-
-### [BillCreditNotes](docs/sdks/billcreditnotes/README.md)
-
-* [Create](docs/sdks/billcreditnotes/README.md#create) - Create bill credit note
-* [Get](docs/sdks/billcreditnotes/README.md#get) - Get bill credit note
-* [GetCreateUpdateModel](docs/sdks/billcreditnotes/README.md#getcreateupdatemodel) - Get create/update bill credit note model
-* [List](docs/sdks/billcreditnotes/README.md#list) - List bill credit notes
-* [Update](docs/sdks/billcreditnotes/README.md#update) - Update bill credit note
-* [UploadAttachment](docs/sdks/billcreditnotes/README.md#uploadattachment) - Upload bill credit note attachment
-
-### [BillPayments](docs/sdks/billpayments/README.md)
-
-* [Create](docs/sdks/billpayments/README.md#create) - Create bill payments
-* [Delete](docs/sdks/billpayments/README.md#delete) - Delete bill payment
-* [Get](docs/sdks/billpayments/README.md#get) - Get bill payment
-* [GetCreateModel](docs/sdks/billpayments/README.md#getcreatemodel) - Get create bill payment model
-* [List](docs/sdks/billpayments/README.md#list) - List bill payments
-
-### [Accounts](docs/sdks/accounts/README.md)
-
-* [Create](docs/sdks/accounts/README.md#create) - Create account
-* [Get](docs/sdks/accounts/README.md#get) - Get account
-* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
-* [List](docs/sdks/accounts/README.md#list) - List accounts
-
-### [CreditNotes](docs/sdks/creditnotes/README.md)
-
-* [Create](docs/sdks/creditnotes/README.md#create) - Create credit note
-* [Get](docs/sdks/creditnotes/README.md#get) - Get credit note
-* [GetCreateUpdateModel](docs/sdks/creditnotes/README.md#getcreateupdatemodel) - Get create/update credit note model
-* [List](docs/sdks/creditnotes/README.md#list) - List credit notes
-* [Update](docs/sdks/creditnotes/README.md#update) - Update credit note
-
 ### [Items](docs/sdks/items/README.md)
 
 * [Create](docs/sdks/items/README.md#create) - Create item
@@ -228,12 +271,30 @@ func main() {
 * [GetCreateModel](docs/sdks/journals/README.md#getcreatemodel) - Get create journal model
 * [List](docs/sdks/journals/README.md#list) - List journals
 
+### [PaymentMethods](docs/sdks/paymentmethods/README.md)
+
+* [Get](docs/sdks/paymentmethods/README.md#get) - Get payment method
+* [List](docs/sdks/paymentmethods/README.md#list) - List payment methods
+
 ### [Payments](docs/sdks/payments/README.md)
 
 * [Create](docs/sdks/payments/README.md#create) - Create payment
 * [Get](docs/sdks/payments/README.md#get) - Get payment
 * [GetCreateModel](docs/sdks/payments/README.md#getcreatemodel) - Get create payment model
 * [List](docs/sdks/payments/README.md#list) - List payments
+* [Payments](docs/sdks/payments/README.md#payments) - List payments
+
+### [PurchaseOrders](docs/sdks/purchaseorders/README.md)
+
+* [Create](docs/sdks/purchaseorders/README.md#create) - Create purchase order
+* [DownloadAttachment](docs/sdks/purchaseorders/README.md#downloadattachment) - Download purchase order attachment
+* [DownloadPurchaseOrderPdf](docs/sdks/purchaseorders/README.md#downloadpurchaseorderpdf) - Download purchase order as PDF
+* [Get](docs/sdks/purchaseorders/README.md#get) - Get purchase order
+* [GetAttachment](docs/sdks/purchaseorders/README.md#getattachment) - Get purchase order attachment
+* [GetCreateUpdateModel](docs/sdks/purchaseorders/README.md#getcreateupdatemodel) - Get create/update purchase order model
+* [List](docs/sdks/purchaseorders/README.md#list) - List purchase orders
+* [ListAttachments](docs/sdks/purchaseorders/README.md#listattachments) - List purchase order attachments
+* [Update](docs/sdks/purchaseorders/README.md#update) - Update purchase order
 
 ### [Reports](docs/sdks/reports/README.md)
 
@@ -245,20 +306,21 @@ func main() {
 * [IsAgedCreditorsReportAvailable](docs/sdks/reports/README.md#isagedcreditorsreportavailable) - Aged creditors report available
 * [IsAgedDebtorReportAvailable](docs/sdks/reports/README.md#isageddebtorreportavailable) - Aged debtors report available
 
-### [CompanyInfo](docs/sdks/companyinfo/README.md)
-
-* [Get](docs/sdks/companyinfo/README.md#get) - Get company info
-* [Refresh](docs/sdks/companyinfo/README.md#refresh) - Refresh company info
-
-### [PaymentMethods](docs/sdks/paymentmethods/README.md)
-
-* [Get](docs/sdks/paymentmethods/README.md#get) - Get payment method
-* [List](docs/sdks/paymentmethods/README.md#list) - List payment methods
-
 ### [SalesOrders](docs/sdks/salesorders/README.md)
 
 * [Get](docs/sdks/salesorders/README.md#get) - Get sales order
 * [List](docs/sdks/salesorders/README.md#list) - List sales orders
+
+### [Suppliers](docs/sdks/suppliers/README.md)
+
+* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
+* [DownloadAttachment](docs/sdks/suppliers/README.md#downloadattachment) - Download supplier attachment
+* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
+* [GetAttachment](docs/sdks/suppliers/README.md#getattachment) - Get supplier attachment
+* [GetCreateUpdateModel](docs/sdks/suppliers/README.md#getcreateupdatemodel) - Get create/update supplier model
+* [List](docs/sdks/suppliers/README.md#list) - List suppliers
+* [ListAttachments](docs/sdks/suppliers/README.md#listattachments) - List supplier attachments
+* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
 
 ### [TaxRates](docs/sdks/taxrates/README.md)
 
@@ -269,6 +331,16 @@ func main() {
 
 * [Get](docs/sdks/trackingcategories/README.md#get) - Get tracking categories
 * [List](docs/sdks/trackingcategories/README.md#list) - List tracking categories
+
+### [Transfers](docs/sdks/transfers/README.md)
+
+* [Create](docs/sdks/transfers/README.md#create) - Create transfer
+* [Get](docs/sdks/transfers/README.md#get) - Get transfer
+* [GetCreateModel](docs/sdks/transfers/README.md#getcreatemodel) - Get create transfer model
+* [List](docs/sdks/transfers/README.md#list) - List transfers
+* [UploadAttachment](docs/sdks/transfers/README.md#uploadattachment) - Upload transfer attachment
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -304,9 +376,9 @@ d6 := types.MustDateFromString("2019-01-01") // returns types.Date and panics on
 <!-- Start Retries [retries] -->
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -315,7 +387,7 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -329,13 +401,13 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -346,7 +418,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountTransaction != nil {
 		// handle response
 	}
@@ -354,7 +425,7 @@ func main() {
 
 ```
 
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
 ```go
 package main
 
@@ -363,16 +434,16 @@ import (
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := accounting.New(
 		accounting.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -387,14 +458,13 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountTransaction != nil {
 		// handle response
 	}
@@ -411,7 +481,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 ### Example
 
@@ -437,7 +507,7 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
@@ -494,14 +564,13 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountTransaction != nil {
 		// handle response
 	}
@@ -534,14 +603,13 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountTransaction != nil {
 		// handle response
 	}
@@ -611,14 +679,13 @@ func main() {
 
 	ctx := context.Background()
 	res, err := s.AccountTransactions.Get(ctx, operations.GetAccountTransactionRequest{
-		AccountTransactionID: "string",
+		AccountTransactionID: "<value>",
 		CompanyID:            "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID:         "2e9d2c44-f675-40ba-8049-353bfcb5e171",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.AccountTransaction != nil {
 		// handle response
 	}

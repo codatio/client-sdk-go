@@ -8,3 +8,4 @@ Allowed name of the 'dataType'.
 | Name                         | Value                        |
 | ---------------------------- | ---------------------------- |
 | `ZeroDataTypePurchaseOrders` | purchaseOrders               |
+| `ZeroDataTypeBills`          | bills                        |

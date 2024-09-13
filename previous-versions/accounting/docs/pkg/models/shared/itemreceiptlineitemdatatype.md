@@ -8,3 +8,4 @@ Allowed name of the 'dataType'.
 | Name                                        | Value                                       |
 | ------------------------------------------- | ------------------------------------------- |
 | `ItemReceiptLineItemDataTypePurchaseOrders` | purchaseOrders                              |
+| `ItemReceiptLineItemDataTypeBills`          | bills                                       |
