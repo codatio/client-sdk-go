@@ -2,7 +2,7 @@ speakeasyVersion: 1.396.7
 sources:
     accounting-source:
         sourceNamespace: accounting-source
-        sourceRevisionDigest: sha256:fee8e5e52515ad863c6244e0d643b9291a3685e22c8c1c900e81d5becef0c2ee
+        sourceRevisionDigest: sha256:714df41e8d2be7d34fe6fbe0f887ef07e273bdd7d7bfc2a32474cf41acd26b46
         sourceBlobDigest: sha256:1196b9f04ffba9bfc30292d059e6e63e93b26fe3f8ca92cab6d58df8de86c4ca
         tags:
             - latest
@@ -11,7 +11,7 @@ targets:
     accounting-library:
         source: accounting-source
         sourceNamespace: accounting-source
-        sourceRevisionDigest: sha256:fee8e5e52515ad863c6244e0d643b9291a3685e22c8c1c900e81d5becef0c2ee
+        sourceRevisionDigest: sha256:714df41e8d2be7d34fe6fbe0f887ef07e273bdd7d7bfc2a32474cf41acd26b46
         sourceBlobDigest: sha256:1196b9f04ffba9bfc30292d059e6e63e93b26fe3f8ca92cab6d58df8de86c4ca
 workflow:
     workflowVersion: 1.0.0
