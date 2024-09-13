@@ -4,9 +4,50 @@
 ﻿Embedded accounting integrations for POS and eCommerce platforms.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Sync for Commerce: The API for Sync for Commerce. 
+
+Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
+  
+[Explore product](https://docs.codat.io/commerce/overview) | [See our OpenAPI spec](https://github.com/codatio/oas)
+
+Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/).
+
+---
+
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Connections | Create new and manage existing data connections for a company. |
+| Sync | Initiate data syncs and monitor their status. |
+| Sync flow settings | Control text and visibility settings for the Sync Flow. |
+| Integrations | Get a list of integrations supported by Sync for Commerce and their logos. |
+| Advanced controls | View and manage mapping configured for a company's commerce sync. |
+<!-- End Codat Tags Table -->
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/sync-for-commerce
 ```
@@ -43,7 +84,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -55,12 +95,8 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SyncFlowSettings](docs/sdks/syncflowsettings/README.md)
-
-* [GetConfigTextSyncFlow](docs/sdks/syncflowsettings/README.md#getconfigtextsyncflow) - Get preferences for text fields
-* [GetVisibleAccounts](docs/sdks/syncflowsettings/README.md#getvisibleaccounts) - List visible accounts
-* [UpdateConfigTextSyncFlow](docs/sdks/syncflowsettings/README.md#updateconfigtextsyncflow) - Update preferences for text fields
-* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowsettings/README.md#updatevisibleaccountssyncflow) - Update visible accounts
+<details open>
+<summary>Available methods</summary>
 
 ### [AdvancedControls](docs/sdks/advancedcontrols/README.md)
 
@@ -69,6 +105,7 @@ func main() {
 * [ListCompanies](docs/sdks/advancedcontrols/README.md#listcompanies) - List companies
 * [SetConfiguration](docs/sdks/advancedcontrols/README.md#setconfiguration) - Set configuration
 
+
 ### [Connections](docs/sdks/connections/README.md)
 
 * [Create](docs/sdks/connections/README.md#create) - Create connection
@@ -76,6 +113,11 @@ func main() {
 * [List](docs/sdks/connections/README.md#list) - List connections
 * [UpdateAuthorization](docs/sdks/connections/README.md#updateauthorization) - Update authorization
 * [UpdateConnection](docs/sdks/connections/README.md#updateconnection) - Update connection
+
+### [Integrations](docs/sdks/integrations/README.md)
+
+* [GetBranding](docs/sdks/integrations/README.md#getbranding) - Get branding for an integration
+* [List](docs/sdks/integrations/README.md#list) - List integrations
 
 ### [Sync](docs/sdks/sync/README.md)
 
@@ -87,10 +129,14 @@ func main() {
 * [Request](docs/sdks/sync/README.md#request) - Initiate new sync
 * [RequestForDateRange](docs/sdks/sync/README.md#requestfordaterange) - Initiate sync for specific range
 
-### [Integrations](docs/sdks/integrations/README.md)
+### [SyncFlowSettings](docs/sdks/syncflowsettings/README.md)
 
-* [GetBranding](docs/sdks/integrations/README.md#getbranding) - Get branding for an integration
-* [List](docs/sdks/integrations/README.md#list) - List integrations
+* [GetConfigTextSyncFlow](docs/sdks/syncflowsettings/README.md#getconfigtextsyncflow) - Get preferences for text fields
+* [GetVisibleAccounts](docs/sdks/syncflowsettings/README.md#getvisibleaccounts) - List visible accounts
+* [UpdateConfigTextSyncFlow](docs/sdks/syncflowsettings/README.md#updateconfigtextsyncflow) - Update preferences for text fields
+* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowsettings/README.md#updatevisibleaccountssyncflow) - Update visible accounts
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -108,7 +154,7 @@ func main() {
 
 Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -117,7 +163,7 @@ import (
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -133,9 +179,9 @@ func main() {
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -146,7 +192,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -163,16 +208,16 @@ import (
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := syncforcommerce.New(
 		syncforcommerce.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -192,7 +237,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -295,7 +339,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -333,7 +376,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -408,7 +450,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}

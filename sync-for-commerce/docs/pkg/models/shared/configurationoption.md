@@ -1,4 +1,4 @@
-# Option
+# ConfigurationOption
 
 
 ## Fields
