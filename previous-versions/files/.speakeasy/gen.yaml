@@ -1,26 +1,19 @@
-configVersion: 1.0.0
-management:
-  docChecksum: 309fcbe8baa6076cda187246ed4dc066
-  docVersion: 3.0.0
-  speakeasyVersion: 1.126.3
-  generationVersion: 2.214.3
+configVersion: 2.0.0
 generation:
-  comments: {}
   sdkClassName: CodatFiles
-  repoURL: https://github.com/codatio/client-sdk-go.git
   usageSnippets:
     optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   telemetryEnabled: true
-features:
-  go:
-    core: 3.2.0
-    downloadStreams: 0.1.1
-    examples: 2.81.3
-    globalSecurity: 2.82.3
-    globalServerURLs: 2.82.1
-    retries: 2.82.1
 go:
-  version: 0.25.0
+  version: 0.26.0
+  additionalDependencies: {}
+  allowUnknownFieldsInWeakUnions: false
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
@@ -32,9 +25,8 @@ go:
       shared: pkg/models/shared
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/codatio/client-sdk-go/previous-versions/files
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/previous-versions/files
-  published: true
-  repoSubDirectory: previous-versions/files
+  responseFormat: envelope

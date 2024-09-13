@@ -34,6 +34,8 @@ sources:
     files-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Files.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/files-source
     lending-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Lending.yaml

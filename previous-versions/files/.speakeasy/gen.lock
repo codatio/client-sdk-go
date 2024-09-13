@@ -1,0 +1,141 @@
+lockVersion: 2.0.0
+id: f09ee5cd-b99f-4bea-96e8-aa0cf11c99eb
+management:
+  docChecksum: 3e1bf1ed751542092d2ada42a1b8273b
+  docVersion: 3.0.0
+  speakeasyVersion: 1.396.7
+  generationVersion: 2.415.6
+  releaseVersion: 0.26.0
+  configChecksum: 67e285edcc6cde5e131a5f12a0b48285
+  repoURL: https://github.com/codatio/client-sdk-go.git
+  repoSubDirectory: previous-versions/files
+  installationURL: https://github.com/codatio/client-sdk-go/previous-versions/files
+  published: true
+features:
+  go:
+    additionalDependencies: 0.1.0
+    core: 3.5.8
+    defaultEnabledRetries: 0.2.0
+    downloadStreams: 0.1.2
+    envVarSecurityUsage: 0.3.1
+    examples: 2.81.3
+    globalSecurity: 2.82.10
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.2
+    intellisenseMarkdownSupport: 0.1.0
+    nullables: 0.1.0
+    responseFormat: 0.1.2
+    retries: 2.83.0
+    sdkHooks: 0.1.0
+    serverEventsSentinels: 0.1.0
+    uploadStreams: 0.1.0
+generatedFiles:
+  - .gitattributes
+  - /pkg/models/operations/downloadfiles.go
+  - /pkg/models/operations/listfiles.go
+  - /pkg/models/operations/uploadfiles.go
+  - /pkg/models/sdkerrors/downloadfiles.go
+  - /pkg/models/sdkerrors/listfiles.go
+  - /pkg/models/sdkerrors/schema.go
+  - /pkg/models/sdkerrors/uploadfiles.go
+  - /pkg/models/shared/codatfile.go
+  - /pkg/models/shared/errorvalidation.go
+  - /pkg/models/shared/errorvalidationitem.go
+  - /pkg/models/shared/file.go
+  - /pkg/models/shared/fileupload.go
+  - /pkg/models/shared/security.go
+  - CONTRIBUTING.md
+  - USAGE.md
+  - codatfiles.go
+  - docs/pkg/models/operations/downloadfilesrequest.md
+  - docs/pkg/models/operations/downloadfilesresponse.md
+  - docs/pkg/models/operations/listfilesrequest.md
+  - docs/pkg/models/operations/listfilesresponse.md
+  - docs/pkg/models/operations/option.md
+  - docs/pkg/models/operations/uploadfilesrequest.md
+  - docs/pkg/models/operations/uploadfilesresponse.md
+  - docs/pkg/models/sdkerrors/downloadfileserrormessage.md
+  - docs/pkg/models/sdkerrors/listfileserrormessage.md
+  - docs/pkg/models/sdkerrors/schema.md
+  - docs/pkg/models/sdkerrors/uploadfileserrormessage.md
+  - docs/pkg/models/shared/codatfile.md
+  - docs/pkg/models/shared/errorvalidation.md
+  - docs/pkg/models/shared/errorvalidationitem.md
+  - docs/pkg/models/shared/file.md
+  - docs/pkg/models/shared/fileupload.md
+  - docs/pkg/models/shared/security.md
+  - docs/sdks/codatfiles/README.md
+  - docs/sdks/files/README.md
+  - files.go
+  - go.mod
+  - internal/hooks/hooks.go
+  - pkg/models/operations/options.go
+  - pkg/models/sdkerrors/sdkerror.go
+  - pkg/retry/config.go
+  - pkg/types/bigint.go
+  - pkg/types/date.go
+  - pkg/types/datetime.go
+  - pkg/types/decimal.go
+  - pkg/types/pointers.go
+  - pkg/utils/contenttype.go
+  - pkg/utils/form.go
+  - pkg/utils/headers.go
+  - pkg/utils/json.go
+  - pkg/utils/pathparams.go
+  - pkg/utils/queryparams.go
+  - pkg/utils/requestbody.go
+  - pkg/utils/retries.go
+  - pkg/utils/security.go
+  - pkg/utils/utils.go
+examples:
+  download-files:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          date: "2022-10-23T00:00:00Z"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+    Conflict:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          date: "2022-10-23T00:00:00Z"
+      responses:
+        "403":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "You are using an outdated API key or a key not associated with that resource.", "service": "PublicApi", "statusCode": 403}
+  list-files:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+    Conflict:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "403":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "You are using an outdated API key or a key not associated with that resource.", "service": "PublicApi", "statusCode": 403}
+  upload-files:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+    Conflict:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "403":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "You are using an outdated API key or a key not associated with that resource.", "service": "PublicApi", "statusCode": 403}
