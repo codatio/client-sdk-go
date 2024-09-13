@@ -63,6 +63,13 @@ sources:
         tags:
             - latest
             - main
+    sync-for-commerce-source:
+        sourceNamespace: sync-for-commerce-source
+        sourceRevisionDigest: sha256:08f301ee27cf293afcb146e12dfcbd8c269d5210009cf214fd83f966cb9b3923
+        sourceBlobDigest: sha256:ab64a148f650a63d3411abb1686ffdcc252ddb1525415957d2dcd7e818882594
+        tags:
+            - latest
+            - main
 targets:
     accounting-library:
         source: accounting-source
@@ -109,6 +116,11 @@ targets:
         sourceNamespace: platform-source
         sourceRevisionDigest: sha256:9d1b7d84cf409ce52032d4c8b3e484355297cdc001d4d9169d5df5301efecabc
         sourceBlobDigest: sha256:e1e3f4c3ed16022322bc656bb0e4ef28c04fff8c92c271cc859c6e2b32af5613
+    sync-for-commerce-library:
+        source: sync-for-commerce-source
+        sourceNamespace: sync-for-commerce-source
+        sourceRevisionDigest: sha256:08f301ee27cf293afcb146e12dfcbd8c269d5210009cf214fd83f966cb9b3923
+        sourceBlobDigest: sha256:ab64a148f650a63d3411abb1686ffdcc252ddb1525415957d2dcd7e818882594
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -161,6 +173,8 @@ workflow:
         sync-for-commerce-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce.yaml
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-source
         sync-for-commerce-version-1-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Commerce-v1.yaml

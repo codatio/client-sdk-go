@@ -3,7 +3,7 @@
 
 ## Overview
 
-Create new and manage existing Sync for Commerce connections using the Sync flow UI.
+Create new and manage existing data connections for a company.
 
 ### Available Operations
 
@@ -41,12 +41,14 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
+        RequestBody: &operations.CreateConnectionRequestBody{
+            PlatformKey: syncforcommerce.String("gbol"),
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -61,14 +63,17 @@ func main() {
 | `request`                                                                                    | [operations.CreateConnectionRequest](../../pkg/models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.CreateConnectionResponse](../../pkg/models/operations/createconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetSyncFlowURL
 
@@ -96,13 +101,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Connections.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "string",
-        CommerceKey: "string",
+        AccountingKey: "<value>",
+        CommerceKey: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncFlowURL != nil {
         // handle response
     }
@@ -117,14 +121,17 @@ func main() {
 | `request`                                                                                | [operations.GetSyncFlowURLRequest](../../pkg/models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetSyncFlowURLResponse](../../pkg/models/operations/getsyncflowurlresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## List
 
@@ -156,11 +163,11 @@ func main() {
         OrderBy: syncforcommerce.String("-modifiedDate"),
         Page: syncforcommerce.Int(1),
         PageSize: syncforcommerce.Int(100),
+        Query: syncforcommerce.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connections != nil {
         // handle response
     }
@@ -175,14 +182,17 @@ func main() {
 | `request`                                                                                  | [operations.ListConnectionsRequest](../../pkg/models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.ListConnectionsResponse](../../pkg/models/operations/listconnectionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## UpdateAuthorization
 
@@ -216,7 +226,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -231,14 +240,17 @@ func main() {
 | `request`                                                                                                              | [operations.UpdateConnectionAuthorizationRequest](../../pkg/models/operations/updateconnectionauthorizationrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.UpdateConnectionAuthorizationResponse](../../pkg/models/operations/updateconnectionauthorizationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## UpdateConnection
 
@@ -272,7 +284,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -287,10 +298,12 @@ func main() {
 | `request`                                                                                    | [operations.UpdateConnectionRequest](../../pkg/models/operations/updateconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.UpdateConnectionResponse](../../pkg/models/operations/updateconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

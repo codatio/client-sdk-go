@@ -1,36 +1,249 @@
 lockVersion: 2.0.0
 id: 2b7ab515-537b-49b8-b148-74faf59aa3b9
 management:
-  docChecksum: ae73f74761e7691167b6cb5030c24dcf
+  docChecksum: 5b17c461a98ac32ecaa078bd4f1f644d
   docVersion: "1.1"
-  speakeasyVersion: internal
-  generationVersion: 2.253.0
-  releaseVersion: 2.3.0
-  configChecksum: 512be8e31641b848b0fd2783950e4028
+  speakeasyVersion: 1.396.7
+  generationVersion: 2.415.6
+  releaseVersion: 2.4.0
+  configChecksum: c89cf763cd62e3e6ed83280d630483b2
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: sync-for-commerce
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-commerce
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.3
-    core: 3.3.2
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.6
+    core: 3.5.8
+    defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
+    envVarSecurityUsage: 0.3.1
     examples: 2.81.3
-    globalSecurity: 2.82.6
-    globalServerURLs: 2.82.1
-    nameOverrides: 2.81.1
-    retries: 2.82.2
+    globalSecurity: 2.82.10
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.2
+    intellisenseMarkdownSupport: 0.1.0
+    nameOverrides: 2.81.2
+    nullables: 0.1.0
+    responseFormat: 0.1.2
+    retries: 2.83.0
+    sdkHooks: 0.1.0
+    serverEventsSentinels: 0.1.0
+    webhooks: 1.0.0
 generatedFiles:
-  - syncflowsettings.go
+  - .gitattributes
+  - /pkg/models/operations/createcompany.go
+  - /pkg/models/operations/createconnection.go
+  - /pkg/models/operations/getconfigtextsyncflow.go
+  - /pkg/models/operations/getconfiguration.go
+  - /pkg/models/operations/getintegrationbranding.go
+  - /pkg/models/operations/getlastsuccessfulsync.go
+  - /pkg/models/operations/getlatestsync.go
+  - /pkg/models/operations/getsyncbyid.go
+  - /pkg/models/operations/getsyncflowurl.go
+  - /pkg/models/operations/getsyncstatus.go
+  - /pkg/models/operations/getvisibleaccounts.go
+  - /pkg/models/operations/listcompanies.go
+  - /pkg/models/operations/listconnections.go
+  - /pkg/models/operations/listintegrations.go
+  - /pkg/models/operations/listsyncs.go
+  - /pkg/models/operations/requestsync.go
+  - /pkg/models/operations/requestsyncfordaterange.go
+  - /pkg/models/operations/setconfiguration.go
+  - /pkg/models/operations/updateconfigtextsyncflow.go
+  - /pkg/models/operations/updateconnection.go
+  - /pkg/models/operations/updateconnectionauthorization.go
+  - /pkg/models/operations/updatevisibleaccountssyncflow.go
+  - /pkg/models/sdkerrors/errormessage.go
+  - /pkg/models/shared/accountconfiguration.go
+  - /pkg/models/shared/accountconfigurationoption.go
+  - /pkg/models/shared/branding.go
+  - /pkg/models/shared/brandingbutton.go
+  - /pkg/models/shared/brandingimage.go
+  - /pkg/models/shared/brandinglogo.go
+  - /pkg/models/shared/commerceconfiguration.go
+  - /pkg/models/shared/companies.go
+  - /pkg/models/shared/company.go
+  - /pkg/models/shared/companysyncstatus.go
+  - /pkg/models/shared/configuration.go
+  - /pkg/models/shared/configurationmapsettings.go
+  - /pkg/models/shared/configurationoption.go
+  - /pkg/models/shared/connection.go
+  - /pkg/models/shared/connections.go
+  - /pkg/models/shared/createcompany.go
+  - /pkg/models/shared/dataconnectionerror.go
+  - /pkg/models/shared/dataconnectionstatus.go
+  - /pkg/models/shared/datatypefeature.go
+  - /pkg/models/shared/errorvalidation.go
+  - /pkg/models/shared/errorvalidationitem.go
+  - /pkg/models/shared/featurestate.go
+  - /pkg/models/shared/featuretype.go
+  - /pkg/models/shared/feesconfiguration.go
+  - /pkg/models/shared/feessupplier.go
+  - /pkg/models/shared/grouping.go
+  - /pkg/models/shared/groupinglevels.go
+  - /pkg/models/shared/groupingperiod.go
+  - /pkg/models/shared/halref.go
+  - /pkg/models/shared/imagereference.go
+  - /pkg/models/shared/integration.go
+  - /pkg/models/shared/integrations.go
+  - /pkg/models/shared/invoicelevelselection.go
+  - /pkg/models/shared/invoicelinelevelselection.go
+  - /pkg/models/shared/invoicestatus.go
+  - /pkg/models/shared/links.go
+  - /pkg/models/shared/locale.go
+  - /pkg/models/shared/localization.go
+  - /pkg/models/shared/newpaymentsconfiguration.go
+  - /pkg/models/shared/newtaxrates.go
+  - /pkg/models/shared/paymentsconfiguration.go
+  - /pkg/models/shared/salesconfiguration.go
+  - /pkg/models/shared/salescustomer.go
+  - /pkg/models/shared/security.go
+  - /pkg/models/shared/sourcetype.go
+  - /pkg/models/shared/supportedfeature.go
+  - /pkg/models/shared/syncconnectiondeletedwebhook.go
+  - /pkg/models/shared/syncflowurl.go
+  - /pkg/models/shared/syncfrequency.go
+  - /pkg/models/shared/syncrange.go
+  - /pkg/models/shared/syncschedule.go
+  - /pkg/models/shared/syncstatus.go
+  - /pkg/models/shared/syncsummary.go
+  - /pkg/models/shared/synctolatestargs.go
+  - /pkg/models/shared/taxrateamount.go
+  - /pkg/models/shared/taxratemapping.go
+  - /pkg/models/shared/updateconnection.go
+  - /pkg/models/shared/visibleaccounts.go
+  - /pkg/models/webhooks/syncconnectiondeleted.go
+  - CONTRIBUTING.md
+  - USAGE.md
   - advancedcontrols.go
-  - connections.go
-  - sync.go
-  - integrations.go
   - codatsynccommerce.go
+  - connections.go
+  - docs/pkg/models/operations/createcompanyresponse.md
+  - docs/pkg/models/operations/createconnectionrequest.md
+  - docs/pkg/models/operations/createconnectionrequestbody.md
+  - docs/pkg/models/operations/createconnectionresponse.md
+  - docs/pkg/models/operations/getconfigtextsyncflowrequest.md
+  - docs/pkg/models/operations/getconfigtextsyncflowresponse.md
+  - docs/pkg/models/operations/getconfigurationrequest.md
+  - docs/pkg/models/operations/getconfigurationresponse.md
+  - docs/pkg/models/operations/getintegrationbrandingrequest.md
+  - docs/pkg/models/operations/getintegrationbrandingresponse.md
+  - docs/pkg/models/operations/getlastsuccessfulsyncrequest.md
+  - docs/pkg/models/operations/getlastsuccessfulsyncresponse.md
+  - docs/pkg/models/operations/getlatestsyncrequest.md
+  - docs/pkg/models/operations/getlatestsyncresponse.md
+  - docs/pkg/models/operations/getsyncbyidrequest.md
+  - docs/pkg/models/operations/getsyncbyidresponse.md
+  - docs/pkg/models/operations/getsyncflowurlrequest.md
+  - docs/pkg/models/operations/getsyncflowurlresponse.md
+  - docs/pkg/models/operations/getsyncstatusrequest.md
+  - docs/pkg/models/operations/getsyncstatusresponse.md
+  - docs/pkg/models/operations/getvisibleaccountsrequest.md
+  - docs/pkg/models/operations/getvisibleaccountsresponse.md
+  - docs/pkg/models/operations/listcompaniesrequest.md
+  - docs/pkg/models/operations/listcompaniesresponse.md
+  - docs/pkg/models/operations/listconnectionsrequest.md
+  - docs/pkg/models/operations/listconnectionsresponse.md
+  - docs/pkg/models/operations/listintegrationsrequest.md
+  - docs/pkg/models/operations/listintegrationsresponse.md
+  - docs/pkg/models/operations/listsyncsrequest.md
+  - docs/pkg/models/operations/listsyncsresponse.md
+  - docs/pkg/models/operations/option.md
+  - docs/pkg/models/operations/requestsyncfordaterangerequest.md
+  - docs/pkg/models/operations/requestsyncfordaterangeresponse.md
+  - docs/pkg/models/operations/requestsyncrequest.md
+  - docs/pkg/models/operations/requestsyncresponse.md
+  - docs/pkg/models/operations/setconfigurationrequest.md
+  - docs/pkg/models/operations/setconfigurationresponse.md
+  - docs/pkg/models/operations/updateconfigtextsyncflowrequest.md
+  - docs/pkg/models/operations/updateconfigtextsyncflowresponse.md
+  - docs/pkg/models/operations/updateconnectionauthorizationrequest.md
+  - docs/pkg/models/operations/updateconnectionauthorizationresponse.md
+  - docs/pkg/models/operations/updateconnectionrequest.md
+  - docs/pkg/models/operations/updateconnectionresponse.md
+  - docs/pkg/models/operations/updatevisibleaccountssyncflowrequest.md
+  - docs/pkg/models/operations/updatevisibleaccountssyncflowresponse.md
+  - docs/pkg/models/sdkerrors/errormessage.md
+  - docs/pkg/models/shared/accountconfiguration.md
+  - docs/pkg/models/shared/accountconfigurationoption.md
+  - docs/pkg/models/shared/branding.md
+  - docs/pkg/models/shared/brandingbutton.md
+  - docs/pkg/models/shared/brandingimage.md
+  - docs/pkg/models/shared/brandinglogo.md
+  - docs/pkg/models/shared/commerceconfiguration.md
+  - docs/pkg/models/shared/companies.md
+  - docs/pkg/models/shared/company.md
+  - docs/pkg/models/shared/companysyncstatus.md
+  - docs/pkg/models/shared/configuration.md
+  - docs/pkg/models/shared/configurationmapsettings.md
+  - docs/pkg/models/shared/configurationoption.md
+  - docs/pkg/models/shared/connection.md
+  - docs/pkg/models/shared/connections.md
+  - docs/pkg/models/shared/createcompany.md
+  - docs/pkg/models/shared/dataconnectionerror.md
+  - docs/pkg/models/shared/dataconnectionstatus.md
+  - docs/pkg/models/shared/datatypefeature.md
+  - docs/pkg/models/shared/datatypes.md
+  - docs/pkg/models/shared/daterange.md
+  - docs/pkg/models/shared/errorstatus.md
+  - docs/pkg/models/shared/errorvalidation.md
+  - docs/pkg/models/shared/errorvalidationitem.md
+  - docs/pkg/models/shared/featurestate.md
+  - docs/pkg/models/shared/featuretype.md
+  - docs/pkg/models/shared/feesconfiguration.md
+  - docs/pkg/models/shared/feessupplier.md
+  - docs/pkg/models/shared/grouping.md
+  - docs/pkg/models/shared/groupinglevels.md
+  - docs/pkg/models/shared/groupingperiod.md
+  - docs/pkg/models/shared/groupreference.md
+  - docs/pkg/models/shared/halref.md
+  - docs/pkg/models/shared/imagereference.md
+  - docs/pkg/models/shared/integration.md
+  - docs/pkg/models/shared/integrations.md
+  - docs/pkg/models/shared/invoicelevelselection.md
+  - docs/pkg/models/shared/invoicelinelevelselection.md
+  - docs/pkg/models/shared/invoicestatus.md
+  - docs/pkg/models/shared/links.md
+  - docs/pkg/models/shared/locale.md
+  - docs/pkg/models/shared/localization.md
+  - docs/pkg/models/shared/newpaymentsconfiguration.md
+  - docs/pkg/models/shared/newtaxrates.md
+  - docs/pkg/models/shared/outputformat.md
+  - docs/pkg/models/shared/paymentsconfiguration.md
+  - docs/pkg/models/shared/salesconfiguration.md
+  - docs/pkg/models/shared/salescustomer.md
+  - docs/pkg/models/shared/security.md
+  - docs/pkg/models/shared/sourcetype.md
+  - docs/pkg/models/shared/supportedfeature.md
+  - docs/pkg/models/shared/syncconnectiondeletedwebhook.md
+  - docs/pkg/models/shared/syncdaterangeutc.md
+  - docs/pkg/models/shared/syncflowurl.md
+  - docs/pkg/models/shared/syncfrequency.md
+  - docs/pkg/models/shared/syncrange.md
+  - docs/pkg/models/shared/syncschedule.md
+  - docs/pkg/models/shared/syncstatus.md
+  - docs/pkg/models/shared/syncsummary.md
+  - docs/pkg/models/shared/synctolatestargs.md
+  - docs/pkg/models/shared/tags.md
+  - docs/pkg/models/shared/taxrateamount.md
+  - docs/pkg/models/shared/taxratemapping.md
+  - docs/pkg/models/shared/updateconnection.md
+  - docs/pkg/models/shared/visibleaccounts.md
+  - docs/pkg/models/webhooks/syncconnectiondeletedresponse.md
+  - docs/sdks/advancedcontrols/README.md
+  - docs/sdks/codatsynccommerce/README.md
+  - docs/sdks/connections/README.md
+  - docs/sdks/integrations/README.md
+  - docs/sdks/sync/README.md
+  - docs/sdks/syncflowsettings/README.md
   - go.mod
-  - go.sum
+  - integrations.go
+  - internal/hooks/hooks.go
+  - pkg/models/operations/options.go
   - pkg/models/sdkerrors/sdkerror.go
+  - pkg/retry/config.go
   - pkg/types/bigint.go
   - pkg/types/date.go
   - pkg/types/datetime.go
@@ -46,197 +259,311 @@ generatedFiles:
   - pkg/utils/retries.go
   - pkg/utils/security.go
   - pkg/utils/utils.go
-  - /pkg/models/operations/getconfigtextsyncflow.go
-  - /pkg/models/operations/getvisibleaccounts.go
-  - /pkg/models/operations/updateconfigtextsyncflow.go
-  - /pkg/models/operations/updatevisibleaccountssyncflow.go
-  - /pkg/models/operations/createcompany.go
-  - /pkg/models/operations/getconfiguration.go
-  - /pkg/models/operations/listcompanies.go
-  - /pkg/models/operations/setconfiguration.go
-  - /pkg/models/operations/createconnection.go
-  - /pkg/models/operations/getsyncflowurl.go
-  - /pkg/models/operations/listconnections.go
-  - /pkg/models/operations/updateconnectionauthorization.go
-  - /pkg/models/operations/updateconnection.go
-  - /pkg/models/operations/getsyncbyid.go
-  - /pkg/models/operations/getlastsuccessfulsync.go
-  - /pkg/models/operations/getlatestsync.go
-  - /pkg/models/operations/getsyncstatus.go
-  - /pkg/models/operations/listsyncs.go
-  - /pkg/models/operations/requestsync.go
-  - /pkg/models/operations/requestsyncfordaterange.go
-  - /pkg/models/operations/getintegrationbranding.go
-  - /pkg/models/operations/listintegrations.go
-  - /pkg/models/shared/localization.go
-  - /pkg/models/shared/errorvalidation.go
-  - /pkg/models/shared/errorvalidationitem.go
-  - /pkg/models/shared/locale.go
-  - /pkg/models/shared/visibleaccounts.go
-  - /pkg/models/shared/company.go
-  - /pkg/models/shared/connection.go
-  - /pkg/models/shared/dataconnectionstatus.go
-  - /pkg/models/shared/sourcetype.go
-  - /pkg/models/shared/dataconnectionerror.go
-  - /pkg/models/shared/createcompany.go
-  - /pkg/models/shared/items.go
-  - /pkg/models/shared/configuration.go
-  - /pkg/models/shared/sales.go
-  - /pkg/models/shared/taxrateamount.go
-  - /pkg/models/shared/option.go
-  - /pkg/models/shared/customer.go
-  - /pkg/models/shared/newtaxrates.go
-  - /pkg/models/shared/taxratemapping.go
-  - /pkg/models/shared/invoicestatus.go
-  - /pkg/models/shared/grouping.go
-  - /pkg/models/shared/groupingperiod.go
-  - /pkg/models/shared/groupinglevels.go
-  - /pkg/models/shared/invoicelinelevelselection.go
-  - /pkg/models/shared/invoicelevelselection.go
-  - /pkg/models/shared/configaccount.go
-  - /pkg/models/shared/accountoption.go
-  - /pkg/models/shared/payments.go
-  - /pkg/models/shared/newpayments.go
-  - /pkg/models/shared/fees.go
-  - /pkg/models/shared/feessupplier.go
-  - /pkg/models/shared/companies.go
-  - /pkg/models/shared/links.go
-  - /pkg/models/shared/halref.go
-  - /pkg/models/shared/syncflowurl.go
-  - /pkg/models/shared/connections.go
-  - /pkg/models/shared/updateconnection.go
-  - /pkg/models/shared/companysyncstatus.go
-  - /pkg/models/shared/syncstatus.go
-  - /pkg/models/shared/syncsummary.go
-  - /pkg/models/shared/synctolatestargs.go
-  - /pkg/models/shared/syncrange.go
-  - /pkg/models/shared/branding.go
-  - /pkg/models/shared/brandinglogo.go
-  - /pkg/models/shared/brandingimage.go
-  - /pkg/models/shared/imagereference.go
-  - /pkg/models/shared/brandingbutton.go
-  - /pkg/models/shared/integrations.go
-  - /pkg/models/shared/integration.go
-  - /pkg/models/shared/datatypefeature.go
-  - /pkg/models/shared/supportedfeature.go
-  - /pkg/models/shared/featuretype.go
-  - /pkg/models/shared/featurestate.go
-  - /pkg/models/shared/security.go
-  - /pkg/models/shared/syncconnectiondeletedwebhook.go
-  - /pkg/models/sdkerrors/errormessage.go
-  - /pkg/models/webhooks/syncconnectiondeleted.go
-  - docs/pkg/models/operations/getconfigtextsyncflowrequest.md
-  - docs/pkg/models/operations/getconfigtextsyncflowresponse.md
-  - docs/pkg/models/operations/getvisibleaccountsrequest.md
-  - docs/pkg/models/operations/getvisibleaccountsresponse.md
-  - docs/pkg/models/operations/updateconfigtextsyncflowrequest.md
-  - docs/pkg/models/operations/updateconfigtextsyncflowresponse.md
-  - docs/pkg/models/operations/updatevisibleaccountssyncflowrequest.md
-  - docs/pkg/models/operations/updatevisibleaccountssyncflowresponse.md
-  - docs/pkg/models/operations/createcompanyresponse.md
-  - docs/pkg/models/operations/getconfigurationrequest.md
-  - docs/pkg/models/operations/getconfigurationresponse.md
-  - docs/pkg/models/operations/listcompaniesrequest.md
-  - docs/pkg/models/operations/listcompaniesresponse.md
-  - docs/pkg/models/operations/setconfigurationrequest.md
-  - docs/pkg/models/operations/setconfigurationresponse.md
-  - docs/pkg/models/operations/createconnectionrequestbody.md
-  - docs/pkg/models/operations/createconnectionrequest.md
-  - docs/pkg/models/operations/createconnectionresponse.md
-  - docs/pkg/models/operations/getsyncflowurlrequest.md
-  - docs/pkg/models/operations/getsyncflowurlresponse.md
-  - docs/pkg/models/operations/listconnectionsrequest.md
-  - docs/pkg/models/operations/listconnectionsresponse.md
-  - docs/pkg/models/operations/updateconnectionauthorizationrequest.md
-  - docs/pkg/models/operations/updateconnectionauthorizationresponse.md
-  - docs/pkg/models/operations/updateconnectionrequest.md
-  - docs/pkg/models/operations/updateconnectionresponse.md
-  - docs/pkg/models/operations/getsyncbyidrequest.md
-  - docs/pkg/models/operations/getsyncbyidresponse.md
-  - docs/pkg/models/operations/getlastsuccessfulsyncrequest.md
-  - docs/pkg/models/operations/getlastsuccessfulsyncresponse.md
-  - docs/pkg/models/operations/getlatestsyncrequest.md
-  - docs/pkg/models/operations/getlatestsyncresponse.md
-  - docs/pkg/models/operations/getsyncstatusrequest.md
-  - docs/pkg/models/operations/getsyncstatusresponse.md
-  - docs/pkg/models/operations/listsyncsrequest.md
-  - docs/pkg/models/operations/listsyncsresponse.md
-  - docs/pkg/models/operations/requestsyncrequest.md
-  - docs/pkg/models/operations/requestsyncresponse.md
-  - docs/pkg/models/operations/requestsyncfordaterangerequest.md
-  - docs/pkg/models/operations/requestsyncfordaterangeresponse.md
-  - docs/pkg/models/operations/getintegrationbrandingrequest.md
-  - docs/pkg/models/operations/getintegrationbrandingresponse.md
-  - docs/pkg/models/operations/listintegrationsrequest.md
-  - docs/pkg/models/operations/listintegrationsresponse.md
-  - docs/pkg/models/shared/localization.md
-  - docs/pkg/models/shared/errorvalidation.md
-  - docs/pkg/models/shared/errorvalidationitem.md
-  - docs/pkg/models/shared/locale.md
-  - docs/pkg/models/shared/visibleaccounts.md
-  - docs/pkg/models/shared/groupreference.md
-  - docs/pkg/models/shared/company.md
-  - docs/pkg/models/shared/connection.md
-  - docs/pkg/models/shared/dataconnectionstatus.md
-  - docs/pkg/models/shared/sourcetype.md
-  - docs/pkg/models/shared/dataconnectionerror.md
-  - docs/pkg/models/shared/createcompany.md
-  - docs/pkg/models/shared/items.md
-  - docs/pkg/models/shared/configuration.md
-  - docs/pkg/models/shared/sales.md
-  - docs/pkg/models/shared/taxrateamount.md
-  - docs/pkg/models/shared/option.md
-  - docs/pkg/models/shared/customer.md
-  - docs/pkg/models/shared/newtaxrates.md
-  - docs/pkg/models/shared/taxratemapping.md
-  - docs/pkg/models/shared/invoicestatus.md
-  - docs/pkg/models/shared/grouping.md
-  - docs/pkg/models/shared/groupingperiod.md
-  - docs/pkg/models/shared/groupinglevels.md
-  - docs/pkg/models/shared/invoicelinelevelselection.md
-  - docs/pkg/models/shared/invoicelevelselection.md
-  - docs/pkg/models/shared/configaccount.md
-  - docs/pkg/models/shared/accountoption.md
-  - docs/pkg/models/shared/payments.md
-  - docs/pkg/models/shared/newpayments.md
-  - docs/pkg/models/shared/fees.md
-  - docs/pkg/models/shared/feessupplier.md
-  - docs/pkg/models/shared/companies.md
-  - docs/pkg/models/shared/links.md
-  - docs/pkg/models/shared/halref.md
-  - docs/pkg/models/shared/syncflowurl.md
-  - docs/pkg/models/shared/connections.md
-  - docs/pkg/models/shared/updateconnection.md
-  - docs/pkg/models/shared/companysyncstatus.md
-  - docs/pkg/models/shared/syncstatus.md
-  - docs/pkg/models/shared/syncdaterangeutc.md
-  - docs/pkg/models/shared/syncsummary.md
-  - docs/pkg/models/shared/synctolatestargs.md
-  - docs/pkg/models/shared/daterange.md
-  - docs/pkg/models/shared/syncrange.md
-  - docs/pkg/models/shared/branding.md
-  - docs/pkg/models/shared/brandinglogo.md
-  - docs/pkg/models/shared/brandingimage.md
-  - docs/pkg/models/shared/imagereference.md
-  - docs/pkg/models/shared/brandingbutton.md
-  - docs/pkg/models/shared/integrations.md
-  - docs/pkg/models/shared/integration.md
-  - docs/pkg/models/shared/datatypes.md
-  - docs/pkg/models/shared/datatypefeature.md
-  - docs/pkg/models/shared/supportedfeature.md
-  - docs/pkg/models/shared/featuretype.md
-  - docs/pkg/models/shared/featurestate.md
-  - docs/pkg/models/shared/security.md
-  - docs/pkg/models/shared/syncconnectiondeletedwebhook.md
-  - docs/pkg/models/sdkerrors/errormessage.md
-  - docs/pkg/models/webhooks/syncconnectiondeletedresponse.md
-  - docs/sdks/codatsynccommerce/README.md
-  - docs/pkg/models/operations/option.md
-  - docs/sdks/syncflowsettings/README.md
-  - docs/sdks/advancedcontrols/README.md
-  - docs/sdks/connections/README.md
-  - docs/sdks/sync/README.md
-  - docs/sdks/integrations/README.md
-  - USAGE.md
-  - pkg/models/operations/options.go
-  - .gitattributes
+  - sync.go
+  - syncflowsettings.go
+examples:
+  get-config-text-sync-flow:
+    "":
+      parameters:
+        query:
+          locale: "en-us"
+    Unauthorized:
+      parameters:
+        query:
+          locale: "en-us"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-visible-accounts:
+    Unauthorized:
+      parameters:
+        path:
+          clientId: "86fe9741-738d-4f2c-8e96-9c3f84156e91"
+          platformKey: "gbol"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  update-config-text-sync-flow:
+    "":
+      parameters:
+        query:
+          locale: "en-us"
+      responses:
+        "200":
+          application/json: {}
+        "400": {}
+    Malformed query:
+      parameters:
+        query:
+          locale: "en-us"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  update-visible-accounts-sync-flow:
+    Malformed query:
+      parameters:
+        path:
+          platformKey: "gbol"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  create-company:
+    "":
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "string"}
+      responses:
+        "200":
+          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}
+        "400": {}
+    Malformed query:
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Bank of Dave"}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-configuration:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-companies:
+    "":
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [{"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}], "totalResults": 1}
+        "400": {}
+    Malformed query:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  set-configuration:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  create-connection:
+    Connection:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"platformKey": "gbol"}
+      responses:
+        "200":
+          application/json: {"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"platformKey": "gbol"}
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-sync-flow-url:
+    Malformed query:
+      parameters:
+        path:
+          commerceKey: "<value>"
+          accountingKey: "<value>"
+        query: {}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  list-connections:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "totalResults": 1}
+        "400": {}
+    Connections:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "string"}, "next": {"href": "string"}, "previous": {"href": "string"}, "self": {"href": "string"}}, "pageNumber": 0, "pageSize": 0, "results": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "totalResults": 0}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  update-connection-authorization:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  update-connection:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-sync-by-id:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          syncId: "6fb40d5e-b13e-11ed-afa1-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-last-successful-sync:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-latest-sync:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-sync-status:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-syncs:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  request-sync:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"syncTo": "2022-10-23T00:00:00Z"}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  request-sync-for-date-range:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"dateRange": {"finish": "2022-10-23T00:00:00Z", "start": "2022-10-23T00:00:00Z"}}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-integration-branding:
+    Unauthorized:
+      parameters:
+        path:
+          platformKey: "gbol"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-integrations:
+    "":
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [{"dataProvidedBy": "string", "datatypeFeatures": [{"dataType": "invoices", "supportedFeatures": [{"featureState": "NotSupported", "featureType": "Get"}]}], "enabled": true, "integrationId": "497a18ca-284e-40c0-985d-f72be35d468e", "isBeta": true, "isOfflineConnector": true, "key": "gbol", "logoUrl": "http://example.com", "name": "Xero", "sourceId": "accounting", "sourceType": "Commerce"}], "totalResults": 1}
+        "400": {}
+    Malformed query:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
