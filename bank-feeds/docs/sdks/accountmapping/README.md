@@ -3,7 +3,7 @@
 
 ## Overview
 
-Bank feed bank account mapping.
+Extra functionality for building an account management UI.
 
 ### Available Operations
 
@@ -12,7 +12,7 @@ Bank feed bank account mapping.
 
 ## Create
 
-﻿The *Create bank account mapping* endpoint creates a new mapping between a source bank account and a potential account in the accounting platform (target account).
+﻿The *Create bank account mapping* endpoint creates a new mapping between a source bank account and a potential account in the accounting software (target account).
 
 A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
 
@@ -42,9 +42,8 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
-        Zero: &shared.Zero{
-            FeedStartDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
-            SourceAccountID: bankfeeds.String("acc-002"),
+        BankFeedAccountMapping: &shared.BankFeedAccountMapping{
+            SourceAccountID: "acc-002",
             TargetAccountID: bankfeeds.String("account-081"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -53,7 +52,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BankFeedAccountMappingResponse != nil {
         // handle response
     }
@@ -68,14 +66,17 @@ func main() {
 | `request`                                                                                                    | [operations.CreateBankAccountMappingRequest](../../pkg/models/operations/createbankaccountmappingrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.CreateBankAccountMappingResponse](../../pkg/models/operations/createbankaccountmappingresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -113,7 +114,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BankFeedMapping != nil {
         // handle response
     }
@@ -128,10 +128,12 @@ func main() {
 | `request`                                                                                              | [operations.GetBankAccountMappingRequest](../../pkg/models/operations/getbankaccountmappingrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.GetBankAccountMappingResponse](../../pkg/models/operations/getbankaccountmappingresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

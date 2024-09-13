@@ -3,7 +3,7 @@
 
 ## Overview
 
-Source accounts act as a bridge to bank accounts in accounting software.
+Provide and manage lists of source bank accounts.
 
 ### Available Operations
 
@@ -20,7 +20,7 @@ The _Create Source Account_ endpoint allows you to create a representation of a 
 
 #### Account mapping variability
 
-The method of mapping the source account to the target account varies depending on the accounting package your company uses.
+The method of mapping the source account to the target account varies depending on the accounting software your company uses.
 
 #### Mapping options:
 
@@ -38,6 +38,9 @@ The method of mapping the source account to the target account varies depending 
 | Exact Online (NL)     | ✅          | ✅               |                             |
 | QuickBooks Online     |             |                  | ✅                          |
 | Sage                  |             |                  | ✅                          |
+
+> ### Versioning
+> If you are integrating the Bank Feeds API with Codat after August 1, 2024, please use the v2 version of the API, as detailed in the schema below. For integrations completed before August 1, 2024, select the v1 version from the schema dropdown below.
 
 ### Example Usage
 
@@ -62,26 +65,36 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
-        SourceAccount: &shared.SourceAccount{
-            AccountName: bankfeeds.String("account-081"),
-            AccountNumber: bankfeeds.String("12345670"),
-            AccountType: bankfeeds.String("Credit"),
-            Balance: types.MustNewDecimalFromString("99.99"),
-            Currency: bankfeeds.String("GBP"),
-            FeedStartDate: bankfeeds.String("2022-10-23T00:00:00Z"),
-            ID: "acc-002",
-            ModifiedDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
-            SortCode: bankfeeds.String("123456"),
-            Status: bankfeeds.String("pending"),
-        },
+        RequestBody: bankfeeds.Pointer(operations.CreateCreateSourceAccountRequestBodySourceAccountV2(
+            shared.SourceAccountV2{
+                AccountInfo: &shared.AccountInfo{
+                    AccountOpenDate: bankfeeds.String("2023-05-06T00:00:00Z"),
+                    AvailableBalance: types.MustNewDecimalFromString("10"),
+                    Description: bankfeeds.String("account description 1"),
+                    Nickname: bankfeeds.String("account 123"),
+                },
+                AccountName: "account-081",
+                AccountNumber: "12345670",
+                AccountType: shared.AccountTypeChecking,
+                Balance: types.MustNewDecimalFromString("99.99"),
+                Currency: "GBP",
+                FeedStartDate: bankfeeds.String("2024-05-01T00:00:00Z"),
+                ID: "acc-001",
+                ModifiedDate: bankfeeds.String("2024-08-02T00:00:00.000Z"),
+                RoutingInfo: &shared.RoutingInfo{
+                    BankCode: bankfeeds.String("21001088"),
+                    Type: shared.TypeBankcode.ToPointer(),
+                },
+                Status: shared.SourceAccountV2StatusPending.ToPointer(),
+            },
+        )),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.SourceAccount != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -95,14 +108,17 @@ func main() {
 | `request`                                                                                          | [operations.CreateSourceAccountRequest](../../pkg/models/operations/createsourceaccountrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.CreateSourceAccountResponse](../../pkg/models/operations/createsourceaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Delete
 
@@ -122,7 +138,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -141,8 +156,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -156,14 +170,17 @@ func main() {
 | `request`                                                                                          | [operations.DeleteSourceAccountRequest](../../pkg/models/operations/deletesourceaccountrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.DeleteSourceAccountResponse](../../pkg/models/operations/deletesourceaccountresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## DeleteCredentials
 
@@ -182,7 +199,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -200,8 +216,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -215,14 +230,17 @@ func main() {
 | `request`                                                                                                      | [operations.DeleteBankFeedCredentialsRequest](../../pkg/models/operations/deletebankfeedcredentialsrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.DeleteBankFeedCredentialsResponse](../../pkg/models/operations/deletebankfeedcredentialsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GenerateCredentials
 
@@ -239,6 +257,7 @@ package main
 import(
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"os"
 	"context"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
@@ -251,16 +270,20 @@ func main() {
         }),
     )
 
+    requestBody, fileErr := os.Open("example.file")
+    if fileErr != nil {
+        panic(fileErr)
+    }
+
     ctx := context.Background()
     res, err := s.SourceAccounts.GenerateCredentials(ctx, operations.GenerateCredentialsRequest{
-        RequestBody: []byte("0xeDCfFBde9E"),
+        RequestBody: requestBody,
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BankAccountCredentials != nil {
         // handle response
     }
@@ -275,14 +298,17 @@ func main() {
 | `request`                                                                                          | [operations.GenerateCredentialsRequest](../../pkg/models/operations/generatecredentialsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.GenerateCredentialsResponse](../../pkg/models/operations/generatecredentialsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -290,6 +316,8 @@ func main() {
 
 [source accounts](https://docs.codat.io/bank-feeds-api#/schemas/BankFeedAccount) are the bank's bank account within Codat's domain from which transactions are synced into the accounting platform.
 
+> ### Versioning
+> If you are integrating the Bank Feeds API with Codat after August 1, 2024, please use the v2 version of the API, as detailed in the schema below. For integrations completed before August 1, 2024, select the v1 version from the schema dropdown below.
 
 ### Example Usage
 
@@ -319,8 +347,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.SourceAccounts != nil {
+    if res.OneOf != nil {
         // handle response
     }
 }
@@ -334,19 +361,26 @@ func main() {
 | `request`                                                                                        | [operations.ListSourceAccountsRequest](../../pkg/models/operations/listsourceaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.ListSourceAccountsResponse](../../pkg/models/operations/listsourceaccountsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
+
 ## Update
 
 ﻿The _Update source account_ endpoint updates a single source account for a single data connection connected to a single company.
 
+### Tips and pitfalls
+
+* This endpoint only updates the `accountName` field.
+* Updates made here apply exclusively to source accounts and will not affect target accounts in the accounting software.
 
 ### Example Usage
 
@@ -381,7 +415,7 @@ func main() {
             ID: "acc-003",
             ModifiedDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
             SortCode: bankfeeds.String("123456"),
-            Status: bankfeeds.String("pending"),
+            Status: shared.StatusPending.ToPointer(),
         },
         AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -390,7 +424,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SourceAccount != nil {
         // handle response
     }
@@ -405,10 +438,12 @@ func main() {
 | `request`                                                                                          | [operations.UpdateSourceAccountRequest](../../pkg/models/operations/updatesourceaccountrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.UpdateSourceAccountResponse](../../pkg/models/operations/updatesourceaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

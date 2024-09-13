@@ -4,9 +4,48 @@
 ﻿Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting platforms.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Bank Feeds API: Bank Feeds API enables your SMB users to set up bank feeds from accounts in your application to supported accounting software.
+
+A bank feed is a connection between a source bank account in your application and a target bank account in a supported accounting software.
+
+[Explore product](https://docs.codat.io/bank-feeds-api/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
+
+---
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Companies | Create and manage your SMB users' companies. |
+| Connections | Create new and manage existing data connections for a company. |
+| Source accounts | Provide and manage lists of source bank accounts. |
+| Account mapping | Extra functionality for building an account management UI. |
+| Company information | Get detailed information about a company from the underlying platform. |
+| Transactions | Create new bank account transactions for a company's connections, and see previous operations. |
+<!-- End Codat Tags Table -->
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/bank-feeds
 ```
@@ -38,12 +77,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -55,6 +98,21 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+### [AccountMapping](docs/sdks/accountmapping/README.md)
+
+* [Create](docs/sdks/accountmapping/README.md#create) - Create bank feed account mapping
+* [Get](docs/sdks/accountmapping/README.md#get) - List bank feed account mappings
+
+### [BankAccounts](docs/sdks/bankaccounts/README.md)
+
+* [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
+* [GetCreateModel](docs/sdks/bankaccounts/README.md#getcreatemodel) - Get create/update bank account model
+* [List](docs/sdks/bankaccounts/README.md#list) - List bank accounts
+
+
 ### [Companies](docs/sdks/companies/README.md)
 
 * [Create](docs/sdks/companies/README.md#create) - Create company
@@ -63,6 +121,15 @@ func main() {
 * [List](docs/sdks/companies/README.md#list) - List companies
 * [Update](docs/sdks/companies/README.md#update) - Update company
 
+### [CompanyInformation](docs/sdks/companyinformation/README.md)
+
+* [Get](docs/sdks/companyinformation/README.md#get) - Get company information
+
+### [Configuration](docs/sdks/configuration/README.md)
+
+* [Get](docs/sdks/configuration/README.md#get) - Get configuration
+* [Set](docs/sdks/configuration/README.md#set) - Set configuration
+
 ### [Connections](docs/sdks/connections/README.md)
 
 * [Create](docs/sdks/connections/README.md#create) - Create connection
@@ -70,11 +137,6 @@ func main() {
 * [Get](docs/sdks/connections/README.md#get) - Get connection
 * [List](docs/sdks/connections/README.md#list) - List connections
 * [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
-
-### [AccountMapping](docs/sdks/accountmapping/README.md)
-
-* [Create](docs/sdks/accountmapping/README.md#create) - Create bank feed account mapping
-* [Get](docs/sdks/accountmapping/README.md#get) - List bank feed account mappings
 
 ### [SourceAccounts](docs/sdks/sourceaccounts/README.md)
 
@@ -85,11 +147,9 @@ func main() {
 * [List](docs/sdks/sourceaccounts/README.md#list) - List source accounts
 * [Update](docs/sdks/sourceaccounts/README.md#update) - Update source account
 
-### [BankAccounts](docs/sdks/bankaccounts/README.md)
+### [Sync](docs/sdks/sync/README.md)
 
-* [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
-* [GetCreateModel](docs/sdks/bankaccounts/README.md#getcreatemodel) - Get create/update bank account model
-* [List](docs/sdks/bankaccounts/README.md#list) - List bank accounts
+* [GetLastSuccessfulSync](docs/sdks/sync/README.md#getlastsuccessfulsync) - Get last successful sync
 
 ### [Transactions](docs/sdks/transactions/README.md)
 
@@ -97,10 +157,7 @@ func main() {
 * [GetCreateOperation](docs/sdks/transactions/README.md#getcreateoperation) - Get create operation
 * [ListCreateOperations](docs/sdks/transactions/README.md#listcreateoperations) - List create operations
 
-### [Configuration](docs/sdks/configuration/README.md)
-
-* [Get](docs/sdks/configuration/README.md#get) - Get configuration
-* [Set](docs/sdks/configuration/README.md#set) - Set configuration
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -120,7 +177,7 @@ func main() {
 
 Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -128,7 +185,7 @@ import (
 	"context"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -143,11 +200,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -158,7 +220,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -174,16 +235,16 @@ import (
 	"context"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := bankfeeds.New(
 		bankfeeds.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -199,12 +260,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -249,7 +314,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 
@@ -306,12 +376,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -344,12 +418,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -423,12 +501,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
