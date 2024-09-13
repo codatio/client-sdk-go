@@ -3,10 +3,10 @@ id: f09ee5cd-b99f-4bea-96e8-aa0cf11c99eb
 management:
   docChecksum: 3e1bf1ed751542092d2ada42a1b8273b
   docVersion: 3.0.0
-  speakeasyVersion: 1.396.7
+  speakeasyVersion: 1.396.8
   generationVersion: 2.415.6
-  releaseVersion: 0.26.0
-  configChecksum: 67e285edcc6cde5e131a5f12a0b48285
+  releaseVersion: 0.26.1
+  configChecksum: 5c7c8048eb664349fcc8627e96806a55
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: previous-versions/files
   installationURL: https://github.com/codatio/client-sdk-go/previous-versions/files
