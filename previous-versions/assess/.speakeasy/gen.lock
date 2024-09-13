@@ -1,0 +1,1068 @@
+lockVersion: 2.0.0
+id: fa04770e-aaa1-4b81-8f37-aecabc5e9e4a
+management:
+  docChecksum: b32e1ce8596caccab7d7399c4cc0fe6e
+  docVersion: "1.0"
+  speakeasyVersion: 1.396.7
+  generationVersion: 2.415.6
+  releaseVersion: 0.28.0
+  configChecksum: 31a2b28b2164671e1957bbc9be4623cd
+  repoURL: https://github.com/codatio/client-sdk-go.git
+  repoSubDirectory: previous-versions/assess
+  installationURL: https://github.com/codatio/client-sdk-go/previous-versions/assess
+  published: true
+features:
+  go:
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.6
+    core: 3.5.8
+    decimal: 0.1.0
+    defaultEnabledRetries: 0.2.0
+    deprecations: 2.81.1
+    envVarSecurityUsage: 0.3.1
+    examples: 2.81.3
+    globalSecurity: 2.82.10
+    globalSecurityCallbacks: 0.1.0
+    globalServerURLs: 2.82.2
+    inputOutputModels: 2.83.0
+    intellisenseMarkdownSupport: 0.1.0
+    nameOverrides: 2.81.2
+    nullables: 0.1.0
+    responseFormat: 0.1.2
+    retries: 2.83.0
+    sdkHooks: 0.1.0
+    serverEventsSentinels: 0.1.0
+    webhooks: 1.0.0
+generatedFiles:
+  - .gitattributes
+  - /pkg/models/operations/generateexcelreport.go
+  - /pkg/models/operations/generateloansummary.go
+  - /pkg/models/operations/generateloantransactions.go
+  - /pkg/models/operations/getaccountingmarketingmetrics.go
+  - /pkg/models/operations/getaccountsforenhancedbalancesheet.go
+  - /pkg/models/operations/getaccountsforenhancedprofitandloss.go
+  - /pkg/models/operations/getcommercecustomerretentionmetrics.go
+  - /pkg/models/operations/getcommercelifetimevaluemetrics.go
+  - /pkg/models/operations/getcommerceordersmetrics.go
+  - /pkg/models/operations/getcommercerefundsmetrics.go
+  - /pkg/models/operations/getcommercerevenuemetrics.go
+  - /pkg/models/operations/getdataintegritystatus.go
+  - /pkg/models/operations/getdataintegritysummaries.go
+  - /pkg/models/operations/getenhancedcashflowtransactions.go
+  - /pkg/models/operations/getenhancedinvoicesreport.go
+  - /pkg/models/operations/getexcelreport.go
+  - /pkg/models/operations/getexcelreportgenerationstatus.go
+  - /pkg/models/operations/getloansummary.go
+  - /pkg/models/operations/getrecurringrevenuemetrics.go
+  - /pkg/models/operations/listdatatypedataintegritydetails.go
+  - /pkg/models/operations/listloantransactions.go
+  - /pkg/models/operations/requestrecurringrevenuemetrics.go
+  - /pkg/models/sdkerrors/errormessage.go
+  - /pkg/models/shared/accountcategoriesupdatedwebhook.go
+  - /pkg/models/shared/accountcategoriesupdatedwebhookdata.go
+  - /pkg/models/shared/accountcategorylevel.go
+  - /pkg/models/shared/accountref.go
+  - /pkg/models/shared/accounts.go
+  - /pkg/models/shared/bankingtransactionref.go
+  - /pkg/models/shared/commercereportcomponent.go
+  - /pkg/models/shared/commercereportdimension.go
+  - /pkg/models/shared/commercereporterror.go
+  - /pkg/models/shared/commercereportmeasure.go
+  - /pkg/models/shared/dataintegrityamounts.go
+  - /pkg/models/shared/dataintegritybyamount.go
+  - /pkg/models/shared/dataintegritybycount.go
+  - /pkg/models/shared/dataintegrityconnectionid.go
+  - /pkg/models/shared/dataintegritydatatype.go
+  - /pkg/models/shared/dataintegritydates.go
+  - /pkg/models/shared/dataintegritydetails.go
+  - /pkg/models/shared/dataintegritymatch.go
+  - /pkg/models/shared/dataintegritystatus.go
+  - /pkg/models/shared/dataintegritystatusinfo.go
+  - /pkg/models/shared/dataintegritysummary.go
+  - /pkg/models/shared/datasource.go
+  - /pkg/models/shared/details.go
+  - /pkg/models/shared/enhancedcashflowitem.go
+  - /pkg/models/shared/enhancedcashflowtransaction.go
+  - /pkg/models/shared/enhancedcashflowtransactions.go
+  - /pkg/models/shared/enhancedinvoicereportitem.go
+  - /pkg/models/shared/enhancedinvoicesreport.go
+  - /pkg/models/shared/enhancedreport.go
+  - /pkg/models/shared/enhancedreportaccountcategory.go
+  - /pkg/models/shared/enhancedreportinfo.go
+  - /pkg/models/shared/errorvalidation.go
+  - /pkg/models/shared/errorvalidationitem.go
+  - /pkg/models/shared/excelreporttype.go
+  - /pkg/models/shared/excelreporttypes.go
+  - /pkg/models/shared/excelstatus.go
+  - /pkg/models/shared/halref.go
+  - /pkg/models/shared/integritystatus.go
+  - /pkg/models/shared/invoicestatus.go
+  - /pkg/models/shared/itemref.go
+  - /pkg/models/shared/lendingcustomerref.go
+  - /pkg/models/shared/links.go
+  - /pkg/models/shared/loanref.go
+  - /pkg/models/shared/loansummary.go
+  - /pkg/models/shared/loansummaryintegrationtype.go
+  - /pkg/models/shared/loansummaryrecordref.go
+  - /pkg/models/shared/loansummaryrecordreftype.go
+  - /pkg/models/shared/loansummaryreportinfo.go
+  - /pkg/models/shared/loansummaryreportitem.go
+  - /pkg/models/shared/loantransactions.go
+  - /pkg/models/shared/loantransactionsreportinfo.go
+  - /pkg/models/shared/payment.go
+  - /pkg/models/shared/periodunit.go
+  - /pkg/models/shared/report.go
+  - /pkg/models/shared/reportcomponentmeasure.go
+  - /pkg/models/shared/reportinfo.go
+  - /pkg/models/shared/reportitems.go
+  - /pkg/models/shared/security.go
+  - /pkg/models/shared/sourceref.go
+  - /pkg/models/shared/status.go
+  - /pkg/models/shared/summaries.go
+  - /pkg/models/shared/transactioncategory.go
+  - /pkg/models/webhooks/accountcategoriesupdated.go
+  - CONTRIBUTING.md
+  - USAGE.md
+  - codatassess.go
+  - dataintegrity.go
+  - docs/pkg/models/operations/generateexcelreportrequest.md
+  - docs/pkg/models/operations/generateexcelreportresponse.md
+  - docs/pkg/models/operations/generateloansummaryrequest.md
+  - docs/pkg/models/operations/generateloansummaryresponse.md
+  - docs/pkg/models/operations/generateloantransactionsrequest.md
+  - docs/pkg/models/operations/generateloantransactionsresponse.md
+  - docs/pkg/models/operations/getaccountingmarketingmetricsrequest.md
+  - docs/pkg/models/operations/getaccountingmarketingmetricsresponse.md
+  - docs/pkg/models/operations/getaccountsforenhancedbalancesheetrequest.md
+  - docs/pkg/models/operations/getaccountsforenhancedbalancesheetresponse.md
+  - docs/pkg/models/operations/getaccountsforenhancedprofitandlossrequest.md
+  - docs/pkg/models/operations/getaccountsforenhancedprofitandlossresponse.md
+  - docs/pkg/models/operations/getcommercecustomerretentionmetricsrequest.md
+  - docs/pkg/models/operations/getcommercecustomerretentionmetricsresponse.md
+  - docs/pkg/models/operations/getcommercelifetimevaluemetricsrequest.md
+  - docs/pkg/models/operations/getcommercelifetimevaluemetricsresponse.md
+  - docs/pkg/models/operations/getcommerceordersmetricsrequest.md
+  - docs/pkg/models/operations/getcommerceordersmetricsresponse.md
+  - docs/pkg/models/operations/getcommercerefundsmetricsrequest.md
+  - docs/pkg/models/operations/getcommercerefundsmetricsresponse.md
+  - docs/pkg/models/operations/getcommercerevenuemetricsrequest.md
+  - docs/pkg/models/operations/getcommercerevenuemetricsresponse.md
+  - docs/pkg/models/operations/getdataintegritystatusrequest.md
+  - docs/pkg/models/operations/getdataintegritystatusresponse.md
+  - docs/pkg/models/operations/getdataintegritysummariesrequest.md
+  - docs/pkg/models/operations/getdataintegritysummariesresponse.md
+  - docs/pkg/models/operations/getenhancedcashflowtransactionsrequest.md
+  - docs/pkg/models/operations/getenhancedcashflowtransactionsresponse.md
+  - docs/pkg/models/operations/getenhancedinvoicesreportrequest.md
+  - docs/pkg/models/operations/getenhancedinvoicesreportresponse.md
+  - docs/pkg/models/operations/getexcelreportgenerationstatusrequest.md
+  - docs/pkg/models/operations/getexcelreportgenerationstatusresponse.md
+  - docs/pkg/models/operations/getexcelreportrequest.md
+  - docs/pkg/models/operations/getexcelreportresponse.md
+  - docs/pkg/models/operations/getexcelreportresponsebody.md
+  - docs/pkg/models/operations/getloansummaryqueryparamsourcetype.md
+  - docs/pkg/models/operations/getloansummaryrequest.md
+  - docs/pkg/models/operations/getloansummaryresponse.md
+  - docs/pkg/models/operations/getrecurringrevenuemetricsrequest.md
+  - docs/pkg/models/operations/getrecurringrevenuemetricsresponse.md
+  - docs/pkg/models/operations/listdatatypedataintegritydetailsrequest.md
+  - docs/pkg/models/operations/listdatatypedataintegritydetailsresponse.md
+  - docs/pkg/models/operations/listloantransactionsqueryparamsourcetype.md
+  - docs/pkg/models/operations/listloantransactionsrequest.md
+  - docs/pkg/models/operations/listloantransactionsresponse.md
+  - docs/pkg/models/operations/option.md
+  - docs/pkg/models/operations/queryparamsourcetype.md
+  - docs/pkg/models/operations/requestrecurringrevenuemetricsrequest.md
+  - docs/pkg/models/operations/requestrecurringrevenuemetricsresponse.md
+  - docs/pkg/models/operations/sourcetype.md
+  - docs/pkg/models/sdkerrors/errormessage.md
+  - docs/pkg/models/shared/accountcategoriesupdatedwebhook.md
+  - docs/pkg/models/shared/accountcategoriesupdatedwebhookdata.md
+  - docs/pkg/models/shared/accountcategorylevel.md
+  - docs/pkg/models/shared/accountref.md
+  - docs/pkg/models/shared/accounts.md
+  - docs/pkg/models/shared/bankingtransactionref.md
+  - docs/pkg/models/shared/commercereportcomponent.md
+  - docs/pkg/models/shared/commercereportdimension.md
+  - docs/pkg/models/shared/commercereporterror.md
+  - docs/pkg/models/shared/commercereportmeasure.md
+  - docs/pkg/models/shared/dataintegrityamounts.md
+  - docs/pkg/models/shared/dataintegritybyamount.md
+  - docs/pkg/models/shared/dataintegritybycount.md
+  - docs/pkg/models/shared/dataintegrityconnectionid.md
+  - docs/pkg/models/shared/dataintegritydatatype.md
+  - docs/pkg/models/shared/dataintegritydates.md
+  - docs/pkg/models/shared/dataintegritydetails.md
+  - docs/pkg/models/shared/dataintegritymatch.md
+  - docs/pkg/models/shared/dataintegritystatus.md
+  - docs/pkg/models/shared/dataintegritystatusinfo.md
+  - docs/pkg/models/shared/dataintegritysummary.md
+  - docs/pkg/models/shared/datasource.md
+  - docs/pkg/models/shared/details.md
+  - docs/pkg/models/shared/enhancedcashflowitem.md
+  - docs/pkg/models/shared/enhancedcashflowtransaction.md
+  - docs/pkg/models/shared/enhancedcashflowtransactions.md
+  - docs/pkg/models/shared/enhancedinvoicereportitem.md
+  - docs/pkg/models/shared/enhancedinvoicesreport.md
+  - docs/pkg/models/shared/enhancedreport.md
+  - docs/pkg/models/shared/enhancedreportaccountcategory.md
+  - docs/pkg/models/shared/enhancedreportinfo.md
+  - docs/pkg/models/shared/errorvalidation.md
+  - docs/pkg/models/shared/errorvalidationitem.md
+  - docs/pkg/models/shared/excelreporttype.md
+  - docs/pkg/models/shared/excelreporttypes.md
+  - docs/pkg/models/shared/excelstatus.md
+  - docs/pkg/models/shared/halref.md
+  - docs/pkg/models/shared/integritystatus.md
+  - docs/pkg/models/shared/invoicestatus.md
+  - docs/pkg/models/shared/itemref.md
+  - docs/pkg/models/shared/items.md
+  - docs/pkg/models/shared/lendingcustomerref.md
+  - docs/pkg/models/shared/links.md
+  - docs/pkg/models/shared/loanref.md
+  - docs/pkg/models/shared/loansummary.md
+  - docs/pkg/models/shared/loansummaryintegrationtype.md
+  - docs/pkg/models/shared/loansummaryrecordref.md
+  - docs/pkg/models/shared/loansummaryrecordreftype.md
+  - docs/pkg/models/shared/loansummaryreportinfo.md
+  - docs/pkg/models/shared/loansummaryreportitem.md
+  - docs/pkg/models/shared/loantransactions.md
+  - docs/pkg/models/shared/loantransactionsreportinfo.md
+  - docs/pkg/models/shared/loantransactiontype.md
+  - docs/pkg/models/shared/payment.md
+  - docs/pkg/models/shared/periodunit.md
+  - docs/pkg/models/shared/report.md
+  - docs/pkg/models/shared/reportcomponentmeasure.md
+  - docs/pkg/models/shared/reportinfo.md
+  - docs/pkg/models/shared/reportitem.md
+  - docs/pkg/models/shared/reportitems.md
+  - docs/pkg/models/shared/security.md
+  - docs/pkg/models/shared/sourceref.md
+  - docs/pkg/models/shared/status.md
+  - docs/pkg/models/shared/summaries.md
+  - docs/pkg/models/shared/transactioncategory.md
+  - docs/pkg/models/webhooks/accountcategoriesupdatedresponse.md
+  - docs/sdks/codatassess/README.md
+  - docs/sdks/dataintegrity/README.md
+  - docs/sdks/excelreports/README.md
+  - docs/sdks/reports/README.md
+  - excelreports.go
+  - go.mod
+  - internal/hooks/hooks.go
+  - pkg/models/operations/options.go
+  - pkg/models/sdkerrors/sdkerror.go
+  - pkg/retry/config.go
+  - pkg/types/bigint.go
+  - pkg/types/date.go
+  - pkg/types/datetime.go
+  - pkg/types/decimal.go
+  - pkg/types/pointers.go
+  - pkg/utils/contenttype.go
+  - pkg/utils/form.go
+  - pkg/utils/headers.go
+  - pkg/utils/json.go
+  - pkg/utils/pathparams.go
+  - pkg/utils/queryparams.go
+  - pkg/utils/requestbody.go
+  - pkg/utils/retries.go
+  - pkg/utils/security.go
+  - pkg/utils/utils.go
+  - reports.go
+examples:
+  generate-loan-summary:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          sourceType: "accounting"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  generate-loan-transactions:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          sourceType: "accounting"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-accounts-for-enhanced-balance-sheet:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportDate: "29-09-2020"
+      responses:
+        "200":
+          application/json: {"reportInfo": {"companyName": "Biscuits", "currency": "GBP", "generatedDate": "2023-03-24T16:42:09.2973105Z", "reportName": "EnhancedBalanceSheetAccounts"}, "reportItems": [{"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Asset"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "AccruedDeferredAssets"}, {"confidence": 99.99, "levelName": "PrepaidExpenses"}], "status": "Suggested"}, "accountId": "22de1660-d745-4809-a363-16b134607e66", "accountName": "Prepayments", "balance": 12973.03, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Asset"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Bank"}], "status": "Suggested"}, "accountId": "dbcaf288-2b39-4b95-8ab3-42202ab15918", "accountName": "Business Current Account", "balance": 316065.92, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Asset"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Inventory"}], "status": "Suggested"}, "accountId": "e5d7612c-1671-47b4-b733-5db48363fcd0", "accountName": "Inventory", "balance": 65945.07, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Asset"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Receivables"}, {"confidence": 99.99, "levelName": "AccountsReceivables"}], "status": "Suggested"}, "accountId": "1b6266d1-1e44-46c5-8eb5-a8f98e03124e", "accountName": "Accounts Receivable", "balance": 71937.95, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Asset"}, {"confidence": 99.99, "levelName": "NonCurrent"}, {"confidence": 99.99, "levelName": "AccumulatedDepreciationDepletionAmortization"}], "status": "Suggested"}, "accountId": "724ca578-8b5d-4bdb-ad45-e3820eee9de9", "accountName": "Office Equipment", "balance": 2180148.56, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Asset"}, {"confidence": 99.99, "levelName": "NonCurrent"}, {"confidence": 99.99, "levelName": "AccumulatedDepreciationDepletionAmortization"}], "status": "Suggested"}, "accountId": "be3eb911-034b-42de-95db-0d58ac978b7f", "accountName": "Computer Equipment", "balance": 1804674.9, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Equity"}, {"confidence": 99.99, "levelName": "RetainedEarnings"}, {"confidence": 99.99, "levelName": "CapitalIncomeReserve"}], "status": "Suggested"}, "accountId": "39225d6f-3722-4508-ac3f-a2f6ec96ad31", "accountName": "Retained Earnings", "balance": 3417424.16, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Equity"}, {"confidence": 99.99, "levelName": "ShareCapital"}, {"confidence": 99.99, "levelName": "CommonStock"}], "status": "Suggested"}, "accountId": "78828dd9-6008-4662-b43c-e9d87907fd2b", "accountName": "Current Year Earnings", "balance": 44252.52, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "AccountsPayable"}], "status": "Suggested"}, "accountId": "53bf27a7-7497-4c61-9887-dfaad5c6d80a", "accountName": "Accounts Payable", "balance": 75835.64, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "AccruedLiabilities"}], "status": "Suggested"}, "accountId": "e2530acd-91c8-48f8-a35f-935dbd7432e2", "accountName": "Accruals", "balance": 208264.65, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Bank"}], "status": "Suggested"}, "accountId": "d19852a2-e292-4eb9-a909-9dadb95c0e76", "accountName": "Rounding", "balance": 0, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Debt"}, {"confidence": 99.99, "levelName": "CreditCards"}], "status": "Suggested"}, "accountId": "62060aae-e5a6-4db5-a3bb-6abec6d47959", "accountName": "Credit Card Control Account", "balance": 25184.57, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Debt"}, {"confidence": 99.99, "levelName": "LoansPayable"}], "status": "Suggested"}, "accountId": "9be6382f-6b33-402d-b448-0db1dbf67a98", "accountName": "Historical Adjustment", "balance": 9650.58, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Debt"}, {"confidence": 99.99, "levelName": "LoansPayable"}], "status": "Suggested"}, "accountId": "8636effc-50fb-45ba-8b2b-18336fa29b6b", "accountName": "John Smith", "balance": 2022.41, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Personnel"}, {"confidence": 99.99, "levelName": "PensionPayable"}], "status": "Confirmed"}, "accountId": "3a872b81-d1af-4d31-9bfa-a37280b8f68c", "accountName": "VAT", "balance": 29034.75, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "Current"}, {"confidence": 99.99, "levelName": "Personnel"}, {"confidence": 99.99, "levelName": "PensionPayable"}], "status": "Confirmed"}, "accountId": "3b58f7ff-fa16-453a-9931-f020816d76e7", "accountName": "Interest Payables", "balance": 1076.55, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "NonCurrent"}], "status": "Suggested"}, "accountId": "8852a857-aa9d-4706-839f-638e9d6b5a66", "accountName": "Unpaid Expense Claims", "balance": 0, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Liability"}, {"confidence": 99.99, "levelName": "NonCurrent"}], "status": "Suggested"}, "accountId": "55008233-40e7-41ac-84af-2255fa028c2e", "accountName": "Loan", "balance": 638999.6, "date": "2022-08-31T00:00:00"}]}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportDate: "29-09-2020"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-accounts-for-enhanced-profit-and-loss:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportDate: "29-09-2020"
+      responses:
+        "200":
+          application/json: {"reportInfo": {"companyName": "Biscuits", "currency": "GBP", "generatedDate": "2023-03-24T16:40:59.0847354Z", "reportName": "EnhancedProfitAndLossAccounts"}, "reportItems": [{"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}], "status": "Suggested"}, "accountId": "04f7111b-55d4-4efc-b329-1bd5c791933a", "accountName": "Repairs & Maintenance", "balance": 830.93, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "CostOfSales"}], "status": "Suggested"}, "accountId": "7f6a0e92-65be-4333-9a0a-d981b03bedd1", "accountName": "Wages", "balance": 12000, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "CostOfSales"}, {"confidence": 99.99, "levelName": "Inventory"}], "status": "Suggested"}, "accountId": "7403e960-5b72-42ff-abf4-c870ad8910bd", "accountName": "Purchases", "balance": 28937.71, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "CostOfSales"}, {"confidence": 99.99, "levelName": "Inventory"}], "status": "Suggested"}, "accountId": "e8a0a24e-2dab-46b1-bfe1-6e92551c04e8", "accountName": "Purchase Discounts", "balance": 582.4, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "NonOperating"}, {"confidence": 99.99, "levelName": "Donations"}], "status": "Suggested"}, "accountId": "cbf82e0d-87a7-464d-b567-9274ea94a1c0", "accountName": "Charitable and Political Donations", "balance": 350.44, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "NonOperating"}, {"confidence": 99.99, "levelName": "Interest"}], "status": "Suggested"}, "accountId": "78785fd7-f197-4c34-aa17-6e76b9255d34", "accountName": "Interest Paid (operating)", "balance": 535.81, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "NonOperating"}, {"confidence": 99.99, "levelName": "Taxes"}, {"confidence": 99.99, "levelName": "CorporationTaxes"}], "status": "Suggested"}, "accountId": "fb3210ef-edeb-48af-bb49-b85d40c1e6bb", "accountName": "Corporation Tax", "balance": 633.05, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "BankCharges"}], "status": "Suggested"}, "accountId": "f3aa84fe-5c31-4107-b207-7e0419f636d7", "accountName": "Bank Fees", "balance": 782.61, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Leases"}, {"confidence": 99.99, "levelName": "BuildingRentLease"}], "status": "Suggested"}, "accountId": "9cbe5fe4-ca60-4792-8bf1-de01fb7010aa", "accountName": "Rent", "balance": 8000, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Leases"}, {"confidence": 99.99, "levelName": "EquipmentRentLease"}], "status": "Suggested"}, "accountId": "138a8eb3-5c08-4e59-a3bc-892119694447", "accountName": "Motor Vehicle Expenses", "balance": 1090.68, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Marketing"}], "status": "Suggested"}, "accountId": "868591ad-f9c2-4956-a5ec-c32c1d48c6f3", "accountName": "Advertising & Marketing", "balance": 26307.02, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Marketing"}], "status": "Suggested"}, "accountId": "1734ff00-2a17-45b4-8db6-2dc2e832c460", "accountName": "Postage, Freight & Courier", "balance": 1128.85, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Marketing"}], "status": "Suggested"}, "accountId": "7d8d0322-f452-47de-a8e8-54b0130e6f38", "accountName": "Subscriptions", "balance": 40, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "NonCash"}, {"confidence": 99.99, "levelName": "Amortization"}], "status": "Suggested"}, "accountId": "4378ddba-36b4-4b35-9970-bd972b20d137", "accountName": "Amortization", "balance": 5.72, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "NonCash"}, {"confidence": 99.99, "levelName": "Depreciation"}], "status": "Suggested"}, "accountId": "940c8a59-3348-4a0b-a1b1-781d9f29cc8b", "accountName": "Depreciation Expense", "balance": 1539.18, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Personnel"}, {"confidence": 99.99, "levelName": "EmployeeBenefits"}], "status": "Suggested"}, "accountId": "e7ac3baa-cfbe-40c1-a172-83d22e84435b", "accountName": "Entertainment-100% business", "balance": 1416.05, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "SalesGeneralAdministrative"}], "status": "Suggested"}, "accountId": "b5e801e8-8dbc-4390-ac99-3b0fff54a89f", "accountName": "General Expenses", "balance": 1465.61, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "SalesGeneralAdministrative"}], "status": "Suggested"}, "accountId": "5360066d-1474-49f6-a7a5-c66d5f6032ba", "accountName": "Light, Power, Heating", "balance": 7347.35, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "SalesGeneralAdministrative"}], "status": "Suggested"}, "accountId": "7aa7988a-ff61-4cb8-bef3-15395355d108", "accountName": "Printing & Stationery", "balance": 1027.25, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "SalesGeneralAdministrative"}], "status": "Suggested"}, "accountId": "043b6bcb-dfe6-4c97-9b4c-f9b300fe3f03", "accountName": "Telephone & Internet", "balance": 45, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "SalesGeneralAdministrative"}], "status": "Suggested"}, "accountId": "eef78ed1-dfed-447c-bdba-3a49fb2c044b", "accountName": "Audit & Accountancy fees", "balance": 0, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "SalesGeneralAdministrative"}], "status": "Suggested"}, "accountId": "c16f5c35-8283-47da-9d09-5fecb183b0cb", "accountName": "Cleaning", "balance": 130, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Expense"}, {"confidence": 99.99, "levelName": "Operating"}, {"confidence": 99.99, "levelName": "Travel"}], "status": "Suggested"}, "accountId": "df62060b-41cc-4bf2-9de7-c7e537b5663a", "accountName": "Travel - National", "balance": 860.02, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Income"}, {"confidence": 99.99, "levelName": "Revenue"}, {"confidence": 99.99, "levelName": "Online"}], "status": "Suggested"}, "accountId": "68794a8f-b22d-4520-b97b-025b7cb10f94", "accountName": "Other Revenue", "balance": 850.22, "date": "2022-08-31T00:00:00"}, {"accountCategory": {"levels": [{"confidence": 99.99, "levelName": "Income"}, {"confidence": 99.99, "levelName": "Revenue"}, {"confidence": 99.99, "levelName": "Wholesale"}], "status": "Suggested"}, "accountId": "72df89d2-512b-4455-af51-a6b563733842", "accountName": "Sales", "balance": 138457.98, "date": "2022-08-31T00:00:00"}]}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportDate: "29-09-2020"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-commerce-customer-retention-metrics:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 474636
+          numberOfPeriods: 10128
+          periodUnit: "Month"
+      responses:
+        "200":
+          application/json:
+            - reportInfo:
+                name: customer_retention
+                displayName: Customer Retention
+              dimensions:
+                - index: 0
+                  displayName: Period
+                  type: datespan
+                  items:
+                    - index: 0
+                      displayName: Period 0
+                      start: '2022-01-01'
+                      end: '2022-12-31'
+                - index: 1
+                  displayName: Customer retention metrics
+                  type: string
+                  items:
+                    - index: 0
+                      value: Existing customers
+                    - index: 1
+                      value: New customers
+                    - index: 2
+                      value: Total customers
+                    - index: 3
+                      value: Retention rate
+                    - index: 4
+                      value: Repeat rate
+              measures:
+                - displayName: Count
+                  index: 0
+                  type: int
+                - displayName: Percentage
+                  index: 1
+                  type: percentage
+              reportData:
+                - dimension: 0
+                  dimensionDisplayName: Period
+                  item: 0
+                  itemDisplayName: Period 0
+                  components:
+                    - dimension: 1
+                      dimensionDisplayName: Customer retention metrics
+                      item: 0
+                      itemDisplayName: Existing customers
+                      measures:
+                        - index: 0
+                          measureDisplayName: Count
+                          value: 13
+                    - dimension: 1
+                      dimensionDisplayName: Customer retention metrics
+                      item: 1
+                      itemDisplayName: New customers
+                      measures:
+                        - index: 0
+                          measureDisplayName: Count
+                          value: 47
+                    - dimension: 1
+                      dimensionDisplayName: Customer retention metrics
+                      item: 2
+                      itemDisplayName: Total customers
+                      measures:
+                        - index: 0
+                          measureDisplayName: Count
+                          value: 60
+                    - dimension: 1
+                      dimensionDisplayName: Customer retention metrics
+                      item: 3
+                      itemDisplayName: Retention rate
+                      measures:
+                        - index: 1
+                          measureDisplayName: Percentage
+                          value: 0
+                    - dimension: 1
+                      dimensionDisplayName: Customer retention metrics
+                      item: 4
+                      itemDisplayName: Repeat rate
+                      measures:
+                        - index: 1
+                          measureDisplayName: Percentage
+                          value: 21.67
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 781048
+          numberOfPeriods: 384882
+          periodUnit: "Day"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-commerce-lifetime-value-metrics:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 463554
+          numberOfPeriods: 247228
+          periodUnit: "Week"
+      responses:
+        "200":
+          application/json:
+            - reportInfo:
+                name: lifetime_value
+                displayName: Lifetime Value
+              dimensions:
+                - index: 0
+                  displayName: Period
+                  type: datespan
+                  items:
+                    - index: 0
+                      displayName: Period 0
+                      start: '2022-01-01'
+                      end: '2022-12-31'
+                - index: 1
+                  displayName: Lifetime value metrics
+                  type: string
+                  items:
+                    - index: 0
+                      value: Lifetime value
+              measures:
+                - displayName: Value
+                  units: GBP
+                  index: 0
+                  type: currency
+              reportData:
+                - dimension: 0
+                  dimensionDisplayName: Period
+                  item: 0
+                  itemDisplayName: Period 0
+                  components:
+                    - dimension: 1
+                      dimensionDisplayName: Lifetime value metrics
+                      item: 0
+                      itemDisplayName: Lifetime value
+                      measures:
+                        - index: 0
+                          measureDisplayName: Value
+                          value: 3782.07
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 892968
+          numberOfPeriods: 232457
+          periodUnit: "Year"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-commerce-orders-metrics:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 661381
+          numberOfPeriods: 982233
+          periodUnit: "Week"
+      responses:
+        "200":
+          application/json:
+            - reportInfo:
+                name: orders
+                displayName: Orders
+              dimensions:
+                - index: 0
+                  displayName: Period
+                  type: datespan
+                  items:
+                    - index: 0
+                      displayName: Period 0
+                      start: '2022-01-01'
+                      end: '2022-12-31'
+                - index: 1
+                  displayName: Order metrics
+                  type: string
+                  items:
+                    - index: 0
+                      value: Number of orders
+                    - index: 1
+                      value: Total value
+                    - index: 2
+                      value: Average order value
+              measures:
+                - displayName: Count
+                  index: 0
+                  type: int
+                - displayName: Value
+                  units: GBP
+                  index: 1
+                  type: currency
+              reportData:
+                - dimension: 0
+                  dimensionDisplayName: Period
+                  item: 0
+                  itemDisplayName: Period 0
+                  components:
+                    - dimension: 1
+                      dimensionDisplayName: Order metrics
+                      item: 0
+                      itemDisplayName: Number of orders
+                      measures:
+                        - index: 0
+                          measureDisplayName: Count
+                          value: 94
+                    - dimension: 1
+                      dimensionDisplayName: Order metrics
+                      item: 1
+                      itemDisplayName: Total value
+                      measures:
+                        - index: 1
+                          measureDisplayName: Value
+                          value: 3315.18
+                    - dimension: 1
+                      dimensionDisplayName: Order metrics
+                      item: 2
+                      itemDisplayName: Average order value
+                      measures:
+                        - index: 1
+                          measureDisplayName: Value
+                          value: 35.27
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 875123
+          numberOfPeriods: 20267
+          periodUnit: "Year"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-commerce-refunds-metrics:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 806705
+          numberOfPeriods: 224296
+          periodUnit: "Week"
+      responses:
+        "200":
+          application/json:
+            - reportInfo:
+                name: refunds
+                displayName: Refunds
+              dimensions:
+                - index: 0
+                  displayName: Period
+                  type: datespan
+                  items:
+                    - index: 0
+                      displayName: Period 0
+                      start: '2022-01-01'
+                      end: '2022-12-31'
+                - index: 1
+                  displayName: Refund metrics
+                  type: string
+                  items:
+                    - index: 0
+                      value: Number of refunds
+                    - index: 1
+                      value: Value of refunds
+                    - index: 2
+                      value: Refund rate
+              measures:
+                - displayName: Count
+                  index: 0
+                  type: int
+                - displayName: Value
+                  units: GBP
+                  index: 1
+                  type: currency
+                - displayName: Percentage
+                  units: '%'
+                  index: 2
+                  type: percentage
+              reportData:
+                - dimension: 0
+                  dimensionDisplayName: Period
+                  item: 0
+                  itemDisplayName: Period 0
+                  components:
+                    - dimension: 1
+                      dimensionDisplayName: Refund metrics
+                      item: 0
+                      itemDisplayName: Number of refunds
+                      measures:
+                        - index: 0
+                          measureDisplayName: Count
+                          value: 39
+                    - dimension: 1
+                      dimensionDisplayName: Refund metrics
+                      item: 1
+                      itemDisplayName: Value of refunds
+                      measures:
+                        - index: 1
+                          measureDisplayName: Value
+                          value: 642.82
+                    - dimension: 1
+                      dimensionDisplayName: Refund metrics
+                      item: 2
+                      itemDisplayName: Refund rate
+                      measures:
+                        - index: 2
+                          measureDisplayName: Percentage
+                          value: 0.41
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 498153
+          numberOfPeriods: 514483
+          periodUnit: "Week"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-commerce-revenue-metrics:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 58448
+          numberOfPeriods: 254955
+          periodUnit: "Day"
+      responses:
+        "200":
+          application/json:
+            - reportInfo:
+                name: revenue
+                displayName: Revenue
+              dimensions:
+                - index: 0
+                  displayName: Period
+                  type: datespan
+                  items:
+                    - index: 0
+                      displayName: Period 0
+                      start: '2022-01-01'
+                      end: '2022-12-31'
+                - index: 1
+                  displayName: Revenue metrics
+                  type: string
+                  items:
+                    - index: 0
+                      value: Revenue
+                    - index: 1
+                      value: Revenue growth
+              measures:
+                - displayName: Value
+                  units: GBP
+                  index: 0
+                  type: currency
+                - displayName: Percentage change vs. previous period
+                  units: '%'
+                  index: 1
+                  type: percentage
+              reportData:
+                - dimension: 0
+                  dimensionDisplayName: Period
+                  item: 0
+                  itemDisplayName: Period 0
+                  components:
+                    - dimension: 1
+                      dimensionDisplayName: Revenue metrics
+                      item: 0
+                      itemDisplayName: Revenue
+                      measures:
+                        - index: 0
+                          measureDisplayName: Value
+                          value: 2392.48
+                    - dimension: 1
+                      dimensionDisplayName: Revenue metrics
+                      item: 1
+                      itemDisplayName: Revenue growth
+                      measures:
+                        - index: 1
+                          measureDisplayName: Percentage change vs. previous period
+                          value: 276.65
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 864392
+          numberOfPeriods: 790136
+          periodUnit: "Week"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-enhanced-cash-flow-transactions:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "200":
+          application/json: {"dataSources": [{"accounts": [{"accountName": "Business Savings Account", "accountProvider": "Lloyds Bank", "accountType": "Debit", "currency": "GBP", "currentBalance": 0, "platformName": "Banking Sandbox", "sourceRef": {"sourceType": "Banking"}}, {"accountName": "Banking - Business Credit Card", "accountProvider": "Lloyds Bank", "accountType": "Credit", "currency": "GBP", "currentBalance": 0, "platformName": "Banking Sandbox", "sourceRef": {"sourceType": "Banking"}}, {"accountName": "Business Undeposited Funds", "accountProvider": "Lloyds Bank", "accountType": "Debit", "currency": "GBP", "currentBalance": 0, "platformName": "Banking Sandbox", "sourceRef": {"sourceType": "Banking"}}, {"accountName": "Business Current Account", "accountProvider": "Lloyds Bank", "accountType": "Debit", "currency": "GBP", "currentBalance": 0, "platformName": "Banking Sandbox", "sourceRef": {"sourceType": "Banking"}}]}], "reportInfo": {"companyName": "test", "generatedDate": "2023-03-24T16:44:17.5302732Z", "pageNumber": 1, "pageSize": 10, "reportName": "Cash flow transactions report", "totalResults": 2194}, "reportItems": [{"transactions": [{"accountRef": {"id": "4f78a6b0-e9bb-40f2-82fd-f3a2daa1fd0a", "name": "Business Current Account"}, "amount": -6905.44, "counterpartyNames": ["Shopify"], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment m86SDGpQr3", "id": "ab5e07a0-5578-4d91-8421-2dc72713b74f", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Shopify", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 52.53, "confidences": [56, 52.53], "levels": ["Expense", "Operating"]}}, {"accountRef": {"id": "4f78a6b0-e9bb-40f2-82fd-f3a2daa1fd0a", "name": "Business Current Account"}, "amount": 4332.84, "counterpartyNames": ["Amazon", "Amazon Marketplace"], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment from customer a5c68c7b-6825-46de-bf63-6ad23ef506a4", "id": "9846bbed-46d3-472c-a848-1ce8ebea7213", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Amazon", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 88, "confidences": [88], "levels": ["Expense"]}}, {"accountRef": {"id": "809b9470-c9fa-4257-bc9f-06a1dc7b0cbc", "name": "Business Undeposited Funds"}, "amount": 4034.3, "counterpartyNames": [], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment from customer a5c68c7b-6825-46de-bf63-6ad23ef506a4", "id": "94b213fb-d742-435e-90f1-bfe723a076d5", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Shopify", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 61.08, "confidences": [65, 61.08], "levels": ["Income", "Revenue"]}}, {"accountRef": {"id": "4f78a6b0-e9bb-40f2-82fd-f3a2daa1fd0a", "name": "Business Current Account"}, "amount": -313.76, "counterpartyNames": [], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment to supplier 78792d13-90a0-4ea2-8e07-81c3c893997e", "id": "cfceb7ff-eaa2-45b6-aca7-fa0e0b439161", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Amazon", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 40.98, "confidences": [40.98, 99.9], "levels": ["Expense", "CostOfSales"]}}, {"accountRef": {"id": "809b9470-c9fa-4257-bc9f-06a1dc7b0cbc", "name": "Business Undeposited Funds"}, "amount": -614.4, "counterpartyNames": [], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment to supplier 46d2e1fb-b4e9-469c-814a-21ff8105a26e", "id": "ba814f14-0fe3-41d0-9308-57f40642ac75", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Zettle", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 55.84, "confidences": [55.84, 75.5], "levels": ["Income", "Revenue"]}}, {"accountRef": {"id": "4f78a6b0-e9bb-40f2-82fd-f3a2daa1fd0a", "name": "Business Current Account"}, "amount": 5199.62, "counterpartyNames": [], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment from customer a5c68c7b-6825-46de-bf63-6ad23ef506a4", "id": "e67cc30e-fd5c-4eea-8365-ec40dfdd3ef6", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Amazon", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 57.85, "confidences": [57.85], "levels": ["Expense"]}}, {"accountRef": {"id": "4f78a6b0-e9bb-40f2-82fd-f3a2daa1fd0a", "name": "Business Current Account"}, "amount": -21420.94, "counterpartyNames": [], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment to supplier 18ac18dc-945b-4083-9013-e8a100b999fa", "id": "e0f08a0b-3575-4dde-98c4-3c854028d2d2", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Amazon", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 70.58, "confidences": [70.58, 100], "levels": ["Expense", "Operating"]}}, {"accountRef": {"id": "809b9470-c9fa-4257-bc9f-06a1dc7b0cbc", "name": "Business Undeposited Funds"}, "amount": -30924.22, "counterpartyNames": [], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment to supplier 630a3f16-5f01-4986-ae6b-82333ec49449", "id": "4b70d379-8284-4f44-bb37-c7935df950cc", "modifiedDate": "2022-11-08T12:00:00", "platformName": "DoorDash", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 48.26, "confidences": [48.26], "levels": ["Income"]}}, {"accountRef": {"id": "809b9470-c9fa-4257-bc9f-06a1dc7b0cbc", "name": "Business Undeposited Funds"}, "amount": -568.78, "counterpartyNames": ["Uber"], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment to supplier bQATU4eSb9", "id": "76b73373-9345-472e-8edf-5be849d797fe", "modifiedDate": "2022-11-08T12:00:00", "platformName": "Uber", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 65.21, "confidences": [65.21, 100], "levels": ["Income", "Revenue"]}}, {"accountRef": {"id": "809b9470-c9fa-4257-bc9f-06a1dc7b0cbc", "name": "Business Undeposited Funds"}, "amount": -13050.79, "counterpartyNames": ["DoorDash"], "currency": "GBP", "date": "2022-11-08T00:00:00", "description": "Payment to supplier 9c37eb21-579a-4886-8296-3a853076b7bd", "id": "ee92fd6f-e0f7-4391-85fd-4b50921b973f", "modifiedDate": "2022-11-08T12:00:00", "platformName": "DoorDash", "sourceRef": {"sourceType": "Banking"}, "transactionCategory": {"confidence": 92.33, "confidences": [92.33, 92.33], "levels": ["Income", "Revenue"]}}]}]}
+        "400": {}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  get-enhanced-invoices-report:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "200":
+          application/json: {"reportInfo": {"companyName": "Small Sandbox", "generatedDate": "2023-05-10T10:50:23.9437977Z", "pageNumber": 1, "pageSize": 10, "reportName": "Invoices report", "totalResults": 101}, "reportItems": [{"amountDue": 0, "currency": "GBP", "customerRef": {"customerName": "Serena Keeling", "id": "ee4d0eee-063d-4c9f-8226-2c9a6a816249"}, "dueDate": "2021-04-06T09:44:00", "id": "15221fa4-e91a-4f64-a2bb-caeab4db85a4", "invoiceNumber": "UDs5KlfE", "issueDate": "2021-04-06T09:44:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2021-04-06T09:44:00", "payments": [], "sourceModifiedDate": "2022-02-27T18:28:00", "status": "Paid", "totalAmount": 7044.83}, {"amountDue": 0, "currency": "GBP", "customerRef": {"customerName": "Quinton Kovacek", "id": "81e9c0df-3e5e-4180-b20c-c8e58100cdf3"}, "dueDate": "2021-04-06T09:44:00", "id": "58aea1cb-5b31-4eed-ba16-489dfa67a831", "invoiceNumber": "1IU1PMoT", "issueDate": "2021-04-06T09:44:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2021-04-06T09:44:00", "payments": [], "sourceModifiedDate": "2021-06-23T22:47:00", "status": "Paid", "totalAmount": 3567.59}, {"amountDue": 0, "currency": "GBP", "customerRef": {"customerName": "Antwon Dach", "id": "c7326084-cd56-48e6-bcfa-be8919e024e1"}, "dueDate": "2021-04-18T01:27:00", "id": "9ecd07bc-9cab-4516-bad0-a0cd565cdbaf", "invoiceNumber": "eEIWyPN4", "issueDate": "2021-04-08T01:27:00", "modifiedDate": "2022-08-01T09:44:59Z", "paidOnDate": "2021-04-10T12:31:00", "payments": [{"amount": 153233.36, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-04-10T12:31:00", "id": "0878e8be-6746-4347-80ba-5491328c8411", "paymentType": "payments"}], "sourceModifiedDate": "2021-11-11T12:10:00", "status": "Paid", "totalAmount": 153233.36}, {"amountDue": 0, "currency": "GBP", "customerRef": {"customerName": "Dolores Rath", "id": "44e8516d-bcb0-459f-9e5d-7beaa56d57d0"}, "dueDate": "2021-04-23T17:30:00", "id": "7cea078a-5c9a-4788-ae72-9bb60c5cc184", "invoiceNumber": "BXb8mYQW", "issueDate": "2021-04-16T17:30:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2021-04-23T17:30:00", "payments": [{"amount": 12657.69, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-04-23T17:30:00", "id": "17b42934-13f6-4738-a506-2e253b1a606f", "paymentType": "payments"}], "sourceModifiedDate": "2021-12-08T11:32:00", "status": "Paid", "totalAmount": 12657.69}, {"amountDue": 381.09, "currency": "GBP", "customerRef": {"customerName": "Bryana Douglas", "id": "5cbaf1af-4f02-4206-85ab-c525bd9b4f99"}, "dueDate": "2021-04-27T06:46:00", "id": "aa4503d7-fe01-49fe-ba42-259b421ac640", "invoiceNumber": "wdjwiL5B", "issueDate": "2021-04-20T06:46:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2022-10-23T00:00:00Z", "payments": [{"amount": 12554.3, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-04-23T14:59:00", "id": "1c03986b-9b6c-4220-bde6-4e3eba6cef9f", "paymentType": "payments"}], "sourceModifiedDate": "2022-03-11T20:03:00", "status": "PartiallyPaid", "totalAmount": 12935.39}, {"amountDue": 0, "currency": "GBP", "customerRef": {"customerName": "Brady Wilderman", "id": "6f5290e5-70aa-4d0c-816e-9d2312cf217f"}, "dueDate": "2021-05-03T09:32:00", "id": "d8a0e26e-4ec8-4fb5-887d-8b7531e3bedf", "invoiceNumber": "cTjJcu8x", "issueDate": "2021-04-23T09:32:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2021-05-03T09:32:00", "payments": [{"amount": 21506.72, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-05-03T09:32:00", "id": "93c9c11b-3ec0-4314-85f6-0751763e752a", "paymentType": "payments"}], "sourceModifiedDate": "2021-03-12T22:37:00", "status": "Paid", "totalAmount": 21526.72}, {"amountDue": 1225.06, "currency": "GBP", "customerRef": {"customerName": "Dolores Rath", "id": "44e8516d-bcb0-459f-9e5d-7beaa56d57d0"}, "dueDate": "2021-05-11T23:23:00", "id": "06890e67-35fb-4276-9857-95db40cfd15d", "invoiceNumber": "htXJuUDb", "issueDate": "2021-05-01T23:23:00", "modifiedDate": "2022-08-01T09:44:59Z", "paidOnDate": "2022-10-23T00:00:00Z", "payments": [{"amount": 5926.35, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-05-04T17:57:00", "id": "82865077-0857-46db-b9a1-6d21da43b6aa", "paymentType": "payments"}], "sourceModifiedDate": "2022-02-24T23:02:00", "status": "PartiallyPaid", "totalAmount": 7151.41}, {"amountDue": 14408.54, "currency": "GBP", "customerRef": {"customerName": "Dolores Rath", "id": "44e8516d-bcb0-459f-9e5d-7beaa56d57d0"}, "dueDate": "2021-05-25T08:53:00", "id": "160e8b51-1fa0-46b9-98fe-1ff5399ce99b", "invoiceNumber": "9wegEXpG", "issueDate": "2021-05-18T08:53:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2022-10-23T00:00:00Z", "payments": [{"amount": 8113.8, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-05-23T04:04:00", "id": "75bd7205-bc12-4517-9964-aae159fdfaee", "paymentType": "payments"}], "sourceModifiedDate": "2022-01-13T07:52:00", "status": "PartiallyPaid", "totalAmount": 22522.34}, {"amountDue": 0, "currency": "GBP", "customerRef": {"customerName": "Ignacio Moore", "id": "cc96af36-e2f5-49f7-bf40-271503f45071"}, "dueDate": "2021-06-04T19:51:00", "id": "5a934955-561d-436a-a564-fd624a79f54c", "invoiceNumber": "l7YwGxG7", "issueDate": "2021-05-25T19:51:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2021-05-28T07:31:00", "payments": [{"amount": 11047.08, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-05-28T07:31:00", "id": "608fd022-f7d0-44a9-90c4-bebe0573f206", "paymentType": "payments"}], "sourceModifiedDate": "2021-08-06T05:50:00", "status": "Paid", "totalAmount": 11047.08}, {"amountDue": 5036.83, "currency": "GBP", "customerRef": {"customerName": "Freida Ebert", "id": "e1ecc8f2-8a63-4fe9-97c9-c87fd90ca0a6"}, "dueDate": "2021-06-03T19:07:00", "id": "17690788-2936-46b5-ba46-ba6a36a87483", "invoiceNumber": "ntH1cRYz", "issueDate": "2021-05-27T19:07:00", "modifiedDate": "2022-04-11T13:49:37Z", "paidOnDate": "2022-10-23T00:00:00Z", "payments": [{"amount": 2154.49, "bankingTransactionRefs": [], "currency": "GBP", "currencyRate": 1, "date": "2021-06-03T19:07:00", "id": "a343b2a0-d327-41b0-993e-7b6b92fde425", "paymentType": "payments"}], "sourceModifiedDate": "2021-03-27T08:54:00", "status": "PartiallyPaid", "totalAmount": 7191.32}]}
+        "400": {}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  get-loan-summary:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          sourceType: "banking"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-recurring-revenue-metrics:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-loan-transactions:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          sourceType: "commerce"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  request-recurring-revenue-metrics:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-data-type-data-integrity-details:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [], "totalResults": 1}
+        "400": {}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  get-data-integrity-status:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-data-integrity-summaries:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+        query:
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "200":
+          application/json: {"summaries": []}
+        "400": {}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+        query:
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          dataType: "banking-accounts"
+        query:
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  generate-excel-report:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportType: "enhancedCashFlow"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-accounting-marketing-metrics:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 644039
+          numberOfPeriods: 495559
+          periodUnit: "Month"
+      responses:
+        "200":
+          application/json:
+            - reportInfo: null
+              name: marketing_metrics
+              displayName: Marketing metrics
+              dimensions:
+                - index: 0
+                  displayName: Period
+                  type: datespan
+                  items:
+                    - index: 0
+                      displayName: Period 0
+                      start: '2022-01-01'
+                      end: '2022-12-31'
+                - index: 1
+                  displayName: Marketing metrics
+                  type: string
+                  items:
+                    - index: 0
+                      value: Marketing to revenue
+                    - index: 1
+                      value: Marketing to expense
+              measures:
+                - displayName: Percentage
+                  units: '%'
+                  index: 0
+                  type: percentage
+                - displayName: Percentage change vs previous period
+                  units: '%'
+                  index: 1
+                  type: percentage
+              reportData:
+                - dimension: 0
+                  dimensionDisplayName: Period
+                  item: 0
+                  itemDisplayName: Period 0
+                  components:
+                    - dimension: 1
+                      dimensionDisplayName: Marketing metrics
+                      item: 0
+                      itemDisplayName: Marketing to revenue
+                      measures:
+                        - index: 0
+                          measureDisplayName: Percentage
+                          value: 564.17
+                        - index: 1
+                          measureDisplayName: Percentage change vs previous period
+                          value: 8.33
+                    - dimension: 1
+                      dimensionDisplayName: Marketing metrics
+                      item: 1
+                      itemDisplayName: Marketing to expense
+                      measures:
+                        - index: 0
+                          measureDisplayName: Percentage
+                          value: 27.63
+                        - index: 1
+                          measureDisplayName: Percentage change vs previous period
+                          value: 0.12
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+        query:
+          reportDate: "29-09-2020"
+          periodLength: 244044
+          numberOfPeriods: 328546
+          periodUnit: "Week"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-excel-report:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportType: "enhancedCashFlow"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-excel-report-generation-status:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportType: "enhancedInvoices"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          reportType: "enhancedFinancials"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}

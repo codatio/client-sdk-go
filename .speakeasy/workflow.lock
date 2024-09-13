@@ -7,12 +7,24 @@ sources:
         tags:
             - latest
             - main
+    assess-source:
+        sourceNamespace: assess-source
+        sourceRevisionDigest: sha256:f9d5f5865f592e0b57a24cd647bfbd6a89008ee2e855f4d97500055477032917
+        sourceBlobDigest: sha256:93a5943e66c0bec898e50532b545a9e2694aa004d1e763c9fadc7424a311c2ed
+        tags:
+            - latest
+            - main
 targets:
     accounting-library:
         source: accounting-source
         sourceNamespace: accounting-source
         sourceRevisionDigest: sha256:714df41e8d2be7d34fe6fbe0f887ef07e273bdd7d7bfc2a32474cf41acd26b46
         sourceBlobDigest: sha256:1196b9f04ffba9bfc30292d059e6e63e93b26fe3f8ca92cab6d58df8de86c4ca
+    assess-library:
+        source: assess-source
+        sourceNamespace: assess-source
+        sourceRevisionDigest: sha256:f9d5f5865f592e0b57a24cd647bfbd6a89008ee2e855f4d97500055477032917
+        sourceBlobDigest: sha256:93a5943e66c0bec898e50532b545a9e2694aa004d1e763c9fadc7424a311c2ed
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -25,6 +37,8 @@ workflow:
         assess-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Assess.yaml
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/assess-source
         bank-feeds-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Bank-Feeds.yaml

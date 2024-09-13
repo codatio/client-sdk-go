@@ -3,7 +3,7 @@
 
 ## Overview
 
-Match mutable accounting data with immutable banking data to increase confidence in financial data
+Match mutable accounting data with immutable banking data to increase confidence in financial data.
 
 ### Available Operations
 
@@ -42,11 +42,11 @@ func main() {
         OrderBy: assess.String("-modifiedDate"),
         Page: assess.Int(1),
         PageSize: assess.Int(100),
+        Query: assess.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Details != nil {
         // handle response
     }
@@ -61,14 +61,17 @@ func main() {
 | `request`                                                                                                                    | [operations.ListDataTypeDataIntegrityDetailsRequest](../../pkg/models/operations/listdatatypedataintegritydetailsrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
 | `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
-
 ### Response
 
 **[*operations.ListDataTypeDataIntegrityDetailsResponse](../../pkg/models/operations/listdatatypedataintegritydetailsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Status
 
@@ -102,7 +105,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Status != nil {
         // handle response
     }
@@ -117,14 +119,17 @@ func main() {
 | `request`                                                                                                | [operations.GetDataIntegrityStatusRequest](../../pkg/models/operations/getdataintegritystatusrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.GetDataIntegrityStatusResponse](../../pkg/models/operations/getdataintegritystatusresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Summary
 
@@ -154,11 +159,11 @@ func main() {
     res, err := s.DataIntegrity.Summary(ctx, operations.GetDataIntegritySummariesRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         DataType: shared.DataIntegrityDataTypeBankingAccounts,
+        Query: assess.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Summaries != nil {
         // handle response
     }
@@ -173,11 +178,13 @@ func main() {
 | `request`                                                                                                      | [operations.GetDataIntegritySummariesRequest](../../pkg/models/operations/getdataintegritysummariesrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.GetDataIntegritySummariesResponse](../../pkg/models/operations/getdataintegritysummariesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
