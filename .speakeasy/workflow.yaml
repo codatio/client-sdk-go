@@ -29,6 +29,8 @@ sources:
     common-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Platform.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/common-source
     files-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Files.yaml

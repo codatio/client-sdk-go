@@ -4,16 +4,21 @@
 Manage the building blocks of Codat, including companies, connections, and more.
 <!-- End Codat Library Description -->
 
-<!-- Start SDK Installation -->
+<!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/previous-versions/common
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
 ## Example Usage
-<!-- Start SDK Example Usage -->
+<!-- Start SDK Example Usage [usage] -->
+## SDK Example Usage
+
+### Example
+
 ```go
 package main
 
@@ -27,29 +32,30 @@ import (
 func main() {
 	s := common.New(
 		common.WithSecurity(shared.Security{
-			AuthHeader: "",
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
 	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: common.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	if res.Company != nil {
+	if res.APIKeyDetails != nil {
 		// handle response
 	}
 }
 
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
+<!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
+
+<details open>
+<summary>Available methods</summary>
 
 
 ### [Companies](docs/sdks/companies/README.md)
@@ -60,6 +66,15 @@ func main() {
 * [List](docs/sdks/companies/README.md#list) - List companies
 * [Update](docs/sdks/companies/README.md#update) - Update company
 
+### [ConnectionManagement](docs/sdks/connectionmanagement/README.md)
+
+* [GetAccessToken](docs/sdks/connectionmanagement/README.md#getaccesstoken) - Get access token
+
+#### [ConnectionManagement.CorsSettings](docs/sdks/corssettings/README.md)
+
+* [Get](docs/sdks/corssettings/README.md#get) - Get CORS settings
+* [Set](docs/sdks/corssettings/README.md#set) - Set CORS settings
+
 ### [Connections](docs/sdks/connections/README.md)
 
 * [Create](docs/sdks/connections/README.md#create) - Create connection
@@ -68,6 +83,20 @@ func main() {
 * [List](docs/sdks/connections/README.md#list) - List connections
 * [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
 * [UpdateAuthorization](docs/sdks/connections/README.md#updateauthorization) - Update authorization
+
+### [CustomDataType](docs/sdks/customdatatype/README.md)
+
+* [Configure](docs/sdks/customdatatype/README.md#configure) - Configure custom data type
+* [GetConfiguration](docs/sdks/customdatatype/README.md#getconfiguration) - Get custom data configuration
+* [List](docs/sdks/customdatatype/README.md#list) - List custom data type records
+* [Refresh](docs/sdks/customdatatype/README.md#refresh) - Refresh custom data type
+
+### [Groups](docs/sdks/groups/README.md)
+
+* [AddCompany](docs/sdks/groups/README.md#addcompany) - Add company
+* [Create](docs/sdks/groups/README.md#create) - Create group
+* [List](docs/sdks/groups/README.md#list) - List groups
+* [RemoveCompany](docs/sdks/groups/README.md#removecompany) - Remove company
 
 ### [Integrations](docs/sdks/integrations/README.md)
 
@@ -93,7 +122,7 @@ func main() {
 
 * [CreateAPIKey](docs/sdks/settings/README.md#createapikey) - Create API key
 * [DeleteAPIKey](docs/sdks/settings/README.md#deleteapikey) - Delete API key
-* [~~GetProfile~~](docs/sdks/settings/README.md#getprofile) - Get profile :warning: **Deprecated**
+* [GetProfile](docs/sdks/settings/README.md#getprofile) - Get profile
 * [GetSyncSettings](docs/sdks/settings/README.md#getsyncsettings) - Get sync settings
 * [ListAPIKeys](docs/sdks/settings/README.md#listapikeys) - List API keys
 * [UpdateProfile](docs/sdks/settings/README.md#updateprofile) - Update profile
@@ -106,24 +135,373 @@ func main() {
 
 ### [Webhooks](docs/sdks/webhooks/README.md)
 
-* [Create](docs/sdks/webhooks/README.md#create) - Create webhook
-* [Get](docs/sdks/webhooks/README.md#get) - Get webhook
-* [List](docs/sdks/webhooks/README.md#list) - List webhooks
-<!-- End SDK Available Operations -->
+* [~~Create~~](docs/sdks/webhooks/README.md#create) - Create webhook :warning: **Deprecated**
+* [CreateConsumer](docs/sdks/webhooks/README.md#createconsumer) - Create webhook consumer
+* [DeleteConsumer](docs/sdks/webhooks/README.md#deleteconsumer) - Delete webhook consumer
+* [~~Get~~](docs/sdks/webhooks/README.md#get) - Get webhook :warning: **Deprecated**
+* [~~List~~](docs/sdks/webhooks/README.md#list) - List webhooks :warning: **Deprecated**
+* [ListConsumers](docs/sdks/webhooks/README.md#listconsumers) - List webhook consumers
+
+</details>
+<!-- End Available Resources and Operations [operations] -->
 
 
 
-<!-- Start Dev Containers -->
 
 
+<!-- Start Special Types [types] -->
+## Special Types
 
-<!-- End Dev Containers -->
+
+<!-- End Special Types [types] -->
+
+<!-- Start Summary [summary] -->
+## Summary
+
+Platform API: Platform API
+
+An API for the common components of all of Codat's products.
+
+These end points cover creating and managing your companies, data connections, and integrations.
+
+[Read about the building blocks of Codat...](https://docs.codat.io/core-concepts/companies) | [See our OpenAPI spec](https://github.com/codatio/oas) 
+
+---
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Companies | Create and manage your SMB users' companies. |
+| Connections | Create new and manage existing data connections for a company. |
+| Connection management | Configure connection management UI and retrieve access tokens for authentication. |
+| Groups | Define and manage sets of companies based on a chosen characteristic. |
+| Webhooks | Create and manage webhooks that listen to Codat's events. |
+| Integrations | Get a list of integrations supported by Codat and their logos. |
+| Refresh data | Initiate data refreshes, view pull status and history. |
+| Settings | Manage company profile configuration, sync settings, and API keys. |
+| Push data | Initiate and monitor Create, Update, and Delete operations. |
+| Supplemental data | Configure and pull additional data you can include in Codat's standard data types. |
+| Custom data type | Configure and pull additional data types that are not included in Codat's standardized data model. |
+<!-- End Codat Tags Table -->
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
+```go
+package main
+
+import (
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/retry"
+	"log"
+	"pkg/models/operations"
+)
+
+func main() {
+	s := common.New(
+		common.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
+	}, operations.WithRetries(
+		retry.Config{
+			Strategy: "backoff",
+			Backoff: &retry.BackoffStrategy{
+				InitialInterval: 1,
+				MaxInterval:     50,
+				Exponent:        1.1,
+				MaxElapsedTime:  100,
+			},
+			RetryConnectionErrors: false,
+		}))
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.APIKeyDetails != nil {
+		// handle response
+	}
+}
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
+```go
+package main
+
+import (
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/retry"
+	"log"
+)
+
+func main() {
+	s := common.New(
+		common.WithRetryConfig(
+			retry.Config{
+				Strategy: "backoff",
+				Backoff: &retry.BackoffStrategy{
+					InitialInterval: 1,
+					MaxInterval:     50,
+					Exponent:        1.1,
+					MaxElapsedTime:  100,
+				},
+				RetryConnectionErrors: false,
+			}),
+		common.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.APIKeyDetails != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Retries [retries] -->
+
+<!-- Start Error Handling [errors] -->
+## Error Handling
+
+Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 400,401,402,403,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := common.New(
+		common.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
+	})
+	if err != nil {
+
+		var e *sdkerrors.ErrorMessage
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+
+		var e *sdkerrors.SDKError
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
+	}
+}
+
+```
+<!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Index
+
+You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+
+| # | Server | Variables |
+| - | ------ | --------- |
+| 0 | `https://api.codat.io` | None |
+
+#### Example
+
+```go
+package main
+
+import (
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := common.New(
+		common.WithServerIndex(0),
+		common.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.APIKeyDetails != nil {
+		// handle response
+	}
+}
+
+```
 
 
+### Override Server URL Per-Client
 
-<!-- Start Go Types -->
+The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+```go
+package main
 
-<!-- End Go Types -->
+import (
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := common.New(
+		common.WithServerURL("https://api.codat.io"),
+		common.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.APIKeyDetails != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Server Selection [server] -->
+
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The Go SDK makes API calls that wrap an internal HTTP client. The requirements for the HTTP client are very simple. It must match this interface:
+
+```go
+type HTTPClient interface {
+	Do(req *http.Request) (*http.Response, error)
+}
+```
+
+The built-in `net/http` client satisfies this interface and a default client based on the built-in is provided by default. To replace this default with a client of your own, you can implement this interface yourself or provide your own client configured as desired. Here's a simple example, which adds a client with a 30 second timeout.
+
+```go
+import (
+	"net/http"
+	"time"
+	"github.com/myorg/your-go-sdk"
+)
+
+var (
+	httpClient = &http.Client{Timeout: 30 * time.Second}
+	sdkClient  = sdk.New(sdk.WithClient(httpClient))
+)
+```
+
+This can be a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration.
+<!-- End Custom HTTP Client [http-client] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name         | Type         | Scheme       |
+| ------------ | ------------ | ------------ |
+| `AuthHeader` | apiKey       | API key      |
+
+You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
+```go
+package main
+
+import (
+	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/common"
+	"github.com/codatio/client-sdk-go/previous-versions/common/pkg/models/shared"
+	"log"
+)
+
+func main() {
+	s := common.New(
+		common.WithSecurity(shared.Security{
+			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+		}),
+	)
+
+	ctx := context.Background()
+	res, err := s.Settings.CreateAPIKey(ctx, &shared.CreateAPIKey{
+		Name: common.String("azure-invoice-finance-processor"),
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	if res.APIKeyDetails != nil {
+		// handle response
+	}
+}
+
+```
+<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
