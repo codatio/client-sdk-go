@@ -3,7 +3,7 @@
 
 ## Overview
 
-Retrieve standardized data from linked commerce platforms.
+Retrieve standardized data from linked commerce software.
 
 ### Available Operations
 
@@ -11,7 +11,7 @@ Retrieve standardized data from linked commerce platforms.
 
 ## Get
 
-Retrieve information about the company, as seen in the commerce platform.
+Retrieve information about the company, as seen in the commerce software.
 
 This may include information like addresses, tax registration details and social media or website information.
 
@@ -21,11 +21,11 @@ This may include information like addresses, tax registration details and social
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -43,7 +43,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CompanyInfo != nil {
         // handle response
     }
@@ -52,14 +51,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [operations.GetCompanyInfoRequest](../../models/operations/getcompanyinforequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][operations.Option](../../models/operations/option.md)                             | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
-
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [operations.GetCompanyInfoRequest](../../pkg/models/operations/getcompanyinforequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 ### Response
 
-**[*operations.GetCompanyInfoResponse](../../models/operations/getcompanyinforesponse.md), error**
+**[*operations.GetCompanyInfoResponse](../../pkg/models/operations/getcompanyinforesponse.md), error**
 
+### Errors
+
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

@@ -24,6 +24,8 @@ sources:
     commerce-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Commerce.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/commerce-source
     common-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Platform.yaml

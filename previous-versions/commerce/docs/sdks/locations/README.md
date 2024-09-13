@@ -3,7 +3,7 @@
 
 ## Overview
 
-Retrieve standardized data from linked commerce platforms.
+Retrieve standardized data from linked commerce software.
 
 ### Available Operations
 
@@ -27,11 +27,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -45,12 +45,11 @@ func main() {
     res, err := s.Locations.Get(ctx, operations.GetLocationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        LocationID: "Northeast Hatchback Kia",
+        LocationID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Location != nil {
         // handle response
     }
@@ -59,16 +58,22 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [operations.GetLocationRequest](../../models/operations/getlocationrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][operations.Option](../../models/operations/option.md)                       | :heavy_minus_sign:                                                             | The options for this request.                                                  |
-
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [operations.GetLocationRequest](../../pkg/models/operations/getlocationrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*operations.GetLocationResponse](../../models/operations/getlocationresponse.md), error**
+**[*operations.GetLocationResponse](../../pkg/models/operations/getlocationresponse.md), error**
+
+### Errors
+
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
 
 
 ## List
@@ -86,11 +91,11 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"context"
-	"log"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
+	"log"
 )
 
 func main() {
@@ -108,7 +113,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Locations != nil {
         // handle response
     }
@@ -117,14 +121,19 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [operations.ListLocationsRequest](../../models/operations/listlocationsrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][operations.Option](../../models/operations/option.md)                           | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
-
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.ListLocationsRequest](../../pkg/models/operations/listlocationsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*operations.ListLocationsResponse](../../models/operations/listlocationsresponse.md), error**
+**[*operations.ListLocationsResponse](../../pkg/models/operations/listlocationsresponse.md), error**
 
+### Errors
+
+| Error Object                    | Status Code                     | Content Type                    |
+| ------------------------------- | ------------------------------- | ------------------------------- |
+| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
