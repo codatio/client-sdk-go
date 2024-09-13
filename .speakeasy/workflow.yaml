@@ -14,6 +14,8 @@ sources:
     bank-feeds-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Bank-Feeds.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/bank-feeds-source
     banking-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Banking.yaml

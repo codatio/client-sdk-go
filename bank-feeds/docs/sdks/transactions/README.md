@@ -3,7 +3,7 @@
 
 ## Overview
 
-Transactions represent debits and credits from a source account.
+Create new bank account transactions for a company's connections, and see previous operations.
 
 ### Available Operations
 
@@ -33,6 +33,7 @@ import(
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
 	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
 	"context"
+	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/types"
 	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
 	"log"
 )
@@ -46,6 +47,44 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
+        CreateBankTransactions: &shared.CreateBankTransactions{
+            AccountID: "49cd5a42-b311-4750-9361-52e2ed1d4653",
+            Transactions: []shared.BankTransactions{
+                shared.BankTransactions{
+                    Amount: types.MustNewDecimalFromString("100"),
+                    Balance: types.MustNewDecimalFromString("100"),
+                    Counterparty: bankfeeds.String("Bank of Example"),
+                    Date: "2023-08-22T10:21:00Z",
+                    Description: bankfeeds.String("Repayment of Credit Card"),
+                    ID: "716422529",
+                    Reconciled: bankfeeds.Bool(true),
+                    Reference: bankfeeds.String("Ref-12345"),
+                    TransactionType: shared.BankTransactionTypeCredit.ToPointer(),
+                },
+                shared.BankTransactions{
+                    Amount: types.MustNewDecimalFromString("-100"),
+                    Balance: types.MustNewDecimalFromString("0"),
+                    Counterparty: bankfeeds.String("Amazon"),
+                    Date: "2023-08-22T10:22:00Z",
+                    Description: bankfeeds.String("Amazon Purchase"),
+                    ID: "716422530",
+                    Reconciled: bankfeeds.Bool(false),
+                    Reference: bankfeeds.String("Ref-12346"),
+                    TransactionType: shared.BankTransactionTypeDebit.ToPointer(),
+                },
+                shared.BankTransactions{
+                    Amount: types.MustNewDecimalFromString("-60"),
+                    Balance: types.MustNewDecimalFromString("-60"),
+                    Counterparty: bankfeeds.String("Office Mart"),
+                    Date: "2023-08-22T10:23:00Z",
+                    Description: bankfeeds.String("Office Supplies"),
+                    ID: "716422531",
+                    Reconciled: bankfeeds.Bool(false),
+                    Reference: bankfeeds.String("Ref-12347"),
+                    TransactionType: shared.BankTransactionTypeDebit.ToPointer(),
+                },
+            },
+        },
         AccountID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -53,7 +92,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateBankTransactionsResponse != nil {
         // handle response
     }
@@ -68,14 +106,17 @@ func main() {
 | `request`                                                                                                | [operations.CreateBankTransactionsRequest](../../pkg/models/operations/createbanktransactionsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.CreateBankTransactionsResponse](../../pkg/models/operations/createbanktransactionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateOperation
 
@@ -109,7 +150,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperation != nil {
         // handle response
     }
@@ -124,14 +164,17 @@ func main() {
 | `request`                                                                                        | [operations.GetCreateOperationRequest](../../pkg/models/operations/getcreateoperationrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetCreateOperationResponse](../../pkg/models/operations/getcreateoperationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ListCreateOperations
 
@@ -163,11 +206,11 @@ func main() {
         OrderBy: bankfeeds.String("-modifiedDate"),
         Page: bankfeeds.Int(1),
         PageSize: bankfeeds.Int(100),
+        Query: bankfeeds.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperations != nil {
         // handle response
     }
@@ -182,10 +225,12 @@ func main() {
 | `request`                                                                                            | [operations.ListCreateOperationsRequest](../../pkg/models/operations/listcreateoperationsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.ListCreateOperationsResponse](../../pkg/models/operations/listcreateoperationsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
