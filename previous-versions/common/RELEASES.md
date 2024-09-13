@@ -363,3 +363,13 @@ Based on:
 - [go v0.27.0] previous-versions/common
 ### Releases
 - [Go v0.27.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/common/v0.27.0 - previous-versions/common
+
+## 2024-09-13 15:57:59
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.396.7 (2.415.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v0.28.0] previous-versions/common
+### Releases
+- [Go v0.28.0] https://github.com/codatio/client-sdk-go/releases/tag/previous-versions/common/v0.28.0 - previous-versions/common
