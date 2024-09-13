@@ -3,7 +3,7 @@
 
 ## Overview
 
-Suppliers
+Access standardized Suppliers from linked accounting software.
 
 ### Available Operations
 
@@ -52,23 +52,13 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Create(ctx, operations.CreateSupplierRequest{
         Supplier: &shared.Supplier{
-            Addresses: []shared.Items{
-                shared.Items{
-                    Type: shared.AccountingAddressTypeBilling,
-                },
-            },
-            Metadata: &shared.Metadata{},
+            ContactName: accounting.String("Joe Bloggs"),
+            ID: accounting.String("73593"),
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Phone: accounting.String("(877) 492-8687"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             Status: shared.SupplierStatusActive,
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
+            SupplierName: accounting.String("test 20230420 1004"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -76,7 +66,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateSupplierResponse != nil {
         // handle response
     }
@@ -91,14 +80,17 @@ func main() {
 | `request`                                                                                | [operations.CreateSupplierRequest](../../pkg/models/operations/createsupplierrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.CreateSupplierResponse](../../pkg/models/operations/createsupplierresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## DownloadAttachment
 
@@ -134,12 +126,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -154,14 +145,17 @@ func main() {
 | `request`                                                                                                        | [operations.DownloadSupplierAttachmentRequest](../../pkg/models/operations/downloadsupplierattachmentrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `opts`                                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
-
 ### Response
 
 **[*operations.DownloadSupplierAttachmentResponse](../../pkg/models/operations/downloadsupplierattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -197,12 +191,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Suppliers.Get(ctx, operations.GetSupplierRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Supplier != nil {
         // handle response
     }
@@ -217,14 +210,17 @@ func main() {
 | `request`                                                                          | [operations.GetSupplierRequest](../../pkg/models/operations/getsupplierrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.GetSupplierResponse](../../pkg/models/operations/getsupplierresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAttachment
 
@@ -260,12 +256,11 @@ func main() {
         AttachmentID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachment != nil {
         // handle response
     }
@@ -280,14 +275,17 @@ func main() {
 | `request`                                                                                              | [operations.GetSupplierAttachmentRequest](../../pkg/models/operations/getsupplierattachmentrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.GetSupplierAttachmentResponse](../../pkg/models/operations/getsupplierattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetCreateUpdateModel
 
@@ -330,7 +328,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -345,14 +342,17 @@ func main() {
 | `request`                                                                                                              | [operations.GetCreateUpdateSuppliersModelRequest](../../pkg/models/operations/getcreateupdatesuppliersmodelrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.GetCreateUpdateSuppliersModelResponse](../../pkg/models/operations/getcreateupdatesuppliersmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -389,11 +389,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Suppliers != nil {
         // handle response
     }
@@ -408,14 +408,17 @@ func main() {
 | `request`                                                                              | [operations.ListSuppliersRequest](../../pkg/models/operations/listsuppliersrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.ListSuppliersResponse](../../pkg/models/operations/listsuppliersresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListAttachments
 
@@ -450,12 +453,11 @@ func main() {
     res, err := s.Suppliers.ListAttachments(ctx, operations.ListSupplierAttachmentsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AttachmentsDataset != nil {
         // handle response
     }
@@ -470,14 +472,17 @@ func main() {
 | `request`                                                                                                  | [operations.ListSupplierAttachmentsRequest](../../pkg/models/operations/listsupplierattachmentsrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.ListSupplierAttachmentsResponse](../../pkg/models/operations/listsupplierattachmentsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Update
 
@@ -517,30 +522,48 @@ func main() {
         Supplier: &shared.Supplier{
             Addresses: []shared.Items{
                 shared.Items{
-                    Type: shared.AccountingAddressTypeDelivery,
+                    City: accounting.String("Bakersfield"),
+                    Country: accounting.String("USA"),
+                    Line1: accounting.String("Unit 51"),
+                    Line2: accounting.String("Bakersfield Industrial Estate"),
+                    Region: accounting.String("California"),
+                    Type: shared.AccountingAddressTypeBilling,
                 },
             },
-            Metadata: &shared.Metadata{},
+            ContactName: accounting.String("Kelly's Industrial Supplies"),
+            DefaultCurrency: accounting.String("string"),
+            EmailAddress: accounting.String("sales@kellysupplies.com"),
+            ID: accounting.String("C520FFD4-F6F6-4FC2-A6D2-5D7088B2B14F"),
+            Metadata: &shared.Metadata{
+                IsDeleted: accounting.Bool(true),
+            },
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            Phone: accounting.String("(877) 492-8687"),
+            Phone: accounting.String("07999 999999"),
+            RegistrationNumber: accounting.String("string"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            Status: shared.SupplierStatusActive,
+            Status: shared.SupplierStatusUnknown,
             SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
+                Content: map[string]map[string]any{
+                    "property1": map[string]any{
+                        "property1": "<value>",
+                        "property2": "<value>",
+                    },
+                    "property2": map[string]any{
+                        "property1": "<value>",
+                        "property2": "<value>",
                     },
                 },
             },
+            SupplierName: accounting.String("Kelly's Industrial Supplies"),
+            TaxNumber: accounting.String("string"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        SupplierID: "string",
+        SupplierID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateSupplierResponse != nil {
         // handle response
     }
@@ -555,11 +578,13 @@ func main() {
 | `request`                                                                                | [operations.UpdateSupplierRequest](../../pkg/models/operations/updatesupplierrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.UpdateSupplierResponse](../../pkg/models/operations/updatesupplierresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

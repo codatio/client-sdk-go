@@ -3,7 +3,7 @@
 
 ## Overview
 
-Items
+Access standardized Items from linked accounting software.
 
 ### Available Operations
 
@@ -48,28 +48,12 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Create(ctx, operations.CreateItemRequest{
         Item: &shared.Item{
-            BillItem: &shared.BillItem{
-                AccountRef: &shared.AccountRef{},
-                TaxRateRef: &shared.TaxRateRef{},
-            },
-            InvoiceItem: &shared.InvoiceItem{
-                AccountRef: &shared.AccountRef{},
-                TaxRateRef: &shared.TaxRateRef{},
-            },
-            IsBillItem: false,
+            IsBillItem: true,
             IsInvoiceItem: false,
             ItemStatus: shared.ItemStatusActive,
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            Type: shared.ItemTypeService,
+            Type: shared.ItemTypeInventory,
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -77,7 +61,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateItemResponse != nil {
         // handle response
     }
@@ -92,14 +75,17 @@ func main() {
 | `request`                                                                        | [operations.CreateItemRequest](../../pkg/models/operations/createitemrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.CreateItemResponse](../../pkg/models/operations/createitemresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -135,12 +121,11 @@ func main() {
     ctx := context.Background()
     res, err := s.Items.Get(ctx, operations.GetItemRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        ItemID: "string",
+        ItemID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Item != nil {
         // handle response
     }
@@ -155,14 +140,17 @@ func main() {
 | `request`                                                                  | [operations.GetItemRequest](../../pkg/models/operations/getitemrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `opts`                                                                     | [][operations.Option](../../pkg/models/operations/option.md)               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
-
 ### Response
 
 **[*operations.GetItemResponse](../../pkg/models/operations/getitemresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateModel
 
@@ -205,7 +193,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -220,14 +207,17 @@ func main() {
 | `request`                                                                                          | [operations.GetCreateItemsModelRequest](../../pkg/models/operations/getcreateitemsmodelrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.GetCreateItemsModelResponse](../../pkg/models/operations/getcreateitemsmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -264,11 +254,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Items != nil {
         // handle response
     }
@@ -283,11 +273,13 @@ func main() {
 | `request`                                                                      | [operations.ListItemsRequest](../../pkg/models/operations/listitemsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*operations.ListItemsResponse](../../pkg/models/operations/listitemsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |

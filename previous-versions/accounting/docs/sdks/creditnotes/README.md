@@ -3,7 +3,7 @@
 
 ## Overview
 
-Credit notes
+Access standardized Credit notes from linked accounting software.
 
 ### Available Operations
 
@@ -51,81 +51,38 @@ func main() {
     res, err := s.CreditNotes.Create(ctx, operations.CreateCreditNoteRequest{
         CreditNote: &shared.CreditNote{
             AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
+            CreditNoteNumber: accounting.String("09/03 17.15"),
             Currency: accounting.String("USD"),
+            CurrencyRate: types.MustNewDecimalFromString("1"),
             CustomerRef: &shared.AccountingCustomerRef{
-                ID: "<ID>",
+                ID: "80000002-1674552702",
             },
-            DiscountPercentage: types.MustNewDecimalFromString("6384.24"),
-            IssueDate: accounting.String("2022-10-23T00:00:00Z"),
+            DiscountPercentage: types.MustNewDecimalFromString("0"),
+            IssueDate: accounting.String("2023-03-09T02:21:26.726327+00:00"),
             LineItems: []shared.CreditNoteLineItem{
-                shared.CreditNoteLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.ItemRef{
-                        ID: "<ID>",
-                    },
-                    Quantity: types.MustNewDecimalFromString("4174.58"),
-                    TaxRateRef: &shared.TaxRateRef{},
-                    Tracking: &shared.CreditNoteLineItemTracking{
-                        CategoryRefs: []shared.TrackingCategoryRef{
-                            shared.TrackingCategoryRef{
-                                ID: "<ID>",
-                            },
-                        },
-                        CustomerRef: &shared.AccountingCustomerRef{
-                            ID: "<ID>",
-                        },
-                        IsBilledTo: shared.BilledToType1Unknown,
-                        IsRebilledTo: shared.BilledToType1Unknown,
-                        ProjectRef: &shared.ProjectRef{
-                            ID: "<ID>",
-                        },
-                        RecordRef: &shared.InvoiceTo{
-                            DataType: accounting.String("transfer"),
-                        },
-                    },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRef{
-                        shared.TrackingCategoryRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    UnitAmount: types.MustNewDecimalFromString("690.25"),
-                },
+
             },
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            Note: accounting.String("credit note 20230309 17.15"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
-                        Currency: accounting.String("USD"),
+                        Currency: accounting.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
-                        Currency: accounting.String("EUR"),
+                        Currency: accounting.String("GBP"),
                         PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
-            RemainingCredit: types.MustNewDecimalFromString("0.86"),
+            RemainingCredit: types.MustNewDecimalFromString("0"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            Status: shared.CreditNoteStatusDraft,
-            SubTotal: types.MustNewDecimalFromString("3015.1"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            TotalAmount: types.MustNewDecimalFromString("899.64"),
-            TotalDiscount: types.MustNewDecimalFromString("7150.4"),
-            TotalTaxAmount: types.MustNewDecimalFromString("7926.2"),
-            WithholdingTax: []shared.WithholdingTaxItems{
-                shared.WithholdingTaxItems{
-                    Amount: types.MustNewDecimalFromString("8559.52"),
-                    Name: "string",
-                },
-            },
+            Status: shared.CreditNoteStatusSubmitted,
+            SubTotal: types.MustNewDecimalFromString("10.2"),
+            TotalAmount: types.MustNewDecimalFromString("1.25"),
+            TotalDiscount: types.MustNewDecimalFromString("0"),
+            TotalTaxAmount: types.MustNewDecimalFromString("0"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -133,7 +90,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateCreditNoteResponse != nil {
         // handle response
     }
@@ -148,14 +104,17 @@ func main() {
 | `request`                                                                                    | [operations.CreateCreditNoteRequest](../../pkg/models/operations/createcreditnoterequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.CreateCreditNoteResponse](../../pkg/models/operations/createcreditnoteresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -191,12 +150,11 @@ func main() {
     ctx := context.Background()
     res, err := s.CreditNotes.Get(ctx, operations.GetCreditNoteRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CreditNoteID: "string",
+        CreditNoteID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreditNote != nil {
         // handle response
     }
@@ -211,14 +169,17 @@ func main() {
 | `request`                                                                              | [operations.GetCreditNoteRequest](../../pkg/models/operations/getcreditnoterequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetCreditNoteResponse](../../pkg/models/operations/getcreditnoteresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateUpdateModel
 
@@ -261,7 +222,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -276,14 +236,17 @@ func main() {
 | `request`                                                                                                                  | [operations.GetCreateUpdateCreditNotesModelRequest](../../pkg/models/operations/getcreateupdatecreditnotesmodelrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
 | `opts`                                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                                               | :heavy_minus_sign:                                                                                                         | The options for this request.                                                                                              |
 
-
 ### Response
 
 **[*operations.GetCreateUpdateCreditNotesModelResponse](../../pkg/models/operations/getcreateupdatecreditnotesmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -320,11 +283,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreditNotes != nil {
         // handle response
     }
@@ -339,14 +302,17 @@ func main() {
 | `request`                                                                                  | [operations.ListCreditNotesRequest](../../pkg/models/operations/listcreditnotesrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.ListCreditNotesResponse](../../pkg/models/operations/listcreditnotesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## Update
 
@@ -387,89 +353,39 @@ func main() {
         CreditNote: &shared.CreditNote{
             AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
             Currency: accounting.String("GBP"),
-            CustomerRef: &shared.AccountingCustomerRef{
-                ID: "<ID>",
-            },
             DiscountPercentage: types.MustNewDecimalFromString("5971.29"),
             IssueDate: accounting.String("2022-10-23T00:00:00Z"),
             LineItems: []shared.CreditNoteLineItem{
-                shared.CreditNoteLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.ItemRef{
-                        ID: "<ID>",
-                    },
-                    Quantity: types.MustNewDecimalFromString("3446.2"),
-                    TaxRateRef: &shared.TaxRateRef{},
-                    Tracking: &shared.CreditNoteLineItemTracking{
-                        CategoryRefs: []shared.TrackingCategoryRef{
-                            shared.TrackingCategoryRef{
-                                ID: "<ID>",
-                            },
-                        },
-                        CustomerRef: &shared.AccountingCustomerRef{
-                            ID: "<ID>",
-                        },
-                        IsBilledTo: shared.BilledToType1Project,
-                        IsRebilledTo: shared.BilledToType1Project,
-                        ProjectRef: &shared.ProjectRef{
-                            ID: "<ID>",
-                        },
-                        RecordRef: &shared.InvoiceTo{
-                            DataType: accounting.String("invoice"),
-                        },
-                    },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRef{
-                        shared.TrackingCategoryRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    UnitAmount: types.MustNewDecimalFromString("6276.9"),
-                },
+
             },
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
-                        Currency: accounting.String("USD"),
+                        Currency: accounting.String("GBP"),
                     },
                     Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
                         Currency: accounting.String("EUR"),
                         PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
-            RemainingCredit: types.MustNewDecimalFromString("540.62"),
+            RemainingCredit: types.MustNewDecimalFromString("7084.55"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            Status: shared.CreditNoteStatusPartiallyPaid,
-            SubTotal: types.MustNewDecimalFromString("4995.57"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            TotalAmount: types.MustNewDecimalFromString("4468.63"),
-            TotalDiscount: types.MustNewDecimalFromString("3691.82"),
-            TotalTaxAmount: types.MustNewDecimalFromString("3115.07"),
-            WithholdingTax: []shared.WithholdingTaxItems{
-                shared.WithholdingTaxItems{
-                    Amount: types.MustNewDecimalFromString("7884.4"),
-                    Name: "string",
-                },
-            },
+            Status: shared.CreditNoteStatusDraft,
+            SubTotal: types.MustNewDecimalFromString("6276.9"),
+            TotalAmount: types.MustNewDecimalFromString("6841.99"),
+            TotalDiscount: types.MustNewDecimalFromString("4888.52"),
+            TotalTaxAmount: types.MustNewDecimalFromString("4430.76"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CreditNoteID: "string",
+        CreditNoteID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateCreditNoteResponse != nil {
         // handle response
     }
@@ -484,11 +400,13 @@ func main() {
 | `request`                                                                                    | [operations.UpdateCreditNoteRequest](../../pkg/models/operations/updatecreditnoterequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.UpdateCreditNoteResponse](../../pkg/models/operations/updatecreditnoteresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

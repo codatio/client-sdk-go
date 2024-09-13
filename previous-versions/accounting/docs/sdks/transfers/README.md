@@ -3,7 +3,7 @@
 
 ## Overview
 
-Transfers
+Access standardized Transfers from linked accounting software.
 
 ### Available Operations
 
@@ -11,7 +11,7 @@ Transfers
 * [Get](#get) - Get transfer
 * [GetCreateModel](#getcreatemodel) - Get create transfer model
 * [List](#list) - List transfers
-* [UploadAttachment](#uploadattachment) - Upload invoice attachment
+* [UploadAttachment](#uploadattachment) - Upload transfer attachment
 
 ## Create
 
@@ -35,6 +35,7 @@ import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
 	"context"
+	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/types"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 	"log"
 )
@@ -50,36 +51,39 @@ func main() {
     res, err := s.Transfers.Create(ctx, operations.CreateTransferRequest{
         Transfer: &shared.Transfer{
             ContactRef: &shared.ContactRef{
-                DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "<ID>",
+                DataType: shared.ContactRefDataTypeCustomers.ToPointer(),
+                ID: "80000028-167239230944",
             },
-            Date: accounting.String("2022-10-23T00:00:00Z"),
+            Date: accounting.String("2023-01-26T11:51:18.104Z"),
             DepositedRecordRefs: []shared.InvoiceTo{
                 shared.InvoiceTo{
                     DataType: accounting.String("invoice"),
                 },
             },
+            Description: accounting.String("test transfers push 20230126 12.08"),
             From: &shared.TransferAccount{
-                AccountRef: &shared.AccountRef{},
+                AccountRef: &shared.AccountRef{
+                    ID: accounting.String("80000028-1671794219"),
+                },
+                Amount: types.MustNewDecimalFromString("12"),
                 Currency: accounting.String("USD"),
             },
-            Metadata: &shared.Metadata{},
+            Metadata: &shared.Metadata{
+                IsDeleted: accounting.Bool(true),
+            },
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
             To: &shared.TransferAccount{
-                AccountRef: &shared.AccountRef{},
-                Currency: accounting.String("GBP"),
+                AccountRef: &shared.AccountRef{
+                    ID: accounting.String("80000004-1671793811"),
+                },
+                Amount: types.MustNewDecimalFromString("12"),
+                Currency: accounting.String("EUR"),
             },
             TrackingCategoryRefs: []shared.TrackingCategoryRef{
                 shared.TrackingCategoryRef{
-                    ID: "<ID>",
+                    ID: "80000001-1674553252",
+                    Name: accounting.String("Class 1"),
                 },
             },
         },
@@ -89,7 +93,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateTransferResponse != nil {
         // handle response
     }
@@ -104,14 +107,17 @@ func main() {
 | `request`                                                                                | [operations.CreateTransferRequest](../../pkg/models/operations/createtransferrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.CreateTransferResponse](../../pkg/models/operations/createtransferresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -148,12 +154,11 @@ func main() {
     res, err := s.Transfers.Get(ctx, operations.GetTransferRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "string",
+        TransferID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Transfer != nil {
         // handle response
     }
@@ -168,14 +173,17 @@ func main() {
 | `request`                                                                          | [operations.GetTransferRequest](../../pkg/models/operations/gettransferrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.GetTransferResponse](../../pkg/models/operations/gettransferresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateModel
 
@@ -218,7 +226,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -233,14 +240,17 @@ func main() {
 | `request`                                                                                                  | [operations.GetCreateTransfersModelRequest](../../pkg/models/operations/getcreatetransfersmodelrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.GetCreateTransfersModelResponse](../../pkg/models/operations/getcreatetransfersmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -278,11 +288,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Transfers != nil {
         // handle response
     }
@@ -297,14 +307,17 @@ func main() {
 | `request`                                                                              | [operations.ListTransfersRequest](../../pkg/models/operations/listtransfersrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.ListTransfersResponse](../../pkg/models/operations/listtransfersresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## UploadAttachment
 
@@ -327,10 +340,10 @@ package main
 import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"os"
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -340,23 +353,21 @@ func main() {
         }),
     )
 
+    content, fileErr := os.Open("example.file")
+    if fileErr != nil {
+        panic(fileErr)
+    }
+
     ctx := context.Background()
     res, err := s.Transfers.UploadAttachment(ctx, operations.UploadTransferAttachmentRequest{
-        AttachmentUpload: &shared.AttachmentUpload{
-            File: shared.CodatFile{
-                Content: []byte("0xE3ABc1980E"),
-                FileName: "elegant_producer_electric.jpeg",
-            },
-        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        TransferID: "string",
+        TransferID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -370,11 +381,13 @@ func main() {
 | `request`                                                                                                    | [operations.UploadTransferAttachmentRequest](../../pkg/models/operations/uploadtransferattachmentrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.UploadTransferAttachmentResponse](../../pkg/models/operations/uploadtransferattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

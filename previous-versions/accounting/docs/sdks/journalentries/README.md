@@ -3,7 +3,7 @@
 
 ## Overview
 
-Journal entries
+Access standardized Journal entries from linked accounting software.
 
 ### Available Operations
 
@@ -50,38 +50,58 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Create(ctx, operations.CreateJournalEntryRequest{
         JournalEntry: &shared.JournalEntry{
-            CreatedOn: accounting.String("2022-10-23T00:00:00Z"),
+            CreatedOn: accounting.String("2023-02-22T19:49:16.052Z"),
+            Description: accounting.String("record level description"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
-                    AccountRef: &shared.AccountRef{},
-                    NetAmount: types.MustNewDecimalFromString("4893.82"),
+                    AccountRef: &shared.AccountRef{
+                        ID: accounting.String("80000019-1671793811"),
+                        Name: accounting.String("Office Supplies"),
+                    },
+                    Currency: accounting.String("USD"),
+                    Description: accounting.String("journalLines.description debit"),
+                    NetAmount: types.MustNewDecimalFromString("23.02"),
                     Tracking: &shared.PropertieTracking2{
-                        RecordRefs: []shared.InvoiceTo{
-                            shared.InvoiceTo{
-                                DataType: accounting.String("accountTransaction"),
+                        RecordRefs: []shared.TrackingRecordRef{
+                            shared.TrackingRecordRef{
+                                DataType: shared.TrackingRecordRefDataTypeCustomers.ToPointer(),
+                                ID: accounting.String("80000001-1674553252"),
+                            },
+                        },
+                    },
+                },
+                shared.JournalLine{
+                    AccountRef: &shared.AccountRef{
+                        ID: accounting.String("8000001E-1671793811"),
+                        Name: accounting.String("Utilities"),
+                    },
+                    Currency: accounting.String("USD"),
+                    Description: accounting.String("journalLines.description credit"),
+                    NetAmount: types.MustNewDecimalFromString("-23.02"),
+                    Tracking: &shared.PropertieTracking2{
+                        RecordRefs: []shared.TrackingRecordRef{
+                            shared.TrackingRecordRef{
+                                DataType: shared.TrackingRecordRefDataTypeTrackingCategories.ToPointer(),
+                                ID: accounting.String("80000002-1674553271"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalRef{
-                ID: "<ID>",
+                ID: "12",
             },
-            Metadata: &shared.Metadata{},
+            Metadata: &shared.Metadata{
+                IsDeleted: accounting.Bool(true),
+            },
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            PostedOn: accounting.String("2022-10-23T00:00:00Z"),
-            RecordRef: &shared.InvoiceTo{
-                DataType: accounting.String("invoice"),
+            PostedOn: accounting.String("2023-02-23T19:49:16.052Z"),
+            RecordRef: &shared.JournalEntryRecordRef{
+                DataType: shared.JournalEntryRecordRefDataTypeBills.ToPointer(),
+                ID: accounting.String("80000002-6722155312"),
             },
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            UpdatedOn: accounting.String("2022-10-23T00:00:00Z"),
+            UpdatedOn: accounting.String("2023-02-21T19:49:16.052Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -89,7 +109,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateJournalEntryResponse != nil {
         // handle response
     }
@@ -104,24 +123,27 @@ func main() {
 | `request`                                                                                        | [operations.CreateJournalEntryRequest](../../pkg/models/operations/createjournalentryrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.CreateJournalEntryResponse](../../pkg/models/operations/createjournalentryresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Delete
 
 ﻿> **Use with caution**
 >
->Because journal entries underpin every transaction in an accounting platform, deleting a journal entry can affect every transaction for a given company.
+>Because journal entries underpin every transaction in an accounting software, deleting a journal entry can affect every transaction for a given company.
 > 
 > **Before you proceed, make sure you understand the implications of deleting journal entries from an accounting perspective.**
 
-The *Delete journal entry* endpoint allows you to delete a specified journal entry from an accounting platform.
+The *Delete journal entry* endpoint allows you to delete a specified journal entry from an accounting software.
 
 [Journal entries](https://docs.codat.io/accounting-api#/schemas/JournalEntry) are made in a company's general ledger, or accounts, when transactions are approved.
 
@@ -131,15 +153,15 @@ The *Delete journal entry* endpoint allows you to delete a specified journal ent
    1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
    2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation). 
    
-   A `Success` status indicates that the journal entry object was deleted from the accounting platform.
-3. (Optional) Check that the journal entry was deleted from the accounting platform.
+   A `Success` status indicates that the journal entry object was deleted from the accounting software.
+3. (Optional) Check that the journal entry was deleted from the accounting software.
 
 ### Effect on related objects
 
-Be aware that deleting a journal entry from an accounting platform might cause related objects to be modified. For example, if you delete the journal entry for a paid invoice in QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
+Be aware that deleting a journal entry from an accounting software might cause related objects to be modified. For example, if you delete the journal entry for a paid invoice in QuickBooks Online, the invoice is deleted but the payment against that invoice is not. The payment is converted to a payment on account.
 
 ## Integration specifics
-Integrations that support soft delete do not permanently delete the object in the accounting platform.
+Integrations that support soft delete do not permanently delete the object in the accounting software.
 
 | Integration | Soft Deleted | 
 |-------------|--------------|
@@ -173,12 +195,11 @@ func main() {
     res, err := s.JournalEntries.Delete(ctx, operations.DeleteJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        JournalEntryID: "string",
+        JournalEntryID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperationSummary != nil {
         // handle response
     }
@@ -193,14 +214,17 @@ func main() {
 | `request`                                                                                        | [operations.DeleteJournalEntryRequest](../../pkg/models/operations/deletejournalentryrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.DeleteJournalEntryResponse](../../pkg/models/operations/deletejournalentryresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -236,12 +260,11 @@ func main() {
     ctx := context.Background()
     res, err := s.JournalEntries.Get(ctx, operations.GetJournalEntryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        JournalEntryID: "string",
+        JournalEntryID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.JournalEntry != nil {
         // handle response
     }
@@ -256,14 +279,17 @@ func main() {
 | `request`                                                                                  | [operations.GetJournalEntryRequest](../../pkg/models/operations/getjournalentryrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.GetJournalEntryResponse](../../pkg/models/operations/getjournalentryresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateModel
 
@@ -306,7 +332,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -321,14 +346,17 @@ func main() {
 | `request`                                                                                                            | [operations.GetCreateJournalEntriesModelRequest](../../pkg/models/operations/getcreatejournalentriesmodelrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 | `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
-
 ### Response
 
 **[*operations.GetCreateJournalEntriesModelResponse](../../pkg/models/operations/getcreatejournalentriesmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -365,11 +393,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.JournalEntries != nil {
         // handle response
     }
@@ -384,11 +412,13 @@ func main() {
 | `request`                                                                                        | [operations.ListJournalEntriesRequest](../../pkg/models/operations/listjournalentriesrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.ListJournalEntriesResponse](../../pkg/models/operations/listjournalentriesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |

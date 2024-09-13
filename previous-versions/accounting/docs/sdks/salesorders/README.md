@@ -3,7 +3,7 @@
 
 ## Overview
 
-Sales orders
+Access standardized Sales orders from linked accounting software.
 
 ### Available Operations
 
@@ -44,12 +44,11 @@ func main() {
     ctx := context.Background()
     res, err := s.SalesOrders.Get(ctx, operations.GetSalesOrderRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        SalesOrderID: "string",
+        SalesOrderID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SalesOrder != nil {
         // handle response
     }
@@ -64,14 +63,17 @@ func main() {
 | `request`                                                                              | [operations.GetSalesOrderRequest](../../pkg/models/operations/getsalesorderrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetSalesOrderResponse](../../pkg/models/operations/getsalesorderresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## List
 
@@ -108,11 +110,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SalesOrders != nil {
         // handle response
     }
@@ -127,11 +129,13 @@ func main() {
 | `request`                                                                                  | [operations.ListSalesOrdersRequest](../../pkg/models/operations/listsalesordersrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.ListSalesOrdersResponse](../../pkg/models/operations/listsalesordersresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |

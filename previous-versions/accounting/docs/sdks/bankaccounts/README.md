@@ -3,7 +3,7 @@
 
 ## Overview
 
-Bank accounts
+Access standardized Bank accounts from linked accounting software.
 
 ### Available Operations
 
@@ -49,16 +49,9 @@ func main() {
     res, err := s.BankAccounts.Create(ctx, operations.CreateBankAccountRequest{
         BankAccount: &shared.BankAccount{
             Currency: accounting.String("USD"),
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
+            Status: shared.BankAccountStatusActive.ToPointer(),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -66,7 +59,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateBankAccountResponse != nil {
         // handle response
     }
@@ -81,14 +73,17 @@ func main() {
 | `request`                                                                                      | [operations.CreateBankAccountRequest](../../pkg/models/operations/createbankaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.CreateBankAccountResponse](../../pkg/models/operations/createbankaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -123,14 +118,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.BankAccounts.Get(ctx, operations.GetBankAccountRequest{
-        AccountID: "string",
+        AccountID: "<value>",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BankAccount != nil {
         // handle response
     }
@@ -145,14 +139,17 @@ func main() {
 | `request`                                                                                | [operations.GetBankAccountRequest](../../pkg/models/operations/getbankaccountrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetBankAccountResponse](../../pkg/models/operations/getbankaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateUpdateModel
 
@@ -195,7 +192,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -210,14 +206,17 @@ func main() {
 | `request`                                                                                                                    | [operations.GetCreateUpdateBankAccountsModelRequest](../../pkg/models/operations/getcreateupdatebankaccountsmodelrequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
 | `opts`                                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                                 | :heavy_minus_sign:                                                                                                           | The options for this request.                                                                                                |
 
-
 ### Response
 
 **[*operations.GetCreateUpdateBankAccountsModelResponse](../../pkg/models/operations/getcreateupdatebankaccountsmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -255,11 +254,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.BankAccounts != nil {
         // handle response
     }
@@ -274,14 +273,17 @@ func main() {
 | `request`                                                                                    | [operations.ListBankAccountsRequest](../../pkg/models/operations/listbankaccountsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.ListBankAccountsResponse](../../pkg/models/operations/listbankaccountsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## Update
 
@@ -320,16 +322,9 @@ func main() {
     res, err := s.BankAccounts.Update(ctx, operations.UpdateBankAccountRequest{
         BankAccount: &shared.BankAccount{
             Currency: accounting.String("EUR"),
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
+            Status: shared.BankAccountStatusActive.ToPointer(),
         },
         BankAccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -338,7 +333,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateBankAccountResponse != nil {
         // handle response
     }
@@ -353,11 +347,13 @@ func main() {
 | `request`                                                                                      | [operations.UpdateBankAccountRequest](../../pkg/models/operations/updatebankaccountrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.UpdateBankAccountResponse](../../pkg/models/operations/updatebankaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

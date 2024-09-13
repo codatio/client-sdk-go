@@ -3,7 +3,7 @@
 
 ## Overview
 
-Bills
+Access standardized Bills from linked accounting software.
 
 ### Available Operations
 
@@ -28,7 +28,7 @@ The *Create bill* endpoint creates a new [bill](https://docs.codat.io/accounting
 
 Required data may vary by integration. To see what data to post, first call [Get create/update bill model](https://docs.codat.io/accounting-api#/operations/get-create-update-bills-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating an account.
+Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support creating a bill.
 
 
 ### Example Usage
@@ -55,43 +55,16 @@ func main() {
     ctx := context.Background()
     res, err := s.Bills.Create(ctx, operations.CreateBillRequest{
         Bill: &shared.Bill{
+            AmountDue: types.MustNewDecimalFromString("115.899999984"),
             Currency: accounting.String("USD"),
-            DueDate: accounting.String("2022-10-23T00:00:00Z"),
-            IssueDate: "2022-10-23T00:00:00Z",
+            CurrencyRate: types.MustNewDecimalFromString("1"),
+            DueDate: accounting.String("2023-03-14T09:21:18.558Z"),
+            IssueDate: "2023-03-08T09:21:18.558Z",
             LineItems: []shared.BillLineItem{
-                shared.BillLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.ItemRef{
-                        ID: "<ID>",
-                    },
-                    PurchaseOrderLineRef: &shared.Zero{},
-                    Quantity: types.MustNewDecimalFromString("8592.13"),
-                    TaxRateRef: &shared.TaxRateRef{},
-                    Tracking: &shared.PropertieTracking{
-                        CategoryRefs: []shared.TrackingCategoryRef{
-                            shared.TrackingCategoryRef{
-                                ID: "<ID>",
-                            },
-                        },
-                        CustomerRef: &shared.AccountingCustomerRef{
-                            ID: "<ID>",
-                        },
-                        IsBilledTo: shared.BilledToTypeNotApplicable,
-                        IsRebilledTo: shared.BilledToTypeNotApplicable,
-                        ProjectRef: &shared.ProjectRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRef{
-                        shared.TrackingCategoryRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    UnitAmount: types.MustNewDecimalFromString("1343.65"),
-                },
+
             },
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            Note: accounting.String("note"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
@@ -99,33 +72,30 @@ func main() {
                         Currency: accounting.String("EUR"),
                     },
                     Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
-                        Currency: accounting.String("EUR"),
+                        Currency: accounting.String("GBP"),
                         PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
             PurchaseOrderRefs: []shared.PurchaseOrderRef{
-                shared.PurchaseOrderRef{},
-            },
-            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            Status: shared.BillStatusDraft,
-            SubTotal: types.MustNewDecimalFromString("0.86"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
+                shared.PurchaseOrderRef{
+                    ID: accounting.String("string"),
+                    PurchaseOrderNumber: accounting.String("string"),
                 },
             },
+            Reference: accounting.String("20230308 15.16"),
+            SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
+            Status: shared.BillStatusOpen,
+            SubTotal: types.MustNewDecimalFromString("3.25"),
             SupplierRef: &shared.SupplierRef{
-                ID: "<ID>",
+                ID: "80000001-1671793885",
+                SupplierName: accounting.String("string"),
             },
-            TaxAmount: types.MustNewDecimalFromString("4552.22"),
-            TotalAmount: types.MustNewDecimalFromString("1697.27"),
+            TaxAmount: types.MustNewDecimalFromString("0"),
+            TotalAmount: types.MustNewDecimalFromString("3.25"),
             WithholdingTax: []shared.WithholdingTax{
                 shared.WithholdingTax{
-                    Amount: types.MustNewDecimalFromString("3015.1"),
+                    Amount: types.MustNewDecimalFromString("0"),
                     Name: "string",
                 },
             },
@@ -136,7 +106,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateBillResponse != nil {
         // handle response
     }
@@ -151,18 +120,21 @@ func main() {
 | `request`                                                                        | [operations.CreateBillRequest](../../pkg/models/operations/createbillrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.CreateBillResponse](../../pkg/models/operations/createbillresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Delete
 
-The *Delete bill* endpoint allows you to delete a specified bill from an accounting platform. 
+The *Delete bill* endpoint allows you to delete a specified bill from an accounting software. 
 
 [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are itemized records of goods received or services provided to the SMB.
 
@@ -172,25 +144,27 @@ The *Delete bill* endpoint allows you to delete a specified bill from an account
     1. [Push operation webhook](https://docs.codat.io/introduction/webhooks/core-rules-types#push-operation-status-has-changed) (advised),
     2. [Push operation status endpoint](https://docs.codat.io/codat-api#/operations/get-push-operation).
 
-   A `Success` status indicates that the bill object was deleted from the accounting platform.
-3. (Optional) Check that the bill was deleted from the accounting platform.
+   A `Success` status indicates that the bill object was deleted from the accounting software.
+3. (Optional) Check that the bill was deleted from the accounting software.
 
 ### Effect on related objects
 
-Be aware that deleting a bill from an accounting platform might cause related objects to be modified. For example, if you delete a paid bill in QuickBooks Online, the bill is deleted but the bill payment against that bill is not. The bill payment is converted to a payment on account.
+Be aware that deleting a bill from an accounting software might cause related objects to be modified. For example, if you delete a paid bill in QuickBooks Online or QuickBooks Desktop, the bill is deleted but the bill payment against that bill is not. The bill payment is converted to a payment on account.
 
 ## Integration specifics
-Integrations that support soft delete do not permanently delete the object in the accounting platform.
+Integrations that support soft delete do not permanently delete the object in the accounting software.
 
 | Integration | Soft Delete | Details                                                                                                      |  
 |-------------|-------------|--------------------------------------------------------------------------------------------------------------|
-| QuickBooks Online | No          | -                                                                                                            |
+| QuickBooks Online | No          | - |
+| QuickBooks Desktop | No          | - |
 | Oracle NetSuite   | No          | When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |                                                                                                      |
 | Sage Intacct   | No          | When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |
+| Xero   | No          | Draft bills will be deleted. Open bills will be voided instead of deleted since Xero only allows voiding a bill once it's been posted. When deleting a bill that's already linked to a bill payment, you must delete the linked bill payment first. |
 
 > **Supported Integrations**
 > 
-> This functionality is currently supported for our QuickBooks Online, Xero, Oracle NetSuite and Sage Intacct integrations.
+> This functionality is currently supported for our QuickBooks Online, QuickBooks Desktop, Xero, Oracle NetSuite and Sage Intacct integrations.
 
 ### Example Usage
 
@@ -221,7 +195,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOperationSummary != nil {
         // handle response
     }
@@ -236,14 +209,17 @@ func main() {
 | `request`                                                                        | [operations.DeleteBillRequest](../../pkg/models/operations/deletebillrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.DeleteBillResponse](../../pkg/models/operations/deletebillresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## DownloadAttachment
 
@@ -284,7 +260,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Data != nil {
         // handle response
     }
@@ -299,14 +274,17 @@ func main() {
 | `request`                                                                                                | [operations.DownloadBillAttachmentRequest](../../pkg/models/operations/downloadbillattachmentrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.DownloadBillAttachmentResponse](../../pkg/models/operations/downloadbillattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -317,6 +295,11 @@ The *Get bill* endpoint returns a single bill for a given billId.
 Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bills) for integrations that support getting a specific bill.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
+
+
+### Tips and traps
+
+To access the `paymentAllocations` property, ensure that the `billPayments` data type is queued and cached in Codat before retrieving `bills` from Codat's cache.
 
 
 ### Example Usage
@@ -347,7 +330,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Bill != nil {
         // handle response
     }
@@ -362,14 +344,17 @@ func main() {
 | `request`                                                                  | [operations.GetBillRequest](../../pkg/models/operations/getbillrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `opts`                                                                     | [][operations.Option](../../pkg/models/operations/option.md)               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
-
 ### Response
 
 **[*operations.GetBillResponse](../../pkg/models/operations/getbillresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAttachment
 
@@ -410,7 +395,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Attachment != nil {
         // handle response
     }
@@ -425,14 +409,17 @@ func main() {
 | `request`                                                                                      | [operations.GetBillAttachmentRequest](../../pkg/models/operations/getbillattachmentrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.GetBillAttachmentResponse](../../pkg/models/operations/getbillattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetCreateUpdateModel
 
@@ -475,7 +462,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -490,14 +476,17 @@ func main() {
 | `request`                                                                                                      | [operations.GetCreateUpdateBillsModelRequest](../../pkg/models/operations/getcreateupdatebillsmodelrequest.md) | :heavy_check_mark:                                                                                             | The request object to use for the request.                                                                     |
 | `opts`                                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
-
 ### Response
 
 **[*operations.GetCreateUpdateBillsModelResponse](../../pkg/models/operations/getcreateupdatebillsmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -506,7 +495,11 @@ The *List bills* endpoint returns a list of [bills](https://docs.codat.io/accoun
 [Bills](https://docs.codat.io/accounting-api#/schemas/Bill) are invoices that represent the SMB's financial obligations to their supplier for a purchase of goods or services.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
-    
+
+### Tips and traps
+
+To access the `paymentAllocations` property, ensure that the `billPayments` data type is queued and cached in Codat before retrieving `bills` from Codat's cache.
+
 
 ### Example Usage
 
@@ -534,11 +527,11 @@ func main() {
         OrderBy: accounting.String("-modifiedDate"),
         Page: accounting.Int(1),
         PageSize: accounting.Int(100),
+        Query: accounting.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Bills != nil {
         // handle response
     }
@@ -553,14 +546,17 @@ func main() {
 | `request`                                                                      | [operations.ListBillsRequest](../../pkg/models/operations/listbillsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `opts`                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
-
 ### Response
 
 **[*operations.ListBillsResponse](../../pkg/models/operations/listbillsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+
 
 ## ListAttachments
 
@@ -600,7 +596,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AttachmentsDataset != nil {
         // handle response
     }
@@ -615,14 +610,17 @@ func main() {
 | `request`                                                                                          | [operations.ListBillAttachmentsRequest](../../pkg/models/operations/listbillattachmentsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.ListBillAttachmentsResponse](../../pkg/models/operations/listbillattachmentsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Update
 
@@ -664,86 +662,32 @@ func main() {
             Currency: accounting.String("EUR"),
             DueDate: accounting.String("2022-10-23T00:00:00Z"),
             IssueDate: "2022-10-23T00:00:00Z",
-            LineItems: []shared.BillLineItem{
-                shared.BillLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.ItemRef{
-                        ID: "<ID>",
-                    },
-                    PurchaseOrderLineRef: &shared.Zero{},
-                    Quantity: types.MustNewDecimalFromString("156.52"),
-                    TaxRateRef: &shared.TaxRateRef{},
-                    Tracking: &shared.PropertieTracking{
-                        CategoryRefs: []shared.TrackingCategoryRef{
-                            shared.TrackingCategoryRef{
-                                ID: "<ID>",
-                            },
-                        },
-                        CustomerRef: &shared.AccountingCustomerRef{
-                            ID: "<ID>",
-                        },
-                        IsBilledTo: shared.BilledToTypeNotApplicable,
-                        IsRebilledTo: shared.BilledToTypeCustomer,
-                        ProjectRef: &shared.ProjectRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRef{
-                        shared.TrackingCategoryRef{
-                            ID: "<ID>",
-                        },
-                    },
-                    UnitAmount: types.MustNewDecimalFromString("9914.64"),
-                },
-            },
-            Metadata: &shared.Metadata{},
             ModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
                         AllocatedOnDate: accounting.String("2022-10-23T00:00:00Z"),
-                        Currency: accounting.String("EUR"),
+                        Currency: accounting.String("GBP"),
                     },
                     Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
-                        Currency: accounting.String("USD"),
+                        Currency: accounting.String("EUR"),
                         PaidOnDate: accounting.String("2022-10-23T00:00:00Z"),
                     },
                 },
             },
-            PurchaseOrderRefs: []shared.PurchaseOrderRef{
-                shared.PurchaseOrderRef{},
-            },
             SourceModifiedDate: accounting.String("2022-10-23T00:00:00Z"),
-            Status: shared.BillStatusUnknown,
-            SubTotal: types.MustNewDecimalFromString("540.62"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            SupplierRef: &shared.SupplierRef{
-                ID: "<ID>",
-            },
-            TaxAmount: types.MustNewDecimalFromString("2782.81"),
-            TotalAmount: types.MustNewDecimalFromString("8965.01"),
-            WithholdingTax: []shared.WithholdingTax{
-                shared.WithholdingTax{
-                    Amount: types.MustNewDecimalFromString("4995.57"),
-                    Name: "string",
-                },
-            },
+            Status: shared.BillStatusVoid,
+            SubTotal: types.MustNewDecimalFromString("9914.64"),
+            TaxAmount: types.MustNewDecimalFromString("2703.24"),
+            TotalAmount: types.MustNewDecimalFromString("6276.9"),
         },
-        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        BillID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.UpdateBillResponse != nil {
         // handle response
     }
@@ -758,14 +702,17 @@ func main() {
 | `request`                                                                        | [operations.UpdateBillRequest](../../pkg/models/operations/updatebillrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.UpdateBillResponse](../../pkg/models/operations/updatebillresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## UploadAttachment
 
@@ -788,10 +735,10 @@ package main
 import(
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting"
+	"os"
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/accounting/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -801,23 +748,21 @@ func main() {
         }),
     )
 
+    content, fileErr := os.Open("example.file")
+    if fileErr != nil {
+        panic(fileErr)
+    }
+
     ctx := context.Background()
     res, err := s.Bills.UploadAttachment(ctx, operations.UploadBillAttachmentRequest{
-        AttachmentUpload: &shared.AttachmentUpload{
-            File: shared.CodatFile{
-                Content: []byte("0xE3ABc1980E"),
-                FileName: "elegant_producer_electric.jpeg",
-            },
-        },
-        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
+        BillID: "EILBDVJVNUAGVKRQ",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -831,11 +776,13 @@ func main() {
 | `request`                                                                                            | [operations.UploadBillAttachmentRequest](../../pkg/models/operations/uploadbillattachmentrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.UploadBillAttachmentResponse](../../pkg/models/operations/uploadbillattachmentresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
