@@ -4,9 +4,60 @@
 ﻿Embedded accounting integrations for corporate card providers.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Sync for Expenses: The API for Sync for Expenses.
+
+Sync for Expenses is an API and a set of supporting tools. It has been built to
+enable corporate card and expense management platforms to provide high-quality
+integrations with multiple accounting software through a standardized API.
+
+[Explore product](https://docs.codat.io/sync-for-expenses/overview) | [See our OpenAPI spec](https://github.com/codatio/oas)
+
+Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Expenses](https://docs.codat.io/sync-for-expenses-v1-api#/).
+
+---
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Companies | Create and manage your SMB users' companies. |
+| Connections | Create new and manage existing data connections for a company. |
+| Configuration | View and manage mapping configuration and defaults for expense transactions. |
+| Sync | Monitor the status of data syncs. |
+| Expenses | Create and update transactions that represent your customers' spend. |
+| Transfers | Create and update transactions that represent the movement of your customers' money. |
+| Reimbursements | Create and update transactions that represent your customers' repayable spend. |
+| Attachments | Attach receipts to a transaction for a complete audit trail. |
+| Transaction status | Monitor the status of individual transactions in data syncs. |
+| Manage data | Control and monitor the retrieval of data from an integration. |
+| Push operations | View historic push operations. |
+| Accounts | Create accounts and view account schemas. |
+| Customers | Get, create, and update customers. |
+| Suppliers | Get, create, and update suppliers. |
+<!-- End Codat Tags Table -->
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/sync-for-expenses
 ```
@@ -36,7 +87,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -52,6 +108,28 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+### [Accounts](docs/sdks/accounts/README.md)
+
+* [Create](docs/sdks/accounts/README.md#create) - Create account
+* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
+
+### [Adjustments](docs/sdks/adjustments/README.md)
+
+* [Create](docs/sdks/adjustments/README.md#create) - Create adjustment transaction
+
+### [Attachments](docs/sdks/attachments/README.md)
+
+* [Upload](docs/sdks/attachments/README.md#upload) - Upload attachment
+
+### [BankAccounts](docs/sdks/bankaccounts/README.md)
+
+* [Create](docs/sdks/bankaccounts/README.md#create) - Create bank account
+* [GetCreateModel](docs/sdks/bankaccounts/README.md#getcreatemodel) - Get create bank account model
+
+
 ### [Companies](docs/sdks/companies/README.md)
 
 * [Create](docs/sdks/companies/README.md#create) - Create company
@@ -59,6 +137,11 @@ func main() {
 * [Get](docs/sdks/companies/README.md#get) - Get company
 * [List](docs/sdks/companies/README.md#list) - List companies
 * [Update](docs/sdks/companies/README.md#update) - Update company
+
+### [Configuration](docs/sdks/configuration/README.md)
+
+* [Get](docs/sdks/configuration/README.md#get) - Get company configuration
+* [Set](docs/sdks/configuration/README.md#set) - Set company configuration
 
 ### [Connections](docs/sdks/connections/README.md)
 
@@ -69,11 +152,6 @@ func main() {
 * [List](docs/sdks/connections/README.md#list) - List connections
 * [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
 
-### [Accounts](docs/sdks/accounts/README.md)
-
-* [Create](docs/sdks/accounts/README.md#create) - Create account
-* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
-
 ### [Customers](docs/sdks/customers/README.md)
 
 * [Create](docs/sdks/customers/README.md#create) - Create customer
@@ -81,12 +159,10 @@ func main() {
 * [List](docs/sdks/customers/README.md#list) - List customers
 * [Update](docs/sdks/customers/README.md#update) - Update customer
 
-### [Suppliers](docs/sdks/suppliers/README.md)
+### [Expenses](docs/sdks/expenses/README.md)
 
-* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
-* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
-* [List](docs/sdks/suppliers/README.md#list) - List suppliers
-* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
+* [Create](docs/sdks/expenses/README.md#create) - Create expense transaction
+* [Update](docs/sdks/expenses/README.md#update) - Update expense transactions
 
 ### [ManageData](docs/sdks/managedata/README.md)
 
@@ -96,33 +172,32 @@ func main() {
 * [RefreshAllDataTypes](docs/sdks/managedata/README.md#refreshalldatatypes) - Refresh all data
 * [RefreshDataType](docs/sdks/managedata/README.md#refreshdatatype) - Refresh data type
 
+### [MappingOptions](docs/sdks/mappingoptions/README.md)
+
+* [GetMappingOptions](docs/sdks/mappingoptions/README.md#getmappingoptions) - Mapping options
+
 ### [PushOperations](docs/sdks/pushoperations/README.md)
 
 * [Get](docs/sdks/pushoperations/README.md#get) - Get push operation
 * [List](docs/sdks/pushoperations/README.md#list) - List push operations
-
-### [Configuration](docs/sdks/configuration/README.md)
-
-* [Get](docs/sdks/configuration/README.md#get) - Get company configuration
-* [GetMappingOptions](docs/sdks/configuration/README.md#getmappingoptions) - Mapping options
-* [Set](docs/sdks/configuration/README.md#set) - Set company configuration
-
-### [Expenses](docs/sdks/expenses/README.md)
-
-* [Create](docs/sdks/expenses/README.md#create) - Create expense transaction
-* [Update](docs/sdks/expenses/README.md#update) - Update expense transactions
 
 ### [Reimbursements](docs/sdks/reimbursements/README.md)
 
 * [Create](docs/sdks/reimbursements/README.md#create) - Create reimbursable expense transaction
 * [Update](docs/sdks/reimbursements/README.md#update) - Update reimbursable expense transaction
 
+### [Suppliers](docs/sdks/suppliers/README.md)
+
+* [Create](docs/sdks/suppliers/README.md#create) - Create supplier
+* [Get](docs/sdks/suppliers/README.md#get) - Get supplier
+* [List](docs/sdks/suppliers/README.md#list) - List suppliers
+* [Update](docs/sdks/suppliers/README.md#update) - Update supplier
+
 ### [Sync](docs/sdks/sync/README.md)
 
 * [Get](docs/sdks/sync/README.md#get) - Get sync status
 * [GetLastSuccessfulSync](docs/sdks/sync/README.md#getlastsuccessfulsync) - Last successful sync
 * [GetLatestSync](docs/sdks/sync/README.md#getlatestsync) - Latest sync status
-* [InitiateSync](docs/sdks/sync/README.md#initiatesync) - Initiate sync
 * [List](docs/sdks/sync/README.md#list) - List sync statuses
 
 ### [TransactionStatus](docs/sdks/transactionstatus/README.md)
@@ -130,13 +205,11 @@ func main() {
 * [Get](docs/sdks/transactionstatus/README.md#get) - Get sync transaction
 * [List](docs/sdks/transactionstatus/README.md#list) - List sync transactions
 
-### [Attachments](docs/sdks/attachments/README.md)
-
-* [Upload](docs/sdks/attachments/README.md#upload) - Upload attachment
-
 ### [Transfers](docs/sdks/transfers/README.md)
 
 * [Create](docs/sdks/transfers/README.md#create) - Create transfer transaction
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -154,7 +227,7 @@ func main() {
 
 Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -162,7 +235,7 @@ import (
 	"context"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -175,11 +248,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -205,16 +283,16 @@ import (
 	"context"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := syncforexpenses.New(
 		syncforexpenses.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -228,7 +306,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -273,7 +356,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 
@@ -326,7 +414,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -361,7 +454,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -433,7 +531,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)

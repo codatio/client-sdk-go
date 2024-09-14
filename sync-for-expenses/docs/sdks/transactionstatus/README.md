@@ -3,7 +3,7 @@
 
 ## Overview
 
-Retrieve the status of transactions within a sync.
+Monitor the status of individual transactions in data syncs.
 
 ### Available Operations
 
@@ -20,7 +20,6 @@ Gets the status of a transaction for a sync
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -55,14 +54,17 @@ func main() {
 | `request`                                                                                        | [operations.GetSyncTransactionRequest](../../pkg/models/operations/getsynctransactionrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetSyncTransactionResponse](../../pkg/models/operations/getsynctransactionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -74,7 +76,6 @@ Gets the transactions and status for a sync
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -110,10 +111,12 @@ func main() {
 | `request`                                                                                            | [operations.ListSyncTransactionsRequest](../../pkg/models/operations/listsynctransactionsrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.ListSyncTransactionsResponse](../../pkg/models/operations/listsynctransactionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

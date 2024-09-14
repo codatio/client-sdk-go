@@ -3,7 +3,7 @@
 
 ## Overview
 
-Create and manage your Codat companies.
+Create and manage your SMB users' companies.
 
 ### Available Operations
 
@@ -28,9 +28,9 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"log"
 )
 
@@ -42,7 +42,12 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-        Name: "Bank of Dave",
+        Groups: []shared.GroupReference{
+            shared.GroupReference{
+                ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+            },
+        },
+        Name: "Technicalium",
     })
     if err != nil {
         log.Fatal(err)
@@ -61,14 +66,17 @@ func main() {
 | `request`                                                                  | [shared.CompanyRequestBody](../../pkg/models/shared/companyrequestbody.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `opts`                                                                     | [][operations.Option](../../pkg/models/operations/option.md)               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
-
 ### Response
 
 **[*operations.CreateCompanyResponse](../../pkg/models/operations/createcompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Delete
 
@@ -84,7 +92,6 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-expe
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -117,14 +124,17 @@ func main() {
 | `request`                                                                              | [operations.DeleteCompanyRequest](../../pkg/models/operations/deletecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.DeleteCompanyResponse](../../pkg/models/operations/deletecompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -140,7 +150,6 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-expe
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -173,14 +182,17 @@ func main() {
 | `request`                                                                        | [operations.GetCompanyRequest](../../pkg/models/operations/getcompanyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.GetCompanyResponse](../../pkg/models/operations/getcompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -195,7 +207,6 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-expe
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -212,6 +223,7 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
+        Query: syncforexpenses.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
@@ -230,14 +242,17 @@ func main() {
 | `request`                                                                              | [operations.ListCompaniesRequest](../../pkg/models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.ListCompaniesResponse](../../pkg/models/operations/listcompaniesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Update
 
@@ -253,9 +268,9 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-expe
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
@@ -267,6 +282,15 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
+        CompanyRequestBody: &shared.CompanyRequestBody{
+            Description: syncforexpenses.String("Requested early access to the new financing scheme."),
+            Groups: []shared.GroupReference{
+                shared.GroupReference{
+                    ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+                },
+            },
+            Name: "New Name",
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -286,10 +310,12 @@ func main() {
 | `request`                                                                              | [operations.UpdateCompanyRequest](../../pkg/models/operations/updatecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.UpdateCompanyResponse](../../pkg/models/operations/updatecompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |

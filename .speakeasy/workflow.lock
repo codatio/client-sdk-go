@@ -77,6 +77,13 @@ sources:
         tags:
             - latest
             - main
+    sync-for-expenses-source:
+        sourceNamespace: sync-for-expenses-source
+        sourceRevisionDigest: sha256:20f3897e882714662e3768287cdf2248e93501b8666560ffc0f1f629208c7a9f
+        sourceBlobDigest: sha256:7f399328e7bf537a3e5ee884667234673d34c00e889182df4e2b0500bb91dcfd
+        tags:
+            - latest
+            - main
 targets:
     accounting-library:
         source: accounting-source
@@ -133,6 +140,11 @@ targets:
         sourceNamespace: sync-for-commerce-version-1-source
         sourceRevisionDigest: sha256:09d7bb14b3736b3157a46766c502598e3dde7fb338652eaaeca6fb3427b32630
         sourceBlobDigest: sha256:c00e3840ee75be94b232308b1e35ba628a278cf0eead16d5cfac18d91d5f144c
+    sync-for-expenses-library:
+        source: sync-for-expenses-source
+        sourceNamespace: sync-for-expenses-source
+        sourceRevisionDigest: sha256:20f3897e882714662e3768287cdf2248e93501b8666560ffc0f1f629208c7a9f
+        sourceBlobDigest: sha256:7f399328e7bf537a3e5ee884667234673d34c00e889182df4e2b0500bb91dcfd
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -195,6 +207,8 @@ workflow:
         sync-for-expenses-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Expenses.yaml
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-source
         sync-for-expenses-version-1-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Expenses-v1.yaml

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Access create, update and delete operations made to an SMB's data connection.
+View historic push operations.
 
 ### Available Operations
 
@@ -20,7 +20,6 @@ Retrieve push operation.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -54,14 +53,17 @@ func main() {
 | `request`                                                                                    | [operations.GetPushOperationRequest](../../pkg/models/operations/getpushoperationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.GetPushOperationResponse](../../pkg/models/operations/getpushoperationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -73,7 +75,6 @@ List push operation records.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -91,6 +92,7 @@ func main() {
         OrderBy: syncforexpenses.String("-modifiedDate"),
         Page: syncforexpenses.Int(1),
         PageSize: syncforexpenses.Int(100),
+        Query: syncforexpenses.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
@@ -109,10 +111,12 @@ func main() {
 | `request`                                                                                        | [operations.ListPushOperationsRequest](../../pkg/models/operations/listpushoperationsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.ListPushOperationsResponse](../../pkg/models/operations/listpushoperationsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

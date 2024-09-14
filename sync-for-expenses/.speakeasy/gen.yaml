@@ -11,8 +11,9 @@ generation:
     oAuth2ClientCredentialsEnabled: false
   telemetryEnabled: true
 go:
-  version: 4.2.1
+  version: 4.3.0
   additionalDependencies: {}
+  allowUnknownFieldsInWeakUnions: false
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: true
   imports:
@@ -25,6 +26,7 @@ go:
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-expenses
   responseFormat: envelope
