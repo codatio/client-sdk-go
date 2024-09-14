@@ -3,7 +3,7 @@
 
 ## Overview
 
-Direct incomes
+Retrieve standardized Direct incomes from linked accounting software.
 
 ### Available Operations
 
@@ -47,53 +47,64 @@ func main() {
     res, err := s.AccountingDirectIncomes.CreateAccountingDirectIncome(ctx, operations.CreateAccountingDirectIncomeRequest{
         AccountingDirectIncome: &shared.AccountingDirectIncome{
             ContactRef: &shared.ContactRef{
-                DataType: shared.DataTypeInvoices.ToPointer(),
-                ID: "<ID>",
+                DataType: shared.ContactRefDataTypeCustomers.ToPointer(),
+                ID: "80000002-1674552702",
             },
-            Currency: "GBP",
-            IssueDate: "2022-10-23T00:00:00Z",
+            Currency: "USD",
+            IssueDate: "2023-02-01T16:27:40.023Z",
             LineItems: []shared.DirectIncomeLineItem{
                 shared.DirectIncomeLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.ItemReference{
-                        ID: "<ID>",
+                    AccountRef: &shared.AccountRef{
+                        ID: syncforcommerceversion1.String("80000007-1671793811"),
                     },
-                    Quantity: types.MustNewDecimalFromString("3642.55"),
-                    TaxRateRef: &shared.TaxRateReference{},
+                    Description: syncforcommerceversion1.String("line description 1"),
+                    DiscountAmount: types.MustNewDecimalFromString("0"),
+                    DiscountPercentage: types.MustNewDecimalFromString("0"),
+                    Quantity: types.MustNewDecimalFromString("68"),
+                    SubTotal: types.MustNewDecimalFromString("5320"),
+                    TaxAmount: types.MustNewDecimalFromString("37"),
+                    TotalAmount: types.MustNewDecimalFromString("12"),
                     TrackingCategoryRefs: []shared.TrackingCategoryRefs{
                         shared.TrackingCategoryRefs{
-                            ID: "<ID>",
+                            ID: "80000002-1674553271",
+                            Name: syncforcommerceversion1.String("string"),
                         },
                     },
-                    UnitAmount: types.MustNewDecimalFromString("7950.78"),
+                    UnitAmount: types.MustNewDecimalFromString("9100"),
                 },
             },
-            Metadata: &shared.Metadata{},
+            Metadata: &shared.Metadata{
+                IsDeleted: syncforcommerceversion1.Bool(true),
+            },
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            Note: syncforcommerceversion1.String("test note"),
             PaymentAllocations: []shared.PaymentAllocationItems{
                 shared.PaymentAllocationItems{
                     Allocation: shared.Allocation{
-                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-                        Currency: syncforcommerceversion1.String("EUR"),
+                        AllocatedOnDate: syncforcommerceversion1.String("2023-02-01T16:27:40.023Z"),
+                        Currency: syncforcommerceversion1.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("1"),
+                        TotalAmount: types.MustNewDecimalFromString("560"),
                     },
                     Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
+                        AccountRef: &shared.AccountRef{
+                            ID: syncforcommerceversion1.String("80000028-1671794219"),
+                        },
                         Currency: syncforcommerceversion1.String("USD"),
-                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+                        CurrencyRate: types.MustNewDecimalFromString("1"),
+                        ID: syncforcommerceversion1.String("3594002235"),
+                        Note: syncforcommerceversion1.String("payment allocations note"),
+                        PaidOnDate: syncforcommerceversion1.String("2023-02-01T16:27:40.023Z"),
+                        Reference: syncforcommerceversion1.String("230202 1217"),
+                        TotalAmount: types.MustNewDecimalFromString("560"),
                     },
                 },
             },
+            Reference: nil,
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            SubTotal: types.MustNewDecimalFromString("5786.44"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            TaxAmount: types.MustNewDecimalFromString("2812.91"),
-            TotalAmount: types.MustNewDecimalFromString("6636.11"),
+            SubTotal: types.MustNewDecimalFromString("0"),
+            TaxAmount: types.MustNewDecimalFromString("9999"),
+            TotalAmount: types.MustNewDecimalFromString("9999"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -101,7 +112,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateDirectIncomeResponse != nil {
         // handle response
     }
@@ -116,11 +126,13 @@ func main() {
 | `request`                                                                                                            | [operations.CreateAccountingDirectIncomeRequest](../../pkg/models/operations/createaccountingdirectincomerequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 | `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
-
 ### Response
 
 **[*operations.CreateAccountingDirectIncomeResponse](../../pkg/models/operations/createaccountingdirectincomeresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

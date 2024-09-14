@@ -3,7 +3,7 @@
 
 ## Overview
 
-Company info
+Retrieve standardized Accounting company info from linked accounting software.
 
 ### Available Operations
 
@@ -41,7 +41,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCompanyDataset != nil {
         // handle response
     }
@@ -56,14 +55,17 @@ func main() {
 | `request`                                                                                                    | [operations.GetAccountingCompanyInfoRequest](../../pkg/models/operations/getaccountingcompanyinforequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.GetAccountingCompanyInfoResponse](../../pkg/models/operations/getaccountingcompanyinforesponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Refresh
 
@@ -96,7 +98,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Dataset != nil {
         // handle response
     }
@@ -111,11 +112,13 @@ func main() {
 | `request`                                                                                        | [operations.RefreshCompanyInfoRequest](../../pkg/models/operations/refreshcompanyinforequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.RefreshCompanyInfoResponse](../../pkg/models/operations/refreshcompanyinforesponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Journal entries
+Retrieve standardized Journal entries from linked accounting software.
 
 ### Available Operations
 
@@ -46,38 +46,58 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingJournalEntries.CreateAccountingJournalEntry(ctx, operations.CreateAccountingJournalEntryRequest{
         AccountingJournalEntry: &shared.AccountingJournalEntry{
-            CreatedOn: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            CreatedOn: syncforcommerceversion1.String("2023-02-22T19:49:16.052Z"),
+            Description: syncforcommerceversion1.String("record level description"),
             JournalLines: []shared.JournalLine{
                 shared.JournalLine{
-                    AccountRef: &shared.AccountRef{},
-                    NetAmount: types.MustNewDecimalFromString("9326.53"),
+                    AccountRef: &shared.AccountRef{
+                        ID: syncforcommerceversion1.String("80000019-1671793811"),
+                        Name: syncforcommerceversion1.String("Office Supplies"),
+                    },
+                    Currency: syncforcommerceversion1.String("USD"),
+                    Description: syncforcommerceversion1.String("journalLines.description debit"),
+                    NetAmount: types.MustNewDecimalFromString("23.02"),
                     Tracking: &shared.JournalLineTracking{
-                        RecordRefs: []shared.RecordRef{
-                            shared.RecordRef{
-                                DataType: syncforcommerceversion1.String("journalEntry"),
+                        RecordRefs: []shared.TrackingRecordRef{
+                            shared.TrackingRecordRef{
+                                DataType: shared.TrackingRecordRefDataTypeCustomers.ToPointer(),
+                                ID: syncforcommerceversion1.String("80000001-1674553252"),
+                            },
+                        },
+                    },
+                },
+                shared.JournalLine{
+                    AccountRef: &shared.AccountRef{
+                        ID: syncforcommerceversion1.String("8000001E-1671793811"),
+                        Name: syncforcommerceversion1.String("Utilities"),
+                    },
+                    Currency: syncforcommerceversion1.String("USD"),
+                    Description: syncforcommerceversion1.String("journalLines.description credit"),
+                    NetAmount: types.MustNewDecimalFromString("-23.02"),
+                    Tracking: &shared.JournalLineTracking{
+                        RecordRefs: []shared.TrackingRecordRef{
+                            shared.TrackingRecordRef{
+                                DataType: shared.TrackingRecordRefDataTypeTrackingCategories.ToPointer(),
+                                ID: syncforcommerceversion1.String("80000002-1674553271"),
                             },
                         },
                     },
                 },
             },
             JournalRef: &shared.JournalReference{
-                ID: "<ID>",
+                ID: "12",
             },
-            Metadata: &shared.Metadata{},
+            Metadata: &shared.Metadata{
+                IsDeleted: syncforcommerceversion1.Bool(true),
+            },
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            PostedOn: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            RecordRef: &shared.RecordReference{
-                DataType: syncforcommerceversion1.String("journalEntry"),
+            PostedOn: syncforcommerceversion1.String("2023-02-23T19:49:16.052Z"),
+            RecordRef: &shared.JournalEntryRecordRef{
+                DataType: shared.JournalEntryRecordRefDataTypeBills.ToPointer(),
+                ID: syncforcommerceversion1.String("80000002-6722155312"),
             },
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            UpdatedOn: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            UpdatedOn: syncforcommerceversion1.String("2023-02-21T19:49:16.052Z"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -85,7 +105,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateJournalEntryResponse != nil {
         // handle response
     }
@@ -100,11 +119,13 @@ func main() {
 | `request`                                                                                                            | [operations.CreateAccountingJournalEntryRequest](../../pkg/models/operations/createaccountingjournalentryrequest.md) | :heavy_check_mark:                                                                                                   | The request object to use for the request.                                                                           |
 | `opts`                                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
 
-
 ### Response
 
 **[*operations.CreateAccountingJournalEntryResponse](../../pkg/models/operations/createaccountingjournalentryresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Customers
+Retrieve standardized Customers from linked accounting software.
 
 ### Available Operations
 
@@ -45,38 +45,22 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingCustomers.CreateAccountingCustomer(ctx, operations.CreateAccountingCustomerRequest{
         AccountingCustomer: &shared.AccountingCustomer{
-            Addresses: []shared.Items1{
-                shared.Items1{
-                    Type: shared.AccountingAddressTypeDelivery,
-                },
-            },
             Contacts: []shared.Contact{
                 shared.Contact{
-                    Address: &shared.Items1{
-                        Type: shared.AccountingAddressTypeUnknown,
-                    },
                     ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
                     Phone: []shared.PhoneNumberItems{
                         shared.PhoneNumberItems{
-                            Number: "+44 25691 154789",
+                            Number: syncforcommerceversion1.String("+44 25691 154789"),
                             Type: shared.PhoneNumberTypePrimary,
                         },
                     },
                     Status: shared.CustomerStatusActive,
                 },
             },
-            DefaultCurrency: syncforcommerceversion1.String("GBP"),
-            Metadata: &shared.Metadata{},
+            DefaultCurrency: syncforcommerceversion1.String("EUR"),
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
             Status: shared.CustomerStatusUnknown,
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -84,7 +68,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateCustomerResponse != nil {
         // handle response
     }
@@ -99,11 +82,13 @@ func main() {
 | `request`                                                                                                    | [operations.CreateAccountingCustomerRequest](../../pkg/models/operations/createaccountingcustomerrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.CreateAccountingCustomerResponse](../../pkg/models/operations/createaccountingcustomerresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

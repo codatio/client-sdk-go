@@ -3,7 +3,7 @@
 
 ## Overview
 
-Accounts
+Retrieve standardized Accounts from linked accounting software.
 
 ### Available Operations
 
@@ -56,21 +56,7 @@ func main() {
             Name: syncforcommerceversion1.String("Accounts Receivable"),
             NominalCode: syncforcommerceversion1.String("610"),
             Status: shared.AccountStatusActive.ToPointer(),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
             Type: shared.AccountTypeAsset.ToPointer(),
-            ValidDatatypeLinks: []shared.ValidDataTypeLinks{
-                shared.ValidDataTypeLinks{
-                    Links: []string{
-                        "string",
-                    },
-                },
-            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -78,7 +64,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateAccountResponse != nil {
         // handle response
     }
@@ -93,14 +78,17 @@ func main() {
 | `request`                                                                                                  | [operations.CreateAccountingAccountRequest](../../pkg/models/operations/createaccountingaccountrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.CreateAccountingAccountResponse](../../pkg/models/operations/createaccountingaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetAccountingAccount
 
@@ -135,13 +123,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingAccounts.GetAccountingAccount(ctx, operations.GetAccountingAccountRequest{
-        AccountID: "string",
+        AccountID: "<value>",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAccount != nil {
         // handle response
     }
@@ -156,14 +143,17 @@ func main() {
 | `request`                                                                                            | [operations.GetAccountingAccountRequest](../../pkg/models/operations/getaccountingaccountrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.GetAccountingAccountResponse](../../pkg/models/operations/getaccountingaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## ListAccountingAccounts
 
@@ -199,11 +189,11 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingAccounts != nil {
         // handle response
     }
@@ -218,11 +208,13 @@ func main() {
 | `request`                                                                                                | [operations.ListAccountingAccountsRequest](../../pkg/models/operations/listaccountingaccountsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.ListAccountingAccountsResponse](../../pkg/models/operations/listaccountingaccountsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |

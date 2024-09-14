@@ -3,7 +3,7 @@
 
 ## Overview
 
-Payments
+Retrieve standardized Payments from linked accounting software.
 
 ### Available Operations
 
@@ -46,36 +46,40 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingPayments.CreateAccountingPayment(ctx, operations.CreateAccountingPaymentRequest{
         AccountingPayment: &shared.AccountingPayment{
-            AccountRef: &shared.AccountRef{},
-            Currency: syncforcommerceversion1.String("EUR"),
-            CustomerRef: &shared.AccountingCustomerRef{
-                ID: "<ID>",
+            AccountRef: &shared.AccountRef{
+                ID: syncforcommerceversion1.String("8000002E-1675267199"),
+                Name: syncforcommerceversion1.String("Undeposited Funds"),
             },
-            Date: "2022-10-23T00:00:00Z",
+            Currency: syncforcommerceversion1.String("USD"),
+            CurrencyRate: types.MustNewDecimalFromString("1"),
+            CustomerRef: &shared.AccountingCustomerRef{
+                CompanyName: syncforcommerceversion1.String("string"),
+                ID: "80000002-1674552702",
+            },
+            Date: "2023-02-10T11:47:04.792Z",
             Lines: []shared.PaymentLine{
                 shared.PaymentLine{
-                    AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-                    Amount: types.MustNewDecimalFromString("9211.94"),
+                    AllocatedOnDate: syncforcommerceversion1.String("2023-02-11T11:47:04.792Z"),
+                    Amount: types.MustNewDecimalFromString("28"),
                     Links: []shared.PaymentLineLink{
                         shared.PaymentLineLink{
-                            Type: shared.PaymentLinkTypeUnlinked,
+                            Amount: types.MustNewDecimalFromString("-28"),
+                            CurrencyRate: types.MustNewDecimalFromString("1"),
+                            ID: syncforcommerceversion1.String("181-1676374586"),
+                            Type: shared.PaymentLinkTypeInvoice,
                         },
                     },
                 },
             },
-            Metadata: &shared.Metadata{},
             ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            Note: syncforcommerceversion1.String("note 14/02 1147"),
             PaymentMethodRef: &shared.PaymentMethodRef{
-                ID: "<ID>",
+                ID: "string",
+                Name: syncforcommerceversion1.String("string"),
             },
+            Reference: syncforcommerceversion1.String("ref 14/02 1147"),
             SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
+            TotalAmount: types.MustNewDecimalFromString("28"),
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -83,7 +87,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreatePaymentResponse != nil {
         // handle response
     }
@@ -98,11 +101,13 @@ func main() {
 | `request`                                                                                                  | [operations.CreateAccountingPaymentRequest](../../pkg/models/operations/createaccountingpaymentrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.CreateAccountingPaymentResponse](../../pkg/models/operations/createaccountingpaymentresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

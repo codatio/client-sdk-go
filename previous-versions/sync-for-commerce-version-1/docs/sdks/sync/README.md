@@ -42,7 +42,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncSummary != nil {
         // handle response
     }
@@ -57,14 +56,17 @@ func main() {
 | `request`                                                                              | [operations.GetSyncStatusRequest](../../pkg/models/operations/getsyncstatusrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.GetSyncStatusResponse](../../pkg/models/operations/getsyncstatusresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## RequestSync
 
@@ -101,7 +103,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncSummary != nil {
         // handle response
     }
@@ -116,14 +117,17 @@ func main() {
 | `request`                                                                          | [operations.RequestSyncRequest](../../pkg/models/operations/requestsyncrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `opts`                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
-
 ### Response
 
 **[*operations.RequestSyncResponse](../../pkg/models/operations/requestsyncresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## RequestSyncForDateRange
 
@@ -162,7 +166,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncSummary != nil {
         // handle response
     }
@@ -177,11 +180,13 @@ func main() {
 | `request`                                                                                                  | [operations.RequestSyncForDateRangeRequest](../../pkg/models/operations/requestsyncfordaterangerequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.RequestSyncForDateRangeResponse](../../pkg/models/operations/requestsyncfordaterangeresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

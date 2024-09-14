@@ -44,7 +44,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.LocalizationInfo != nil {
         // handle response
     }
@@ -59,14 +58,17 @@ func main() {
 | `request`                                                                                              | [operations.GetConfigTextSyncFlowRequest](../../pkg/models/operations/getconfigtextsyncflowrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
 
-
 ### Response
 
 **[*operations.GetConfigTextSyncFlowResponse](../../pkg/models/operations/getconfigtextsyncflowresponse.md), error**
+
+### Errors
+
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
-| sdkerrors.SDKError      | 400-600                 | */*                     |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+
 
 ## GetSyncFlowURL
 
@@ -94,13 +96,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.GetSyncFlowURL(ctx, operations.GetSyncFlowURLRequest{
-        AccountingKey: "string",
-        CommerceKey: "string",
+        AccountingKey: "<value>",
+        CommerceKey: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.SyncFlowURL != nil {
         // handle response
     }
@@ -115,14 +116,17 @@ func main() {
 | `request`                                                                                | [operations.GetSyncFlowURLRequest](../../pkg/models/operations/getsyncflowurlrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `opts`                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
-
 ### Response
 
 **[*operations.GetSyncFlowURLResponse](../../pkg/models/operations/getsyncflowurlresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetVisibleAccounts
 
@@ -156,7 +160,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VisibleAccounts != nil {
         // handle response
     }
@@ -171,14 +174,17 @@ func main() {
 | `request`                                                                                        | [operations.GetVisibleAccountsRequest](../../pkg/models/operations/getvisibleaccountsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.GetVisibleAccountsResponse](../../pkg/models/operations/getvisibleaccountsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## UpdateConfigTextSyncFlow
 
@@ -206,15 +212,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateConfigTextSyncFlow(ctx, operations.UpdateConfigTextSyncFlowRequest{
-        RequestBody: map[string]shared.Localization{
-            "key": shared.Localization{},
-        },
         Locale: shared.LocaleEnUs,
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.LocalizationInfo != nil {
         // handle response
     }
@@ -229,14 +231,17 @@ func main() {
 | `request`                                                                                                    | [operations.UpdateConfigTextSyncFlowRequest](../../pkg/models/operations/updateconfigtextsyncflowrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.UpdateConfigTextSyncFlowResponse](../../pkg/models/operations/updateconfigtextsyncflowresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## UpdateVisibleAccountsSyncFlow
 
@@ -264,17 +269,11 @@ func main() {
 
     ctx := context.Background()
     res, err := s.SyncFlowPreferences.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
-        VisibleAccounts: &shared.VisibleAccounts{
-            VisibleAccounts: []string{
-                "string",
-            },
-        },
         PlatformKey: "gbol",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.VisibleAccounts != nil {
         // handle response
     }
@@ -289,11 +288,13 @@ func main() {
 | `request`                                                                                                              | [operations.UpdateVisibleAccountsSyncFlowRequest](../../pkg/models/operations/updatevisibleaccountssyncflowrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.UpdateVisibleAccountsSyncFlowResponse](../../pkg/models/operations/updatevisibleaccountssyncflowresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

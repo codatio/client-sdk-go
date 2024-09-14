@@ -24,7 +24,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}

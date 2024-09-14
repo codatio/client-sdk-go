@@ -39,12 +39,16 @@ func main() {
     ctx := context.Background()
     res, err := s.CompanyManagement.CreateCompany(ctx, &shared.CreateCompany{
         Description: syncforcommerceversion1.String("Requested early access to the new financing scheme."),
-        Name: "Bank of Dave",
+        Groups: []shared.GroupReference{
+            shared.GroupReference{
+                ID: syncforcommerceversion1.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+            },
+        },
+        Name: "string",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -59,14 +63,17 @@ func main() {
 | `request`                                                        | [shared.CreateCompany](../../pkg/models/shared/createcompany.md) | :heavy_check_mark:                                               | The request object to use for the request.                       |
 | `opts`                                                           | [][operations.Option](../../pkg/models/operations/option.md)     | :heavy_minus_sign:                                               | The options for this request.                                    |
 
-
 ### Response
 
 **[*operations.CreateCompanyResponse](../../pkg/models/operations/createcompanyresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## CreateConnection
 
@@ -99,7 +106,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -114,14 +120,17 @@ func main() {
 | `request`                                                                                    | [operations.CreateConnectionRequest](../../pkg/models/operations/createconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.CreateConnectionResponse](../../pkg/models/operations/createconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ListCompanies
 
@@ -152,11 +161,11 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Companies != nil {
         // handle response
     }
@@ -171,14 +180,17 @@ func main() {
 | `request`                                                                              | [operations.ListCompaniesRequest](../../pkg/models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.ListCompaniesResponse](../../pkg/models/operations/listcompaniesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## ListConnections
 
@@ -210,11 +222,11 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connections != nil {
         // handle response
     }
@@ -229,14 +241,17 @@ func main() {
 | `request`                                                                                  | [operations.ListConnectionsRequest](../../pkg/models/operations/listconnectionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.ListConnectionsResponse](../../pkg/models/operations/listconnectionsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## UpdateConnection
 
@@ -264,14 +279,12 @@ func main() {
 
     ctx := context.Background()
     res, err := s.CompanyManagement.UpdateConnection(ctx, operations.UpdateConnectionRequest{
-        UpdateConnection: &shared.UpdateConnection{},
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Connection != nil {
         // handle response
     }
@@ -286,11 +299,13 @@ func main() {
 | `request`                                                                                    | [operations.UpdateConnectionRequest](../../pkg/models/operations/updateconnectionrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.UpdateConnectionResponse](../../pkg/models/operations/updateconnectionresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

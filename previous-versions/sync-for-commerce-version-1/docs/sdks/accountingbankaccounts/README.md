@@ -3,7 +3,7 @@
 
 ## Overview
 
-Bank accounts
+Retrieve standardized Bank accounts from linked accounting software.
 
 ### Available Operations
 
@@ -43,14 +43,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.AccountingBankAccounts.GetAccountingBankAccount(ctx, operations.GetAccountingBankAccountRequest{
-        AccountID: "string",
+        AccountID: "<value>",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingBankAccount != nil {
         // handle response
     }
@@ -65,14 +64,17 @@ func main() {
 | `request`                                                                                                    | [operations.GetAccountingBankAccountRequest](../../pkg/models/operations/getaccountingbankaccountrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.GetAccountingBankAccountResponse](../../pkg/models/operations/getaccountingbankaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## ListAccountingBankAccounts
 
@@ -110,11 +112,11 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingBankAccounts != nil {
         // handle response
     }
@@ -129,11 +131,13 @@ func main() {
 | `request`                                                                                                        | [operations.ListAccountingBankAccountsRequest](../../pkg/models/operations/listaccountingbankaccountsrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `opts`                                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                                     | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
-
 ### Response
 
 **[*operations.ListAccountingBankAccountsResponse](../../pkg/models/operations/listaccountingbankaccountsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 400-600                             | */*                                 |
+| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
