@@ -3,7 +3,7 @@
 
 ## Overview
 
-Tracking categories
+Get, create, and update Tracking Categories for additional categorization of payroll components.
 
 ### Available Operations
 
@@ -44,12 +44,11 @@ func main() {
     ctx := context.Background()
     res, err := s.TrackingCategories.Get(ctx, operations.GetTrackingCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        TrackingCategoryID: "string",
+        TrackingCategoryID: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TrackingCategoryTree != nil {
         // handle response
     }
@@ -64,14 +63,17 @@ func main() {
 | `request`                                                                                          | [operations.GetTrackingCategoryRequest](../../pkg/models/operations/gettrackingcategoryrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `opts`                                                                                             | [][operations.Option](../../pkg/models/operations/option.md)                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
-
 ### Response
 
 **[*operations.GetTrackingCategoryResponse](../../pkg/models/operations/gettrackingcategoryresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## List
 
@@ -108,11 +110,11 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
+        Query: syncforpayroll.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.TrackingCategories != nil {
         // handle response
     }
@@ -127,10 +129,12 @@ func main() {
 | `request`                                                                                                | [operations.ListTrackingCategoriesRequest](../../pkg/models/operations/listtrackingcategoriesrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.ListTrackingCategoriesResponse](../../pkg/models/operations/listtrackingcategoriesresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |

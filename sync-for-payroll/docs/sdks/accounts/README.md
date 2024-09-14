@@ -3,7 +3,7 @@
 
 ## Overview
 
-Accounts
+Get, create, and update Accounts.
 
 ### Available Operations
 
@@ -34,6 +34,7 @@ import(
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
 	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/types"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/operations"
 	"log"
 )
@@ -47,13 +48,23 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
+        AccountPrototype: &shared.AccountPrototype{
+            Currency: syncforpayroll.String("USD"),
+            CurrentBalance: types.MustNewDecimalFromString("0"),
+            Description: syncforpayroll.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforpayroll.String("Asset.Current"),
+            FullyQualifiedName: syncforpayroll.String("Cash On Hand"),
+            Name: syncforpayroll.String("Accounts Receivable"),
+            NominalCode: syncforpayroll.String("610"),
+            Status: shared.AccountStatusActive.ToPointer(),
+            Type: shared.AccountTypeAsset.ToPointer(),
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.CreateAccountResponse != nil {
         // handle response
     }
@@ -68,14 +79,17 @@ func main() {
 | `request`                                                                              | [operations.CreateAccountRequest](../../pkg/models/operations/createaccountrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.CreateAccountResponse](../../pkg/models/operations/createaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Get
 
@@ -116,7 +130,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Account != nil {
         // handle response
     }
@@ -131,14 +144,17 @@ func main() {
 | `request`                                                                        | [operations.GetAccountRequest](../../pkg/models/operations/getaccountrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.GetAccountResponse](../../pkg/models/operations/getaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateModel
 
@@ -181,7 +197,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PushOption != nil {
         // handle response
     }
@@ -196,14 +211,17 @@ func main() {
 | `request`                                                                                                | [operations.GetCreateAccountsModelRequest](../../pkg/models/operations/getcreateaccountsmodelrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.GetCreateAccountsModelResponse](../../pkg/models/operations/getcreateaccountsmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -239,11 +257,11 @@ func main() {
         OrderBy: syncforpayroll.String("-modifiedDate"),
         Page: syncforpayroll.Int(1),
         PageSize: syncforpayroll.Int(100),
+        Query: syncforpayroll.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Accounts != nil {
         // handle response
     }
@@ -258,10 +276,12 @@ func main() {
 | `request`                                                                            | [operations.ListAccountsRequest](../../pkg/models/operations/listaccountsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.ListAccountsResponse](../../pkg/models/operations/listaccountsresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |

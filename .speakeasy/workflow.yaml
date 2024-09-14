@@ -79,6 +79,8 @@ sources:
     sync-for-payroll-source:
         inputs:
             - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payroll.yaml
+        registry:
+            location: registry.speakeasyapi.dev/codat/codat/sync-for-payroll-source
 targets:
     accounting-library:
         target: go
