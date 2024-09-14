@@ -1,15 +1,21 @@
 configVersion: 2.0.0
 generation:
   sdkClassName: CodatSyncPayables
+  maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: true
   telemetryEnabled: true
 go:
   version: 1.0.0
+  additionalDependencies: {}
+  allowUnknownFieldsInWeakUnions: false
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
@@ -22,5 +28,7 @@ go:
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-payables
+  responseFormat: envelope-http
