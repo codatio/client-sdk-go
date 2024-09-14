@@ -1,0 +1,9 @@
+# UpdateBillResponseAccountingPaymentAllocation
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Allocation`                                                                                      | [shared.UpdateBillResponseAllocation](../../../pkg/models/shared/updatebillresponseallocation.md) | :heavy_check_mark:                                                                                | N/A                                                                                               |
+| `Payment`                                                                                         | [shared.PaymentAllocationPayment](../../../pkg/models/shared/paymentallocationpayment.md)         | :heavy_check_mark:                                                                                | N/A                                                                                               |

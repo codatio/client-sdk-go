@@ -3,7 +3,7 @@
 
 ## Overview
 
-Create and manage your Codat companies.
+Create and manage your SMB users' companies.
 
 ### Available Operations
 
@@ -44,12 +44,16 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: syncforpayables.String("Requested early access to the new financing scheme."),
-        Name: "Bank of Dave",
+        Groups: []shared.GroupReference{
+            shared.GroupReference{
+                ID: syncforpayables.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+            },
+        },
+        Name: "Technicalium",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -64,14 +68,17 @@ func main() {
 | `request`                                                                  | [shared.CompanyRequestBody](../../pkg/models/shared/companyrequestbody.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `opts`                                                                     | [][operations.Option](../../pkg/models/operations/option.md)               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
-
 ### Response
 
 **[*operations.CreateCompanyResponse](../../pkg/models/operations/createcompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Delete
 
@@ -92,7 +99,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -109,8 +115,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -124,14 +129,17 @@ func main() {
 | `request`                                                                              | [operations.DeleteCompanyRequest](../../pkg/models/operations/deletecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.DeleteCompanyResponse](../../pkg/models/operations/deletecompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## Get
 
@@ -168,7 +176,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -183,14 +190,17 @@ func main() {
 | `request`                                                                        | [operations.GetCompanyRequest](../../pkg/models/operations/getcompanyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.GetCompanyResponse](../../pkg/models/operations/getcompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## List
 
@@ -224,11 +234,11 @@ func main() {
         OrderBy: syncforpayables.String("-modifiedDate"),
         Page: syncforpayables.Int(1),
         PageSize: syncforpayables.Int(100),
+        Query: syncforpayables.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Companies != nil {
         // handle response
     }
@@ -243,14 +253,17 @@ func main() {
 | `request`                                                                              | [operations.ListCompaniesRequest](../../pkg/models/operations/listcompaniesrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.ListCompaniesResponse](../../pkg/models/operations/listcompaniesresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## Update
 
@@ -282,12 +295,20 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
+        CompanyRequestBody: &shared.CompanyRequestBody{
+            Description: syncforpayables.String("Requested early access to the new financing scheme."),
+            Groups: []shared.GroupReference{
+                shared.GroupReference{
+                    ID: syncforpayables.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+                },
+            },
+            Name: "New Name",
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -302,10 +323,12 @@ func main() {
 | `request`                                                                              | [operations.UpdateCompanyRequest](../../pkg/models/operations/updatecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.UpdateCompanyResponse](../../pkg/models/operations/updatecompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
