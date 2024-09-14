@@ -3,17 +3,16 @@
 
 ## Overview
 
-Manage mapping options and sync configuration.
+View and manage mapping configuration and defaults for expense transactions.
 
 ### Available Operations
 
 * [Get](#get) - Get company configuration
-* [GetMappingOptions](#getmappingoptions) - Mapping options
 * [Set](#set) - Set company configuration
 
 ## Get
 
-Gets a companies expense sync configuration
+Gets a company's expense sync configuration
 
 ### Example Usage
 
@@ -21,7 +20,6 @@ Gets a companies expense sync configuration
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -54,70 +52,21 @@ func main() {
 | `request`                                                                                                  | [operations.GetCompanyConfigurationRequest](../../pkg/models/operations/getcompanyconfigurationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.GetCompanyConfigurationResponse](../../pkg/models/operations/getcompanyconfigurationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
-## GetMappingOptions
-
-Gets the expense mapping options for a companies accounting software
-
-### Example Usage
-
-```go
-package main
-
-import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
-	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
-	"log"
-)
-
-func main() {
-    s := syncforexpenses.New(
-        syncforexpenses.WithSecurity("Basic BASE_64_ENCODED(API_KEY)"),
-    )
-
-    ctx := context.Background()
-    res, err := s.Configuration.GetMappingOptions(ctx, operations.GetMappingOptionsRequest{
-        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-    })
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.MappingOptions != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [operations.GetMappingOptionsRequest](../../pkg/models/operations/getmappingoptionsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
-
-
-### Response
-
-**[*operations.GetMappingOptionsResponse](../../pkg/models/operations/getmappingoptionsresponse.md), error**
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
 
 ## Set
 
-Sets a companies expense sync configuration
+Sets a company's expense sync configuration
 
 ### Example Usage
 
@@ -125,9 +74,9 @@ Sets a companies expense sync configuration
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
@@ -139,6 +88,13 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Configuration.Set(ctx, operations.SetCompanyConfigurationRequest{
+        CompanyConfiguration: &shared.CompanyConfiguration{
+            BankAccount: shared.BankAccountDetails{
+                ID: syncforexpenses.String("32"),
+            },
+            Customer: shared.CustomerDetails{},
+            Supplier: shared.SupplierDetails{},
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -158,10 +114,12 @@ func main() {
 | `request`                                                                                                  | [operations.SetCompanyConfigurationRequest](../../pkg/models/operations/setcompanyconfigurationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.SetCompanyConfigurationResponse](../../pkg/models/operations/setcompanyconfigurationresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

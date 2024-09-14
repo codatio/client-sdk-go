@@ -1,11 +1,11 @@
 # InvoiceTo
 
-Unique identifier of the customer the expense is billable to. The invoiceTo object is currently only supported for QBO.
+Unique identifier for the customer billed for the transaction. The `invoiceTo` object is currently supported only for QuickBooks Online and QuickBooks Desktop.
 
 
 ## Fields
 
-| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `DataType`                                                                   | [*shared.InvoiceToDataType](../../../pkg/models/shared/invoicetodatatype.md) | :heavy_minus_sign:                                                           | The type of contact.                                                         | customers                                                                    |
-| `ID`                                                                         | **string*                                                                    | :heavy_minus_sign:                                                           | identifier of customer.                                                      | 80000002-1674552702                                                          |
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ID`                                                                 | **string*                                                            | :heavy_minus_sign:                                                   | identifier of customer.                                              | 80000002-1674552702                                                  |
+| `Type`                                                               | [*shared.InvoiceToType](../../../pkg/models/shared/invoicetotype.md) | :heavy_minus_sign:                                                   | The type of contact.                                                 | customer                                                             |

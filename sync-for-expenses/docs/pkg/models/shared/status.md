@@ -1,6 +1,6 @@
 # Status
 
-The current status of the pull operation.
+The current status of the dataset.
 
 
 ## Values
@@ -24,8 +24,6 @@ The current status of the pull operation.
 | `StatusValidationError`    | ValidationError            |
 | `StatusAuthError`          | AuthError                  |
 | `StatusCancelled`          | Cancelled                  |
-| `StatusRouting`            | Routing                    |
-| `StatusRoutingError`       | RoutingError               |
 | `StatusNotSupported`       | NotSupported               |
 | `StatusRateLimitError`     | RateLimitError             |
 | `StatusPermissionsError`   | PermissionsError           |

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Accounts
+Create accounts and view create account options.
 
 ### Available Operations
 
@@ -29,9 +29,10 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
@@ -43,6 +44,17 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Accounts.Create(ctx, operations.CreateAccountRequest{
+        AccountPrototype: &shared.AccountPrototype{
+            Currency: syncforexpenses.String("USD"),
+            CurrentBalance: types.MustNewDecimalFromString("0"),
+            Description: syncforexpenses.String("Invoices the business has issued but has not yet collected payment on."),
+            FullyQualifiedCategory: syncforexpenses.String("Asset.Current"),
+            FullyQualifiedName: syncforexpenses.String("Cash On Hand"),
+            Name: syncforexpenses.String("Accounts Receivable"),
+            NominalCode: syncforexpenses.String("610"),
+            Status: shared.AccountStatusActive.ToPointer(),
+            Type: shared.AccountTypeAsset.ToPointer(),
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
     })
@@ -63,14 +75,17 @@ func main() {
 | `request`                                                                              | [operations.CreateAccountRequest](../../pkg/models/operations/createaccountrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.CreateAccountResponse](../../pkg/models/operations/createaccountresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
 | sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+
 
 ## GetCreateModel
 
@@ -91,7 +106,6 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
 	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
 	"context"
 	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
@@ -125,10 +139,12 @@ func main() {
 | `request`                                                                                                              | [operations.GetCreateChartOfAccountsModelRequest](../../pkg/models/operations/getcreatechartofaccountsmodelrequest.md) | :heavy_check_mark:                                                                                                     | The request object to use for the request.                                                                             |
 | `opts`                                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                                           | :heavy_minus_sign:                                                                                                     | The options for this request.                                                                                          |
 
-
 ### Response
 
 **[*operations.GetCreateChartOfAccountsModelResponse](../../pkg/models/operations/getcreatechartofaccountsmodelresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
