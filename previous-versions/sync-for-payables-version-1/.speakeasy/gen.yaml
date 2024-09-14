@@ -7,9 +7,13 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
   telemetryEnabled: true
 go:
-  version: 3.2.0
+  version: 3.3.0
+  additionalDependencies: {}
+  allowUnknownFieldsInWeakUnions: false
   clientServerStatusCodesAsErrors: true
   flattenGlobalSecurity: false
   imports:
@@ -22,5 +26,7 @@ go:
       webhooks: pkg/models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: github.com/codatio/client-sdk-go/sync-for-payables
+  responseFormat: envelope

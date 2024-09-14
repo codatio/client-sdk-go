@@ -1,0 +1,11 @@
+# JournalEntryRecordRef
+
+Links a journal entry to the underlying record that created it.
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `DataType`                                                                                           | [*shared.JournalEntryRecordRefDataType](../../../pkg/models/shared/journalentryrecordrefdatatype.md) | :heavy_minus_sign:                                                                                   | Name of underlying data type.                                                                        | transfers                                                                                            |
+| `ID`                                                                                                 | **string*                                                                                            | :heavy_minus_sign:                                                                                   | 'id' of the underlying record or data type.                                                          |                                                                                                      |
