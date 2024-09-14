@@ -32,7 +32,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -49,8 +48,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -64,14 +62,17 @@ func main() {
 | `request`                                                                                        | [operations.RefreshCompanyDataRequest](../../pkg/models/operations/refreshcompanydatarequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.RefreshCompanyDataResponse](../../pkg/models/operations/refreshcompanydataresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ByDataType
 
@@ -107,7 +108,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }
@@ -122,14 +122,17 @@ func main() {
 | `request`                                                                                  | [operations.RefreshDataTypeRequest](../../pkg/models/operations/refreshdatatyperequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `opts`                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
-
 ### Response
 
 **[*operations.RefreshDataTypeResponse](../../pkg/models/operations/refreshdatatyperesponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetCompanyDataStatus
 
@@ -162,7 +165,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.DataStatuses != nil {
         // handle response
     }
@@ -177,14 +179,17 @@ func main() {
 | `request`                                                                                            | [operations.GetCompanyDataStatusRequest](../../pkg/models/operations/getcompanydatastatusrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `opts`                                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
-
 ### Response
 
 **[*operations.GetCompanyDataStatusResponse](../../pkg/models/operations/getcompanydatastatusresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetPullOperation
 
@@ -218,7 +223,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperation != nil {
         // handle response
     }
@@ -233,14 +237,17 @@ func main() {
 | `request`                                                                                    | [operations.GetPullOperationRequest](../../pkg/models/operations/getpulloperationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.GetPullOperationResponse](../../pkg/models/operations/getpulloperationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ListPullOperations
 
@@ -272,11 +279,11 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.PullOperations != nil {
         // handle response
     }
@@ -291,11 +298,13 @@ func main() {
 | `request`                                                                                        | [operations.ListPullOperationsRequest](../../pkg/models/operations/listpulloperationsrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
 | `opts`                                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
-
 ### Response
 
 **[*operations.ListPullOperationsResponse](../../pkg/models/operations/listpulloperationsresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

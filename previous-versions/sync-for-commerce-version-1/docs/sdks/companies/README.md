@@ -13,8 +13,11 @@ Create and manage your Codat companies.
 
 ## DeleteCompany
 
-﻿
-Permanently deletes a company, its connections and any cached data. This operation is irreversible. If the company ID does not exist an error is returned.
+﻿The *Delete company* endpoint permanently deletes a [company](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Company), its [connections](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Connection) and any cached data. This operation is irreversible.
+
+A [company](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
+
 
 ### Example Usage
 
@@ -27,7 +30,6 @@ import(
 	"context"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 	"log"
-	"net/http"
 )
 
 func main() {
@@ -44,8 +46,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
-    if res.StatusCode == http.StatusOK {
+    if res != nil {
         // handle response
     }
 }
@@ -59,18 +60,25 @@ func main() {
 | `request`                                                                              | [operations.DeleteCompanyRequest](../../pkg/models/operations/deletecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.DeleteCompanyResponse](../../pkg/models/operations/deletecompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## GetCompany
 
-﻿Returns the company for a valid identifier. If the identifier is for a deleted company, a not found response is returned.
+﻿The *Get company* endpoint returns a single company for a given `companyId`.
+
+A [company](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
+
 
 ### Example Usage
 
@@ -99,7 +107,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -114,18 +121,25 @@ func main() {
 | `request`                                                                        | [operations.GetCompanyRequest](../../pkg/models/operations/getcompanyrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
-
 ### Response
 
 **[*operations.GetCompanyResponse](../../pkg/models/operations/getcompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## UpdateCompany
 
-﻿Updates both the name and description of the company.
+﻿Use the *Update company* endpoint to update both the name and description of the company. 
+If you use [groups](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/sync-for-commerce-v1-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
+
+A [company](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Company) represents a business sharing access to their data.
+Each company can have multiple [connections](https://docs.codat.io/sync-for-commerce-v1-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 
 ### Example Usage
 
@@ -151,14 +165,18 @@ func main() {
     res, err := s.Companies.UpdateCompany(ctx, operations.UpdateCompanyRequest{
         CreateCompany: &shared.CreateCompany{
             Description: syncforcommerceversion1.String("Requested early access to the new financing scheme."),
-            Name: "Bank of Dave",
+            Groups: []shared.GroupReference{
+                shared.GroupReference{
+                    ID: syncforcommerceversion1.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+                },
+            },
+            Name: "New Name",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Company != nil {
         // handle response
     }
@@ -173,11 +191,13 @@ func main() {
 | `request`                                                                              | [operations.UpdateCompanyRequest](../../pkg/models/operations/updatecompanyrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
-
 ### Response
 
 **[*operations.UpdateCompanyResponse](../../pkg/models/operations/updatecompanyresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

@@ -3,7 +3,7 @@
 
 ## Overview
 
-Invoices
+Retrieve standardized Invoices from linked accounting software.
 
 ### Available Operations
 
@@ -46,82 +46,60 @@ func main() {
     ctx := context.Background()
     res, err := s.AccountingInvoices.CreateAccountingInvoice(ctx, operations.CreateAccountingInvoiceRequest{
         AccountingInvoice: &shared.AccountingInvoice{
-            AmountDue: types.MustNewDecimalFromString("9907.57"),
-            Currency: syncforcommerceversion1.String("EUR"),
+            AdditionalTaxAmount: types.MustNewDecimalFromString("0"),
+            AdditionalTaxPercentage: types.MustNewDecimalFromString("0"),
+            AmountDue: types.MustNewDecimalFromString("87326532"),
+            Currency: syncforcommerceversion1.String("USD"),
+            CurrencyRate: types.MustNewDecimalFromString("1"),
             CustomerRef: &shared.AccountingCustomerRef{
-                ID: "<ID>",
+                CompanyName: syncforcommerceversion1.String("Test Customer 1"),
+                ID: "80000002-1674552702",
             },
-            DueDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            IssueDate: "2022-10-23T00:00:00Z",
+            DiscountPercentage: types.MustNewDecimalFromString("0"),
+            DueDate: syncforcommerceversion1.String("2023-05-24T11:09:01.438Z"),
+            InvoiceNumber: syncforcommerceversion1.String("18/04 15.26"),
+            IssueDate: "2023-04-18T11:09:01.438Z",
             LineItems: []shared.InvoiceLineItem{
-                shared.InvoiceLineItem{
-                    AccountRef: &shared.AccountRef{},
-                    ItemRef: &shared.ItemRef{
-                        ID: "<ID>",
-                    },
-                    Quantity: types.MustNewDecimalFromString("1021.57"),
-                    TaxRateRef: &shared.TaxRateRef{},
-                    Tracking: &shared.Tracking{
-                        CategoryRefs: []shared.TrackingCategoryRefItems{
-                            shared.TrackingCategoryRefItems{
-                                ID: "<ID>",
-                            },
-                        },
-                        CustomerRef: &shared.AccountingCustomerRef{
-                            ID: "<ID>",
-                        },
-                        IsBilledTo: shared.BilledToTypeUnknown,
-                        IsRebilledTo: shared.BilledToTypeProject,
-                        ProjectRef: &shared.AccountingProjectReference{
-                            ID: "<ID>",
-                        },
-                        RecordRef: &shared.RecordRef{
-                            DataType: syncforcommerceversion1.String("journalEntry"),
-                        },
-                    },
-                    TrackingCategoryRefs: []shared.TrackingCategoryRefItems{
-                        shared.TrackingCategoryRefItems{
-                            ID: "<ID>",
-                        },
-                    },
-                    UnitAmount: types.MustNewDecimalFromString("7432.38"),
-                },
+
             },
-            Metadata: &shared.Metadata{},
-            ModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+            ModifiedDate: syncforcommerceversion1.String("2023-02-14T11:09:01.438Z"),
+            Note: syncforcommerceversion1.String("invoice push 20230418 15.26"),
+            PaidOnDate: syncforcommerceversion1.String("2023-02-10T11:09:01.438Z"),
             PaymentAllocations: []shared.AccountingPaymentAllocation{
                 shared.AccountingPaymentAllocation{
                     Allocation: shared.AccountingInvoiceAllocation{
-                        AllocatedOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+                        AllocatedOnDate: syncforcommerceversion1.String("2023-02-14T11:09:01.438Z"),
                         Currency: syncforcommerceversion1.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("1"),
+                        TotalAmount: types.MustNewDecimalFromString("725"),
                     },
                     Payment: shared.PaymentAllocationPayment{
-                        AccountRef: &shared.AccountRef{},
-                        Currency: syncforcommerceversion1.String("EUR"),
-                        PaidOnDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
+                        AccountRef: &shared.AccountRef{
+                            ID: syncforcommerceversion1.String("string"),
+                            Name: syncforcommerceversion1.String("string"),
+                        },
+                        Currency: syncforcommerceversion1.String("USD"),
+                        CurrencyRate: types.MustNewDecimalFromString("1"),
+                        ID: syncforcommerceversion1.String("80000004-1789341990"),
+                        Note: syncforcommerceversion1.String("string"),
+                        PaidOnDate: syncforcommerceversion1.String("2023-02-14T11:09:01.438Z"),
+                        Reference: syncforcommerceversion1.String("string"),
+                        TotalAmount: types.MustNewDecimalFromString("725"),
                     },
                 },
             },
             SalesOrderRefs: []shared.SalesOrderReference{
-                shared.SalesOrderReference{
-                    DataType: shared.DataTypeInvoices.ToPointer(),
-                },
+                shared.SalesOrderReference{},
             },
-            SourceModifiedDate: syncforcommerceversion1.String("2022-10-23T00:00:00Z"),
-            Status: shared.InvoiceStatusPartiallyPaid,
-            SupplementalData: &shared.SupplementalData{
-                Content: map[string]map[string]interface{}{
-                    "key": map[string]interface{}{
-                        "key": "string",
-                    },
-                },
-            },
-            TotalAmount: types.MustNewDecimalFromString("1416.23"),
-            TotalTaxAmount: types.MustNewDecimalFromString("9069.87"),
+            SourceModifiedDate: syncforcommerceversion1.String("2023-02-14T11:09:01.438Z"),
+            Status: shared.InvoiceStatusSubmitted,
+            SubTotal: types.MustNewDecimalFromString("30"),
+            TotalAmount: types.MustNewDecimalFromString("30"),
+            TotalDiscount: types.MustNewDecimalFromString("0"),
+            TotalTaxAmount: types.MustNewDecimalFromString("0"),
             WithholdingTax: []shared.WithholdingTax{
                 shared.WithholdingTax{
-                    Amount: types.MustNewDecimalFromString("598.23"),
+                    Amount: types.MustNewDecimalFromString("0"),
                     Name: "string",
                 },
             },
@@ -132,7 +110,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.AccountingCreateInvoiceResponse != nil {
         // handle response
     }
@@ -147,11 +124,13 @@ func main() {
 | `request`                                                                                                  | [operations.CreateAccountingInvoiceRequest](../../pkg/models/operations/createaccountinginvoicerequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.CreateAccountingInvoiceResponse](../../pkg/models/operations/createaccountinginvoiceresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 400-600                         | */*                             |
+| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |

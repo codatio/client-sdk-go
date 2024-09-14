@@ -41,7 +41,6 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Branding != nil {
         // handle response
     }
@@ -56,14 +55,17 @@ func main() {
 | `request`                                                                                                | [operations.GetIntegrationBrandingRequest](../../pkg/models/operations/getintegrationbrandingrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `opts`                                                                                                   | [][operations.Option](../../pkg/models/operations/option.md)                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
-
 ### Response
 
 **[*operations.GetIntegrationBrandingResponse](../../pkg/models/operations/getintegrationbrandingresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## ListIntegrations
 
@@ -94,11 +96,11 @@ func main() {
         OrderBy: syncforcommerceversion1.String("-modifiedDate"),
         Page: syncforcommerceversion1.Int(1),
         PageSize: syncforcommerceversion1.Int(100),
+        Query: syncforcommerceversion1.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
         log.Fatal(err)
     }
-
     if res.Integrations != nil {
         // handle response
     }
@@ -113,11 +115,13 @@ func main() {
 | `request`                                                                                    | [operations.ListIntegrationsRequest](../../pkg/models/operations/listintegrationsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `opts`                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
-
 ### Response
 
 **[*operations.ListIntegrationsResponse](../../pkg/models/operations/listintegrationsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 400-600                     | */*                         |
+| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |

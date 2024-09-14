@@ -4,9 +4,68 @@
 ﻿Embedded accounting integrations for POS and eCommerce platforms.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Sync for Commerce (v1): The API for Sync for Commerce V1.
+
+Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
+
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Company management | Create new and manage existing Sync for Commerce companies. |
+| Configuration | Expressively configure preferences for any given Sync for Commerce company. |
+| Sync flow preferences | Configure preferences for any given Sync for Commerce company using sync flow. |
+| Sync | Initiate a sync of Sync for Commerce company data into their respective accounting software. |
+| Integrations | View useful information about codat's integrations. |
+| Companies | Create and manage your Codat companies. |
+| Connections | Manage your companies' data connections. |
+| Refresh data | Asynchronously retrieve data from an integration to refresh data in Codat. |
+| Push data | View push options and get push statuses. |
+| Accounting accounts | Retrieve standardized Accounts from linked accounting software. |
+| Accounting credit notes | Retrieve standardized Credit notes from linked accounting software. |
+| Accounting customers | Retrieve standardized Customers from linked accounting software. |
+| Accounting direct incomes | Retrieve standardized Direct incomes from linked accounting software. |
+| Accounting company info | Retrieve standardized Accounting company info from linked accounting software. |
+| Accounting invoices | Retrieve standardized Invoices from linked accounting software. |
+| Accounting journal entries | Retrieve standardized Journal entries from linked accounting software. |
+| Accounting payments | Retrieve standardized Payments from linked accounting software. |
+| Accounting bank accounts | Retrieve standardized Bank accounts from linked accounting software. |
+| Commerce customers | Retrieve standardized Commerce customers from linked commerce software. |
+| Commerce company info | Retrieve standardized Commerce company info from linked commerce software. |
+| Commerce locations | Retrieve standardized Commerce locations from linked commerce software. |
+| Commerce orders | Retrieve standardized Commerce orders from linked commerce software. |
+| Commerce payments | Retrieve standardized Commerce payments from linked commerce software. |
+| Commerce products | Retrieve standardized Commerce products from linked commerce software. |
+| Commerce transactions | Retrieve standardized Commerce transactions from linked commerce software. |
+<!-- End Codat Tags Table -->
+
+[Read More...](https://docs.codat.io/commerce/overview)
+
+Not seeing what you expect? [See the main Sync for Commerce API](https://docs.codat.io/sync-for-commerce-api).
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1
 ```
@@ -43,7 +102,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -55,39 +113,58 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [SyncFlowPreferences](docs/sdks/syncflowpreferences/README.md)
+<details open>
+<summary>Available methods</summary>
 
-* [GetConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#getconfigtextsyncflow) - Retrieve preferences for text fields on sync flow
-* [GetSyncFlowURL](docs/sdks/syncflowpreferences/README.md#getsyncflowurl) - Retrieve sync flow url
-* [GetVisibleAccounts](docs/sdks/syncflowpreferences/README.md#getvisibleaccounts) - List visible accounts
-* [UpdateConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#updateconfigtextsyncflow) - Update preferences for text fields on sync flow
-* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowpreferences/README.md#updatevisibleaccountssyncflow) - Update the visible accounts on sync flow
+### [AccountingAccounts](docs/sdks/accountingaccounts/README.md)
 
-### [Companies](docs/sdks/companies/README.md)
-
-* [DeleteCompany](docs/sdks/companies/README.md#deletecompany) - Delete a company
-* [GetCompany](docs/sdks/companies/README.md#getcompany) - Get company
-* [UpdateCompany](docs/sdks/companies/README.md#updatecompany) - Update company
-
-### [Connections](docs/sdks/connections/README.md)
-
-* [DeleteConnection](docs/sdks/connections/README.md#deleteconnection) - Delete connection
-* [GetConnection](docs/sdks/connections/README.md#getconnection) - Get connection
-* [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
+* [CreateAccountingAccount](docs/sdks/accountingaccounts/README.md#createaccountingaccount) - Create account
+* [GetAccountingAccount](docs/sdks/accountingaccounts/README.md#getaccountingaccount) - Get account
+* [ListAccountingAccounts](docs/sdks/accountingaccounts/README.md#listaccountingaccounts) - List accounts
 
 ### [AccountingBankAccounts](docs/sdks/accountingbankaccounts/README.md)
 
 * [GetAccountingBankAccount](docs/sdks/accountingbankaccounts/README.md#getaccountingbankaccount) - Get bank account
 * [ListAccountingBankAccounts](docs/sdks/accountingbankaccounts/README.md#listaccountingbankaccounts) - List bank accounts
 
-### [CommerceCustomers](docs/sdks/commercecustomers/README.md)
+### [AccountingCompanyInfo](docs/sdks/accountingcompanyinfo/README.md)
 
-* [GetCommerceCustomer](docs/sdks/commercecustomers/README.md#getcommercecustomer) - Get customer
-* [ListCommerceCustomers](docs/sdks/commercecustomers/README.md#listcommercecustomers) - List customers
+* [GetAccountingCompanyInfo](docs/sdks/accountingcompanyinfo/README.md#getaccountingcompanyinfo) - Get company info
+* [Refresh](docs/sdks/accountingcompanyinfo/README.md#refresh) - Refresh company info
+
+### [AccountingCreditNotes](docs/sdks/accountingcreditnotes/README.md)
+
+* [CreateAccountingCreditNote](docs/sdks/accountingcreditnotes/README.md#createaccountingcreditnote) - Create credit note
+
+### [AccountingCustomers](docs/sdks/accountingcustomers/README.md)
+
+* [CreateAccountingCustomer](docs/sdks/accountingcustomers/README.md#createaccountingcustomer) - Create customer
+
+### [AccountingDirectIncomes](docs/sdks/accountingdirectincomes/README.md)
+
+* [CreateAccountingDirectIncome](docs/sdks/accountingdirectincomes/README.md#createaccountingdirectincome) - Create direct income
+
+### [AccountingInvoices](docs/sdks/accountinginvoices/README.md)
+
+* [CreateAccountingInvoice](docs/sdks/accountinginvoices/README.md#createaccountinginvoice) - Create invoice
+
+### [AccountingJournalEntries](docs/sdks/accountingjournalentries/README.md)
+
+* [CreateAccountingJournalEntry](docs/sdks/accountingjournalentries/README.md#createaccountingjournalentry) - Create journal entry
+
+### [AccountingPayments](docs/sdks/accountingpayments/README.md)
+
+* [CreateAccountingPayment](docs/sdks/accountingpayments/README.md#createaccountingpayment) - Create payment
+
 
 ### [CommerceCompanyInfo](docs/sdks/commercecompanyinfo/README.md)
 
 * [GetCommerceCompanyInfo](docs/sdks/commercecompanyinfo/README.md#getcommercecompanyinfo) - Get company info
+
+### [CommerceCustomers](docs/sdks/commercecustomers/README.md)
+
+* [GetCommerceCustomer](docs/sdks/commercecustomers/README.md#getcommercecustomer) - Get customer
+* [ListCommerceCustomers](docs/sdks/commercecustomers/README.md#listcommercecustomers) - List customers
 
 ### [CommerceLocations](docs/sdks/commercelocations/README.md)
 
@@ -116,35 +193,40 @@ func main() {
 * [GetCommerceTransaction](docs/sdks/commercetransactions/README.md#getcommercetransaction) - Get transaction
 * [ListCommerceTransactions](docs/sdks/commercetransactions/README.md#listcommercetransactions) - List transactions
 
-### [AccountingAccounts](docs/sdks/accountingaccounts/README.md)
+### [Companies](docs/sdks/companies/README.md)
 
-* [CreateAccountingAccount](docs/sdks/accountingaccounts/README.md#createaccountingaccount) - Create account
-* [GetAccountingAccount](docs/sdks/accountingaccounts/README.md#getaccountingaccount) - Get account
-* [ListAccountingAccounts](docs/sdks/accountingaccounts/README.md#listaccountingaccounts) - List accounts
+* [DeleteCompany](docs/sdks/companies/README.md#deletecompany) - Delete a company
+* [GetCompany](docs/sdks/companies/README.md#getcompany) - Get company
+* [UpdateCompany](docs/sdks/companies/README.md#updatecompany) - Update company
 
-### [AccountingCreditNotes](docs/sdks/accountingcreditnotes/README.md)
+### [CompanyManagement](docs/sdks/companymanagement/README.md)
 
-* [CreateAccountingCreditNote](docs/sdks/accountingcreditnotes/README.md#createaccountingcreditnote) - Create credit note
+* [CreateCompany](docs/sdks/companymanagement/README.md#createcompany) - Create sync for commerce company
+* [CreateConnection](docs/sdks/companymanagement/README.md#createconnection) - Create connection
+* [ListCompanies](docs/sdks/companymanagement/README.md#listcompanies) - List companies
+* [ListConnections](docs/sdks/companymanagement/README.md#listconnections) - List data connections
+* [UpdateConnection](docs/sdks/companymanagement/README.md#updateconnection) - Update data connection
 
-### [AccountingCustomers](docs/sdks/accountingcustomers/README.md)
+### [Configuration](docs/sdks/configuration/README.md)
 
-* [CreateAccountingCustomer](docs/sdks/accountingcustomers/README.md#createaccountingcustomer) - Create customer
+* [GetConfiguration](docs/sdks/configuration/README.md#getconfiguration) - Retrieve config preferences set for a company
+* [SetConfiguration](docs/sdks/configuration/README.md#setconfiguration) - Create or update configuration
 
-### [AccountingDirectIncomes](docs/sdks/accountingdirectincomes/README.md)
+### [Connections](docs/sdks/connections/README.md)
 
-* [CreateAccountingDirectIncome](docs/sdks/accountingdirectincomes/README.md#createaccountingdirectincome) - Create direct income
+* [DeleteConnection](docs/sdks/connections/README.md#deleteconnection) - Delete connection
+* [GetConnection](docs/sdks/connections/README.md#getconnection) - Get connection
+* [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
 
-### [AccountingInvoices](docs/sdks/accountinginvoices/README.md)
+### [Integrations](docs/sdks/integrations/README.md)
 
-* [CreateAccountingInvoice](docs/sdks/accountinginvoices/README.md#createaccountinginvoice) - Create invoice
+* [GetIntegrationBranding](docs/sdks/integrations/README.md#getintegrationbranding) - Get branding for an integration
+* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List integrations
 
-### [AccountingJournalEntries](docs/sdks/accountingjournalentries/README.md)
+### [PushData](docs/sdks/pushdata/README.md)
 
-* [CreateAccountingJournalEntry](docs/sdks/accountingjournalentries/README.md#createaccountingjournalentry) - Create journal entry
-
-### [AccountingPayments](docs/sdks/accountingpayments/README.md)
-
-* [CreateAccountingPayment](docs/sdks/accountingpayments/README.md#createaccountingpayment) - Create payment
+* [GetOperation](docs/sdks/pushdata/README.md#getoperation) - Get push operation
+* [ListOperations](docs/sdks/pushdata/README.md#listoperations) - List push operations
 
 ### [RefreshData](docs/sdks/refreshdata/README.md)
 
@@ -154,39 +236,21 @@ func main() {
 * [GetPullOperation](docs/sdks/refreshdata/README.md#getpulloperation) - Get pull operation
 * [ListPullOperations](docs/sdks/refreshdata/README.md#listpulloperations) - List pull operations
 
-### [AccountingCompanyInfo](docs/sdks/accountingcompanyinfo/README.md)
-
-* [GetAccountingCompanyInfo](docs/sdks/accountingcompanyinfo/README.md#getaccountingcompanyinfo) - Get company info
-* [Refresh](docs/sdks/accountingcompanyinfo/README.md#refresh) - Refresh company info
-
-### [PushData](docs/sdks/pushdata/README.md)
-
-* [GetOperation](docs/sdks/pushdata/README.md#getoperation) - Get push operation
-* [ListOperations](docs/sdks/pushdata/README.md#listoperations) - List push operations
-
 ### [Sync](docs/sdks/sync/README.md)
 
 * [GetSyncStatus](docs/sdks/sync/README.md#getsyncstatus) - Get status for a company's syncs
 * [RequestSync](docs/sdks/sync/README.md#requestsync) - Sync new
 * [RequestSyncForDateRange](docs/sdks/sync/README.md#requestsyncfordaterange) - Sync range
 
-### [Configuration](docs/sdks/configuration/README.md)
+### [SyncFlowPreferences](docs/sdks/syncflowpreferences/README.md)
 
-* [GetConfiguration](docs/sdks/configuration/README.md#getconfiguration) - Retrieve config preferences set for a company
-* [SetConfiguration](docs/sdks/configuration/README.md#setconfiguration) - Create or update configuration
+* [GetConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#getconfigtextsyncflow) - Retrieve preferences for text fields on sync flow
+* [GetSyncFlowURL](docs/sdks/syncflowpreferences/README.md#getsyncflowurl) - Retrieve sync flow url
+* [GetVisibleAccounts](docs/sdks/syncflowpreferences/README.md#getvisibleaccounts) - List visible accounts
+* [UpdateConfigTextSyncFlow](docs/sdks/syncflowpreferences/README.md#updateconfigtextsyncflow) - Update preferences for text fields on sync flow
+* [UpdateVisibleAccountsSyncFlow](docs/sdks/syncflowpreferences/README.md#updatevisibleaccountssyncflow) - Update the visible accounts on sync flow
 
-### [Integrations](docs/sdks/integrations/README.md)
-
-* [GetIntegrationBranding](docs/sdks/integrations/README.md#getintegrationbranding) - Get branding for an integration
-* [ListIntegrations](docs/sdks/integrations/README.md#listintegrations) - List integrations
-
-### [CompanyManagement](docs/sdks/companymanagement/README.md)
-
-* [CreateCompany](docs/sdks/companymanagement/README.md#createcompany) - Create sync for commerce company
-* [CreateConnection](docs/sdks/companymanagement/README.md#createconnection) - Create connection
-* [ListCompanies](docs/sdks/companymanagement/README.md#listcompanies) - List companies
-* [ListConnections](docs/sdks/companymanagement/README.md#listconnections) - List data connections
-* [UpdateConnection](docs/sdks/companymanagement/README.md#updateconnection) - Update data connection
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -202,9 +266,9 @@ func main() {
 <!-- Start Retries [retries] -->
 ## Retries
 
-Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -213,7 +277,7 @@ import (
 	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -229,9 +293,9 @@ func main() {
 	res, err := s.SyncFlowPreferences.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -242,7 +306,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -250,7 +313,7 @@ func main() {
 
 ```
 
-If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `WithRetryConfig` option at SDK initialization:
 ```go
 package main
 
@@ -259,16 +322,16 @@ import (
 	syncforcommerceversion1 "github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/sync-for-commerce-version-1/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := syncforcommerceversion1.New(
 		syncforcommerceversion1.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -288,7 +351,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -305,7 +367,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
 | sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
-| sdkerrors.SDKError      | 400-600                 | */*                     |
+| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
 
 ### Example
 
@@ -391,7 +453,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -429,7 +490,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
@@ -504,7 +564,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.LocalizationInfo != nil {
 		// handle response
 	}
