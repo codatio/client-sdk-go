@@ -105,6 +105,13 @@ sources:
         tags:
             - latest
             - main
+    sync-for-payroll-source:
+        sourceNamespace: sync-for-payroll-source
+        sourceRevisionDigest: sha256:06a5cf91b89eebfab357e63b3043fd5f934c41604e6dc79bbd1ec65dec2004d9
+        sourceBlobDigest: sha256:367f56c8bbc3e5f79b13390764a0e77ad2d9d25ca3e515c1c62b19fe459d927c
+        tags:
+            - latest
+            - main
 targets:
     accounting-library:
         source: accounting-source
@@ -181,6 +188,11 @@ targets:
         sourceNamespace: sync-for-payables-version-1-source
         sourceRevisionDigest: sha256:3f82aa5d9dbae963c7fee29089ff1a0513b8db9892a196607d500d08f18dd7d5
         sourceBlobDigest: sha256:e1fb1fe0af40cf137b8b320fd75e913c83e54e0a2bb2e80a5af69e0bce409e71
+    sync-for-payroll-library:
+        source: sync-for-payroll-source
+        sourceNamespace: sync-for-payroll-source
+        sourceRevisionDigest: sha256:06a5cf91b89eebfab357e63b3043fd5f934c41604e6dc79bbd1ec65dec2004d9
+        sourceBlobDigest: sha256:367f56c8bbc3e5f79b13390764a0e77ad2d9d25ca3e515c1c62b19fe459d927c
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -263,6 +275,8 @@ workflow:
         sync-for-payroll-source:
             inputs:
                 - location: https://raw.githubusercontent.com/codatio/oas/main/yaml/Codat-Sync-Payroll.yaml
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-payroll-source
     targets:
         accounting-library:
             target: go

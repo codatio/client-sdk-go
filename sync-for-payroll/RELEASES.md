@@ -49,3 +49,13 @@ Based on:
 - [go v1.3.0] sync-for-payroll
 ### Releases
 - [Go v1.3.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-payroll/v1.3.0 - sync-for-payroll
+
+## 2024-09-14 10:29:06
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.396.9 (2.415.7) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v1.4.0] sync-for-payroll
+### Releases
+- [Go v1.4.0] https://github.com/codatio/client-sdk-go/releases/tag/sync-for-payroll/v1.4.0 - sync-for-payroll

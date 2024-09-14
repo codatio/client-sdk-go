@@ -4,9 +4,51 @@
 Push payroll to accounting platforms.
 <!-- End Codat Library Description -->
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Sync for Payroll: The API for Sync for Payroll. 
+
+Sync for Payroll is an API and a set of supporting tools built to help integrate your customers' payroll data from their HR and payroll platforms into their accounting software and to support its reconciliation.
+
+[Explore product](https://docs.codat.io/payroll/overview) | [See OpenAPI spec](https://github.com/codatio/oas)
+
+---
+
+<!-- Start Codat Tags Table -->
+## Endpoints
+
+| Endpoints | Description |
+| :- |:- |
+| Companies | Create and manage your SMB users' companies. |
+| Connections | Create new and manage existing data connections for a company. |
+| Accounts | Get, create, and update Accounts. |
+| Journal entries | Get, create, and update Journal entries. |
+| Journals | Get, create, and update Journals. |
+| Tracking categories | Get, create, and update Tracking Categories for additional categorization of payroll components. |
+| Company info | View company profile from the source platform. |
+| Manage data | Control how data is retrieved from an integration. |
+<!-- End Codat Tags Table -->
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Special Types](#special-types)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+To add the SDK as a dependency to your project:
 ```bash
 go get github.com/codatio/client-sdk-go/sync-for-payroll
 ```
@@ -38,12 +80,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -55,6 +101,17 @@ func main() {
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
+### [Accounts](docs/sdks/accounts/README.md)
+
+* [Create](docs/sdks/accounts/README.md#create) - Create account
+* [Get](docs/sdks/accounts/README.md#get) - Get account
+* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
+* [List](docs/sdks/accounts/README.md#list) - List accounts
+
+
 ### [Companies](docs/sdks/companies/README.md)
 
 * [Create](docs/sdks/companies/README.md#create) - Create company
@@ -63,6 +120,10 @@ func main() {
 * [List](docs/sdks/companies/README.md#list) - List companies
 * [Update](docs/sdks/companies/README.md#update) - Update company
 
+### [CompanyInfo](docs/sdks/companyinfo/README.md)
+
+* [GetAccountingProfile](docs/sdks/companyinfo/README.md#getaccountingprofile) - Get company accounting profile
+
 ### [Connections](docs/sdks/connections/README.md)
 
 * [Create](docs/sdks/connections/README.md#create) - Create connection
@@ -70,13 +131,6 @@ func main() {
 * [Get](docs/sdks/connections/README.md#get) - Get connection
 * [List](docs/sdks/connections/README.md#list) - List connections
 * [Unlink](docs/sdks/connections/README.md#unlink) - Unlink connection
-
-### [Accounts](docs/sdks/accounts/README.md)
-
-* [Create](docs/sdks/accounts/README.md#create) - Create account
-* [Get](docs/sdks/accounts/README.md#get) - Get account
-* [GetCreateModel](docs/sdks/accounts/README.md#getcreatemodel) - Get create account model
-* [List](docs/sdks/accounts/README.md#list) - List accounts
 
 ### [JournalEntries](docs/sdks/journalentries/README.md)
 
@@ -103,14 +157,12 @@ func main() {
 * [RefreshAllDataTypes](docs/sdks/managedata/README.md#refreshalldatatypes) - Refresh all data
 * [RefreshDataType](docs/sdks/managedata/README.md#refreshdatatype) - Refresh data type
 
-### [CompanyInfo](docs/sdks/companyinfo/README.md)
-
-* [GetAccountingProfile](docs/sdks/companyinfo/README.md#getaccountingprofile) - Get company accounting profile
-
 ### [TrackingCategories](docs/sdks/trackingcategories/README.md)
 
 * [Get](docs/sdks/trackingcategories/README.md#get) - Get tracking categories
 * [List](docs/sdks/trackingcategories/README.md#list) - List tracking categories
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -128,7 +180,7 @@ func main() {
 
 Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
 
-To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call by using the `WithRetries` option:
+To change the default retry strategy for a single API call, simply provide a `retry.Config` object to the call by using the `WithRetries` option:
 ```go
 package main
 
@@ -136,7 +188,7 @@ import (
 	"context"
 	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -151,11 +203,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	}, operations.WithRetries(
-		utils.RetryConfig{
+		retry.Config{
 			Strategy: "backoff",
-			Backoff: &utils.BackoffStrategy{
+			Backoff: &retry.BackoffStrategy{
 				InitialInterval: 1,
 				MaxInterval:     50,
 				Exponent:        1.1,
@@ -166,7 +223,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -182,16 +238,16 @@ import (
 	"context"
 	syncforpayroll "github.com/codatio/client-sdk-go/sync-for-payroll"
 	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payroll/pkg/retry"
 	"log"
 )
 
 func main() {
 	s := syncforpayroll.New(
 		syncforpayroll.WithRetryConfig(
-			utils.RetryConfig{
+			retry.Config{
 				Strategy: "backoff",
-				Backoff: &utils.BackoffStrategy{
+				Backoff: &retry.BackoffStrategy{
 					InitialInterval: 1,
 					MaxInterval:     50,
 					Exponent:        1.1,
@@ -207,12 +263,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -255,7 +315,12 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 
@@ -310,12 +375,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -348,12 +417,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
@@ -423,12 +496,16 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforpayroll.String("Requested early access to the new financing scheme."),
-		Name:        "Bank of Dave",
+		Groups: []shared.GroupReference{
+			shared.GroupReference{
+				ID: syncforpayroll.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
+			},
+		},
+		Name: "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	if res.Company != nil {
 		// handle response
 	}
