@@ -1,41 +1,232 @@
 lockVersion: 2.0.0
 id: 33905cde-a8b1-45d9-b474-6cd822385ebc
 management:
-  docChecksum: 5223d7169ff7255df94cec4c73389639
+  docChecksum: ab89287f6b3cbe2750f54e08da89a2e8
   docVersion: prealpha
-  speakeasyVersion: 1.214.0
-  generationVersion: 2.286.2
-  releaseVersion: 0.27.0
-  configChecksum: a5ee28c76ac3ce089ef66b930562e210
+  speakeasyVersion: 1.396.9
+  generationVersion: 2.415.7
+  releaseVersion: 0.28.0
+  configChecksum: a367c38500c2c97abd74b624b12807d5
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: previous-versions/sync-for-expenses-version-1
   installationURL: https://github.com/codatio/client-sdk-go/previous-versions/sync-for-expenses-version-1
   published: true
 features:
   go:
-    constsAndDefaults: 0.1.4
-    core: 3.4.4
+    additionalDependencies: 0.1.0
+    constsAndDefaults: 0.1.6
+    core: 3.5.8
     decimal: 0.1.0
+    defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
+    envVarSecurityUsage: 0.3.1
     examples: 2.81.3
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.10
+    globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
-    nameOverrides: 2.81.1
-    responseFormat: 0.1.0
-    retries: 2.82.2
+    intellisenseMarkdownSupport: 0.1.0
+    nameOverrides: 2.81.2
+    nullables: 0.1.0
+    responseFormat: 0.1.2
+    retries: 2.83.0
+    sdkHooks: 0.1.0
+    serverEventsSentinels: 0.1.0
+    uploadStreams: 0.1.0
     webhooks: 1.0.0
 generatedFiles:
-  - companies.go
-  - connections.go
-  - configuration.go
-  - expenses.go
-  - mappingoptions.go
-  - sync.go
-  - syncstatus.go
-  - transactionstatus.go
+  - .gitattributes
+  - /pkg/models/operations/createcompany.go
+  - /pkg/models/operations/createconnection.go
+  - /pkg/models/operations/createexpensedataset.go
+  - /pkg/models/operations/createpartnerexpenseconnection.go
+  - /pkg/models/operations/deletecompany.go
+  - /pkg/models/operations/deleteconnection.go
+  - /pkg/models/operations/getcompany.go
+  - /pkg/models/operations/getcompanyconfiguration.go
+  - /pkg/models/operations/getconnection.go
+  - /pkg/models/operations/getlastsuccessfulsync.go
+  - /pkg/models/operations/getlatestsync.go
+  - /pkg/models/operations/getmappingoptions.go
+  - /pkg/models/operations/getsyncbyid.go
+  - /pkg/models/operations/getsynctransaction.go
+  - /pkg/models/operations/initiatesync.go
+  - /pkg/models/operations/listcompanies.go
+  - /pkg/models/operations/listconnections.go
+  - /pkg/models/operations/listsyncs.go
+  - /pkg/models/operations/listsynctransactions.go
+  - /pkg/models/operations/savecompanyconfiguration.go
+  - /pkg/models/operations/unlinkconnection.go
+  - /pkg/models/operations/updatecompany.go
+  - /pkg/models/operations/updateexpensedataset.go
+  - /pkg/models/operations/uploadattachment.go
+  - /pkg/models/sdkerrors/errormessage.go
+  - /pkg/models/shared/accountmappinginfo.go
+  - /pkg/models/shared/attachment.go
+  - /pkg/models/shared/attachmentupload.go
+  - /pkg/models/shared/bankaccount.go
+  - /pkg/models/shared/codatfile.go
+  - /pkg/models/shared/companies.go
+  - /pkg/models/shared/company.go
+  - /pkg/models/shared/companyconfiguration.go
+  - /pkg/models/shared/companyrequestbody.go
+  - /pkg/models/shared/companysyncstatus.go
+  - /pkg/models/shared/connection.go
+  - /pkg/models/shared/connections.go
+  - /pkg/models/shared/contactref.go
+  - /pkg/models/shared/createexpenserequest.go
+  - /pkg/models/shared/createexpenseresponse.go
+  - /pkg/models/shared/customer.go
+  - /pkg/models/shared/dataconnectionerror.go
+  - /pkg/models/shared/dataconnectionstatus.go
+  - /pkg/models/shared/errorvalidation.go
+  - /pkg/models/shared/errorvalidationitem.go
+  - /pkg/models/shared/expensetransaction.go
+  - /pkg/models/shared/expensetransactionline.go
+  - /pkg/models/shared/halref.go
+  - /pkg/models/shared/integrationtype.go
+  - /pkg/models/shared/links.go
+  - /pkg/models/shared/mappingoptions.go
+  - /pkg/models/shared/postsync.go
+  - /pkg/models/shared/recordref.go
+  - /pkg/models/shared/security.go
+  - /pkg/models/shared/supplier.go
+  - /pkg/models/shared/synccompletewebhook.go
+  - /pkg/models/shared/synccompletewebhookdata.go
+  - /pkg/models/shared/syncfailedwebhook.go
+  - /pkg/models/shared/syncfailedwebhookdata.go
+  - /pkg/models/shared/taxratemappinginfo.go
+  - /pkg/models/shared/trackingcategorymappinginfo.go
+  - /pkg/models/shared/transactionmetadata.go
+  - /pkg/models/shared/transactionmetadatalist.go
+  - /pkg/models/shared/transactionstatus.go
+  - /pkg/models/shared/updateexpenserequest.go
+  - /pkg/models/webhooks/synccomplete.go
+  - /pkg/models/webhooks/syncfailed.go
+  - CONTRIBUTING.md
+  - USAGE.md
   - codatsyncexpenses.go
+  - companies.go
+  - configuration.go
+  - connections.go
+  - docs/pkg/models/operations/createcompanyresponse.md
+  - docs/pkg/models/operations/createconnectionrequest.md
+  - docs/pkg/models/operations/createconnectionrequestbody.md
+  - docs/pkg/models/operations/createconnectionresponse.md
+  - docs/pkg/models/operations/createexpensedatasetrequest.md
+  - docs/pkg/models/operations/createexpensedatasetresponse.md
+  - docs/pkg/models/operations/createpartnerexpenseconnectionrequest.md
+  - docs/pkg/models/operations/createpartnerexpenseconnectionresponse.md
+  - docs/pkg/models/operations/deletecompanyrequest.md
+  - docs/pkg/models/operations/deletecompanyresponse.md
+  - docs/pkg/models/operations/deleteconnectionrequest.md
+  - docs/pkg/models/operations/deleteconnectionresponse.md
+  - docs/pkg/models/operations/getcompanyconfigurationrequest.md
+  - docs/pkg/models/operations/getcompanyconfigurationresponse.md
+  - docs/pkg/models/operations/getcompanyrequest.md
+  - docs/pkg/models/operations/getcompanyresponse.md
+  - docs/pkg/models/operations/getconnectionrequest.md
+  - docs/pkg/models/operations/getconnectionresponse.md
+  - docs/pkg/models/operations/getlastsuccessfulsyncrequest.md
+  - docs/pkg/models/operations/getlastsuccessfulsyncresponse.md
+  - docs/pkg/models/operations/getlatestsyncrequest.md
+  - docs/pkg/models/operations/getlatestsyncresponse.md
+  - docs/pkg/models/operations/getmappingoptionsrequest.md
+  - docs/pkg/models/operations/getmappingoptionsresponse.md
+  - docs/pkg/models/operations/getsyncbyidrequest.md
+  - docs/pkg/models/operations/getsyncbyidresponse.md
+  - docs/pkg/models/operations/getsynctransactionrequest.md
+  - docs/pkg/models/operations/getsynctransactionresponse.md
+  - docs/pkg/models/operations/initiatesyncrequest.md
+  - docs/pkg/models/operations/initiatesyncresponse.md
+  - docs/pkg/models/operations/listcompaniesrequest.md
+  - docs/pkg/models/operations/listcompaniesresponse.md
+  - docs/pkg/models/operations/listconnectionsrequest.md
+  - docs/pkg/models/operations/listconnectionsresponse.md
+  - docs/pkg/models/operations/listsyncsrequest.md
+  - docs/pkg/models/operations/listsyncsresponse.md
+  - docs/pkg/models/operations/listsynctransactionsrequest.md
+  - docs/pkg/models/operations/listsynctransactionsresponse.md
+  - docs/pkg/models/operations/option.md
+  - docs/pkg/models/operations/savecompanyconfigurationrequest.md
+  - docs/pkg/models/operations/savecompanyconfigurationresponse.md
+  - docs/pkg/models/operations/unlinkconnectionrequest.md
+  - docs/pkg/models/operations/unlinkconnectionresponse.md
+  - docs/pkg/models/operations/unlinkconnectionupdateconnection.md
+  - docs/pkg/models/operations/updatecompanyrequest.md
+  - docs/pkg/models/operations/updatecompanyresponse.md
+  - docs/pkg/models/operations/updateexpensedatasetrequest.md
+  - docs/pkg/models/operations/updateexpensedatasetresponse.md
+  - docs/pkg/models/operations/updateexpensedatasetresponsebody.md
+  - docs/pkg/models/operations/uploadattachmentrequest.md
+  - docs/pkg/models/operations/uploadattachmentresponse.md
+  - docs/pkg/models/sdkerrors/errormessage.md
+  - docs/pkg/models/shared/accountmappinginfo.md
+  - docs/pkg/models/shared/accounttype.md
+  - docs/pkg/models/shared/attachment.md
+  - docs/pkg/models/shared/attachmentupload.md
+  - docs/pkg/models/shared/bankaccount.md
+  - docs/pkg/models/shared/codatfile.md
+  - docs/pkg/models/shared/companies.md
+  - docs/pkg/models/shared/company.md
+  - docs/pkg/models/shared/companyconfiguration.md
+  - docs/pkg/models/shared/companyrequestbody.md
+  - docs/pkg/models/shared/companysyncstatus.md
+  - docs/pkg/models/shared/connection.md
+  - docs/pkg/models/shared/connections.md
+  - docs/pkg/models/shared/contactref.md
+  - docs/pkg/models/shared/contacttype.md
+  - docs/pkg/models/shared/createexpenserequest.md
+  - docs/pkg/models/shared/createexpenseresponse.md
+  - docs/pkg/models/shared/customer.md
+  - docs/pkg/models/shared/dataconnectionerror.md
+  - docs/pkg/models/shared/dataconnectionstatus.md
+  - docs/pkg/models/shared/errorstatus.md
+  - docs/pkg/models/shared/errorvalidation.md
+  - docs/pkg/models/shared/errorvalidationitem.md
+  - docs/pkg/models/shared/expensetransaction.md
+  - docs/pkg/models/shared/expensetransactionline.md
+  - docs/pkg/models/shared/groupreference.md
+  - docs/pkg/models/shared/halref.md
+  - docs/pkg/models/shared/integrationtype.md
+  - docs/pkg/models/shared/links.md
+  - docs/pkg/models/shared/mappingoptions.md
+  - docs/pkg/models/shared/postsync.md
+  - docs/pkg/models/shared/recordref.md
+  - docs/pkg/models/shared/security.md
+  - docs/pkg/models/shared/sourcetype.md
+  - docs/pkg/models/shared/supplier.md
+  - docs/pkg/models/shared/synccompletewebhook.md
+  - docs/pkg/models/shared/synccompletewebhookdata.md
+  - docs/pkg/models/shared/syncfailedwebhook.md
+  - docs/pkg/models/shared/syncfailedwebhookdata.md
+  - docs/pkg/models/shared/tags.md
+  - docs/pkg/models/shared/taxratemappinginfo.md
+  - docs/pkg/models/shared/taxratemappinginfovalidtransactiontypes.md
+  - docs/pkg/models/shared/trackingcategorymappinginfo.md
+  - docs/pkg/models/shared/transactionmetadata.md
+  - docs/pkg/models/shared/transactionmetadatalist.md
+  - docs/pkg/models/shared/transactionstatus.md
+  - docs/pkg/models/shared/type.md
+  - docs/pkg/models/shared/updateexpenserequest.md
+  - docs/pkg/models/shared/validtransactiontypes.md
+  - docs/pkg/models/webhooks/synccompleteresponse.md
+  - docs/pkg/models/webhooks/syncfailedresponse.md
+  - docs/sdks/codatsyncexpenses/README.md
+  - docs/sdks/companies/README.md
+  - docs/sdks/configuration/README.md
+  - docs/sdks/connections/README.md
+  - docs/sdks/expenses/README.md
+  - docs/sdks/mappingoptions/README.md
+  - docs/sdks/sync/README.md
+  - docs/sdks/syncstatus/README.md
+  - docs/sdks/transactionstatus/README.md
+  - expenses.go
   - go.mod
+  - internal/hooks/hooks.go
+  - mappingoptions.go
+  - pkg/models/operations/options.go
   - pkg/models/sdkerrors/sdkerror.go
+  - pkg/retry/config.go
   - pkg/types/bigint.go
   - pkg/types/date.go
   - pkg/types/datetime.go
@@ -51,191 +242,440 @@ generatedFiles:
   - pkg/utils/retries.go
   - pkg/utils/security.go
   - pkg/utils/utils.go
-  - /pkg/models/operations/createcompany.go
-  - /pkg/models/operations/deletecompany.go
-  - /pkg/models/operations/getcompany.go
-  - /pkg/models/operations/listcompanies.go
-  - /pkg/models/operations/updatecompany.go
-  - /pkg/models/operations/createconnection.go
-  - /pkg/models/operations/createpartnerexpenseconnection.go
-  - /pkg/models/operations/deleteconnection.go
-  - /pkg/models/operations/getconnection.go
-  - /pkg/models/operations/listconnections.go
-  - /pkg/models/operations/unlinkconnection.go
-  - /pkg/models/operations/getcompanyconfiguration.go
-  - /pkg/models/operations/savecompanyconfiguration.go
-  - /pkg/models/operations/createexpensedataset.go
-  - /pkg/models/operations/updateexpensedataset.go
-  - /pkg/models/operations/uploadattachment.go
-  - /pkg/models/operations/getmappingoptions.go
-  - /pkg/models/operations/initiatesync.go
-  - /pkg/models/operations/getlastsuccessfulsync.go
-  - /pkg/models/operations/getlatestsync.go
-  - /pkg/models/operations/getsyncbyid.go
-  - /pkg/models/operations/listsyncs.go
-  - /pkg/models/operations/getsynctransaction.go
-  - /pkg/models/operations/listsynctransactions.go
-  - /pkg/models/shared/company.go
-  - /pkg/models/shared/connection.go
-  - /pkg/models/shared/dataconnectionstatus.go
-  - /pkg/models/shared/dataconnectionerror.go
-  - /pkg/models/shared/errorvalidation.go
-  - /pkg/models/shared/errorvalidationitem.go
-  - /pkg/models/shared/companyrequestbody.go
-  - /pkg/models/shared/items.go
-  - /pkg/models/shared/companies.go
-  - /pkg/models/shared/links.go
-  - /pkg/models/shared/halref.go
-  - /pkg/models/shared/connections.go
-  - /pkg/models/shared/companyconfiguration.go
-  - /pkg/models/shared/supplier.go
-  - /pkg/models/shared/customer.go
-  - /pkg/models/shared/bankaccount.go
-  - /pkg/models/shared/createexpenseresponse.go
-  - /pkg/models/shared/createexpenserequest.go
-  - /pkg/models/shared/expensetransaction.go
-  - /pkg/models/shared/expensetransactionline.go
-  - /pkg/models/shared/recordref.go
-  - /pkg/models/shared/contactref.go
-  - /pkg/models/shared/updateexpenserequest.go
-  - /pkg/models/shared/attachment.go
-  - /pkg/models/shared/attachmentupload.go
-  - /pkg/models/shared/codatfile.go
-  - /pkg/models/shared/mappingoptions.go
-  - /pkg/models/shared/trackingcategorymappinginfo.go
-  - /pkg/models/shared/taxratemappinginfo.go
-  - /pkg/models/shared/accountmappinginfo.go
-  - /pkg/models/shared/postsync.go
-  - /pkg/models/shared/companysyncstatus.go
-  - /pkg/models/shared/transactionmetadata.go
-  - /pkg/models/shared/transactionstatus.go
-  - /pkg/models/shared/integrationtype.go
-  - /pkg/models/shared/transactionmetadatalist.go
-  - /pkg/models/shared/security.go
-  - /pkg/models/shared/synccompletewebhook.go
-  - /pkg/models/shared/synccompletewebhookdata.go
-  - /pkg/models/shared/syncfailedwebhook.go
-  - /pkg/models/shared/syncfailedwebhookdata.go
-  - /pkg/models/shared/syncstartedwebhook.go
-  - /pkg/models/sdkerrors/errormessage.go
-  - /pkg/models/webhooks/synccomplete.go
-  - /pkg/models/webhooks/syncfailed.go
-  - /pkg/models/webhooks/syncstarted.go
-  - docs/pkg/models/operations/createcompanyresponse.md
-  - docs/pkg/models/operations/deletecompanyrequest.md
-  - docs/pkg/models/operations/deletecompanyresponse.md
-  - docs/pkg/models/operations/getcompanyrequest.md
-  - docs/pkg/models/operations/getcompanyresponse.md
-  - docs/pkg/models/operations/listcompaniesrequest.md
-  - docs/pkg/models/operations/listcompaniesresponse.md
-  - docs/pkg/models/operations/updatecompanyrequest.md
-  - docs/pkg/models/operations/updatecompanyresponse.md
-  - docs/pkg/models/operations/createconnectionrequestbody.md
-  - docs/pkg/models/operations/createconnectionrequest.md
-  - docs/pkg/models/operations/createconnectionresponse.md
-  - docs/pkg/models/operations/createpartnerexpenseconnectionrequest.md
-  - docs/pkg/models/operations/createpartnerexpenseconnectionresponse.md
-  - docs/pkg/models/operations/deleteconnectionrequest.md
-  - docs/pkg/models/operations/deleteconnectionresponse.md
-  - docs/pkg/models/operations/getconnectionrequest.md
-  - docs/pkg/models/operations/getconnectionresponse.md
-  - docs/pkg/models/operations/listconnectionsrequest.md
-  - docs/pkg/models/operations/listconnectionsresponse.md
-  - docs/pkg/models/operations/unlinkconnectionupdateconnection.md
-  - docs/pkg/models/operations/unlinkconnectionrequest.md
-  - docs/pkg/models/operations/unlinkconnectionresponse.md
-  - docs/pkg/models/operations/getcompanyconfigurationrequest.md
-  - docs/pkg/models/operations/getcompanyconfigurationresponse.md
-  - docs/pkg/models/operations/savecompanyconfigurationrequest.md
-  - docs/pkg/models/operations/savecompanyconfigurationresponse.md
-  - docs/pkg/models/operations/createexpensedatasetrequest.md
-  - docs/pkg/models/operations/createexpensedatasetresponse.md
-  - docs/pkg/models/operations/updateexpensedatasetrequest.md
-  - docs/pkg/models/operations/updateexpensedatasetresponsebody.md
-  - docs/pkg/models/operations/updateexpensedatasetresponse.md
-  - docs/pkg/models/operations/uploadattachmentrequest.md
-  - docs/pkg/models/operations/uploadattachmentresponse.md
-  - docs/pkg/models/operations/getmappingoptionsrequest.md
-  - docs/pkg/models/operations/getmappingoptionsresponse.md
-  - docs/pkg/models/operations/initiatesyncrequest.md
-  - docs/pkg/models/operations/initiatesyncresponse.md
-  - docs/pkg/models/operations/getlastsuccessfulsyncrequest.md
-  - docs/pkg/models/operations/getlastsuccessfulsyncresponse.md
-  - docs/pkg/models/operations/getlatestsyncrequest.md
-  - docs/pkg/models/operations/getlatestsyncresponse.md
-  - docs/pkg/models/operations/getsyncbyidrequest.md
-  - docs/pkg/models/operations/getsyncbyidresponse.md
-  - docs/pkg/models/operations/listsyncsrequest.md
-  - docs/pkg/models/operations/listsyncsresponse.md
-  - docs/pkg/models/operations/getsynctransactionrequest.md
-  - docs/pkg/models/operations/getsynctransactionresponse.md
-  - docs/pkg/models/operations/listsynctransactionsrequest.md
-  - docs/pkg/models/operations/listsynctransactionsresponse.md
-  - docs/pkg/models/shared/groupreference.md
-  - docs/pkg/models/shared/company.md
-  - docs/pkg/models/shared/sourcetype.md
-  - docs/pkg/models/shared/connection.md
-  - docs/pkg/models/shared/dataconnectionstatus.md
-  - docs/pkg/models/shared/dataconnectionerror.md
-  - docs/pkg/models/shared/errorvalidation.md
-  - docs/pkg/models/shared/errorvalidationitem.md
-  - docs/pkg/models/shared/companyrequestbody.md
-  - docs/pkg/models/shared/items.md
-  - docs/pkg/models/shared/companies.md
-  - docs/pkg/models/shared/links.md
-  - docs/pkg/models/shared/halref.md
-  - docs/pkg/models/shared/connections.md
-  - docs/pkg/models/shared/companyconfiguration.md
-  - docs/pkg/models/shared/supplier.md
-  - docs/pkg/models/shared/customer.md
-  - docs/pkg/models/shared/bankaccount.md
-  - docs/pkg/models/shared/createexpenseresponse.md
-  - docs/pkg/models/shared/createexpenserequest.md
-  - docs/pkg/models/shared/type.md
-  - docs/pkg/models/shared/expensetransaction.md
-  - docs/pkg/models/shared/expensetransactionline.md
-  - docs/pkg/models/shared/recordref.md
-  - docs/pkg/models/shared/contacttype.md
-  - docs/pkg/models/shared/contactref.md
-  - docs/pkg/models/shared/updateexpenserequest.md
-  - docs/pkg/models/shared/attachment.md
-  - docs/pkg/models/shared/attachmentupload.md
-  - docs/pkg/models/shared/codatfile.md
-  - docs/pkg/models/shared/mappingoptions.md
-  - docs/pkg/models/shared/trackingcategorymappinginfo.md
-  - docs/pkg/models/shared/taxratemappinginfovalidtransactiontypes.md
-  - docs/pkg/models/shared/taxratemappinginfo.md
-  - docs/pkg/models/shared/accounttype.md
-  - docs/pkg/models/shared/validtransactiontypes.md
-  - docs/pkg/models/shared/accountmappinginfo.md
-  - docs/pkg/models/shared/postsync.md
-  - docs/pkg/models/shared/companysyncstatus.md
-  - docs/pkg/models/shared/transactionmetadata.md
-  - docs/pkg/models/shared/transactionstatus.md
-  - docs/pkg/models/shared/integrationtype.md
-  - docs/pkg/models/shared/transactionmetadatalist.md
-  - docs/pkg/models/shared/security.md
-  - docs/pkg/models/shared/synccompletewebhook.md
-  - docs/pkg/models/shared/synccompletewebhookdata.md
-  - docs/pkg/models/shared/syncfailedwebhook.md
-  - docs/pkg/models/shared/syncfailedwebhookdata.md
-  - docs/pkg/models/shared/data.md
-  - docs/pkg/models/shared/syncstartedwebhook.md
-  - docs/pkg/models/sdkerrors/errormessage.md
-  - docs/pkg/models/webhooks/synccompleteresponse.md
-  - docs/pkg/models/webhooks/syncfailedresponse.md
-  - docs/pkg/models/webhooks/syncstartedresponse.md
-  - docs/sdks/codatsyncexpenses/README.md
-  - docs/pkg/models/operations/option.md
-  - docs/sdks/companies/README.md
-  - docs/sdks/connections/README.md
-  - docs/sdks/configuration/README.md
-  - docs/sdks/expenses/README.md
-  - docs/sdks/mappingoptions/README.md
-  - docs/sdks/sync/README.md
-  - docs/sdks/syncstatus/README.md
-  - docs/sdks/transactionstatus/README.md
-  - USAGE.md
-  - pkg/models/operations/options.go
-  - .gitattributes
-  - internal/hooks/hooks.go
+  - sync.go
+  - syncstatus.go
+  - transactionstatus.go
+examples:
+  create-company:
+    With no description:
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Technicalium"}
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+        "400": {}
+    With a description:
+      requestBody:
+        application/json: {"description": "Technology services, including web and app design and development", "groups": [], "name": "Technicalium"}
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "Technology services, including web and app design and development", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+        "400": {}
+    With a group:
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [{"id": "d7a6c4b4-dc87-45f6-b803-62f466398680"}], "name": "Technicalium"}
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+        "400": {}
+    Malformed query:
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Bank of Dave"}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  delete-company:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-company:
+    Simple company:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "My First Company", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+    With groups:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "My First Company", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-companies:
+    "":
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [{"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}], "totalResults": 1}
+        "400": {}
+    One company:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Mike Smith", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "dataConnectionErrors": [], "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/3fa85f64-5717-4562-b3fc-2c963f66afa6/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "My Test Company make testing software", "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "lastSync": "2022-01-01T12:30:00.000Z", "name": "My Test Company", "redirect": "https://link.codat.io/company/3fa85f64-5717-4562-b3fc-2c963f66afa6"}], "totalResults": 1}
+    List of Companies:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Joe Bloggs", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "dataConnectionErrors": [], "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/d1568dde-adf6-11ed-afa1-0242ac120002/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "Technology services, including web and app design and development", "id": "d1568dde-adf6-11ed-afa1-0242ac120002", "lastSync": "2022-01-01T12:30:00.000Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/d1568dde-adf6-11ed-afa1-0242ac120002"}, {"created": "2022-01-01T11:30:00Z", "createdByUserName": "Mike Smith", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "dataConnectionErrors": [], "id": "a70bc148-dc21-46b2-a257-d9c58ac15cbb", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/096db70b-78de-4ff0-aa98-299cb5fe17a0/connections/a70bc148-dc21-46b2-a257-d9c58ac15cbb/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "A new digital agency with a passion for creating amazing digital experiences", "id": "096db70b-78de-4ff0-aa98-299cb5fe17a0", "lastSync": "2022-01-01T12:30:00.000Z", "name": "Godata", "redirect": "https://link.codat.io/company/096db70b-78de-4ff0-aa98-299cb5fe17a0"}], "totalResults": 2}
+    Malformed query:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  update-company:
+    Update name:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "New Name"}
+      responses:
+        "200":
+          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}
+        "401": {}
+    Update description:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"description": "Additional documents required", "groups": [], "name": "Same name"}
+      responses:
+        "200":
+          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}
+        "401": {}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Bank of Dave"}
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  create-connection:
+    Connection:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"platformKey": "gbol"}
+      responses:
+        "200":
+          application/json: {"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"platformKey": "gbol"}
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  create-partner-expense-connection:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  delete-connection:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-connection:
+    Connection:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "200":
+          application/json: {"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-connections:
+    "":
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "totalResults": 1}
+        "400": {}
+    Connections:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "200":
+          application/json: {"_links": {"current": {"href": "string"}, "next": {"href": "string"}, "previous": {"href": "string"}, "self": {"href": "string"}}, "pageNumber": 0, "pageSize": 0, "results": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "totalResults": 0}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+          query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
+          orderBy: "-modifiedDate"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
+  unlink-connection:
+    Example:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      requestBody:
+        application/json: {"status": "Unlinked"}
+      responses:
+        "200":
+          application/json: {"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}
+        "401": {}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-company-configuration:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  save-company-configuration:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"bankAccount": {"id": "32"}, "customer": {"id": "142"}, "supplier": {"id": "124"}}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  create-expense-dataset:
+    Payment:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"items": [{"contactRef": {"contactType": "Supplier", "id": "f5244103-5223-4b0a-857f-50566ac86c11"}, "currency": "GBP", "currencyRate": 1.18, "id": "4d7c6929-7770-412b-91bb-44d3bc71d111", "issueDate": "2021-05-21T00:00:00+00:00", "lines": [{"accountRef": {"id": "9aa5b894-1be9-4f97-96cd-ffde90766b3e"}, "netAmount": 110.42, "taxAmount": 14.43, "taxRateRef": {"id": "77a32ee2-60c7-4ab9-917a-bd82e2e43a26"}, "trackingRefs": [{"id": "dde5b35f-5d33-40bd-a34f-ee529f4c785c"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Payment"}]}
+      responses:
+        "200":
+          application/json: {"datasetId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
+        "400": {}
+    Refund:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"items": [{"contactRef": {"contactType": "Supplier", "id": "40e3e57c-2322-4898-966c-ca41adfd23fd"}, "currency": "GBP", "id": "7008d3f2-aeb4-11ed-afa1-0242ac120002", "issueDate": "2023-02-17T00:00:00+00:00", "lines": [{"accountRef": {"id": "42"}, "netAmount": 110.42, "taxAmount": 14.43, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"id": "DEPARTMENT_6"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Refund"}]}
+      responses:
+        "200":
+          application/json: {"datasetId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
+        "400": {}
+    Transfer:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"items": [{"contactRef": {"contactType": "Supplier", "id": "40e3e57c-2322-4898-966c-ca41adfd23fd"}, "currency": "GBP", "id": "979a7ee8-aeb4-11ed-afa1-0242ac120002", "issueDate": "2021-05-21T00:00:00+00:00", "lines": [{"accountRef": {"id": "40e3e57c-2322-4898-966c-ca41adfd23fd"}, "netAmount": 180.93, "taxAmount": 0, "taxRateRef": {"id": "40e3e57c-2322-4898-966c-ca41adfd23fd"}, "trackingRefs": []}], "merchantName": "Amazon UK", "notes": "Credit Card Payment", "type": "TransferIn"}]}
+      responses:
+        "200":
+          application/json: {"datasetId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
+        "400": {}
+    Example 1:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"items": []}
+      responses:
+        "200":
+          application/json: {"datasetId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      requestBody:
+        application/json: {"items": []}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  update-expense-dataset:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          transactionId: "336694d8-2dca-4cb5-a28d-3ccb83e55eee"
+      requestBody:
+        application/json: {"contactRef": {"contactType": "Supplier", "id": "40e3e57c-2322-4898-966c-ca41adfd23fd"}, "currency": "GBP", "issueDate": "2022-06-28T00:00:00.000Z", "lines": [], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "<value>"}
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  upload-attachment:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          syncId: "6fb40d5e-b13e-11ed-afa1-0242ac120002"
+          transactionId: "336694d8-2dca-4cb5-a28d-3ccb83e55eee"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-mapping-options:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  initiate-sync:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-last-successful-sync:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-latest-sync:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-sync-by-id:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          syncId: "6fb40d5e-b13e-11ed-afa1-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-syncs:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  get-sync-transaction:
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          syncId: "6fb40d5e-b13e-11ed-afa1-0242ac120002"
+          transactionId: "336694d8-2dca-4cb5-a28d-3ccb83e55eee"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  list-sync-transactions:
+    Malformed query:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          syncId: "6fb40d5e-b13e-11ed-afa1-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
+    Unresolved property:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          syncId: "6fb40d5e-b13e-11ed-afa1-0242ac120002"
+        query:
+          page: 1
+          pageSize: 100
+      responses:
+        "400":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}

@@ -55,14 +55,17 @@ func main() {
 | `request`                                                                                                  | [operations.GetCompanyConfigurationRequest](../../pkg/models/operations/getcompanyconfigurationrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `opts`                                                                                                     | [][operations.Option](../../pkg/models/operations/option.md)                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
 
-
 ### Response
 
 **[*operations.GetCompanyConfigurationResponse](../../pkg/models/operations/getcompanyconfigurationresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
 | sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+
 
 ## SaveCompanyConfiguration
 
@@ -90,6 +93,17 @@ func main() {
 
     ctx := context.Background()
     res, err := s.Configuration.SaveCompanyConfiguration(ctx, operations.SaveCompanyConfigurationRequest{
+        CompanyConfiguration: &shared.CompanyConfiguration{
+            BankAccount: shared.BankAccount{
+                ID: syncforexpensesversion1.String("32"),
+            },
+            Customer: shared.Customer{
+                ID: syncforexpensesversion1.String("142"),
+            },
+            Supplier: shared.Supplier{
+                ID: syncforexpensesversion1.String("124"),
+            },
+        },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
     if err != nil {
@@ -109,10 +123,12 @@ func main() {
 | `request`                                                                                                    | [operations.SaveCompanyConfigurationRequest](../../pkg/models/operations/savecompanyconfigurationrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
-
 ### Response
 
 **[*operations.SaveCompanyConfigurationResponse](../../pkg/models/operations/savecompanyconfigurationresponse.md), error**
+
+### Errors
+
 | Error Object                    | Status Code                     | Content Type                    |
 | ------------------------------- | ------------------------------- | ------------------------------- |
 | sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |

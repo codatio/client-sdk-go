@@ -54,10 +54,12 @@ func main() {
 | `request`                                                                            | [operations.InitiateSyncRequest](../../pkg/models/operations/initiatesyncrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `opts`                                                                               | [][operations.Option](../../pkg/models/operations/option.md)                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
-
 ### Response
 
 **[*operations.InitiateSyncResponse](../../pkg/models/operations/initiatesyncresponse.md), error**
+
+### Errors
+
 | Error Object                        | Status Code                         | Content Type                        |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |

@@ -54,10 +54,12 @@ func main() {
 | `request`                                                                                      | [operations.GetMappingOptionsRequest](../../pkg/models/operations/getmappingoptionsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `opts`                                                                                         | [][operations.Option](../../pkg/models/operations/option.md)                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
-
 ### Response
 
 **[*operations.GetMappingOptionsResponse](../../pkg/models/operations/getmappingoptionsresponse.md), error**
+
+### Errors
+
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
