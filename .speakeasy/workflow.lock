@@ -44,7 +44,7 @@ sources:
             - main
     files-source:
         sourceNamespace: files-source
-        sourceRevisionDigest: sha256:9fd1d0dd9d47a7e0c657aca1eaa020c3a314ff1ca25b14497f4a6741e341d9a8
+        sourceRevisionDigest: sha256:e174bd31b5c16e6c3cef0c342faf49cbefd06ecbd294e5ce26588c91da5a1b93
         sourceBlobDigest: sha256:95e088645c8a70b6c0d755c6f12a0a24b74eda70dcebccc7a0c2f70fec219d81
         tags:
             - latest
@@ -104,7 +104,7 @@ targets:
     files-library:
         source: files-source
         sourceNamespace: files-source
-        sourceRevisionDigest: sha256:9fd1d0dd9d47a7e0c657aca1eaa020c3a314ff1ca25b14497f4a6741e341d9a8
+        sourceRevisionDigest: sha256:e174bd31b5c16e6c3cef0c342faf49cbefd06ecbd294e5ce26588c91da5a1b93
         sourceBlobDigest: sha256:95e088645c8a70b6c0d755c6f12a0a24b74eda70dcebccc7a0c2f70fec219d81
     lending-library:
         source: lending-source
