@@ -1,6 +1,6 @@
 # ErrorMessage
 
-The request made is not valid.
+Your `query` parameter was not correctly formed
 
 
 ## Fields

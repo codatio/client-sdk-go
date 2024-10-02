@@ -26,10 +26,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -70,11 +70,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Create
 
@@ -91,8 +90,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
 	"log"
 )
@@ -108,11 +107,6 @@ func main() {
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Name: "Technicalium",
         Description: syncforpayables.String("Requested early access to the new financing scheme."),
-        Groups: []shared.GroupReference{
-            shared.GroupReference{
-                ID: syncforpayables.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-            },
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -137,16 +131,14 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 400, 401, 402, 403, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Update
 
 ﻿Use the *Update company* endpoint to update both the name and description of the company. 
-If you use [groups](https://docs.codat.io/sync-for-payables-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/sync-for-payables-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/sync-for-payables-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
 
 A [company](https://docs.codat.io/sync-for-payables-api#/schemas/Company) represents a business sharing access to their data.
 Each company can have multiple [connections](https://docs.codat.io/sync-for-payables-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
@@ -157,10 +149,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -177,11 +169,6 @@ func main() {
         CompanyRequestBody: &shared.CompanyRequestBody{
             Name: "New Name",
             Description: syncforpayables.String("Requested early access to the new financing scheme."),
-            Groups: []shared.GroupReference{
-                shared.GroupReference{
-                    ID: syncforpayables.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-                },
-            },
         },
     })
     if err != nil {
@@ -207,11 +194,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Delete
 
@@ -227,10 +213,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -268,11 +254,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Get
 
@@ -288,10 +273,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -329,7 +314,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

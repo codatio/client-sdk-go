@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 

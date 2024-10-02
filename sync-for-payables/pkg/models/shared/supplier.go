@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -29,7 +29,7 @@ type Supplier struct {
 	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// Default currency the supplier's transactional data is recorded in.
 	DefaultCurrency    *string `json:"defaultCurrency,omitempty"`
-	SourceModifiedDate *One    `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string `json:"sourceModifiedDate,omitempty"`
 }
 
 func (s Supplier) MarshalJSON() ([]byte, error) {
@@ -106,7 +106,7 @@ func (o *Supplier) GetDefaultCurrency() *string {
 	return o.DefaultCurrency
 }
 
-func (o *Supplier) GetSourceModifiedDate() *One {
+func (o *Supplier) GetSourceModifiedDate() *string {
 	if o == nil {
 		return nil
 	}

@@ -24,10 +24,10 @@ Mapping options are a set of bank accounts used to configure the SMB's payables 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -68,11 +68,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Create
 
@@ -86,11 +85,11 @@ The *Create bill payment* endpoint creates a new [bill payment](https://docs.cod
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -105,7 +104,7 @@ func main() {
     res, err := s.BillPayments.Create(ctx, operations.CreateBillPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        BillID: "7110701885",
+        BillID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
         BillPaymentPrototype: &shared.BillPaymentPrototype{
             Amount: types.MustNewDecimalFromString("22"),
             Date: "2022-10-23T00:00:00.000Z",
@@ -139,7 +138,7 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |

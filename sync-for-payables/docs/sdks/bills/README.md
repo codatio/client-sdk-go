@@ -28,10 +28,10 @@ Mapping options are a set of accounts and tax rates used to configure the SMB's 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -72,11 +72,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -92,10 +91,10 @@ By default, the endpoint will return all bills with a status of 'Open' & 'Partia
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -136,11 +135,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## Create
 
@@ -154,11 +152,11 @@ The *Create bill* endpoint creates a new [bill](https://docs.codat.io/sync-for-p
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/types"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -252,11 +250,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## UploadAttachment
 
@@ -270,11 +267,11 @@ The *Upload bill attachment* endpoint uploads an attachment and assigns it again
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"os"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -319,11 +316,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## ListAttachments
 
@@ -337,10 +333,10 @@ The *List bill attachments* endpoint returns a list of attachments available to 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -380,11 +376,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## DownloadAttachment
 
@@ -401,10 +396,10 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
 	"log"
 )
 
@@ -445,7 +440,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
