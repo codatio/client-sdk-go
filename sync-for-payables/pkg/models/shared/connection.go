@@ -118,7 +118,6 @@ type Connection struct {
 	Created              string                `json:"created"`
 	DataConnectionErrors []DataConnectionError `json:"dataConnectionErrors,omitempty"`
 	ConnectionInfo       map[string]string     `json:"connectionInfo,omitempty"`
-	AdditionalProperties any                   `json:"additionalProperties,omitempty"`
 }
 
 func (o *Connection) GetID() string {
@@ -203,11 +202,4 @@ func (o *Connection) GetConnectionInfo() map[string]string {
 		return nil
 	}
 	return o.ConnectionInfo
-}
-
-func (o *Connection) GetAdditionalProperties() any {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }

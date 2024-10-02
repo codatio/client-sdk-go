@@ -7,12 +7,12 @@ import (
 	"context"
 	"fmt"
 	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/sync-for-payables/internal/hooks"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/internal/hooks"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
 	"io"
 	"net/http"
 	"net/url"
@@ -529,7 +529,6 @@ func (s *Companies) Create(ctx context.Context, request *shared.CompanyRequestBo
 
 // Update company
 // Use the *Update company* endpoint to update both the name and description of the company.
-// If you use [groups](https://docs.codat.io/sync-for-payables-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/sync-for-payables-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/sync-for-payables-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
 //
 // A [company](https://docs.codat.io/sync-for-payables-api#/schemas/Company) represents a business sharing access to their data.
 // Each company can have multiple [connections](https://docs.codat.io/sync-for-payables-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.

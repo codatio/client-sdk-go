@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -66,7 +66,7 @@ type Bill struct {
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Amount outstanding on the bill.
 	AmountDue          *decimal.Big `decimal:"number" json:"amountDue,omitempty"`
-	SourceModifiedDate *One         `json:"sourceModifiedDate,omitempty"`
+	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
 }
 
 func (b Bill) MarshalJSON() ([]byte, error) {
@@ -157,7 +157,7 @@ func (o *Bill) GetAmountDue() *decimal.Big {
 	return o.AmountDue
 }
 
-func (o *Bill) GetSourceModifiedDate() *One {
+func (o *Bill) GetSourceModifiedDate() *string {
 	if o == nil {
 		return nil
 	}

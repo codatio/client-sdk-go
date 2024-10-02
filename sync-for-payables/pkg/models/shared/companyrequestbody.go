@@ -2,25 +2,13 @@
 
 package shared
 
-type GroupReference struct {
-	// Unique identifier for the group.
-	ID *string `json:"id,omitempty"`
-}
-
-func (o *GroupReference) GetID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.ID
-}
-
 type CompanyRequestBody struct {
 	// Name of company being connected.
 	Name string `json:"name"`
 	// Additional information about the company. This can be used to store foreign IDs, references, etc.
 	Description *string `json:"description,omitempty"`
-	// Reference to the groups that the company is assigned to.
-	Groups []GroupReference `json:"groups,omitempty"`
+	// A collection of user-defined key-value pairs that store custom metadata against the company.
+	Tags *Tags `json:"tags,omitempty"`
 }
 
 func (o *CompanyRequestBody) GetName() string {
@@ -37,9 +25,9 @@ func (o *CompanyRequestBody) GetDescription() *string {
 	return o.Description
 }
 
-func (o *CompanyRequestBody) GetGroups() []GroupReference {
+func (o *CompanyRequestBody) GetTags() *Tags {
 	if o == nil {
 		return nil
 	}
-	return o.Groups
+	return o.Tags
 }

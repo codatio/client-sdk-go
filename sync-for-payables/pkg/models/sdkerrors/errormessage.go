@@ -4,10 +4,10 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/sync-for-payables/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
 )
 
-// ErrorMessage - The request made is not valid.
+// ErrorMessage - Your `query` parameter was not correctly formed
 type ErrorMessage struct {
 	// The HTTP status code returned by the error.
 	StatusCode *int64 `json:"statusCode,omitempty"`
