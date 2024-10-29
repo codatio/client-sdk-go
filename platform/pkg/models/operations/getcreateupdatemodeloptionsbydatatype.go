@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 	"net/http"
 )
 
@@ -12,7 +12,7 @@ type GetCreateUpdateModelOptionsByDataTypeRequest struct {
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 	// Unique identifier for a connection.
 	ConnectionID string `pathParam:"style=simple,explode=false,name=connectionId"`
-	// The key of a Codat data type
+	// The key of a Codat data type.
 	DataType shared.SchemaDataType `pathParam:"style=simple,explode=false,name=dataType"`
 }
 

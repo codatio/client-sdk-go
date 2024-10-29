@@ -7,11 +7,72 @@ Create and manage your SMB users' companies.
 
 ### Available Operations
 
+* [AddProduct](#addproduct) - Add product
 * [Create](#create) - Create company
 * [Delete](#delete) - Delete a company
 * [Get](#get) - Get company
 * [List](#list) - List companies
+* [RemoveProduct](#removeproduct) - Remove product
 * [Update](#update) - Update company
+
+## AddProduct
+
+Use the *Add product* endpoint to enable a product for the company specified by `companyId`.
+
+> Note: This feature is currently in alpha and available only to participants in the development program.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"context"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
+	"log"
+)
+
+func main() {
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Companies.AddProduct(ctx, operations.AddProductRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ProductIdentifier: "lending",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [operations.AddProductRequest](../../pkg/models/operations/addproductrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][operations.Option](../../pkg/models/operations/option.md)                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[*operations.AddProductResponse](../../pkg/models/operations/addproductresponse.md), error**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Create
 
@@ -28,8 +89,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
 	"log"
 )
@@ -44,11 +105,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: platform.String("Requested early access to the new financing scheme."),
-        Groups: []shared.GroupRef{
-            shared.GroupRef{
-                ID: platform.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-            },
-        },
         Name: "Technicalium",
     })
     if err != nil {
@@ -74,11 +130,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 400, 401, 402, 403, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Delete
 
@@ -94,10 +149,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -135,11 +190,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Get
 
@@ -155,10 +209,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -196,11 +250,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## List
 
@@ -215,10 +268,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -259,16 +312,73 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
+## RemoveProduct
+
+Use the *Remove product* endpoint to disable a product for the company specified by `companyId`.
+
+> Note: This feature is currently in alpha and available only to participants in the development program.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"context"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
+	"log"
+)
+
+func main() {
+    s := platform.New(
+        platform.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Companies.RemoveProduct(ctx, operations.RemoveProductRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ProductIdentifier: "expenses",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [operations.RemoveProductRequest](../../pkg/models/operations/removeproductrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+### Response
+
+**[*operations.RemoveProductResponse](../../pkg/models/operations/removeproductresponse.md), error**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Update
 
 ﻿Use the *Update company* endpoint to update both the name and description of the company. 
-If you use [groups](https://docs.codat.io/platform-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/platform-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/platform-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
 
 A [company](https://docs.codat.io/platform-api#/schemas/Company) represents a business sharing access to their data.
 Each company can have multiple [connections](https://docs.codat.io/platform-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
@@ -279,10 +389,10 @@ Each company can have multiple [connections](https://docs.codat.io/platform-api#
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -297,11 +407,6 @@ func main() {
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
             Description: platform.String("Requested early access to the new financing scheme."),
-            Groups: []shared.GroupRef{
-                shared.GroupRef{
-                    ID: platform.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-                },
-            },
             Name: "New Name",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -329,7 +434,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

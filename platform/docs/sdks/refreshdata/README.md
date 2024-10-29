@@ -27,10 +27,10 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -68,11 +68,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## ByDataType
 
@@ -86,10 +85,10 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -128,11 +127,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Get
 
@@ -144,10 +142,10 @@ Get the state of each data type for a company
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -185,11 +183,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## GetPullOperation
 
@@ -201,10 +198,10 @@ Retrieve information about a single dataset or pull operation.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -243,11 +240,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## ListPullOperations
 
@@ -259,10 +255,10 @@ Gets the pull operation history (datasets) for a given company.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -304,7 +300,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

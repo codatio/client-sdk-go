@@ -24,7 +24,6 @@ These end points cover creating and managing your companies, data connections, a
 | Companies | Create and manage your SMB users' companies. |
 | Connections | Create new and manage existing data connections for a company. |
 | Connection management | Configure connection management UI and retrieve access tokens for authentication. |
-| Groups | Define and manage sets of companies based on a chosen characteristic. |
 | Webhooks | Create and manage webhooks that listen to Codat's events. |
 | Integrations | Get a list of integrations supported by Codat and their logos. |
 | Refresh data | Initiate data refreshes, view pull status and history. |
@@ -46,7 +45,6 @@ These end points cover creating and managing your companies, data connections, a
 * [Server Selection](#server-selection)
 * [Custom HTTP Client](#custom-http-client)
 * [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -69,8 +67,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 	"log"
 )
 
@@ -105,10 +103,12 @@ func main() {
 
 ### [Companies](docs/sdks/companies/README.md)
 
+* [AddProduct](docs/sdks/companies/README.md#addproduct) - Add product
 * [Create](docs/sdks/companies/README.md#create) - Create company
 * [Delete](docs/sdks/companies/README.md#delete) - Delete a company
 * [Get](docs/sdks/companies/README.md#get) - Get company
 * [List](docs/sdks/companies/README.md#list) - List companies
+* [RemoveProduct](docs/sdks/companies/README.md#removeproduct) - Remove product
 * [Update](docs/sdks/companies/README.md#update) - Update company
 
 ### [ConnectionManagement](docs/sdks/connectionmanagement/README.md)
@@ -135,13 +135,6 @@ func main() {
 * [GetConfiguration](docs/sdks/customdatatype/README.md#getconfiguration) - Get custom data configuration
 * [List](docs/sdks/customdatatype/README.md#list) - List custom data type records
 * [Refresh](docs/sdks/customdatatype/README.md#refresh) - Refresh custom data type
-
-### [Groups](docs/sdks/groups/README.md)
-
-* [AddCompany](docs/sdks/groups/README.md#addcompany) - Add company
-* [Create](docs/sdks/groups/README.md#create) - Create group
-* [List](docs/sdks/groups/README.md#list) - List groups
-* [RemoveCompany](docs/sdks/groups/README.md#removecompany) - Remove company
 
 ### [Integrations](docs/sdks/integrations/README.md)
 
@@ -180,11 +173,11 @@ func main() {
 
 ### [Webhooks](docs/sdks/webhooks/README.md)
 
-* [~~Create~~](docs/sdks/webhooks/README.md#create) - Create webhook :warning: **Deprecated**
+* [~~Create~~](docs/sdks/webhooks/README.md#create) - Create webhook (legacy) :warning: **Deprecated**
 * [CreateConsumer](docs/sdks/webhooks/README.md#createconsumer) - Create webhook consumer
 * [DeleteConsumer](docs/sdks/webhooks/README.md#deleteconsumer) - Delete webhook consumer
-* [~~Get~~](docs/sdks/webhooks/README.md#get) - Get webhook :warning: **Deprecated**
-* [~~List~~](docs/sdks/webhooks/README.md#list) - List webhooks :warning: **Deprecated**
+* [~~Get~~](docs/sdks/webhooks/README.md#get) - Get webhook (legacy) :warning: **Deprecated**
+* [~~List~~](docs/sdks/webhooks/README.md#list) - List webhooks (legacy) :warning: **Deprecated**
 * [ListConsumers](docs/sdks/webhooks/README.md#listconsumers) - List webhook consumers
 
 </details>
@@ -193,12 +186,6 @@ func main() {
 
 
 
-
-<!-- Start Special Types [types] -->
-## Special Types
-
-
-<!-- End Special Types [types] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
@@ -211,9 +198,9 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/retry"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -255,9 +242,9 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/retry"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
 	"log"
 )
 
@@ -297,12 +284,16 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `CreateAPIKey` function may return the following errors:
+
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ### Example
 
@@ -312,9 +303,9 @@ package main
 import (
 	"context"
 	"errors"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 	"log"
 )
 
@@ -366,8 +357,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 	"log"
 )
 
@@ -402,8 +393,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 	"log"
 )
 
@@ -476,8 +467,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 	"log"
 )
 

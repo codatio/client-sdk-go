@@ -2,13 +2,30 @@
 
 package shared
 
+// CompanyReferenceLinks - A collection of links for the company.
+type CompanyReferenceLinks struct {
+	// Link to the company page in the portal.
+	Portal *string `json:"portal,omitempty"`
+}
+
+func (o *CompanyReferenceLinks) GetPortal() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Portal
+}
+
 type CompanyReference struct {
 	// Additional information about the company. This can be used to store foreign IDs, references, etc.
 	Description *string `json:"description,omitempty"`
 	// Unique identifier for your SMB in Codat.
 	ID *string `json:"id,omitempty"`
+	// A collection of links for the company.
+	Links *CompanyReferenceLinks `json:"links,omitempty"`
 	// The name of the company
 	Name *string `json:"name,omitempty"`
+	// A collection of user-defined key-value pairs that store custom metadata against the company.
+	Tags map[string]string `json:"tags,omitempty"`
 }
 
 func (o *CompanyReference) GetDescription() *string {
@@ -25,9 +42,23 @@ func (o *CompanyReference) GetID() *string {
 	return o.ID
 }
 
+func (o *CompanyReference) GetLinks() *CompanyReferenceLinks {
+	if o == nil {
+		return nil
+	}
+	return o.Links
+}
+
 func (o *CompanyReference) GetName() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Name
+}
+
+func (o *CompanyReference) GetTags() map[string]string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
 }

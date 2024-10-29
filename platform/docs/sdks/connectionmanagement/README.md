@@ -21,10 +21,10 @@ The embeddable [Connections SDK](https://docs.codat.io/auth-flow/optimize/connec
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -62,7 +62,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

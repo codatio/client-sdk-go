@@ -6,28 +6,28 @@ import (
 	"net/http"
 )
 
-type RemoveCompanyFromGroupRequest struct {
+type RemoveProductRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
-	// Unique identifier for the group.
-	GroupID string `pathParam:"style=simple,explode=false,name=groupId"`
+	// Human-readable product identifier for a product.
+	ProductIdentifier string `pathParam:"style=simple,explode=false,name=productIdentifier"`
 }
 
-func (o *RemoveCompanyFromGroupRequest) GetCompanyID() string {
+func (o *RemoveProductRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-func (o *RemoveCompanyFromGroupRequest) GetGroupID() string {
+func (o *RemoveProductRequest) GetProductIdentifier() string {
 	if o == nil {
 		return ""
 	}
-	return o.GroupID
+	return o.ProductIdentifier
 }
 
-type RemoveCompanyFromGroupResponse struct {
+type RemoveProductResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -36,21 +36,21 @@ type RemoveCompanyFromGroupResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *RemoveCompanyFromGroupResponse) GetContentType() string {
+func (o *RemoveProductResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *RemoveCompanyFromGroupResponse) GetStatusCode() int {
+func (o *RemoveProductResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *RemoveCompanyFromGroupResponse) GetRawResponse() *http.Response {
+func (o *RemoveProductResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

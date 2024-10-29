@@ -13,7 +13,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

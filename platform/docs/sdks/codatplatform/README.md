@@ -17,7 +17,6 @@ These end points cover creating and managing your companies, data connections, a
 | Companies | Create and manage your SMB users' companies. |
 | Connections | Create new and manage existing data connections for a company. |
 | Connection management | Configure connection management UI and retrieve access tokens for authentication. |
-| Groups | Define and manage sets of companies based on a chosen characteristic. |
 | Webhooks | Create and manage webhooks that listen to Codat's events. |
 | Integrations | Get a list of integrations supported by Codat and their logos. |
 | Refresh data | Initiate data refreshes, view pull status and history. |
