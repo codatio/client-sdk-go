@@ -32,10 +32,10 @@ A [custom data type](https://docs.codat.io/using-the-api/custom-data) is an addi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -91,11 +91,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## GetConfiguration
 
@@ -109,10 +108,10 @@ A [custom data type](https://docs.codat.io/using-the-api/custom-data) is an addi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -151,11 +150,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## List
 
@@ -169,10 +167,10 @@ A [custom data type](https://docs.codat.io/using-the-api/custom-data) is an addi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -214,11 +212,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,429,451,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 429, 451, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## Refresh
 
@@ -230,10 +227,10 @@ The *Refresh custom data type* endpoint refreshes the specified custom data type
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v3"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -273,7 +270,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,429,451,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 429, 451, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

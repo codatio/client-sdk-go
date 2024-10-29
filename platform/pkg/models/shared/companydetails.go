@@ -2,10 +2,6 @@
 
 package shared
 
-// Tags - A collection of user-defined key-value pairs that store custom metadata against the company.
-type Tags struct {
-}
-
 type CompanyDetails struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
@@ -55,10 +51,12 @@ type CompanyDetails struct {
 	LastSync *string `json:"lastSync,omitempty"`
 	// The name of the company
 	Name string `json:"name"`
+	// An array of products that are currently enabled for the company.
+	Products []string `json:"products,omitempty"`
 	// The `redirect` [Link URL](https://docs.codat.io/auth-flow/authorize-hosted-link) enabling the customer to start their auth flow journey for the company.
 	Redirect string `json:"redirect"`
 	// A collection of user-defined key-value pairs that store custom metadata against the company.
-	Tags *Tags `json:"tags,omitempty"`
+	Tags map[string]string `json:"tags,omitempty"`
 }
 
 func (o *CompanyDetails) GetCreated() *string {
@@ -103,6 +101,13 @@ func (o *CompanyDetails) GetName() string {
 	return o.Name
 }
 
+func (o *CompanyDetails) GetProducts() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Products
+}
+
 func (o *CompanyDetails) GetRedirect() string {
 	if o == nil {
 		return ""
@@ -110,7 +115,7 @@ func (o *CompanyDetails) GetRedirect() string {
 	return o.Redirect
 }
 
-func (o *CompanyDetails) GetTags() *Tags {
+func (o *CompanyDetails) GetTags() map[string]string {
 	if o == nil {
 		return nil
 	}

@@ -2,6 +2,7 @@
 
 package shared
 
+// ConnectionManagementAllowedOrigins - Success
 type ConnectionManagementAllowedOrigins struct {
 	// An array of allowed origins (i.e. your domains) to permit cross-origin resource sharing ([CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)).n resource sharing ([CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)).
 	AllowedOrigins []string `json:"allowedOrigins,omitempty"`

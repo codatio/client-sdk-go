@@ -5,10 +5,10 @@ package platform
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/platform/v3/internal/hooks"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/retry"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v4/internal/hooks"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -84,7 +84,6 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // | Companies | Create and manage your SMB users' companies. |
 // | Connections | Create new and manage existing data connections for a company. |
 // | Connection management | Configure connection management UI and retrieve access tokens for authentication. |
-// | Groups | Define and manage sets of companies based on a chosen characteristic. |
 // | Webhooks | Create and manage webhooks that listen to Codat's events. |
 // | Integrations | Get a list of integrations supported by Codat and their logos. |
 // | Refresh data | Initiate data refreshes, view pull status and history. |
@@ -108,8 +107,6 @@ type CodatPlatform struct {
 	PushData *PushData
 	// Initiate data refreshes, view pull status and history.
 	RefreshData *RefreshData
-	// Define and manage sets of companies based on a chosen characteristic.
-	Groups *Groups
 	// Get a list of integrations supported by Codat and their logos.
 	Integrations *Integrations
 	// Configure and pull additional data you can include in Codat's standard data types.
@@ -193,9 +190,9 @@ func New(opts ...SDKOption) *CodatPlatform {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "3.4.0",
-			GenVersion:        "2.415.6",
-			UserAgent:         "speakeasy-sdk/go 3.4.0 2.415.6 3.0.0 github.com/codatio/client-sdk-go/platform",
+			SDKVersion:        "4.0.0",
+			GenVersion:        "2.442.11",
+			UserAgent:         "speakeasy-sdk/go 4.0.0 2.442.11 3.0.0 github.com/codatio/client-sdk-go/platform",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -228,8 +225,6 @@ func New(opts ...SDKOption) *CodatPlatform {
 	sdk.PushData = newPushData(sdk.sdkConfiguration)
 
 	sdk.RefreshData = newRefreshData(sdk.sdkConfiguration)
-
-	sdk.Groups = newGroups(sdk.sdkConfiguration)
 
 	sdk.Integrations = newIntegrations(sdk.sdkConfiguration)
 

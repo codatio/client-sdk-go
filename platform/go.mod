@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/platform/v3
+module github.com/codatio/client-sdk-go/platform/v4
 
 go 1.20
 

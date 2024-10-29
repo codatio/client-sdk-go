@@ -1,52 +1,11 @@
 # DataTypes
 
-Available data types
 
+## Fields
 
-## Values
-
-| Name                                    | Value                                   |
-| --------------------------------------- | --------------------------------------- |
-| `DataTypesAccountTransactions`          | accountTransactions                     |
-| `DataTypesBalanceSheet`                 | balanceSheet                            |
-| `DataTypesBankAccounts`                 | bankAccounts                            |
-| `DataTypesBankTransactions`             | bankTransactions                        |
-| `DataTypesBillCreditNotes`              | billCreditNotes                         |
-| `DataTypesBillPayments`                 | billPayments                            |
-| `DataTypesBills`                        | bills                                   |
-| `DataTypesCashFlowStatement`            | cashFlowStatement                       |
-| `DataTypesChartOfAccounts`              | chartOfAccounts                         |
-| `DataTypesCompany`                      | company                                 |
-| `DataTypesCreditNotes`                  | creditNotes                             |
-| `DataTypesCustomers`                    | customers                               |
-| `DataTypesDirectCosts`                  | directCosts                             |
-| `DataTypesDirectIncomes`                | directIncomes                           |
-| `DataTypesInvoices`                     | invoices                                |
-| `DataTypesItemReceipts`                 | itemReceipts                            |
-| `DataTypesItems`                        | items                                   |
-| `DataTypesJournalEntries`               | journalEntries                          |
-| `DataTypesJournals`                     | journals                                |
-| `DataTypesPaymentMethods`               | paymentMethods                          |
-| `DataTypesPayments`                     | payments                                |
-| `DataTypesProfitAndLoss`                | profitAndLoss                           |
-| `DataTypesPurchaseOrders`               | purchaseOrders                          |
-| `DataTypesSalesOrders`                  | salesOrders                             |
-| `DataTypesSuppliers`                    | suppliers                               |
-| `DataTypesTaxRates`                     | taxRates                                |
-| `DataTypesTrackingCategories`           | trackingCategories                      |
-| `DataTypesTransfers`                    | transfers                               |
-| `DataTypesBankingAccountBalances`       | banking-accountBalances                 |
-| `DataTypesBankingAccounts`              | banking-accounts                        |
-| `DataTypesBankingTransactionCategories` | banking-transactionCategories           |
-| `DataTypesBankingTransactions`          | banking-transactions                    |
-| `DataTypesCommerceCompanyInfo`          | commerce-companyInfo                    |
-| `DataTypesCommerceCustomers`            | commerce-customers                      |
-| `DataTypesCommerceDisputes`             | commerce-disputes                       |
-| `DataTypesCommerceLocations`            | commerce-locations                      |
-| `DataTypesCommerceOrders`               | commerce-orders                         |
-| `DataTypesCommercePaymentMethods`       | commerce-paymentMethods                 |
-| `DataTypesCommercePayments`             | commerce-payments                       |
-| `DataTypesCommerceProductCategories`    | commerce-productCategories              |
-| `DataTypesCommerceProducts`             | commerce-products                       |
-| `DataTypesCommerceTaxComponents`        | commerce-taxComponents                  |
-| `DataTypesCommerceTransactions`         | commerce-transactions                   |
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `ConnectionID`                                                            | **string*                                                                 | :heavy_minus_sign:                                                        | Unique identifier for a company's data connection.                        | 2e9d2c44-f675-40ba-8049-353bfcb5e171                                      |
+| `DataType`                                                                | [*shared.DataType](../../../pkg/models/shared/datatype.md)                | :heavy_minus_sign:                                                        | Available data types                                                      | invoices                                                                  |
+| `RecordsModified`                                                         | **bool*                                                                   | :heavy_minus_sign:                                                        | `True` if records have been created, updated or deleted in Codat's cache. | false                                                                     |
+| `Status`                                                                  | [*shared.Status](../../../pkg/models/shared/status.md)                    | :heavy_minus_sign:                                                        | The current status of the dataset.                                        |                                                                           |

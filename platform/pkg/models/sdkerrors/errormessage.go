@@ -4,10 +4,10 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/platform/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
 )
 
-// ErrorMessage - Bad Request
+// ErrorMessage - Your API request was not properly authorized.
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`

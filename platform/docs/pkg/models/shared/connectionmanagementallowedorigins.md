@@ -1,5 +1,7 @@
 # ConnectionManagementAllowedOrigins
 
+Success
+
 
 ## Fields
 
