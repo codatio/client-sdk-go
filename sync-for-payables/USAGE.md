@@ -4,9 +4,9 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 

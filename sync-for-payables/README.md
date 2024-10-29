@@ -28,6 +28,16 @@ The bill pay kit is an API and a set of supporting tools designed to integrate a
 [Explore product](https://docs.codat.io/payables/bill-pay-kit) | [See OpenAPI spec](https://github.com/codatio/oas)
 
 ---
+## Supported Integrations
+
+| Integration                   | Supported |
+|-------------------------------|-----------|
+| FreeAgent                     | Yes       |
+| QuickBooks Online             | Yes       |
+| Oracle NetSuite               | Yes       |
+| Xero                          | Yes       |
+
+---
 <!-- Start Codat Tags Table -->
 ## Endpoints
 
@@ -54,7 +64,6 @@ The bill pay kit is an API and a set of supporting tools designed to integrate a
 * [Server Selection](#server-selection)
 * [Custom HTTP Client](#custom-http-client)
 * [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -76,9 +85,9 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
@@ -171,10 +180,10 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/retry"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -219,10 +228,10 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/retry"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/retry"
 	"log"
 )
 
@@ -284,10 +293,10 @@ package main
 import (
 	"context"
 	"errors"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
@@ -342,9 +351,9 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
@@ -382,9 +391,9 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
@@ -460,9 +469,9 @@ package main
 
 import (
 	"context"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 	"log"
 )
 
@@ -490,12 +499,6 @@ func main() {
 
 ```
 <!-- End Authentication [security] -->
-
-<!-- Start Special Types [types] -->
-## Special Types
-
-
-<!-- End Special Types [types] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

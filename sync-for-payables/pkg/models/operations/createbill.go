@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 )
 
 type CreateBillRequest struct {
@@ -46,7 +46,7 @@ func (o *CreateBillRequest) GetBillPrototype() *shared.BillPrototype {
 
 type CreateBillResponse struct {
 	HTTPMeta shared.HTTPMetadata `json:"-"`
-	// Success
+	// Created
 	Bill *shared.Bill
 }
 

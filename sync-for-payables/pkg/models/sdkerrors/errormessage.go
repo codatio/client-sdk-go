@@ -4,7 +4,7 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
 )
 
 // ErrorMessage - Your `query` parameter was not correctly formed

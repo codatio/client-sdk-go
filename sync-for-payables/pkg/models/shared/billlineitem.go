@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -21,7 +21,7 @@ type BillLineItem struct {
 	// Total amount of the line, including tax.
 	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
 	// Reference to the tax rate to which the line item is linked.
-	TaxRateRef BillTaxRateRef `json:"taxRateRef"`
+	TaxRateRef *BillTaxRateRef `json:"taxRateRef,omitempty"`
 }
 
 func (b BillLineItem) MarshalJSON() ([]byte, error) {
@@ -77,9 +77,9 @@ func (o *BillLineItem) GetTotalAmount() *decimal.Big {
 	return o.TotalAmount
 }
 
-func (o *BillLineItem) GetTaxRateRef() BillTaxRateRef {
+func (o *BillLineItem) GetTaxRateRef() *BillTaxRateRef {
 	if o == nil {
-		return BillTaxRateRef{}
+		return nil
 	}
 	return o.TaxRateRef
 }

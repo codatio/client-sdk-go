@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 402c5670-2c12-44b7-81b8-9ee7a4664285
 management:
-  docChecksum: a559a506ab0305a8733b93fc4eb7d3e4
+  docChecksum: fbf8f2528e5a3e33fc271641da46c916
   docVersion: 3.0.0
-  speakeasyVersion: 1.405.9
-  generationVersion: 2.429.0
-  releaseVersion: 2.0.0
-  configChecksum: f3f9e31c78ff6ce8ef3df9429978e4be
+  speakeasyVersion: 1.423.1
+  generationVersion: 2.442.11
+  releaseVersion: 3.0.0
+  configChecksum: 520ac29593e7b8d71c893931194cdd1f
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: sync-for-payables
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-payables
@@ -14,7 +14,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.12
+    core: 3.5.14
     decimal: 0.1.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
@@ -31,6 +31,7 @@ features:
     retries: 2.83.0
     sdkHooks: 0.1.0
     serverEventsSentinels: 0.1.0
+    tests: 0.6.0
     uploadStreams: 0.1.0
     webhooks: 1.0.0
 generatedFiles:
@@ -108,7 +109,6 @@ generatedFiles:
   - /pkg/models/shared/supplierref.go
   - /pkg/models/shared/suppliers.go
   - /pkg/models/shared/supplierstatus.go
-  - /pkg/models/shared/tags.go
   - /pkg/models/shared/taxratemappingoption.go
   - /pkg/models/webhooks/clientratelimitreached.go
   - /pkg/models/webhooks/clientratelimitreset.go
@@ -202,7 +202,6 @@ generatedFiles:
   - docs/pkg/models/shared/company.md
   - docs/pkg/models/shared/companyinformation.md
   - docs/pkg/models/shared/companyrequestbody.md
-  - docs/pkg/models/shared/companytags.md
   - docs/pkg/models/shared/connection.md
   - docs/pkg/models/shared/connections.md
   - docs/pkg/models/shared/dataconnectionerror.md
@@ -222,7 +221,6 @@ generatedFiles:
   - docs/pkg/models/shared/supplierref.md
   - docs/pkg/models/shared/suppliers.md
   - docs/pkg/models/shared/supplierstatus.md
-  - docs/pkg/models/shared/tags.md
   - docs/pkg/models/shared/taxratemappingoption.md
   - docs/pkg/models/shared/taxratestatus.md
   - docs/pkg/models/webhooks/clientratelimitreachedresponse.md
@@ -344,7 +342,7 @@ examples:
         application/json: {"name": "Bank of Dave", "description": "Requested early access to the new financing scheme."}
       responses:
         "200":
-          application/json: {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "name": "Technicalium", "description": "", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": []}
+          application/json: {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "name": "Technicalium", "description": "", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "tags": {"region": "us"}, "dataConnections": []}
   update-company:
     Update name:
       parameters:
@@ -354,7 +352,7 @@ examples:
         application/json: {"name": "New Name", "description": "Requested early access to the new financing scheme."}
       responses:
         "200":
-          application/json: {"id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "name": "string", "description": "Requested early access to the new financing scheme.", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739", "lastSync": "2022-01-01T12:00:00.000Z", "created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "platformName": "Basiq", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "status": "Linked", "lastSync": "2022-10-27T10:22:43.6464237Z", "created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [{"erroredOnUtc": "2022-10-23T00:00:00Z", "resolvedOnUtc": "2022-10-23T00:00:00Z"}, {"erroredOnUtc": "2022-10-23T00:00:00Z", "resolvedOnUtc": "2022-10-23T00:00:00Z"}, {"erroredOnUtc": "2022-10-23T00:00:00Z", "resolvedOnUtc": "2022-10-23T00:00:00Z"}]}]}
+          application/json: {"id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "name": "string", "description": "Requested early access to the new financing scheme.", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739", "lastSync": "2022-01-01T12:00:00.000Z", "created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "tags": {"region": "us", "uid": "f6b0c253-16c7-4da1-a0c5-9c871e9c9d6c"}, "dataConnections": [{"id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "platformName": "Basiq", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "status": "Linked", "lastSync": "2022-10-27T10:22:43.6464237Z", "created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [{"erroredOnUtc": "2022-10-23T00:00:00Z", "resolvedOnUtc": "2022-10-23T00:00:00Z"}, {"erroredOnUtc": "2022-10-23T00:00:00Z", "resolvedOnUtc": "2022-10-23T00:00:00Z"}, {"erroredOnUtc": "2022-10-23T00:00:00Z", "resolvedOnUtc": "2022-10-23T00:00:00Z"}]}]}
         "401": {}
     Update description:
       parameters:
@@ -364,7 +362,7 @@ examples:
         application/json: {"name": "Same name", "description": "Additional documents required"}
       responses:
         "200":
-          application/json: {"id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "name": "string", "description": "Requested early access to the new financing scheme.", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739", "lastSync": "2022-01-01T12:00:00.000Z", "created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "platformName": "Basiq", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "status": "Linked", "lastSync": "2022-10-27T10:22:43.6464237Z", "created": "2022-10-27T09:53:29Z", "dataConnectionErrors": []}]}
+          application/json: {"id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "name": "string", "description": "Requested early access to the new financing scheme.", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739", "lastSync": "2022-01-01T12:00:00.000Z", "created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "tags": {"region": "us", "uid": "f6b0c253-16c7-4da1-a0c5-9c871e9c9d6c"}, "dataConnections": [{"id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "platformName": "Basiq", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "status": "Linked", "lastSync": "2022-10-27T10:22:43.6464237Z", "created": "2022-10-27T09:53:29Z", "dataConnectionErrors": []}]}
         "401": {}
     Unauthorized:
       parameters:
@@ -548,7 +546,7 @@ examples:
           statusQuery: "status=Archived"
       responses:
         "200":
-          application/json: {"accounts": [], "taxRate": []}
+          application/json: {"accounts": [], "taxRates": []}
         "400": {}
     Mapping options:
       parameters:
@@ -560,7 +558,7 @@ examples:
           statusQuery: "status=Archived"
       responses:
         "200":
-          application/json: {"accounts": [{"id": "1b6266d1-1e44-46c5-8eb5-a8f98e03124e", "nominalCode": "879-i", "name": "Accounts payable", "type": "Liability", "currency": "GBP", "status": "Active", "sourceModifiedDate": "2022-10-23T00:00:00Z"}], "taxRate": [], "pagination": {"continuationToken": "eyJwYWdlIjoyLCJwYWdlU2l6ZSI6MTAwLCJwYWdlQ291bnQiOjExfQ=="}}
+          application/json: {"accounts": [{"id": "1b6266d1-1e44-46c5-8eb5-a8f98e03124e", "nominalCode": "879-i", "name": "Accounts payable", "type": "Liability", "currency": "GBP", "status": "Active", "sourceModifiedDate": "2022-10-23T00:00:00Z"}], "taxRates": [{"id": "d2939064-dd3a-4c0f-9865-a238c2193515", "name": "VAT @ 20%", "code": "VAT20", "effectiveTaxRate": 20, "totalTaxRate": 20, "status": "Active"}], "pagination": {"continuationToken": "eyJwYWdlIjoyLCJwYWdlU2l6ZSI6MTAwLCJwYWdlQ291bnQiOjExfQ=="}}
     Malformed query:
       parameters:
         path:
@@ -671,11 +669,13 @@ examples:
           connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
         header: {}
       requestBody:
-        application/json: {"reference": "bill_b8qmmj4ksf1suax", "supplierRef": {"id": "1262c350-fe0f-40ec-aeff-41c95b4a45af", "supplierName": "DIISR - Small Business Services"}, "issueDate": "2023-04-23T00:00:00", "dueDate": "2023-04-23T00:00:00", "currency": "GBP", "currencyRate": 1, "lineItems": [{"description": "Half day training - Microsoft Office", "unitAmount": 1800, "quantity": 1, "taxAmount": 360, "accountRef": {"id": "46f9461e-788b-4906-8b74-d1ea17f6dc10"}, "totalAmount": 2160, "taxRateRef": {"id": "INPUT2"}}, {"description": "Desktop/network support via email & phone.Per month fixed fee for minimum 20 hours/month.", "unitAmount": 4000, "quantity": 1, "taxAmount": 800, "accountRef": {"id": "f96c9458-d724-47bf-8f74-a9d5726465ce"}, "totalAmount": 4800, "taxRateRef": {"id": "INPUT2"}}, {"description": "Stationery charges", "unitAmount": 32, "quantity": 8, "taxAmount": 51.2, "accountRef": {"id": "cba6527d-f102-4538-b421-e483233e9d5a"}, "totalAmount": 307.2, "taxRateRef": {"id": "INPUT2"}}], "status": "Open", "totalAmount": 7267.2, "amountDue": 7267.2}
+        application/json: {"reference": "bill_b8qmmj4ksf1suax", "supplierRef": {"id": "1262c350-fe0f-40ec-aeff-41c95b4a45af", "supplierName": "DIISR - Small Business Services"}, "issueDate": "2023-04-23T00:00:00", "dueDate": "2023-04-23T00:00:00", "currency": "GBP", "currencyRate": 1, "lineItems": [{"description": "Half day training - Microsoft Office", "unitAmount": 1800, "quantity": 1, "taxAmount": 360, "accountRef": {"id": "46f9461e-788b-4906-8b74-d1ea17f6dc10"}, "totalAmount": 2160, "taxRateRef": {"id": "INPUT2"}}, {"description": "Desktop/network support via email & phone.Per month fixed fee for minimum 20 hours/month.", "unitAmount": 4000, "quantity": 1, "taxAmount": 800, "accountRef": {"id": "f96c9458-d724-47bf-8f74-a9d5726465ce"}, "totalAmount": 4800, "taxRateRef": {"id": "INPUT2"}}, {"description": "Stationery charges", "unitAmount": 32, "quantity": 8, "taxAmount": 51.2, "accountRef": {"id": "cba6527d-f102-4538-b421-e483233e9d5a"}, "totalAmount": 307.2, "taxRateRef": {"id": "INPUT2"}}], "status": "Open"}
       responses:
         "200":
           application/json: {"supplierRef": {"id": "<id>"}, "issueDate": "2022-10-23T00:00:00Z", "dueDate": "2022-10-23T00:00:00Z", "currency": "GBP", "status": "Open", "sourceModifiedDate": "{\"sourceModifiedDate\":\"2022-10-23T00:00:00Z\"}"}
         "400": {}
+        "201":
+          application/json: {"supplierRef": {"id": "<id>"}, "issueDate": "2022-10-23T00:00:00Z", "dueDate": "2022-10-23T00:00:00Z", "currency": "USD", "status": "Open", "sourceModifiedDate": "2022-10-23T00:00:00Z"}
     Created bill:
       parameters:
         path:
@@ -687,6 +687,8 @@ examples:
       responses:
         "200":
           application/json: {"id": "bill-1029932", "reference": "bill_b8qmmj4ksf1suax", "supplierRef": {"id": "1262c350-fe0f-40ec-aeff-41c95b4a45af", "supplierName": "DIISR - Small Business Services"}, "issueDate": "2023-04-23T00:00:00", "dueDate": "2023-04-23T00:00:00", "currency": "GBP", "lineItems": [{"description": "Half day training - Microsoft Office", "unitAmount": 1800, "quantity": 1, "taxAmount": 360, "accountRef": {"id": "46f9461e-788b-4906-8b74-d1ea17f6dc10"}, "totalAmount": 2160, "taxRateRef": {"id": "INPUT2"}}, {"description": "Desktop/network support via email & phone.Per month fixed fee for minimum 20 hours/month.", "unitAmount": 4000, "quantity": 1, "taxAmount": 800, "accountRef": {"id": "f96c9458-d724-47bf-8f74-a9d5726465ce"}, "totalAmount": 4800, "taxRateRef": {"id": "INPUT2"}}, {"description": "Stationery charges", "unitAmount": 32, "quantity": 8, "taxAmount": 51.2, "accountRef": {"id": "cba6527d-f102-4538-b421-e483233e9d5a"}, "totalAmount": 307.2, "taxRateRef": {"id": "INPUT2"}}], "status": "Open", "totalAmount": 7267.2, "amountDue": 7267.2, "sourceModifiedDate": "{\"sourceModifiedDate\":\"2022-10-23T00:00:00Z\"}"}
+        "201":
+          application/json: {"id": "bill-1029932", "reference": "bill_b8qmmj4ksf1suax", "supplierRef": {"id": "1262c350-fe0f-40ec-aeff-41c95b4a45af", "supplierName": "DIISR - Small Business Services"}, "issueDate": "2023-04-23T00:00:00", "dueDate": "2023-04-23T00:00:00", "currency": "GBP", "lineItems": [{"description": "Half day training - Microsoft Office", "unitAmount": 1800, "quantity": 1, "taxAmount": 360, "accountRef": {"id": "46f9461e-788b-4906-8b74-d1ea17f6dc10"}, "totalAmount": 2160, "taxRateRef": {"id": "INPUT2"}}, {"description": "Desktop/network support via email & phone.Per month fixed fee for minimum 20 hours/month.", "unitAmount": 4000, "quantity": 1, "taxAmount": 800, "accountRef": {"id": "f96c9458-d724-47bf-8f74-a9d5726465ce"}, "totalAmount": 4800, "taxRateRef": {"id": "INPUT2"}}, {"description": "Stationery charges", "unitAmount": 32, "quantity": 8, "taxAmount": 51.2, "accountRef": {"id": "cba6527d-f102-4538-b421-e483233e9d5a"}, "totalAmount": 307.2, "taxRateRef": {"id": "INPUT2"}}], "status": "Open", "totalAmount": 7267.2, "amountDue": 7267.2, "sourceModifiedDate": "2022-10-23T00:00:00Z"}
     Malformed query:
       parameters:
         path:
@@ -787,6 +789,8 @@ examples:
         "200":
           application/json: {"amount": 22, "date": "2022-10-23T00:00:00.000Z", "reference": "Bill Payment against bill c13e37b6 dfaa-4894-b3be-9fe97bda9f44", "accountRef": {"id": "9e32cbf8-e7d5-4d4d-a593-08d550682aab"}, "currencyRate": 1}
         "400": {}
+        "201":
+          application/json: {"amount": 22, "date": "2022-10-23T00:00:00.000Z", "reference": "Bill Payment against bill c13e37b6 dfaa-4894-b3be-9fe97bda9f44", "accountRef": {"id": "9e32cbf8-e7d5-4d4d-a593-08d550682aab"}, "currencyRate": 1}
     Bill payment:
       parameters:
         path:
@@ -798,6 +802,8 @@ examples:
         application/json: {"amount": 1329.54, "date": "2022-10-23T00:00:00Z", "reference": "Bill Payment against bill c13e37b6-dfaa-4894-b3be-9fe97bda9f44", "accountRef": {"id": "<id>"}}
       responses:
         "200":
+          application/json: {"id": "billPayment-1029932", "amount": 22, "date": "2022-10-23T00:00:00.000Z", "reference": "Bill Payment against bill c13e37b6 dfaa-4894-b3be-9fe97bda9f44", "accountRef": {"id": "7bda9f44sr56"}, "currencyRate": 1}
+        "201":
           application/json: {"id": "billPayment-1029932", "amount": 22, "date": "2022-10-23T00:00:00.000Z", "reference": "Bill Payment against bill c13e37b6 dfaa-4894-b3be-9fe97bda9f44", "accountRef": {"id": "7bda9f44sr56"}, "currencyRate": 1}
     Malformed query:
       parameters:
@@ -915,6 +921,8 @@ examples:
         "200":
           application/json: {"id": "sup-10933920", "supplierName": "Greggs", "contactName": "Greg Greggs", "emailAddress": "greg@greggs.com", "phone": "+44 (0)1223 322410", "status": "Active", "defaultCurrency": "GBP", "sourceModifiedDate": "{\"sourceModifiedDate\":\"2022-10-23T00:00:00Z\"}"}
         "400": {}
+        "201":
+          application/json: {"id": "sup-10933920", "supplierName": "Greggs", "contactName": "Greg Greggs", "emailAddress": "greg@greggs.com", "phone": "+44 (0)1223 322410", "status": "Active", "defaultCurrency": "GBP", "sourceModifiedDate": "2022-10-23T00:00:00Z"}
     Malformed query:
       parameters:
         path:
@@ -939,6 +947,8 @@ examples:
         "200":
           application/json: {"currency": "USD", "status": "Active", "sourceModifiedDate": "2022-10-23T00:00:00Z"}
         "400": {}
+        "201":
+          application/json: {"currency": "USD", "status": "Active", "sourceModifiedDate": "2022-10-23T00:00:00Z"}
     Malformed query:
       parameters:
         path:

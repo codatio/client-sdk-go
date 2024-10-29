@@ -86,63 +86,127 @@ targets:
         target: go
         source: accounting-source
         output: previous-versions/accounting
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/accounting-source-code-samples
+            blocking: false
     assess-library:
         target: go
         source: assess-source
         output: previous-versions/assess
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/assess-source-code-samples
+            blocking: false
     bank-feeds-library:
         target: go
         source: bank-feeds-source
         output: bank-feeds
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/bank-feeds-source-code-samples
+            blocking: false
     banking-library:
         target: go
         source: banking-source
         output: previous-versions/banking
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/banking-source-code-samples
+            blocking: false
     commerce-library:
         target: go
         source: commerce-source
         output: previous-versions/commerce
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/commerce-source-code-samples
+            blocking: false
     common-library:
         target: go
         source: common-source
         output: previous-versions/common
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/common-source-code-samples
+            blocking: false
     files-library:
         target: go
         source: files-source
         output: previous-versions/files
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/files-source-code-samples
+            blocking: false
     lending-library:
         target: go
         source: lending-source
         output: lending
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/lending-source-code-samples
+            blocking: false
     platform-library:
         target: go
         source: platform-source
         output: platform
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/platform-source-code-samples
+            blocking: false
     sync-for-commerce-library:
         target: go
         source: sync-for-commerce-source
         output: sync-for-commerce
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-source-code-samples
+            blocking: false
     sync-for-commerce-version-1-library:
         target: go
         source: sync-for-commerce-version-1-source
         output: previous-versions/sync-for-commerce-version-1
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-version-1-source-code-samples
+            blocking: false
     sync-for-expenses-library:
         target: go
         source: sync-for-expenses-source
         output: sync-for-expenses
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-source-code-samples
+            blocking: false
     sync-for-expenses-version-1-library:
         target: go
         source: sync-for-expenses-version-1-source
         output: previous-versions/sync-for-expenses-version-1
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-version-1-source-code-samples
+            blocking: false
     sync-for-payables-library:
         target: go
         source: sync-for-payables-source
         output: sync-for-payables
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-payables-source-code-samples
+            blocking: false
     sync-for-payables-version-1-library:
         target: go
         source: sync-for-payables-version-1-source
         output: previous-versions/sync-for-payables-version-1
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-payables-version-1-source-code-samples
+            blocking: false
     sync-for-payroll-library:
         target: go
         source: sync-for-payroll-source
         output: sync-for-payroll
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/codat/codat/sync-for-payroll-source-code-samples
+            blocking: false

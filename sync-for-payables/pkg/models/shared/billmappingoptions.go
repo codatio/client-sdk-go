@@ -5,7 +5,7 @@ package shared
 // BillMappingOptions - The bill mapping options for a company's accounting software.
 type BillMappingOptions struct {
 	Accounts   []AccountMappingOption `json:"accounts,omitempty"`
-	TaxRate    []TaxRateMappingOption `json:"taxRate,omitempty"`
+	TaxRates   []TaxRateMappingOption `json:"taxRates,omitempty"`
 	Pagination *Pagination            `json:"pagination,omitempty"`
 }
 
@@ -16,11 +16,11 @@ func (o *BillMappingOptions) GetAccounts() []AccountMappingOption {
 	return o.Accounts
 }
 
-func (o *BillMappingOptions) GetTaxRate() []TaxRateMappingOption {
+func (o *BillMappingOptions) GetTaxRates() []TaxRateMappingOption {
 	if o == nil {
 		return nil
 	}
-	return o.TaxRate
+	return o.TaxRates
 }
 
 func (o *BillMappingOptions) GetPagination() *Pagination {

@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -59,10 +59,6 @@ type BillPrototype struct {
 	LineItems []BillLineItem `json:"lineItems,omitempty"`
 	// Current state of the bill. If creating a bill the status must be `Open`.
 	Status BillStatus `json:"status"`
-	// Amount of the bill, including tax.
-	TotalAmount *decimal.Big `decimal:"number" json:"totalAmount,omitempty"`
-	// Amount outstanding on the bill.
-	AmountDue *decimal.Big `decimal:"number" json:"amountDue,omitempty"`
 }
 
 func (b BillPrototype) MarshalJSON() ([]byte, error) {
@@ -130,18 +126,4 @@ func (o *BillPrototype) GetStatus() BillStatus {
 		return BillStatus("")
 	}
 	return o.Status
-}
-
-func (o *BillPrototype) GetTotalAmount() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.TotalAmount
-}
-
-func (o *BillPrototype) GetAmountDue() *decimal.Big {
-	if o == nil {
-		return nil
-	}
-	return o.AmountDue
 }

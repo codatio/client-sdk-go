@@ -21,10 +21,10 @@ The *Create bank account* endpoint creates a new [bank account](https://docs.cod
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 	"log"
 )
 
