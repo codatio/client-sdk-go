@@ -2,10 +2,6 @@
 
 package shared
 
-// CompanyTags - A collection of user-defined key-value pairs that store custom metadata against the company.
-type CompanyTags struct {
-}
-
 // Company - In Codat, a company represents a business sharing access to their data. Each company can have multiple [connections](https://docs.codat.io/sync-for-payables-api#/schemas/Connection) to different data sources such as one connection to [Xero](https://docs.codat.io/integrations/accounting/xero/accounting-xero) for accounting data, two connections to [Plaid](https://docs.codat.io/integrations/banking/plaid/banking-plaid) for two bank accounts and a connection to [Zettle](https://docs.codat.io/integrations/commerce/zettle/commerce-zettle) for POS data.
 //
 // Typically each company is one of your customers.
@@ -65,8 +61,8 @@ type Company struct {
 	// An array of products that are currently enabled for the company.
 	Products []string `json:"products,omitempty"`
 	// A collection of user-defined key-value pairs that store custom metadata against the company.
-	Tags            *CompanyTags `json:"tags,omitempty"`
-	DataConnections []Connection `json:"dataConnections,omitempty"`
+	Tags            map[string]string `json:"tags,omitempty"`
+	DataConnections []Connection      `json:"dataConnections,omitempty"`
 }
 
 func (o *Company) GetID() string {
@@ -125,7 +121,7 @@ func (o *Company) GetProducts() []string {
 	return o.Products
 }
 
-func (o *Company) GetTags() *CompanyTags {
+func (o *Company) GetTags() map[string]string {
 	if o == nil {
 		return nil
 	}

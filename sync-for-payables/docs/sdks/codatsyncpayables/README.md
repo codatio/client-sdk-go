@@ -9,6 +9,16 @@ The bill pay kit is an API and a set of supporting tools designed to integrate a
 [Explore product](https://docs.codat.io/payables/bill-pay-kit) | [See OpenAPI spec](https://github.com/codatio/oas)
 
 ---
+## Supported Integrations
+
+| Integration                   | Supported |
+|-------------------------------|-----------|
+| FreeAgent                     | Yes       |
+| QuickBooks Online             | Yes       |
+| Oracle NetSuite               | Yes       |
+| Xero                          | Yes       |
+
+---
 <!-- Start Codat Tags Table -->
 ## Endpoints
 

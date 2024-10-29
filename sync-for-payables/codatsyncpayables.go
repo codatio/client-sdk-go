@@ -5,10 +5,10 @@ package syncforpayables
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/internal/hooks"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/internal/hooks"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -73,6 +73,16 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // The bill pay kit is an API and a set of supporting tools designed to integrate a bill pay flow into your app as quickly as possible. It's ideal for facilitating essential bill payment processes within your SMB's accounting software.
 //
 // [Explore product](https://docs.codat.io/payables/bill-pay-kit) | [See OpenAPI spec](https://github.com/codatio/oas)
+//
+// ---
+// ## Supported Integrations
+//
+// | Integration                   | Supported |
+// |-------------------------------|-----------|
+// | FreeAgent                     | Yes       |
+// | QuickBooks Online             | Yes       |
+// | Oracle NetSuite               | Yes       |
+// | Xero                          | Yes       |
 //
 // ---
 // <!-- Start Codat Tags Table -->
@@ -180,9 +190,9 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "2.0.0",
-			GenVersion:        "2.429.0",
-			UserAgent:         "speakeasy-sdk/go 2.0.0 2.429.0 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.442.11",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.442.11 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
 			Hooks:             hooks.New(),
 		},
 	}

@@ -21,10 +21,10 @@ Use the *Get company information* endpoint to return information about the compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v2"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v2/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
 	"log"
 )
 
