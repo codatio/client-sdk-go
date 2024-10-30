@@ -10,7 +10,7 @@ type BankAccountPrototype struct {
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-	AccountType AccountType `json:"accountType"`
+	AccountType BankAccountType `json:"accountType"`
 	// Account number for the bank account.
 	//
 	// Xero integrations
@@ -45,9 +45,9 @@ func (o *BankAccountPrototype) GetName() *string {
 	return o.Name
 }
 
-func (o *BankAccountPrototype) GetAccountType() AccountType {
+func (o *BankAccountPrototype) GetAccountType() BankAccountType {
 	if o == nil {
-		return AccountType("")
+		return BankAccountType("")
 	}
 	return o.AccountType
 }

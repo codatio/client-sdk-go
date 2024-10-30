@@ -26,10 +26,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -90,8 +90,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
 	"log"
 )
@@ -149,10 +149,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -213,10 +213,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -273,10 +273,10 @@ Each company can have multiple [connections](https://docs.codat.io/sync-for-paya
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 

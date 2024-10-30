@@ -2,43 +2,6 @@
 
 package shared
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
-// BankAccountType - The type of transactions and balances on the account.
-// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
-// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-type BankAccountType string
-
-const (
-	BankAccountTypeUnknown BankAccountType = "Unknown"
-	BankAccountTypeCredit  BankAccountType = "Credit"
-	BankAccountTypeDebit   BankAccountType = "Debit"
-)
-
-func (e BankAccountType) ToPointer() *BankAccountType {
-	return &e
-}
-func (e *BankAccountType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
-	}
-	switch v {
-	case "Unknown":
-		fallthrough
-	case "Credit":
-		fallthrough
-	case "Debit":
-		*e = BankAccountType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for BankAccountType: %v", v)
-	}
-}
-
 type BankAccount struct {
 	// Identifier for the bank account, unique for the company in the accounting software.
 	ID *string `json:"id,omitempty"`
