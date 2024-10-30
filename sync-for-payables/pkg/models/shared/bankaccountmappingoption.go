@@ -26,8 +26,8 @@ type BankAccountMappingOption struct {
 	// The type of transactions and balances on the account.
 	// For Credit accounts, positive balances are liabilities, and positive transactions **reduce** liabilities.
 	// For Debit accounts, positive balances are assets, and positive transactions **increase** assets.
-	AccountType        *AccountType `json:"accountType,omitempty"`
-	SourceModifiedDate *string      `json:"sourceModifiedDate,omitempty"`
+	AccountType        *BankAccountType `json:"accountType,omitempty"`
+	SourceModifiedDate *string          `json:"sourceModifiedDate,omitempty"`
 }
 
 func (o *BankAccountMappingOption) GetID() *string {
@@ -79,7 +79,7 @@ func (o *BankAccountMappingOption) GetStatus() *BankAccountStatus {
 	return o.Status
 }
 
-func (o *BankAccountMappingOption) GetAccountType() *AccountType {
+func (o *BankAccountMappingOption) GetAccountType() *BankAccountType {
 	if o == nil {
 		return nil
 	}

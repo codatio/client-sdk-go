@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 402c5670-2c12-44b7-81b8-9ee7a4664285
 management:
-  docChecksum: fbf8f2528e5a3e33fc271641da46c916
+  docChecksum: 16c2aba5060738f14671556b6526c400
   docVersion: 3.0.0
-  speakeasyVersion: 1.423.1
+  speakeasyVersion: 1.423.3
   generationVersion: 2.442.11
-  releaseVersion: 3.0.0
-  configChecksum: 520ac29593e7b8d71c893931194cdd1f
+  releaseVersion: 4.0.0
+  configChecksum: 9eef78c4d50dd14f3910f087335269d7
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: sync-for-payables
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-payables
@@ -61,7 +61,6 @@ generatedFiles:
   - /pkg/models/sdkerrors/errormessage.go
   - /pkg/models/shared/accountmappingoption.go
   - /pkg/models/shared/accountstatus.go
-  - /pkg/models/shared/accounttype.go
   - /pkg/models/shared/address.go
   - /pkg/models/shared/addresstype.go
   - /pkg/models/shared/attachment.go
@@ -70,6 +69,7 @@ generatedFiles:
   - /pkg/models/shared/bankaccountmappingoption.go
   - /pkg/models/shared/bankaccountprototype.go
   - /pkg/models/shared/bankaccountstatus.go
+  - /pkg/models/shared/bankaccounttype.go
   - /pkg/models/shared/bill.go
   - /pkg/models/shared/billaccountref.go
   - /pkg/models/shared/billlineitem.go
@@ -170,7 +170,6 @@ generatedFiles:
   - docs/pkg/models/sdkerrors/errormessage.md
   - docs/pkg/models/shared/accountmappingoption.md
   - docs/pkg/models/shared/accountstatus.md
-  - docs/pkg/models/shared/accounttype.md
   - docs/pkg/models/shared/address.md
   - docs/pkg/models/shared/addresstype.md
   - docs/pkg/models/shared/attachment.md

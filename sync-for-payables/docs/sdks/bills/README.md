@@ -28,10 +28,10 @@ Mapping options are a set of accounts and tax rates used to configure the SMB's 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -91,10 +91,10 @@ By default, the endpoint will return all bills with a status of 'Open' & 'Partia
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -152,11 +152,11 @@ The *Create bill* endpoint creates a new [bill](https://docs.codat.io/sync-for-p
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/types"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -265,11 +265,11 @@ The *Upload bill attachment* endpoint uploads an attachment and assigns it again
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"os"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -331,10 +331,10 @@ The *List bill attachments* endpoint returns a list of attachments available to 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -394,10 +394,10 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 

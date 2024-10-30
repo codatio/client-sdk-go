@@ -21,10 +21,10 @@ The *Create bank account* endpoint creates a new [bank account](https://docs.cod
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v3"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -42,7 +42,7 @@ func main() {
         BankAccountPrototype: &shared.BankAccountPrototype{
             NominalCode: syncforpayables.String("22"),
             Name: syncforpayables.String("Plutus - Payables - Bank Account 12"),
-            AccountType: shared.AccountTypeDebit,
+            AccountType: shared.BankAccountTypeDebit,
             AccountNumber: syncforpayables.String("0120 0440"),
             SortCode: syncforpayables.String("50-50-50"),
             Currency: "GBP",

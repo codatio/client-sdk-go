@@ -13,7 +13,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"github.com/codatio/client-sdk-go/sync-for-payables/v3/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/types"
 )
 
 func GenerateURL(_ context.Context, serverURL, path string, pathParams interface{}, globals interface{}) (string, error) {
