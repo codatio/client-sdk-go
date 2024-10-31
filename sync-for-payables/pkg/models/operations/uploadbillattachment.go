@@ -46,6 +46,8 @@ func (o *UploadBillAttachmentRequest) GetAttachmentUpload() *shared.AttachmentUp
 
 type UploadBillAttachmentResponse struct {
 	HTTPMeta shared.HTTPMetadata `json:"-"`
+	// Created
+	Attachment *shared.Attachment
 }
 
 func (o *UploadBillAttachmentResponse) GetHTTPMeta() shared.HTTPMetadata {
@@ -53,4 +55,11 @@ func (o *UploadBillAttachmentResponse) GetHTTPMeta() shared.HTTPMetadata {
 		return shared.HTTPMetadata{}
 	}
 	return o.HTTPMeta
+}
+
+func (o *UploadBillAttachmentResponse) GetAttachment() *shared.Attachment {
+	if o == nil {
+		return nil
+	}
+	return o.Attachment
 }

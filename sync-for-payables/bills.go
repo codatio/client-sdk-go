@@ -898,6 +898,26 @@ func (s *Bills) UploadAttachment(ctx context.Context, request operations.UploadB
 
 	switch {
 	case httpRes.StatusCode == 201:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out shared.Attachment
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Attachment = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
 	case httpRes.StatusCode == 400:
 		fallthrough
 	case httpRes.StatusCode == 401:
@@ -978,7 +998,7 @@ func (s *Bills) ListAttachments(ctx context.Context, request operations.ListBill
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/bills/{billId}/attachments", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/companies/{companyId}/connections/{connectionId}/payables/bills/{billId}/attachments", request, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -1114,12 +1134,12 @@ func (s *Bills) ListAttachments(ctx context.Context, request operations.ListBill
 				return nil, err
 			}
 
-			var out shared.Attachment
+			var out []shared.Attachment
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Attachment = &out
+			res.Attachments = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

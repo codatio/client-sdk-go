@@ -39,7 +39,7 @@ func (o *ListBillAttachmentsRequest) GetBillID() string {
 type ListBillAttachmentsResponse struct {
 	HTTPMeta shared.HTTPMetadata `json:"-"`
 	// Success
-	Attachment *shared.Attachment
+	Attachments []shared.Attachment
 }
 
 func (o *ListBillAttachmentsResponse) GetHTTPMeta() shared.HTTPMetadata {
@@ -49,9 +49,9 @@ func (o *ListBillAttachmentsResponse) GetHTTPMeta() shared.HTTPMetadata {
 	return o.HTTPMeta
 }
 
-func (o *ListBillAttachmentsResponse) GetAttachment() *shared.Attachment {
+func (o *ListBillAttachmentsResponse) GetAttachments() []shared.Attachment {
 	if o == nil {
 		return nil
 	}
-	return o.Attachment
+	return o.Attachments
 }
