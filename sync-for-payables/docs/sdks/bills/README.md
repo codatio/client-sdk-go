@@ -294,7 +294,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res != nil {
+    if res.Attachment != nil {
         // handle response
     }
 }
@@ -354,7 +354,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Attachment != nil {
+    if res.Attachments != nil {
         // handle response
     }
 }
