@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
 	"net/http"
 )
 
@@ -29,21 +29,14 @@ func (o *GetBankAccountMappingRequest) GetConnectionID() string {
 }
 
 type GetBankAccountMappingResponse struct {
-	// Success
-	BankFeedMapping *shared.BankFeedMapping
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-}
-
-func (o *GetBankAccountMappingResponse) GetBankFeedMapping() *shared.BankFeedMapping {
-	if o == nil {
-		return nil
-	}
-	return o.BankFeedMapping
+	// Success
+	BankFeedMappings []shared.BankFeedMapping
 }
 
 func (o *GetBankAccountMappingResponse) GetContentType() string {
@@ -65,4 +58,11 @@ func (o *GetBankAccountMappingResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetBankAccountMappingResponse) GetBankFeedMappings() []shared.BankFeedMapping {
+	if o == nil {
+		return nil
+	}
+	return o.BankFeedMappings
 }

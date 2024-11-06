@@ -8,9 +8,11 @@ type CompanyInformation struct {
 	BaseCurrency *string `json:"baseCurrency,omitempty"`
 	// Name of the linked company.
 	CompanyName *string `json:"companyName,omitempty"`
-	// Boolean showing if the organisation has multicurrency enabled
+	// Array of enabled currencies for the linked company.
+	Currencies []string `json:"currencies,omitempty"`
+	// Boolean showing if the organisation has multicurrency enabled.
 	MulticurrencyEnabled *bool `json:"multicurrencyEnabled,omitempty"`
-	// Accounting software subscription type such as Trial, Demo, Standard
+	// Accounting software subscription type such as Trial, Demo, Standard.
 	PlanType *string `json:"planType,omitempty"`
 }
 
@@ -26,6 +28,13 @@ func (o *CompanyInformation) GetCompanyName() *string {
 		return nil
 	}
 	return o.CompanyName
+}
+
+func (o *CompanyInformation) GetCurrencies() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Currencies
 }
 
 func (o *CompanyInformation) GetMulticurrencyEnabled() *bool {

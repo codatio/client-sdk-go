@@ -1,4 +1,4 @@
-speakeasyVersion: 1.423.5
+speakeasyVersion: 1.431.0
 sources:
     accounting-source:
         sourceNamespace: accounting-source
@@ -16,8 +16,8 @@ sources:
             - main
     bank-feeds-source:
         sourceNamespace: bank-feeds-source
-        sourceRevisionDigest: sha256:11c0ca1f463ffa9dc82d71fdeb47d3b6971b160aae21562ac39ea7b40adccc0b
-        sourceBlobDigest: sha256:24d837ec7ccccb55559e6de16951a64c09874b48e5ca92b7af36ea0b95b0eac2
+        sourceRevisionDigest: sha256:e4e149ee072f8b59d00e55582886a38d4c0fe44de48fdadc48654e6482ec525c
+        sourceBlobDigest: sha256:a490b555d6f186cd37f72a06e06ba49293a0f371d145db2d9913d5081ecfc5a2
         tags:
             - latest
             - main
@@ -126,8 +126,8 @@ targets:
     bank-feeds-library:
         source: bank-feeds-source
         sourceNamespace: bank-feeds-source
-        sourceRevisionDigest: sha256:11c0ca1f463ffa9dc82d71fdeb47d3b6971b160aae21562ac39ea7b40adccc0b
-        sourceBlobDigest: sha256:24d837ec7ccccb55559e6de16951a64c09874b48e5ca92b7af36ea0b95b0eac2
+        sourceRevisionDigest: sha256:e4e149ee072f8b59d00e55582886a38d4c0fe44de48fdadc48654e6482ec525c
+        sourceBlobDigest: sha256:a490b555d6f186cd37f72a06e06ba49293a0f371d145db2d9913d5081ecfc5a2
     banking-library:
         source: banking-source
         sourceNamespace: banking-source

@@ -5,8 +5,8 @@ package operations
 import (
 	"errors"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
 	"net/http"
 )
 

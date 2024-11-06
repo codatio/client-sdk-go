@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
