@@ -7,13 +7,12 @@ import (
 	"context"
 	"fmt"
 	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
-	"io"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
 	"net/http"
 )
 
@@ -36,8 +35,6 @@ func newTransactions(sdkConfig sdkConfiguration) *Transactions {
 // **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create bank transaction model](https://docs.codat.io/bank-feeds-api#/operations/get-create-bankTransactions-model).
-//
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating a bank account transactions.
 func (s *Transactions) Create(ctx context.Context, request operations.CreateBankTransactionsRequest, opts ...operations.Option) (*operations.CreateBankTransactionsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -195,21 +192,11 @@ func (s *Transactions) Create(ctx context.Context, request operations.CreateBank
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -221,11 +208,10 @@ func (s *Transactions) Create(ctx context.Context, request operations.CreateBank
 
 			res.CreateBankTransactionsResponse = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
@@ -245,7 +231,7 @@ func (s *Transactions) Create(ctx context.Context, request operations.CreateBank
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -257,28 +243,25 @@ func (s *Transactions) Create(ctx context.Context, request operations.CreateBank
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -287,7 +270,11 @@ func (s *Transactions) Create(ctx context.Context, request operations.CreateBank
 }
 
 // GetCreateOperation - Get create operation
-// Retrieve push operation.
+// The **Get create operation** endpoint returns a specific [write operation](/using-the-api/push) identified by the `pushOperationKey` that was performed on the company.
+//
+// Write operations are actions that send requests to Codat, enabling the creation, updating, deletion of records, or uploading attachments in the connected accounting software.
+//
+// For bank feeds, your push operations will only relate to the `bankTransactions` data type.
 func (s *Transactions) GetCreateOperation(ctx context.Context, request operations.GetCreateOperationRequest, opts ...operations.Option) (*operations.GetCreateOperationResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -435,21 +422,11 @@ func (s *Transactions) GetCreateOperation(ctx context.Context, request operation
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -461,11 +438,10 @@ func (s *Transactions) GetCreateOperation(ctx context.Context, request operation
 
 			res.PushOperation = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
@@ -483,7 +459,7 @@ func (s *Transactions) GetCreateOperation(ctx context.Context, request operation
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -495,28 +471,25 @@ func (s *Transactions) GetCreateOperation(ctx context.Context, request operation
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -525,7 +498,11 @@ func (s *Transactions) GetCreateOperation(ctx context.Context, request operation
 }
 
 // ListCreateOperations - List create operations
-// List create operations.
+// The **List create operations** endpoint returns a list of [write operations](/using-the-api/push) performed on the company.
+//
+// Write operations are actions that send requests to Codat, enabling the creation, updating, deletion of records, or uploading attachments in the connected accounting software.
+//
+// For bank feeds, use this endpoint to view write operations related to the `bankTransactions` data type.
 func (s *Transactions) ListCreateOperations(ctx context.Context, request operations.ListCreateOperationsRequest, opts ...operations.Option) (*operations.ListCreateOperationsResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -677,21 +654,11 @@ func (s *Transactions) ListCreateOperations(ctx context.Context, request operati
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -703,11 +670,10 @@ func (s *Transactions) ListCreateOperations(ctx context.Context, request operati
 
 			res.PushOperations = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
@@ -727,7 +693,7 @@ func (s *Transactions) ListCreateOperations(ctx context.Context, request operati
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -739,28 +705,25 @@ func (s *Transactions) ListCreateOperations(ctx context.Context, request operati
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

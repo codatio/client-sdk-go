@@ -5,10 +5,10 @@ package bankfeeds
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -183,9 +183,9 @@ func New(opts ...SDKOption) *CodatBankFeeds {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "5.2.0",
-			GenVersion:        "2.415.6",
-			UserAgent:         "speakeasy-sdk/go 5.2.0 2.415.6 3.0.0 github.com/codatio/client-sdk-go/bank-feeds",
+			SDKVersion:        "6.0.0",
+			GenVersion:        "2.451.0",
+			UserAgent:         "speakeasy-sdk/go 6.0.0 2.451.0 3.0.0 github.com/codatio/client-sdk-go/bank-feeds",
 			Hooks:             hooks.New(),
 		},
 	}

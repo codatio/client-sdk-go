@@ -21,8 +21,6 @@ Create new bank account transactions for a company's connections, and see previo
 
 Required data may vary by integration. To see what data to post, first call [Get create bank transaction model](https://docs.codat.io/bank-feeds-api#/operations/get-create-bankTransactions-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankTransactions) for integrations that support creating a bank account transactions.
-
 
 ### Example Usage
 
@@ -30,11 +28,11 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -112,15 +110,18 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetCreateOperation
 
-Retrieve push operation.
+The **Get create operation** endpoint returns a specific [write operation](/using-the-api/push) identified by the `pushOperationKey` that was performed on the company.
+
+Write operations are actions that send requests to Codat, enabling the creation, updating, deletion of records, or uploading attachments in the connected accounting software.
+
+For bank feeds, your push operations will only relate to the `bankTransactions` data type.
 
 ### Example Usage
 
@@ -128,10 +129,10 @@ Retrieve push operation.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -170,15 +171,18 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## ListCreateOperations
 
-List create operations.
+The **List create operations** endpoint returns a list of [write operations](/using-the-api/push) performed on the company.
+
+Write operations are actions that send requests to Codat, enabling the creation, updating, deletion of records, or uploading attachments in the connected accounting software. 
+
+For bank feeds, use this endpoint to view write operations related to the `bankTransactions` data type.
 
 ### Example Usage
 
@@ -186,10 +190,10 @@ List create operations.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -231,7 +235,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

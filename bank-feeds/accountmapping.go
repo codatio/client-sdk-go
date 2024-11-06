@@ -7,13 +7,12 @@ import (
 	"context"
 	"fmt"
 	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/utils"
-	"io"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
 	"net/http"
 )
 
@@ -31,11 +30,13 @@ func newAccountMapping(sdkConfig sdkConfiguration) *AccountMapping {
 // Create bank feed account mapping
 // The *Create bank account mapping* endpoint creates a new mapping between a source bank account and a potential account in the accounting software (target account).
 //
-// A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
+// A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end user's account in the underlying software).
 //
-// To find valid target account options, first call list bank feed account mappings.
+// To find valid target account options, first call the [List bank feed account mappings](https://docs.codat.io//bank-feeds-api#/operations/get-bank-account-mapping) endpoint.
 //
-// This endpoint is only needed if building an account management UI.
+// > **For custom builds only**
+// >
+// > Only use this endpoint if you are building your own account management UI.
 func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBankAccountMappingRequest, opts ...operations.Option) (*operations.CreateBankAccountMappingResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -189,21 +190,11 @@ func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBa
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -215,11 +206,10 @@ func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBa
 
 			res.BankFeedAccountMappingResponse = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
@@ -239,7 +229,7 @@ func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBa
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -251,28 +241,25 @@ func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBa
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -280,12 +267,14 @@ func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBa
 
 }
 
-// Get - List bank feed account mappings
-// The *List bank account mappings* endpoint returns information about a source bank account and any current or potential target mapping accounts.
+// Get - List bank feed accounts
+// The *List bank accounts* endpoint returns information about a source bank account and any current or potential target mapping accounts.
 //
-// A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end users account in the underlying platform).
+// A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end user's account in the underlying software).
 //
-// This endpoint is only needed if building an account management UI.
+// > **For custom builds only**
+// >
+// > Only use this endpoint if you are building your own account management UI.
 func (s *AccountMapping) Get(ctx context.Context, request operations.GetBankAccountMappingRequest, opts ...operations.Option) (*operations.GetBankAccountMappingResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -433,37 +422,26 @@ func (s *AccountMapping) Get(ctx context.Context, request operations.GetBankAcco
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
 
-			var out shared.BankFeedMapping
+			var out []shared.BankFeedMapping
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.BankFeedMapping = &out
+			res.BankFeedMappings = out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
@@ -481,7 +459,7 @@ func (s *AccountMapping) Get(ctx context.Context, request operations.GetBankAcco
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -493,28 +471,25 @@ func (s *AccountMapping) Get(ctx context.Context, request operations.GetBankAcco
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

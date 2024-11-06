@@ -28,8 +28,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
 	"log"
 )
@@ -44,11 +44,6 @@ func main() {
     ctx := context.Background()
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: bankfeeds.String("Requested early access to the new financing scheme."),
-        Groups: []shared.GroupReference{
-            shared.GroupReference{
-                ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-            },
-        },
         Name: "Technicalium",
     })
     if err != nil {
@@ -74,11 +69,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 400, 401, 402, 403, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Delete
 
@@ -94,10 +88,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -135,11 +129,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Get
 
@@ -155,10 +148,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -196,15 +189,14 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## List
 
-﻿The *List companies* endpoint returns a list of [companies] associated to your instances.
+﻿The *List companies* endpoint returns a list of [companies](https://docs.codat.io/bank-feeds-api#/schemas/Company) associated to your instances.
 
 A [company](https://docs.codat.io/bank-feeds-api#/schemas/Company) represents a business sharing access to their data.
 Each company can have multiple [connections](https://docs.codat.io/bank-feeds-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
@@ -215,10 +207,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -259,16 +251,14 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Update
 
 ﻿Use the *Update company* endpoint to update both the name and description of the company. 
-If you use [groups](https://docs.codat.io/bank-feeds-api#/schemas/Group) to manage a set of companies, use the [Add company](https://docs.codat.io/bank-feeds-api#/operations/add-company-to-group) or [Remove company](https://docs.codat.io/bank-feeds-api#/operations/remove-company-from-group) endpoints to add or remove a company from a group.
 
 A [company](https://docs.codat.io/bank-feeds-api#/schemas/Company) represents a business sharing access to their data.
 Each company can have multiple [connections](https://docs.codat.io/bank-feeds-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
@@ -279,10 +269,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v5"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -297,11 +287,6 @@ func main() {
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
             Description: bankfeeds.String("Requested early access to the new financing scheme."),
-            Groups: []shared.GroupReference{
-                shared.GroupReference{
-                    ID: bankfeeds.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-                },
-            },
             Name: "New Name",
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -329,7 +314,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
