@@ -18,18 +18,16 @@ The *Create bank account* endpoint creates a new [bank account](https://docs.cod
 
 Required data may vary by integration. To see what data to post, first call [Get create/update bank account model](https://docs.codat.io/lending-api#/operations/get-create-update-bankAccounts-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating an account.
-
 ### Example Usage
 
 ```go
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -74,11 +72,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetCreateUpdateModel
 
@@ -90,8 +87,6 @@ The *Get create/update bank account model* endpoint returns the expected data fo
 
 See the *response examples* for integration-specific indicative models.
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=bankAccounts) for integrations that support creating and updating a bank account.
-
 
 ### Example Usage
 
@@ -99,10 +94,10 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -141,7 +136,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

@@ -1,4 +1,4 @@
-module github.com/codatio/client-sdk-go/lending/v5
+module github.com/codatio/client-sdk-go/lending/v6
 
 go 1.20
 

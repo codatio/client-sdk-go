@@ -3,6 +3,7 @@
 package lending
 
 type LoanWriteback struct {
+	SourceAccounts   *SourceAccounts
 	BankAccounts     *BankAccounts
 	BankTransactions *BankTransactions
 	Accounts         *CodatLendingLoanWritebackAccounts
@@ -18,6 +19,7 @@ type LoanWriteback struct {
 func newLoanWriteback(sdkConfig sdkConfiguration) *LoanWriteback {
 	return &LoanWriteback{
 		sdkConfiguration: sdkConfig,
+		SourceAccounts:   newSourceAccounts(sdkConfig),
 		BankAccounts:     newBankAccounts(sdkConfig),
 		BankTransactions: newBankTransactions(sdkConfig),
 		Accounts:         newCodatLendingLoanWritebackAccounts(sdkConfig),

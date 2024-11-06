@@ -20,11 +20,11 @@ Returns aged creditors report for company that shows the total balance owed by a
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -65,11 +65,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## GetAgedDebtors
 
@@ -81,11 +80,11 @@ Returns aged debtors report for company that shows the total outstanding balance
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -126,11 +125,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## IsAgedCreditorsAvailable
 
@@ -142,10 +140,10 @@ Indicates whether the aged creditor report is available for the company.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -183,11 +181,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## IsAgedDebtorsAvailable
 
@@ -199,10 +196,10 @@ Indicates whether the aged debtors report is available for the company.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -240,7 +237,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

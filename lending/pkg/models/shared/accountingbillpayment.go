@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -12,8 +12,6 @@ import (
 // > We distinguish between transactions where the company received money vs. paid money. If the transaction represents a company spending money (accounts payable) we call this a Bill payment.
 // >
 // > See [payments](https://docs.codat.io/lending-api#/schemas/Payment) for the accounts receivable equivalent of Bill payments, which covers [invoices](https://docs.codat.io/lending-api#/schemas/Invoice) and [credit notes](https://docs.codat.io/lending-api#/schemas/CreditNote).
-//
-// > View the coverage for bill payments in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=billPayments" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //

@@ -3,9 +3,22 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
+
+// ReportSourceReference - A source reference containing the `sourceType` object "Banking".
+type ReportSourceReference struct {
+	// The data source type.
+	SourceType *string `json:"sourceType,omitempty"`
+}
+
+func (o *ReportSourceReference) GetSourceType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SourceType
+}
 
 type Accounts struct {
 	// The name of the account according to the provider.
@@ -27,7 +40,7 @@ type Accounts struct {
 	// Name of the banking data source, e.g. "Plaid".
 	PlatformName *string `json:"platformName,omitempty"`
 	// A source reference containing the `sourceType` object "Banking".
-	SourceRef *SourceRef `json:"sourceRef,omitempty"`
+	SourceRef *ReportSourceReference `json:"sourceRef,omitempty"`
 }
 
 func (a Accounts) MarshalJSON() ([]byte, error) {
@@ -83,7 +96,7 @@ func (o *Accounts) GetPlatformName() *string {
 	return o.PlatformName
 }
 
-func (o *Accounts) GetSourceRef() *SourceRef {
+func (o *Accounts) GetSourceRef() *ReportSourceReference {
 	if o == nil {
 		return nil
 	}

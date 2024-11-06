@@ -4,8 +4,6 @@ package shared
 
 // AccountingProfitAndLossReport - > **Language tip:** Profit and loss statement is also referred to as **income statement** under US GAAP (Generally Accepted Accounting Principles).
 //
-// > View the coverage for profit and loss in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=profitAndLoss" target="_blank">Data coverage explorer</a>.
-//
 // ## Overview
 //
 // The purpose of a profit and loss report is to present the financial performance of a company over a specified time period.

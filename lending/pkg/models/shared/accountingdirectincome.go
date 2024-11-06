@@ -3,13 +3,11 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 // AccountingDirectIncome - > **Language tip:**  Direct incomes may also be referred to as **Receive transactions**, **Receive money transactions**, **Sales receipts**, or **Cash sales** in various accounting software.
-//
-// > View the coverage for direct incomes in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directIncomes" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //

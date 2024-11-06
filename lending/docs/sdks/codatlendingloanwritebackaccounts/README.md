@@ -18,20 +18,17 @@ The *Create account* endpoint creates a new [account](https://docs.codat.io/lend
 
 Required data may vary by integration. To see what data to post, first call [Get create account model](https://docs.codat.io/lending-api#/operations/get-create-chartOfAccounts-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
-
-
 ### Example Usage
 
 ```go
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -81,11 +78,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetCreateModel
 
@@ -97,19 +93,16 @@ The *Get create account model* endpoint returns the expected data for the reques
 
 See the *response examples* for integration-specific indicative models.
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
-
-
 ### Example Usage
 
 ```go
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -148,7 +141,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

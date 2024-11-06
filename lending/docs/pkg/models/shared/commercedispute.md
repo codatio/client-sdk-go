@@ -7,8 +7,6 @@ A customer may file a payment dispute with their bank or other card issuer when 
 
 You can use data from the Disputes endpoints to calculate key metrics, such as the number of chargebacks.
 
-Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-disputes) for this data type.
-
 
 ## Fields
 

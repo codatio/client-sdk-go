@@ -4,10 +4,10 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
 )
 
-// ErrorMessage - The request made is not valid.
+// ErrorMessage - Your `query` parameter was not correctly formed
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`

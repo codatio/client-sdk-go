@@ -2,9 +2,7 @@
 
 package shared
 
-// AccountingCompanyInfo - > View the coverage for company profile in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
-//
-// Company info provides standard details about a linked company such as their address, phone number, and company registration.
+// AccountingCompanyInfo - Company info provides standard details about a linked company such as their address, phone number, and company registration.
 //
 // > **Company information or companies?**
 // >

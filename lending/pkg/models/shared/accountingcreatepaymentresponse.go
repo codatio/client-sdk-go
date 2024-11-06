@@ -3,15 +3,13 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 // AccountingCreatePaymentResponseAccountingPayment - > **Payments or bill payments?**
 // >
 // >  In Codat, payments represent accounts receivable only. For accounts payable, see [bill payments](https://docs.codat.io/lending-api#/schemas/BillPayment). These include [bills](https://docs.codat.io/lending-api#/schemas/Bill) and credit notes against bills.
-//
-// > View the coverage for payments in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=payments" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //
