@@ -2,9 +2,7 @@
 
 package shared
 
-// AccountingCashFlowStatement - > View the coverage for cash flow statement in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=cashFlowStatement" target="_blank">Data coverage explorer</a>.
-//
-// > **Operating activities only**
+// AccountingCashFlowStatement - > **Operating activities only**
 // >
 // > Currently, the cash flow statement shows cash that flows into and out of the company from operating activities *only*. Operating activities generate cash from the sale of goods or services.
 //

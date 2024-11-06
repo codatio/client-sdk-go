@@ -85,12 +85,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -329,6 +324,11 @@ func main() {
 * [Create](docs/sdks/codatlendingpayments/README.md#create) - Create payment
 * [GetCreateModel](docs/sdks/codatlendingpayments/README.md#getcreatemodel) - Get create payment model
 
+#### [LoanWriteback.SourceAccounts](docs/sdks/sourceaccounts/README.md)
+
+* [Create](docs/sdks/sourceaccounts/README.md#create) - Create source account
+* [CreateMapping](docs/sdks/sourceaccounts/README.md#createmapping) - Create bank feed account mapping
+
 #### [LoanWriteback.Suppliers](docs/sdks/codatlendingsuppliers/README.md)
 
 * [Create](docs/sdks/codatlendingsuppliers/README.md#create) - Create supplier
@@ -352,6 +352,11 @@ func main() {
 
 * [AllDataTypes](docs/sdks/refresh/README.md#alldatatypes) - Refresh all data
 * [DataType](docs/sdks/refresh/README.md#datatype) - Refresh data type
+
+### [ManageReports](docs/sdks/managereports/README.md)
+
+* [GenerateReport](docs/sdks/managereports/README.md#generatereport) - Generate report
+* [ListReports](docs/sdks/managereports/README.md#listreports) - List reports
 
 ### [Sales](docs/sdks/sales/README.md)
 
@@ -504,12 +509,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -564,12 +564,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -585,12 +580,16 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `Create` function may return the following errors:
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 400, 401, 402, 403, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ### Example
 
@@ -616,12 +615,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 
@@ -676,12 +670,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -718,12 +707,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -797,12 +781,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: lending.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)

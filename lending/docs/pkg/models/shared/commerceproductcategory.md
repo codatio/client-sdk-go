@@ -2,8 +2,6 @@
 
 Product categories are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
 
-Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-productCategories) for this data type.
-
 
 ## Fields
 

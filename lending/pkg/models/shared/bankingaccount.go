@@ -4,8 +4,6 @@ package shared
 
 // BankingAccount - This data type provides a list of all the SMB's bank accounts, with rich data like balances, account numbers, and institutions holding the accounts.
 //
-// Explore our [data coverage](https://knowledge.codat.io/supported-features/banking?view=tab-by-data-type&dataType=banking-accounts).
-//
 // Responses are paged, so you should provide `page` and `pageSize` query parameters in your request.
 type BankingAccount struct {
 	// Depending on the data provided by the underlying bank, not all balances are always available.

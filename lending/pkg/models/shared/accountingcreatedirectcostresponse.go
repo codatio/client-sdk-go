@@ -9,8 +9,6 @@ import (
 
 // AccountingCreateDirectCostResponseAccountingDirectCost - > **Language tip:** Direct costs may also be referred to as **Spend transactions**, **Spend money transactions**, or **Payments** in various accounting software.
 //
-// > View the coverage for direct costs in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts" target="_blank">Data coverage explorer</a>.
-//
 // ## Overview
 //
 // Direct costs are the expenses associated with a business' operations. For example, purchases of raw materials and service fees are considered direct costs.

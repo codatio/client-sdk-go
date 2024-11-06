@@ -2,9 +2,45 @@
 
 package shared
 
-// AccountingCreateTransferResponseAccountingTransfer - > View the coverage for transfers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers" target="_blank">Data coverage explorer</a>.
-//
-// A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// AccountingCreateTransferResponseStatus - The status of the transfer in the account
+type AccountingCreateTransferResponseStatus string
+
+const (
+	AccountingCreateTransferResponseStatusUnknown      AccountingCreateTransferResponseStatus = "Unknown"
+	AccountingCreateTransferResponseStatusUnreconciled AccountingCreateTransferResponseStatus = "Unreconciled"
+	AccountingCreateTransferResponseStatusReconciled   AccountingCreateTransferResponseStatus = "Reconciled"
+	AccountingCreateTransferResponseStatusVoid         AccountingCreateTransferResponseStatus = "Void"
+)
+
+func (e AccountingCreateTransferResponseStatus) ToPointer() *AccountingCreateTransferResponseStatus {
+	return &e
+}
+func (e *AccountingCreateTransferResponseStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unknown":
+		fallthrough
+	case "Unreconciled":
+		fallthrough
+	case "Reconciled":
+		fallthrough
+	case "Void":
+		*e = AccountingCreateTransferResponseStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AccountingCreateTransferResponseStatus: %v", v)
+	}
+}
+
+// AccountingCreateTransferResponseAccountingTransfer - A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 //
 // Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type AccountingCreateTransferResponseAccountingTransfer struct {
@@ -40,6 +76,8 @@ type AccountingCreateTransferResponseAccountingTransfer struct {
 	Metadata           *Metadata `json:"metadata,omitempty"`
 	ModifiedDate       *string   `json:"modifiedDate,omitempty"`
 	SourceModifiedDate *string   `json:"sourceModifiedDate,omitempty"`
+	// The status of the transfer in the account
+	Status *AccountingCreateTransferResponseStatus `json:"status,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting software. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -111,6 +149,13 @@ func (o *AccountingCreateTransferResponseAccountingTransfer) GetSourceModifiedDa
 		return nil
 	}
 	return o.SourceModifiedDate
+}
+
+func (o *AccountingCreateTransferResponseAccountingTransfer) GetStatus() *AccountingCreateTransferResponseStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *AccountingCreateTransferResponseAccountingTransfer) GetSupplementalData() *SupplementalData {

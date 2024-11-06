@@ -18,9 +18,6 @@ The *Create transfer* endpoint creates a new [transfer](https://docs.codat.io/le
 
 Required data may vary by integration. To see what data to post, first call [Get create transfer model](https://docs.codat.io/lending-api#/operations/get-create-transfers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating an account.
-
-
 ### Example Usage
 
 ```go
@@ -68,6 +65,7 @@ func main() {
             },
             ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
             SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
+            Status: shared.AccountingTransferStatusUnknown.ToPointer(),
             To: &shared.TransferAccount{
                 AccountRef: &shared.AccountRef{
                     ID: lending.String("80000004-1671793811"),
@@ -108,11 +106,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetCreateModel
 
@@ -123,8 +120,6 @@ The *Get create transfer model* endpoint returns the expected data for the reque
 **Integration-specific behaviour**
 
 See the *response examples* for integration-specific indicative models.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers) for integrations that support creating a transfer.
 
 
 ### Example Usage
@@ -175,7 +170,7 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

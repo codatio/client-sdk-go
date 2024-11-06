@@ -3,7 +3,10 @@
 package shared
 
 type AccountCategoriesUpdatedWebhookData struct {
-	// The date on which the company's account categories were last modified in Codat.
+	// In Codat's data model, dates are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date fields are formatted as strings; for example:
+	// ```
+	// 2020-10-08
+	// ```
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 }
 

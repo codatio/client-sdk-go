@@ -70,8 +70,6 @@ func (o *AccountingAccountValidDataTypeLinks) GetProperty() *string {
 
 // AccountingAccount - > **Language tip:** Accounts are also referred to as **chart of accounts**, **nominal accounts**, and **general ledger**.
 //
-// View the coverage for accounts in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts" target="_blank">Data coverage explorer</a>.
-//
 // ## Overview
 //
 // Accounts are the categories a business uses to record accounting transactions. From the Accounts endpoints, you can retrieve a list of all accounts for a specified company.
