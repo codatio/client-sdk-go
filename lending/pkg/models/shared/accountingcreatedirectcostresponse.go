@@ -3,13 +3,11 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 // AccountingCreateDirectCostResponseAccountingDirectCost - > **Language tip:** Direct costs may also be referred to as **Spend transactions**, **Spend money transactions**, or **Payments** in various accounting software.
-//
-// > View the coverage for direct costs in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=directCosts" target="_blank">Data coverage explorer</a>.
 //
 // ## Overview
 //

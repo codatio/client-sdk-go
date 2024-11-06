@@ -25,10 +25,10 @@ A session is a one-time process that enables you to upload bank statements to Co
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -68,11 +68,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetUploadConfiguration
 
@@ -88,10 +87,10 @@ When you use the [*Upload data*](https://docs.codat.io/lending-api#/operations/u
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -130,11 +129,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## SetUploadConfiguration
 
@@ -150,10 +148,10 @@ Each data connection can only have one configuration for each company and extern
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -196,11 +194,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## StartUploadSession
 
@@ -216,10 +213,10 @@ You can only have one active session per data type at a time. You can complete o
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -258,11 +255,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## UploadBankStatementData
 
@@ -276,10 +272,10 @@ Make sure you created configuration for the account using the [*Set upload confi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v5"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v6"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
 	"log"
 )
 
@@ -332,7 +328,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

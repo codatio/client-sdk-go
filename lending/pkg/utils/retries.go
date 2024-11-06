@@ -7,7 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/retry"
 	"net/http"
 	"net/url"
 	"strconv"

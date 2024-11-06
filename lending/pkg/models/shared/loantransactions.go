@@ -3,18 +3,9 @@
 package shared
 
 type LoanTransactions struct {
-	// If there are no errors, an empty array is returned.
-	Errors     []any                       `json:"errors,omitempty"`
 	ReportInfo *LoanTransactionsReportInfo `json:"reportInfo,omitempty"`
 	// Contains object of reporting properties. The loan ref will reference a different object depending on the integration type.
 	ReportItems []ReportItems `json:"reportItems,omitempty"`
-}
-
-func (o *LoanTransactions) GetErrors() []any {
-	if o == nil {
-		return nil
-	}
-	return o.Errors
 }
 
 func (o *LoanTransactions) GetReportInfo() *LoanTransactionsReportInfo {

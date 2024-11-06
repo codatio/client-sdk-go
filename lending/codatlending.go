@@ -5,10 +5,10 @@ package lending
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v5/internal/hooks"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/retry"
-	"github.com/codatio/client-sdk-go/lending/v5/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v6/internal/hooks"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/retry"
+	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -99,7 +99,8 @@ type CodatLending struct {
 	// Create and manage your SMB users' companies.
 	Companies *Companies
 	// Create new and manage existing data connections for a company.
-	Connections *Connections
+	Connections   *Connections
+	LoanWriteback *LoanWriteback
 	// Retrieve banking data from linked bank accounts.
 	BankStatements *BankStatements
 	Transactions   *Transactions
@@ -113,9 +114,10 @@ type CodatLending struct {
 	AccountsReceivable *AccountsReceivable
 	// Endpoints to manage uploaded files.
 	FileUpload          *FileUpload
-	LoanWriteback       *LoanWriteback
 	FinancialStatements *FinancialStatements
 	ManageData          *ManageData
+	// Endpoints to manage generation of reports
+	ManageReports *ManageReports
 	// Debt and other liabilities.
 	Liabilities *Liabilities
 	// Match mutable accounting data with immutable banking data to increase confidence in financial data.
@@ -199,9 +201,9 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "5.4.0",
-			GenVersion:        "2.415.6",
-			UserAgent:         "speakeasy-sdk/go 5.4.0 2.415.6 3.0.0 github.com/codatio/client-sdk-go/lending",
+			SDKVersion:        "6.0.0",
+			GenVersion:        "2.451.0",
+			UserAgent:         "speakeasy-sdk/go 6.0.0 2.451.0 3.0.0 github.com/codatio/client-sdk-go/lending",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -225,6 +227,8 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.Connections = newConnections(sdk.sdkConfiguration)
 
+	sdk.LoanWriteback = newLoanWriteback(sdk.sdkConfiguration)
+
 	sdk.BankStatements = newBankStatements(sdk.sdkConfiguration)
 
 	sdk.Transactions = newTransactions(sdk.sdkConfiguration)
@@ -243,11 +247,11 @@ func New(opts ...SDKOption) *CodatLending {
 
 	sdk.FileUpload = newFileUpload(sdk.sdkConfiguration)
 
-	sdk.LoanWriteback = newLoanWriteback(sdk.sdkConfiguration)
-
 	sdk.FinancialStatements = newFinancialStatements(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
+
+	sdk.ManageReports = newManageReports(sdk.sdkConfiguration)
 
 	sdk.Liabilities = newLiabilities(sdk.sdkConfiguration)
 

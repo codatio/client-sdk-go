@@ -4,8 +4,6 @@ The Location datatype holds information on the geographic location at which stoc
 
 A Location also holds information on geographic locations where orders were placed, as referenced in the Orders data type.
 
-Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-locations) for this data type.
-
 
 ## Fields
 

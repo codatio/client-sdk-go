@@ -2,9 +2,45 @@
 
 package shared
 
-// AccountingTransfer - > View the coverage for transfers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=transfers" target="_blank">Data coverage explorer</a>.
-//
-// A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
+import (
+	"encoding/json"
+	"fmt"
+)
+
+// AccountingTransferStatus - The status of the transfer in the account
+type AccountingTransferStatus string
+
+const (
+	AccountingTransferStatusUnknown      AccountingTransferStatus = "Unknown"
+	AccountingTransferStatusUnreconciled AccountingTransferStatus = "Unreconciled"
+	AccountingTransferStatusReconciled   AccountingTransferStatus = "Reconciled"
+	AccountingTransferStatusVoid         AccountingTransferStatus = "Void"
+)
+
+func (e AccountingTransferStatus) ToPointer() *AccountingTransferStatus {
+	return &e
+}
+func (e *AccountingTransferStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "Unknown":
+		fallthrough
+	case "Unreconciled":
+		fallthrough
+	case "Reconciled":
+		fallthrough
+	case "Void":
+		*e = AccountingTransferStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AccountingTransferStatus: %v", v)
+	}
+}
+
+// AccountingTransfer - A transfer records the movement of money between two bank accounts, or between a bank account and a nominal account. It is a child data type of [account transactions](https://docs.codat.io/lending-api#/schemas/AccountTransaction).
 type AccountingTransfer struct {
 	ContactRef *ContactRef `json:"contactRef,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -38,6 +74,8 @@ type AccountingTransfer struct {
 	Metadata           *Metadata `json:"metadata,omitempty"`
 	ModifiedDate       *string   `json:"modifiedDate,omitempty"`
 	SourceModifiedDate *string   `json:"sourceModifiedDate,omitempty"`
+	// The status of the transfer in the account
+	Status *AccountingTransferStatus `json:"status,omitempty"`
 	// Supplemental data is additional data you can include in our standard data types.
 	//
 	// It is referenced as a configured dynamic key value pair that is unique to the accounting software. [Learn more](https://docs.codat.io/using-the-api/supplemental-data/overview) about supplemental data.
@@ -109,6 +147,13 @@ func (o *AccountingTransfer) GetSourceModifiedDate() *string {
 		return nil
 	}
 	return o.SourceModifiedDate
+}
+
+func (o *AccountingTransfer) GetStatus() *AccountingTransferStatus {
+	if o == nil {
+		return nil
+	}
+	return o.Status
 }
 
 func (o *AccountingTransfer) GetSupplementalData() *SupplementalData {
