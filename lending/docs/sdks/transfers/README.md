@@ -24,11 +24,11 @@ Required data may vary by integration. To see what data to post, first call [Get
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -47,14 +47,15 @@ func main() {
                 ID: "80000028-167239230944",
             },
             Date: lending.String("2023-01-26T11:51:18.104Z"),
-            DepositedRecordRefs: []shared.RecordRef{
-                shared.RecordRef{
+            DepositedRecordRefs: []shared.AccountingRecordRef{
+                shared.AccountingRecordRef{
                     DataType: lending.String("invoice"),
                 },
             },
             Description: lending.String("test transfers push 20230126 12.08"),
             From: &shared.TransferAccount{
-                AccountRef: &shared.AccountRef{
+                AccountRef: &shared.AccountingRecordRef{
+                    DataType: lending.String("bankAccounts"),
                     ID: lending.String("80000028-1671794219"),
                 },
                 Amount: types.MustNewDecimalFromString("12"),
@@ -67,7 +68,8 @@ func main() {
             SourceModifiedDate: lending.String("2022-10-23T00:00:00Z"),
             Status: shared.AccountingTransferStatusUnknown.ToPointer(),
             To: &shared.TransferAccount{
-                AccountRef: &shared.AccountRef{
+                AccountRef: &shared.AccountingRecordRef{
+                    DataType: lending.String("bankAccounts"),
                     ID: lending.String("80000004-1671793811"),
                 },
                 Amount: types.MustNewDecimalFromString("12"),
@@ -128,10 +130,10 @@ See the *response examples* for integration-specific indicative models.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

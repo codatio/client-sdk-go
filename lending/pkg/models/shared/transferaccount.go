@@ -3,14 +3,16 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 // TransferAccount - Account details of the account sending or receiving the transfer.
 type TransferAccount struct {
-	// Data types that reference an account, for example bill and invoice line items, use an accountRef that includes the ID and name of the linked account.
-	AccountRef *AccountRef `json:"accountRef,omitempty"`
+	// Links the current record to the underlying record or data type that created it.
+	//
+	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
+	AccountRef *AccountingRecordRef `json:"accountRef,omitempty"`
 	// The amount transferred between accounts.
 	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -34,7 +36,7 @@ func (t *TransferAccount) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (o *TransferAccount) GetAccountRef() *AccountRef {
+func (o *TransferAccount) GetAccountRef() *AccountingRecordRef {
 	if o == nil {
 		return nil
 	}

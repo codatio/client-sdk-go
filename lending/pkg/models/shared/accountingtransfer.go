@@ -64,7 +64,7 @@ type AccountingTransfer struct {
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
 	Date *string `json:"date,omitempty"`
 	// List of selected transactions to associate with the transfer. Use this field to include transactions which are posted to the _undeposited funds_ (or other holding) account within the transfer.
-	DepositedRecordRefs []RecordRef `json:"depositedRecordRefs,omitempty"`
+	DepositedRecordRefs []AccountingRecordRef `json:"depositedRecordRefs,omitempty"`
 	// Description of the transfer.
 	Description *string `json:"description,omitempty"`
 	// Account details of the account sending or receiving the transfer.
@@ -100,7 +100,7 @@ func (o *AccountingTransfer) GetDate() *string {
 	return o.Date
 }
 
-func (o *AccountingTransfer) GetDepositedRecordRefs() []RecordRef {
+func (o *AccountingTransfer) GetDepositedRecordRefs() []AccountingRecordRef {
 	if o == nil {
 		return nil
 	}

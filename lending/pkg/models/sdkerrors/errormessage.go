@@ -4,7 +4,7 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 )
 
 // ErrorMessage - Your `query` parameter was not correctly formed

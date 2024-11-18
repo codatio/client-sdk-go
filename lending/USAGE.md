@@ -4,8 +4,8 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 	"log"
 )
 

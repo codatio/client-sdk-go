@@ -70,8 +70,8 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 	"log"
 )
 
@@ -492,9 +492,9 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/retry"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -537,9 +537,9 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/retry"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
 	"log"
 )
 
@@ -586,10 +586,10 @@ By Default, an API error will return `sdkerrors.SDKError`. When custom error res
 
 For example, the `Create` function may return the following errors:
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| sdkerrors.ErrorMessage            | 400, 401, 402, 403, 429, 500, 503 | application/json                  |
-| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
+| Error Type             | Status Code                       | Content Type     |
+| ---------------------- | --------------------------------- | ---------------- |
+| sdkerrors.ErrorMessage | 400, 401, 402, 403, 429, 500, 503 | application/json |
+| sdkerrors.SDKError     | 4XX, 5XX                          | \*/\*            |
 
 ### Example
 
@@ -599,9 +599,9 @@ package main
 import (
 	"context"
 	"errors"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 	"log"
 )
 
@@ -639,60 +639,16 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.codat.io` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	"log"
-)
-
-func main() {
-	s := lending.New(
-		lending.WithServerIndex(0),
-		lending.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
-	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: lending.String("Requested early access to the new financing scheme."),
-		Name:        "Technicalium",
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Company != nil {
-		// handle response
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 	"log"
 )
 
@@ -756,9 +712,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `AuthHeader` | apiKey       | API key      |
+| Name         | Type   | Scheme  |
+| ------------ | ------ | ------- |
+| `AuthHeader` | apiKey | API key |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -766,8 +722,8 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 	"log"
 )
 

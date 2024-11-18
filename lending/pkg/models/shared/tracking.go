@@ -6,11 +6,11 @@ type Tracking struct {
 	// Links the current record to the underlying record or data type that created it.
 	//
 	// For example, if a journal entry is generated based on an invoice, this property allows you to connect the journal entry to the underlying invoice in our data model.
-	InvoiceTo  *RecordRef          `json:"invoiceTo,omitempty"`
-	RecordRefs []TrackingRecordRef `json:"recordRefs"`
+	InvoiceTo  *AccountingRecordRef `json:"invoiceTo,omitempty"`
+	RecordRefs []TrackingRecordRef  `json:"recordRefs"`
 }
 
-func (o *Tracking) GetInvoiceTo() *RecordRef {
+func (o *Tracking) GetInvoiceTo() *AccountingRecordRef {
 	if o == nil {
 		return nil
 	}
