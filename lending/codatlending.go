@@ -5,10 +5,10 @@ package lending
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v6/internal/hooks"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/retry"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v7/internal/hooks"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -201,9 +201,9 @@ func New(opts ...SDKOption) *CodatLending {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "6.0.0",
-			GenVersion:        "2.451.0",
-			UserAgent:         "speakeasy-sdk/go 6.0.0 2.451.0 3.0.0 github.com/codatio/client-sdk-go/lending",
+			SDKVersion:        "7.0.0",
+			GenVersion:        "2.460.1",
+			UserAgent:         "speakeasy-sdk/go 7.0.0 2.460.1 3.0.0 github.com/codatio/client-sdk-go/lending",
 			Hooks:             hooks.New(),
 		},
 	}

@@ -24,10 +24,10 @@ The *Download supplier attachment* endpoint downloads a specific attachment for 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -88,10 +88,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -148,10 +148,10 @@ The *Get supplier attachment* endpoint returns a specific attachment for a given
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -212,10 +212,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -275,10 +275,10 @@ The *List supplier attachments* endpoint returns a list of attachments available
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

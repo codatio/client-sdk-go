@@ -23,10 +23,10 @@ The *Download bill attachment* endpoint downloads a specific attachment for a gi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -91,10 +91,10 @@ To access the `paymentAllocations` property, ensure that the `billPayments` data
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -150,10 +150,10 @@ The *Get bill attachment* endpoint returns a specific attachment for a given `bi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -218,10 +218,10 @@ To access the `paymentAllocations` property, ensure that the `billPayments` data
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -281,10 +281,10 @@ The *List bill attachments* endpoint returns a list of attachments available to 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

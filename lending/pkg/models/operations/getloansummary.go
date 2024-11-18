@@ -5,7 +5,7 @@ package operations
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
 	"net/http"
 )
 

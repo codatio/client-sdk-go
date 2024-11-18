@@ -24,11 +24,11 @@ Required data may vary by integration. To see what data to post, first call [Get
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -68,7 +68,7 @@ func main() {
                     TaxAmount: types.MustNewDecimalFromString("360"),
                     TotalAmount: types.MustNewDecimalFromString("70"),
                     Tracking: &shared.Tracking{
-                        InvoiceTo: &shared.RecordRef{
+                        InvoiceTo: &shared.AccountingRecordRef{
                             DataType: lending.String("invoice"),
                         },
                         RecordRefs: []shared.TrackingRecordRef{
@@ -162,10 +162,10 @@ See the *response examples* for integration-specific indicative models.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

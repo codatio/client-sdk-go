@@ -25,10 +25,10 @@ A session is a one-time process that enables you to upload bank statements to Co
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -87,10 +87,10 @@ When you use the [*Upload data*](https://docs.codat.io/lending-api#/operations/u
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -148,10 +148,10 @@ Each data connection can only have one configuration for each company and extern
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -213,10 +213,10 @@ You can only have one active session per data type at a time. You can complete o
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -272,10 +272,10 @@ Make sure you created configuration for the account using the [*Set upload confi
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

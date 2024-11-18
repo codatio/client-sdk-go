@@ -28,8 +28,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
 	"log"
 )
@@ -88,10 +88,10 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -148,10 +148,10 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -207,10 +207,10 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -269,10 +269,10 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v6"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v7"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

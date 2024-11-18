@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -45,7 +45,7 @@ type AccountingBillCreditNote struct {
 	// Friendly reference for the bill credit note.
 	BillCreditNoteNumber *string `json:"billCreditNoteNumber,omitempty"`
 	// An array of records the credit note was created from.
-	CreatedFromRefs []RecordRef `json:"createdFromRefs,omitempty"`
+	CreatedFromRefs []AccountingRecordRef `json:"createdFromRefs,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -166,7 +166,7 @@ func (o *AccountingBillCreditNote) GetBillCreditNoteNumber() *string {
 	return o.BillCreditNoteNumber
 }
 
-func (o *AccountingBillCreditNote) GetCreatedFromRefs() []RecordRef {
+func (o *AccountingBillCreditNote) GetCreatedFromRefs() []AccountingRecordRef {
 	if o == nil {
 		return nil
 	}

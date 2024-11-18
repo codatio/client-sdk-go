@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
