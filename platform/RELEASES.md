@@ -129,3 +129,13 @@ Based on:
 - [go v4.0.0] platform
 ### Releases
 - [Go v4.0.0] https://github.com/codatio/client-sdk-go/releases/tag/platform/v4.0.0 - platform
+
+## 2024-11-26 15:16:27
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.446.1 (2.462.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v5.0.0] platform
+### Releases
+- [Go v5.0.0] https://github.com/codatio/client-sdk-go/releases/tag/platform/v5.0.0 - platform

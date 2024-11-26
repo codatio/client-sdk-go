@@ -4,7 +4,7 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
 )
 
 // ErrorMessage - Your API request was not properly authorized.

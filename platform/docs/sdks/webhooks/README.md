@@ -28,8 +28,8 @@ Use the *Create webhooks (legacy)* endpoint to create a rule-based webhook for y
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
 	"context"
 	"log"
 )
@@ -95,8 +95,8 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
 	"context"
 	"log"
 )
@@ -157,10 +157,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -217,10 +217,10 @@ Use the *Get webhook (legacy)* endpoint to retrieve a specific webhook for your 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -277,10 +277,10 @@ Use the *List webhooks (legacy)* endpoint to retrieve all existing rule-based we
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -338,8 +338,8 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
 	"context"
 	"log"
 )

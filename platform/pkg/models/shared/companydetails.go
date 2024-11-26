@@ -54,7 +54,10 @@ type CompanyDetails struct {
 	// An array of products that are currently enabled for the company.
 	Products []string `json:"products,omitempty"`
 	// The `redirect` [Link URL](https://docs.codat.io/auth-flow/authorize-hosted-link) enabling the customer to start their auth flow journey for the company.
-	Redirect string `json:"redirect"`
+	Redirect               string            `json:"redirect"`
+	ReferenceParentCompany *CompanyReference `json:"referenceParentCompany,omitempty"`
+	// A list of subsidiary companies owned or controlled by this entity. Empty if the company has no children.
+	ReferenceSubsidiaryCompanies []CompanyReference `json:"referenceSubsidiaryCompanies,omitempty"`
 	// A collection of user-defined key-value pairs that store custom metadata against the company.
 	Tags map[string]string `json:"tags,omitempty"`
 }
@@ -113,6 +116,20 @@ func (o *CompanyDetails) GetRedirect() string {
 		return ""
 	}
 	return o.Redirect
+}
+
+func (o *CompanyDetails) GetReferenceParentCompany() *CompanyReference {
+	if o == nil {
+		return nil
+	}
+	return o.ReferenceParentCompany
+}
+
+func (o *CompanyDetails) GetReferenceSubsidiaryCompanies() []CompanyReference {
+	if o == nil {
+		return nil
+	}
+	return o.ReferenceSubsidiaryCompanies
 }
 
 func (o *CompanyDetails) GetTags() map[string]string {

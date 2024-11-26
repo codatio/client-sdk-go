@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/utils"
 )
 
 // WebhookConsumer - A webhook consumer is an HTTP endpoint that developers can configure to subscribe to Codat's supported event types.

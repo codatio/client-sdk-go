@@ -7,29 +7,21 @@ import (
 	"net/http"
 )
 
-type UpdateCompanyRequest struct {
-	CompanyRequestBody *shared.CompanyRequestBody `request:"mediaType=application/json"`
+type GetCompanyAccessTokenRequest struct {
 	// Unique identifier for a company.
 	CompanyID string `pathParam:"style=simple,explode=false,name=companyId"`
 }
 
-func (o *UpdateCompanyRequest) GetCompanyRequestBody() *shared.CompanyRequestBody {
-	if o == nil {
-		return nil
-	}
-	return o.CompanyRequestBody
-}
-
-func (o *UpdateCompanyRequest) GetCompanyID() string {
+func (o *GetCompanyAccessTokenRequest) GetCompanyID() string {
 	if o == nil {
 		return ""
 	}
 	return o.CompanyID
 }
 
-type UpdateCompanyResponse struct {
+type GetCompanyAccessTokenResponse struct {
 	// OK
-	Company *shared.Company
+	CompanyAccessToken *shared.CompanyAccessToken
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -38,28 +30,28 @@ type UpdateCompanyResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *UpdateCompanyResponse) GetCompany() *shared.Company {
+func (o *GetCompanyAccessTokenResponse) GetCompanyAccessToken() *shared.CompanyAccessToken {
 	if o == nil {
 		return nil
 	}
-	return o.Company
+	return o.CompanyAccessToken
 }
 
-func (o *UpdateCompanyResponse) GetContentType() string {
+func (o *GetCompanyAccessTokenResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *UpdateCompanyResponse) GetStatusCode() int {
+func (o *GetCompanyAccessTokenResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *UpdateCompanyResponse) GetRawResponse() *http.Response {
+func (o *GetCompanyAccessTokenResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

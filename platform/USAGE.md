@@ -4,8 +4,8 @@ package main
 
 import (
 	"context"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
 	"log"
 )
 

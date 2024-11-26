@@ -2,7 +2,7 @@
 
 package shared
 
-// ErrorMessage - Your API request was not properly authorized.
+// ErrorMessage - Too many requests were made in a given amount of time. Wait a short period and then try again.
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`

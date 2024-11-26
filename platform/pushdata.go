@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/platform/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/utils"
 	"net/http"
 )
 
@@ -123,7 +122,11 @@ func (s *PushData) GetModelOptions(ctx context.Context, request operations.GetCr
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -349,7 +352,11 @@ func (s *PushData) GetOperation(ctx context.Context, request operations.GetPushO
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -579,7 +586,11 @@ func (s *PushData) ListOperations(ctx context.Context, request operations.GetCom
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

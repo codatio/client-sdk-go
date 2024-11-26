@@ -26,10 +26,10 @@ Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -86,10 +86,10 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -143,10 +143,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -200,10 +200,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -260,10 +260,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -320,10 +320,10 @@ Update data connection's authorization.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 

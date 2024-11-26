@@ -27,10 +27,10 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -85,10 +85,10 @@ This is an asynchronous operation, and will bring updated data into Codat from t
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -142,10 +142,10 @@ Get the state of each data type for a company
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -198,10 +198,10 @@ Retrieve information about a single dataset or pull operation.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -255,10 +255,10 @@ Gets the pull operation history (datasets) for a given company.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
