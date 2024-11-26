@@ -25,3 +25,5 @@ These end points cover creating and managing your companies, data connections, a
 | Supplemental data | Configure and pull additional data you can include in Codat's standard data types. |
 | Custom data type | Configure and pull additional data types that are not included in Codat's standardized data model. |
 <!-- End Codat Tags Table -->
+
+### Available Operations

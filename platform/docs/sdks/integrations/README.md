@@ -21,10 +21,10 @@ Get single integration, by platformKey
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -77,10 +77,10 @@ Get branding for platform.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -133,10 +133,10 @@ List your available integrations
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 

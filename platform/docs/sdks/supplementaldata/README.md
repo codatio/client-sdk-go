@@ -14,7 +14,7 @@ Configure and pull additional data you can include in Codat's standard data type
 
 The *Configure* endpoint allows you to maintain or change configuration required to return supplemental data for each integration and data type combination.
 
-[Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.
+[Supplemental data](https://docs.codat.io/using-the-api/supplemental-data/overview) is additional data you can include in Codat's standard data types.
 
 **Integration-specific behaviour**
 See the *examples* for integration-specific frequently requested properties.
@@ -25,10 +25,10 @@ See the *examples* for integration-specific frequently requested properties.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 
@@ -77,7 +77,7 @@ func main() {
 
 The *Get configuration* endpoint returns supplemental data configuration previously created for each integration and data type combination.
 
-[Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.
+[Supplemental data](https://docs.codat.io/using-the-api/supplemental-data/overview) is additional data you can include in Codat's standard data types.
 
 ### Example Usage
 
@@ -85,10 +85,10 @@ The *Get configuration* endpoint returns supplemental data configuration previou
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	platform "github.com/codatio/client-sdk-go/platform/v4"
+	platform "github.com/codatio/client-sdk-go/platform/v5"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
 	"log"
 )
 

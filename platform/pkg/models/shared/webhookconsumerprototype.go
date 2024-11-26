@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/utils"
 )
 
 type WebhookConsumerPrototype struct {

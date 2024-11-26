@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/platform/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/utils"
 	"net/http"
 	"net/url"
 )
@@ -132,7 +131,11 @@ func (s *Settings) CreateAPIKey(ctx context.Context, request *shared.CreateAPIKe
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -367,7 +370,11 @@ func (s *Settings) DeleteAPIKey(ctx context.Context, request operations.DeleteAP
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -591,7 +598,11 @@ func (s *Settings) GetProfile(ctx context.Context, opts ...operations.Option) (*
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -813,7 +824,11 @@ func (s *Settings) GetSyncSettings(ctx context.Context, opts ...operations.Optio
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1039,7 +1054,11 @@ func (s *Settings) ListAPIKeys(ctx context.Context, opts ...operations.Option) (
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1267,7 +1286,11 @@ func (s *Settings) UpdateProfile(ctx context.Context, request *shared.Profile, o
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1495,7 +1518,11 @@ func (s *Settings) UpdateSyncSettings(ctx context.Context, request *operations.U
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

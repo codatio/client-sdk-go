@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/platform/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/utils"
 	"net/http"
 )
 
@@ -30,7 +29,7 @@ func newSupplementalData(sdkConfig sdkConfiguration) *SupplementalData {
 // Configure
 // The *Configure* endpoint allows you to maintain or change configuration required to return supplemental data for each integration and data type combination.
 //
-// [Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.
+// [Supplemental data](https://docs.codat.io/using-the-api/supplemental-data/overview) is additional data you can include in Codat's standard data types.
 //
 // **Integration-specific behaviour**
 // See the *examples* for integration-specific frequently requested properties.
@@ -126,7 +125,11 @@ func (s *SupplementalData) Configure(ctx context.Context, request operations.Con
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -245,7 +248,7 @@ func (s *SupplementalData) Configure(ctx context.Context, request operations.Con
 // GetConfiguration - Get configuration
 // The *Get configuration* endpoint returns supplemental data configuration previously created for each integration and data type combination.
 //
-// [Supplemental data](https://docs.codat.io/using-the-api/additional-data) is additional data you can include in Codat's standard data types.
+// [Supplemental data](https://docs.codat.io/using-the-api/supplemental-data/overview) is additional data you can include in Codat's standard data types.
 func (s *SupplementalData) GetConfiguration(ctx context.Context, request operations.GetSupplementalDataConfigurationRequest, opts ...operations.Option) (*operations.GetSupplementalDataConfigurationResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -332,7 +335,11 @@ func (s *SupplementalData) GetConfiguration(ctx context.Context, request operati
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

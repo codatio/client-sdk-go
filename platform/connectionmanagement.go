@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/platform/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/platform/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/platform/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/platform/v5/pkg/utils"
 	"net/http"
 )
 
@@ -120,7 +119,11 @@ func (s *ConnectionManagement) GetAccessToken(ctx context.Context, request opera
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
