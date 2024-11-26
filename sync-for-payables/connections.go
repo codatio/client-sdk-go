@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/utils"
 	"net/http"
 )
 
@@ -119,7 +118,11 @@ func (s *Connections) List(ctx context.Context, request operations.ListConnectio
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -261,7 +264,7 @@ func (s *Connections) List(ctx context.Context, request operations.ListConnectio
 // Create connection
 // Creates a connection for the company by providing a valid `platformKey`.
 //
-// Use the [List Integrations](https://docs.codat.io/sync-for-payables-api#/operations/list-integrations) endpoint to access valid platform keys.
+// Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-integrations) endpoint to access valid platform keys.
 func (s *Connections) Create(ctx context.Context, request operations.CreateConnectionRequest, opts ...operations.Option) (*operations.CreateConnectionResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -354,7 +357,11 @@ func (s *Connections) Create(ctx context.Context, request operations.CreateConne
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -579,7 +586,11 @@ func (s *Connections) Get(ctx context.Context, request operations.GetConnectionR
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -805,7 +816,11 @@ func (s *Connections) Delete(ctx context.Context, request operations.DeleteConne
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -1016,7 +1031,11 @@ func (s *Connections) Unlink(ctx context.Context, request operations.UnlinkConne
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

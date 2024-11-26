@@ -5,10 +5,10 @@ package syncforpayables
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -190,9 +190,9 @@ func New(opts ...SDKOption) *CodatSyncPayables {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "4.0.1",
-			GenVersion:        "2.445.1",
-			UserAgent:         "speakeasy-sdk/go 4.0.1 2.445.1 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
+			SDKVersion:        "5.0.0",
+			GenVersion:        "2.463.0",
+			UserAgent:         "speakeasy-sdk/go 5.0.0 2.463.0 3.0.0 github.com/codatio/client-sdk-go/sync-for-payables",
 			Hooks:             hooks.New(),
 		},
 	}

@@ -26,10 +26,10 @@ For example, to retrieve only active suppliers (i.e. `status=Active`) or supplie
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -88,10 +88,10 @@ The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/sy
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 

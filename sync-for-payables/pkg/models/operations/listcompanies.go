@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/utils"
 )
 
 type ListCompaniesRequest struct {

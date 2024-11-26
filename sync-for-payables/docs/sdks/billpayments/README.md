@@ -24,10 +24,10 @@ Mapping options are a set of bank accounts used to configure the SMB's payables 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -85,11 +85,11 @@ The *Create bill payment* endpoint creates a new [bill payment](https://docs.cod
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/types"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
