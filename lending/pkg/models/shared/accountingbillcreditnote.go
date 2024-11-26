@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 

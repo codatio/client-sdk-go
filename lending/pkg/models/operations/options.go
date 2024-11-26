@@ -4,8 +4,8 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/retry"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/utils"
 	"time"
 )
 

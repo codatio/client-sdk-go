@@ -70,8 +70,8 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"log"
 )
 
@@ -492,9 +492,9 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -537,9 +537,9 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/retry"
 	"log"
 )
 
@@ -599,9 +599,9 @@ package main
 import (
 	"context"
 	"errors"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"log"
 )
 
@@ -647,8 +647,8 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"log"
 )
 
@@ -722,8 +722,8 @@ package main
 
 import (
 	"context"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"log"
 )
 
