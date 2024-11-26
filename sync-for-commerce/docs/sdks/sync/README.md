@@ -25,10 +25,10 @@ Get the sync status for a specified sync
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -67,11 +67,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## GetLastSuccessfulSync
 
@@ -83,10 +82,10 @@ Gets the status of the last successful sync
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -124,11 +123,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## GetLatestSync
 
@@ -140,10 +138,10 @@ Gets the latest sync status
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -181,11 +179,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## GetStatus
 
@@ -197,10 +194,10 @@ Gets a list of sync statuses.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -238,11 +235,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## List
 
@@ -254,10 +250,10 @@ Gets a list of sync statuses
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -295,11 +291,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## Request
 
@@ -311,10 +306,10 @@ Run a Commerce sync from the last successful sync up to the date provided (optio
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -355,11 +350,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## RequestForDateRange
 
@@ -371,10 +365,10 @@ Initiate a sync for the specified start date to the specified finish date in the
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"context"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
+	"context"
 	"log"
 )
 
@@ -418,7 +412,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

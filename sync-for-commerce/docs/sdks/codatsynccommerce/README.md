@@ -23,3 +23,5 @@ Not seeing the endpoints you're expecting? We've [reorganized our products](http
 | Integrations | Get a list of integrations supported by Sync for Commerce and their logos. |
 | Advanced controls | View and manage mapping configured for a company's commerce sync. |
 <!-- End Codat Tags Table -->
+
+### Available Operations
