@@ -38,8 +38,6 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 }
 
 // PaymentMethod - A Payment Method represents the payment method(s) used to make payments.
-//
-// Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-paymentMethods) for this data type.
 type PaymentMethod struct {
 	// A unique, persistent identifier for this record
 	ID           string  `json:"id"`

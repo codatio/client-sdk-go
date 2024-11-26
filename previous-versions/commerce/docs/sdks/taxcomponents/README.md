@@ -16,8 +16,6 @@ The *Get tax* endpoint returns a single tax for a given taxId.
 
 [Tax components](https://docs.codat.io/commerce-api#/schemas/TaxComponent) are tax rates from the commerce software, including tax rate's name and value.
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-taxComponents) for integrations that support getting a specific tax.
-
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 
 
@@ -27,10 +25,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -70,11 +68,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -91,10 +88,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -137,7 +134,7 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |

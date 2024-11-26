@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -12,8 +12,6 @@ import (
 // Refunds are recorded as separate, negative payments. Note that a refund can only occur in relation to a payment that has been completed (i.e. has a status of `Paid`). When a customer cancels an order _before_ a payment has been completed, the payment shows as `Cancelled`.
 //
 // You can use data from the Payments endpoints to calculate key metrics, such as gross sales and monthly recurring revenue (MRR).
-//
-// Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-payments) for this data type.
 type Payment struct {
 	// Payment Amount (including gratuity)
 	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`

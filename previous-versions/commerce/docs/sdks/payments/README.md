@@ -18,8 +18,6 @@ The *Get payment* endpoint returns a single payment for a given paymentId.
 
 [Payments](https://docs.codat.io/commerce-api#/schemas/Payment) contain details of all payments made by customers to the company.
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-payments) for integrations that support getting a specific payment.
-
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 
 
@@ -29,10 +27,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -47,7 +45,7 @@ func main() {
     res, err := s.Payments.Get(ctx, operations.GetPaymentRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentID: "<value>",
+        PaymentID: "7110701885",
     })
     if err != nil {
         log.Fatal(err)
@@ -72,19 +70,16 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetMethod
 
 The *Get payment method* endpoint returns a single payment method for a given paymentMethodId.
 
 [Payment methods](https://docs.codat.io/commerce-api#/schemas/PaymentMethod) represent the payment method(s) used to make payments.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-paymentMethods) for integrations that support getting a specific payment method.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 
@@ -95,10 +90,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -113,7 +108,7 @@ func main() {
     res, err := s.Payments.GetMethod(ctx, operations.GetPaymentMethodRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        PaymentMethodID: "<value>",
+        PaymentMethodID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
     })
     if err != nil {
         log.Fatal(err)
@@ -138,11 +133,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -159,10 +153,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -205,11 +199,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ListMethods
 
@@ -226,10 +219,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -272,7 +265,7 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |

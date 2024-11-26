@@ -4,10 +4,10 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
 )
 
-// ErrorMessage - Your API request was not properly authorized.
+// ErrorMessage - Your `query` parameter was not correctly formed
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`

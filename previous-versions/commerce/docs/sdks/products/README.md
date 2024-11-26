@@ -22,10 +22,10 @@ Get product
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -40,7 +40,7 @@ func main() {
     res, err := s.Products.Get(ctx, operations.GetProductRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "<value>",
+        ProductID: "7110701885",
     })
     if err != nil {
         log.Fatal(err)
@@ -65,19 +65,16 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## GetCategory
 
 The *Get product* endpoint returns a single product for a given productId.
 
 [Product categories](https://docs.codat.io/commerce-api#/schemas/ProductCategory) are used to classify a group of products together, either by type (e.g. "Furniture"), or sometimes by tax profile.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-productCategories) for integrations that support getting a specific product.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 
@@ -88,10 +85,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -106,7 +103,7 @@ func main() {
     res, err := s.Products.GetCategory(ctx, operations.GetProductCategoryRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        ProductID: "<value>",
+        ProductID: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2",
     })
     if err != nil {
         log.Fatal(err)
@@ -131,11 +128,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -152,10 +148,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -198,11 +194,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## ListCategories
 
@@ -219,10 +214,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -265,7 +260,7 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |

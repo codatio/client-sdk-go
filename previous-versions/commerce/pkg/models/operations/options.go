@@ -4,8 +4,8 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/retry"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/retry"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/utils"
 	"time"
 )
 

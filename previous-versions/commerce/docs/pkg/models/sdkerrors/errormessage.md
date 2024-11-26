@@ -1,6 +1,6 @@
 # ErrorMessage
 
-Your API request was not properly authorized.
+Your `query` parameter was not correctly formed
 
 
 ## Fields

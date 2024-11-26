@@ -26,9 +26,9 @@ package main
 
 import (
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
 	"log"
 )
 
@@ -43,7 +43,7 @@ func main() {
 	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
 		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
+		CustomerID:   "7110701885",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -118,12 +118,6 @@ func main() {
 
 
 
-<!-- Start Special Types [types] -->
-## Special Types
-
-
-<!-- End Special Types [types] -->
-
 <!-- Start Summary [summary] -->
 ## Summary
 
@@ -170,7 +164,6 @@ Standardize how you connect to your customers’ payment, PoS, and eCommerce sys
 * [Server Selection](#server-selection)
 * [Custom HTTP Client](#custom-http-client)
 * [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start Retries [retries] -->
@@ -184,10 +177,10 @@ package main
 
 import (
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/retry"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -203,7 +196,7 @@ func main() {
 	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
 		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
+		CustomerID:   "7110701885",
 	}, operations.WithRetries(
 		retry.Config{
 			Strategy: "backoff",
@@ -231,10 +224,10 @@ package main
 
 import (
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/retry"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/retry"
 	"log"
 )
 
@@ -260,7 +253,7 @@ func main() {
 	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
 		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
+		CustomerID:   "7110701885",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -276,12 +269,16 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `Get` function may return the following errors:
+
+| Error Type             | Status Code                            | Content Type     |
+| ---------------------- | -------------------------------------- | ---------------- |
+| sdkerrors.ErrorMessage | 401, 402, 403, 404, 409, 429, 500, 503 | application/json |
+| sdkerrors.SDKError     | 4XX, 5XX                               | \*/\*            |
 
 ### Example
 
@@ -291,10 +288,10 @@ package main
 import (
 	"context"
 	"errors"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
 	"log"
 )
 
@@ -309,7 +306,7 @@ func main() {
 	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
 		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
+		CustomerID:   "7110701885",
 	})
 	if err != nil {
 
@@ -333,63 +330,17 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.codat.io` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"log"
-)
-
-func main() {
-	s := commerce.New(
-		commerce.WithServerIndex(0),
-		commerce.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
-	ctx := context.Background()
-	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
-		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
-		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Customer != nil {
-		// handle response
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
 import (
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
 	"log"
 )
 
@@ -405,7 +356,7 @@ func main() {
 	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
 		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
+		CustomerID:   "7110701885",
 	})
 	if err != nil {
 		log.Fatal(err)
@@ -454,9 +405,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `AuthHeader` | apiKey       | API key      |
+| Name         | Type   | Scheme  |
+| ------------ | ------ | ------- |
+| `AuthHeader` | apiKey | API key |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -464,9 +415,9 @@ package main
 
 import (
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
 	"log"
 )
 
@@ -481,7 +432,7 @@ func main() {
 	res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
 		CompanyID:    "8a210b68-6988-11ed-a1eb-0242ac120002",
 		ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-		CustomerID:   "<value>",
+		CustomerID:   "7110701885",
 	})
 	if err != nil {
 		log.Fatal(err)
