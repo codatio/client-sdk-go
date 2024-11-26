@@ -1,4 +1,4 @@
-# SyncCompleteResponse
+# ExpensesSyncUnsuccessfulResponse
 
 
 ## Fields

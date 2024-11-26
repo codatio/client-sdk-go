@@ -33,3 +33,5 @@ Not seeing the endpoints you're expecting? We've [reorganized our products](http
 | Customers | Get, create, and update customers. |
 | Suppliers | Get, create, and update suppliers. |
 <!-- End Codat Tags Table -->
+
+### Available Operations

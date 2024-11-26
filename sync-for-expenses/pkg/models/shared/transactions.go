@@ -7,8 +7,8 @@ type Transactions struct {
 	// Current page number.
 	PageNumber int64 `json:"pageNumber"`
 	// Number of items to return in results array.
-	PageSize int64         `json:"pageSize"`
-	Results  []Transaction `json:"results,omitempty"`
+	PageSize int64               `json:"pageSize"`
+	Results  []SchemaTransaction `json:"results,omitempty"`
 	// Total number of items.
 	TotalResults int64 `json:"totalResults"`
 }
@@ -34,7 +34,7 @@ func (o *Transactions) GetPageSize() int64 {
 	return o.PageSize
 }
 
-func (o *Transactions) GetResults() []Transaction {
+func (o *Transactions) GetResults() []SchemaTransaction {
 	if o == nil {
 		return nil
 	}

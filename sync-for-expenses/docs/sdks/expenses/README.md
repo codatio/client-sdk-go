@@ -33,10 +33,11 @@ The *Create expense* endpoint creates an [expense transaction](https://docs.coda
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -48,7 +49,44 @@ func main() {
     ctx := context.Background()
     res, err := s.Expenses.Create(ctx, operations.CreateExpenseTransactionRequest{
         RequestBody: []shared.ExpenseTransaction{
-
+            shared.ExpenseTransaction{
+                BankAccountRef: &shared.BankAccountReference{
+                    ID: syncforexpenses.String("97"),
+                },
+                ContactRef: &shared.ExpenseContactRef{
+                    ID: "430",
+                    Type: shared.TypeSupplier.ToPointer(),
+                },
+                Currency: "GBP",
+                CurrencyRate: types.MustNewDecimalFromString("1"),
+                ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
+                IssueDate: "2024-05-21T00:00:00+00:00",
+                Lines: []shared.ExpenseTransactionLine{
+                    shared.ExpenseTransactionLine{
+                        AccountRef: &shared.RecordRef{
+                            ID: syncforexpenses.String("35"),
+                        },
+                        InvoiceTo: &shared.InvoiceTo{
+                            ID: syncforexpenses.String("504"),
+                            Type: shared.InvoiceToTypeCustomer.ToPointer(),
+                        },
+                        NetAmount: types.MustNewDecimalFromString("100"),
+                        TaxAmount: types.MustNewDecimalFromString("20"),
+                        TaxRateRef: &shared.RecordRef{
+                            ID: syncforexpenses.String("23_Bills"),
+                        },
+                        TrackingRefs: []shared.TrackingRef{
+                            shared.TrackingRef{
+                                DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
+                                ID: syncforexpenses.String("DEPARTMENT_5"),
+                            },
+                        },
+                    },
+                },
+                MerchantName: syncforexpenses.String("Amazon UK"),
+                Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
+                Type: shared.ExpenseTransactionTypePayment,
+            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -75,11 +113,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Update
 
@@ -102,11 +139,11 @@ The following integrations are supported for the [Payment](https://docs.codat.io
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -129,7 +166,26 @@ func main() {
             CurrencyRate: types.MustNewDecimalFromString("1"),
             IssueDate: "2024-05-21T00:00:00+00:00",
             Lines: []shared.ExpenseTransactionLine{
-
+                shared.ExpenseTransactionLine{
+                    AccountRef: &shared.RecordRef{
+                        ID: syncforexpenses.String("35"),
+                    },
+                    InvoiceTo: &shared.InvoiceTo{
+                        ID: syncforexpenses.String("504"),
+                        Type: shared.InvoiceToTypeCustomer.ToPointer(),
+                    },
+                    NetAmount: types.MustNewDecimalFromString("100"),
+                    TaxAmount: types.MustNewDecimalFromString("20"),
+                    TaxRateRef: &shared.RecordRef{
+                        ID: syncforexpenses.String("23_Bills"),
+                    },
+                    TrackingRefs: []shared.TrackingRef{
+                        shared.TrackingRef{
+                            DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
+                            ID: syncforexpenses.String("DEPARTMENT_5"),
+                        },
+                    },
+                },
             },
             MerchantName: syncforexpenses.String("Amazon UK"),
             Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
@@ -161,7 +217,7 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,422,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 422, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |

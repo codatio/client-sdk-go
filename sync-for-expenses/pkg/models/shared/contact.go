@@ -2,27 +2,6 @@
 
 package shared
 
-type Phone struct {
-	// A phone number.
-	Number *string `json:"number,omitempty"`
-	// The type of phone number
-	Type PhoneNumberType `json:"type"`
-}
-
-func (o *Phone) GetNumber() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Number
-}
-
-func (o *Phone) GetType() PhoneNumberType {
-	if o == nil {
-		return PhoneNumberType("")
-	}
-	return o.Type
-}
-
 type Contact struct {
 	Address *Items `json:"address,omitempty"`
 	// Email of a contact for a customer.
@@ -50,7 +29,7 @@ type Contact struct {
 	// Name of a contact for a customer.
 	Name *string `json:"name,omitempty"`
 	// An array of Phone numbers.
-	Phone []Phone `json:"phone,omitempty"`
+	Phone []PhoneNumberItems `json:"phone,omitempty"`
 	// Status of customer.
 	Status CustomerStatus `json:"status"`
 }
@@ -83,7 +62,7 @@ func (o *Contact) GetName() *string {
 	return o.Name
 }
 
-func (o *Contact) GetPhone() []Phone {
+func (o *Contact) GetPhone() []PhoneNumberItems {
 	if o == nil {
 		return nil
 	}

@@ -20,9 +20,9 @@ Retrieve push operation.
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -59,11 +59,10 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
 ## List
 
@@ -75,9 +74,9 @@ List push operation records.
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -117,7 +116,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

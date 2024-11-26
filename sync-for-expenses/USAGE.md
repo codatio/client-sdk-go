@@ -4,8 +4,8 @@ package main
 
 import (
 	"context"
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
 	"log"
 )
 
@@ -17,12 +17,7 @@ func main() {
 	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: syncforexpenses.String("Requested early access to the new financing scheme."),
-		Groups: []shared.GroupReference{
-			shared.GroupReference{
-				ID: syncforexpenses.String("60d2fa12-8a04-11ee-b9d1-0242ac120002"),
-			},
-		},
-		Name: "Technicalium",
+		Name:        "Technicalium",
 	})
 	if err != nil {
 		log.Fatal(err)

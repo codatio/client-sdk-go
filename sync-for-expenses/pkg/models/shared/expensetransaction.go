@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -122,6 +122,8 @@ type ExpenseTransaction struct {
 	Notes *string `json:"notes,omitempty"`
 	// This optional property, when set to true, posts the transaction to a drafted state. Note that postAsDraft is only supported in Microsoft Dynamics 365 Business Central.
 	PostAsDraft *bool `json:"postAsDraft,omitempty"`
+	// User-friendly reference for the expense transaction.
+	Reference *string `json:"reference,omitempty"`
 	// The type of transaction.
 	Type ExpenseTransactionType `json:"type"`
 }
@@ -205,6 +207,13 @@ func (o *ExpenseTransaction) GetPostAsDraft() *bool {
 		return nil
 	}
 	return o.PostAsDraft
+}
+
+func (o *ExpenseTransaction) GetReference() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Reference
 }
 
 func (o *ExpenseTransaction) GetType() ExpenseTransactionType {
