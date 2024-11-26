@@ -5,10 +5,10 @@ package commerce
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/internal/hooks"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/retry"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/utils"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/internal/hooks"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/retry"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -193,9 +193,9 @@ func New(opts ...SDKOption) *CodatCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "3.0.0",
-			SDKVersion:        "0.26.0",
-			GenVersion:        "2.415.6",
-			UserAgent:         "speakeasy-sdk/go 0.26.0 2.415.6 3.0.0 github.com/codatio/client-sdk-go/previous-versions/commerce",
+			SDKVersion:        "3.0.0",
+			GenVersion:        "2.463.0",
+			UserAgent:         "speakeasy-sdk/go 3.0.0 2.463.0 3.0.0 github.com/codatio/client-sdk-go/previous-versions/commerce",
 			Hooks:             hooks.New(),
 		},
 	}

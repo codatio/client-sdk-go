@@ -16,8 +16,6 @@ The *Get location* endpoint returns a single location for a given locationId.
 
 [Locations](https://docs.codat.io/commerce-api#/schemas/Location) hold information on the geographic location at which stocks of [products](https://docs.codat.io/commerce-api#/schemas/Product) may be held or where [orders](https://docs.codat.io/commerce-api#/schemas/Order) were placed.
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-locations) for integrations that support getting a specific location.
-
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/codat-api#/operations/refresh-company-data).
 
 
@@ -27,10 +25,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -45,7 +43,7 @@ func main() {
     res, err := s.Locations.Get(ctx, operations.GetLocationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        LocationID: "<value>",
+        LocationID: "7110701885",
     })
     if err != nil {
         log.Fatal(err)
@@ -70,11 +68,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -91,10 +88,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce"
+	commerce "github.com/codatio/client-sdk-go/previous-versions/commerce/v3"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/previous-versions/commerce/v3/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/previous-versions/commerce/pkg/models/operations"
 	"log"
 )
 
@@ -133,7 +130,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

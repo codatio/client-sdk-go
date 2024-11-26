@@ -9,8 +9,6 @@ You can use data from the Transactions endpoints to calculate key metrics, such 
 - Returns  
 - Payouts
 
-Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-transactions) for this data type.
-
 
 ## Fields
 

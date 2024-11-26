@@ -3,8 +3,6 @@
 In the Codat system, company profile includes standard commercial details about 
 a linked company, such as their address, phone number, and company registration.
 
-Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=companyInfo) for this data type.
-
 
 
 ## Fields

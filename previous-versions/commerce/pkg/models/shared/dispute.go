@@ -8,8 +8,6 @@ package shared
 // - They've been the victim of online fraud.
 //
 // You can use data from the Disputes endpoints to calculate key metrics, such as the number of chargebacks.
-//
-// Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-disputes) for this data type.
 type Dispute struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//

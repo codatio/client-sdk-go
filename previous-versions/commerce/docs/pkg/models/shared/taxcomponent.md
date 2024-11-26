@@ -2,8 +2,6 @@
 
 The Tax Components endpoints return tax rates data from the commerce software, including tax rate names and values. This is to support the mapping of tax rates from the commerce software to those in the accounting software.
 
-Explore our [data coverage](https://knowledge.codat.io/supported-features/commerce?view=tab-by-data-type&dataType=commerce-disputes) for this data type.
-
 
 ## Fields
 

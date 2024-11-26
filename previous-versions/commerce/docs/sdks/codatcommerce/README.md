@@ -30,3 +30,5 @@ Standardize how you connect to your customers’ payment, PoS, and eCommerce sys
 [Read more...](https://docs.codat.io/commerce-api/overview)
 
 [See our OpenAPI spec](https://github.com/codatio/oas) 
+
+### Available Operations
