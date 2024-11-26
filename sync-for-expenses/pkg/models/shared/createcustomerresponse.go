@@ -2,75 +2,7 @@
 
 package shared
 
-type CreateCustomerResponseAccountingAddress struct {
-	// City of the customer address.
-	City *string `json:"city,omitempty"`
-	// Country of the customer address.
-	Country *string `json:"country,omitempty"`
-	// Line 1 of the customer address.
-	Line1 *string `json:"line1,omitempty"`
-	// Line 2 of the customer address.
-	Line2 *string `json:"line2,omitempty"`
-	// Postal code or zip code.
-	PostalCode *string `json:"postalCode,omitempty"`
-	// Region of the customer address.
-	Region *string `json:"region,omitempty"`
-	// The type of the address
-	Type AccountingAddressType `json:"type"`
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetCity() *string {
-	if o == nil {
-		return nil
-	}
-	return o.City
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetCountry() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Country
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetLine1() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Line1
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetLine2() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Line2
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetPostalCode() *string {
-	if o == nil {
-		return nil
-	}
-	return o.PostalCode
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetRegion() *string {
-	if o == nil {
-		return nil
-	}
-	return o.Region
-}
-
-func (o *CreateCustomerResponseAccountingAddress) GetType() AccountingAddressType {
-	if o == nil {
-		return AccountingAddressType("")
-	}
-	return o.Type
-}
-
-// AccountingCustomer - > View the coverage for customers in the <a className="external" href="https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers" target="_blank">Data coverage explorer</a>.
-//
-// ## Overview
+// AccountingCustomer - ## Overview
 //
 // A customer is a person or organisation that buys goods or services. From the Customers endpoints, you can retrieve a [list of all the customers of a company](https://api.codat.io/swagger/index.html#/Customers/get_companies__companyId__data_customers).
 //
@@ -79,7 +11,7 @@ func (o *CreateCustomerResponseAccountingAddress) GetType() AccountingAddressTyp
 // Deprecated type: This will be removed in a future release, please migrate away from it as soon as possible.
 type AccountingCustomer struct {
 	// An array of Addresses.
-	Addresses []CreateCustomerResponseAccountingAddress `json:"addresses,omitempty"`
+	Addresses []Items `json:"addresses,omitempty"`
 	// Name of the main contact for the identified customer.
 	ContactName *string `json:"contactName,omitempty"`
 	// An array of Contacts.
@@ -115,7 +47,7 @@ type AccountingCustomer struct {
 	TaxNumber *string `json:"taxNumber,omitempty"`
 }
 
-func (o *AccountingCustomer) GetAddresses() []CreateCustomerResponseAccountingAddress {
+func (o *AccountingCustomer) GetAddresses() []Items {
 	if o == nil {
 		return nil
 	}

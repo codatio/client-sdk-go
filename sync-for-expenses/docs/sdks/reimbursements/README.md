@@ -30,10 +30,11 @@ Use the *Create reimbursable expense* endpoint to submit an employee expense cla
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -45,7 +46,41 @@ func main() {
     ctx := context.Background()
     res, err := s.Reimbursements.Create(ctx, operations.CreateReimbursableExpenseTransactionRequest{
         RequestBody: []shared.ReimbursableExpenseTransaction{
-
+            shared.ReimbursableExpenseTransaction{
+                ContactRef: shared.ReimbursementContactRef{
+                    ID: "752",
+                },
+                Currency: "GBP",
+                CurrencyRate: types.MustNewDecimalFromString("1"),
+                DueDate: "2024-05-21",
+                ID: "4d7c6929-7770-412b-91bb-44d3bc71d111",
+                IssueDate: "2024-05-21",
+                Lines: []shared.ReimbursableExpenseTransactionLine{
+                    shared.ReimbursableExpenseTransactionLine{
+                        AccountRef: &shared.RecordRef{
+                            ID: syncforexpenses.String("35"),
+                        },
+                        Description: syncforexpenses.String("Hotel"),
+                        InvoiceTo: &shared.InvoiceTo{
+                            ID: syncforexpenses.String("504"),
+                            Type: shared.InvoiceToTypeCustomer.ToPointer(),
+                        },
+                        NetAmount: types.MustNewDecimalFromString("100"),
+                        TaxAmount: types.MustNewDecimalFromString("20"),
+                        TaxRateRef: &shared.RecordRef{
+                            ID: syncforexpenses.String("23_Bills"),
+                        },
+                        TrackingRefs: []shared.TrackingRef{
+                            shared.TrackingRef{
+                                DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
+                                ID: syncforexpenses.String("DEPARTMENT_5"),
+                            },
+                        },
+                    },
+                },
+                Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
+                Reference: syncforexpenses.String("expenses w/c 01/07"),
+            },
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -72,11 +107,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Update
 
@@ -88,7 +122,6 @@ Updating an existing [reimbursable expense transaction](https://docs.codat.io/sy
 | Integration           | Supported |
 |-----------------------|-----------|
 | FreeAgent             | Yes       |
-| QuickBooks Desktop    | Yes       |
 | QuickBooks Online     | Yes       |
 | Oracle NetSuite       | Yes       |
 
@@ -98,11 +131,11 @@ Updating an existing [reimbursable expense transaction](https://docs.codat.io/sy
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/types"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/types"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -122,7 +155,27 @@ func main() {
             DueDate: "2024-05-21",
             IssueDate: "2024-05-21",
             Lines: []shared.ReimbursableExpenseTransactionLine{
-
+                shared.ReimbursableExpenseTransactionLine{
+                    AccountRef: &shared.RecordRef{
+                        ID: syncforexpenses.String("35"),
+                    },
+                    Description: syncforexpenses.String("Hotel"),
+                    InvoiceTo: &shared.InvoiceTo{
+                        ID: syncforexpenses.String("504"),
+                        Type: shared.InvoiceToTypeCustomer.ToPointer(),
+                    },
+                    NetAmount: types.MustNewDecimalFromString("100"),
+                    TaxAmount: types.MustNewDecimalFromString("20"),
+                    TaxRateRef: &shared.RecordRef{
+                        ID: syncforexpenses.String("23_Bills"),
+                    },
+                    TrackingRefs: []shared.TrackingRef{
+                        shared.TrackingRef{
+                            DataType: shared.TrackingRefDataTypeTrackingCategories.ToPointer(),
+                            ID: syncforexpenses.String("DEPARTMENT_5"),
+                        },
+                    },
+                },
             },
             Notes: syncforexpenses.String("APPLE.COM/BILL - 09001077498 - Card Ending: 4590"),
             Reference: syncforexpenses.String("expenses w/c 01/07"),
@@ -153,7 +206,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

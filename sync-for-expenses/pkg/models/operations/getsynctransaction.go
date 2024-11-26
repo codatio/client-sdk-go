@@ -3,7 +3,7 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
 	"net/http"
 )
 
@@ -45,7 +45,7 @@ type GetSyncTransactionResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Success
-	TransactionResponse []shared.Transaction
+	TransactionResponse []shared.SchemaTransaction
 }
 
 func (o *GetSyncTransactionResponse) GetContentType() string {
@@ -69,7 +69,7 @@ func (o *GetSyncTransactionResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetSyncTransactionResponse) GetTransactionResponse() []shared.Transaction {
+func (o *GetSyncTransactionResponse) GetTransactionResponse() []shared.SchemaTransaction {
 	if o == nil {
 		return nil
 	}

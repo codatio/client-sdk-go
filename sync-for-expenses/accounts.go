@@ -6,14 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
-	"io"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/utils"
 	"net/http"
 )
 
@@ -36,8 +34,6 @@ func newAccounts(sdkConfig sdkConfiguration) *Accounts {
 // **Integration-specific behaviour**
 //
 // Required data may vary by integration. To see what data to post, first call [Get create account model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-chartOfAccounts-model).
-//
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountRequest, opts ...operations.Option) (*operations.CreateAccountResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -134,7 +130,11 @@ func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountR
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -195,21 +195,11 @@ func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountR
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -221,11 +211,10 @@ func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountR
 
 			res.CreateAccountResponse = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
@@ -245,7 +234,7 @@ func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountR
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -257,28 +246,25 @@ func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountR
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 
@@ -294,8 +280,6 @@ func (s *Accounts) Create(ctx context.Context, request operations.CreateAccountR
 // **Integration-specific behaviour**
 //
 // See the *response examples* for integration-specific indicative models.
-//
-// Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=chartOfAccounts) for integrations that support creating an account.
 func (s *Accounts) GetCreateModel(ctx context.Context, request operations.GetCreateChartOfAccountsModelRequest, opts ...operations.Option) (*operations.GetCreateChartOfAccountsModelResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -382,7 +366,11 @@ func (s *Accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -443,21 +431,11 @@ func (s *Accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 		RawResponse: httpRes,
 	}
 
-	getRawBody := func() ([]byte, error) {
-		rawBody, err := io.ReadAll(httpRes.Body)
-		if err != nil {
-			return nil, fmt.Errorf("error reading response body: %w", err)
-		}
-		httpRes.Body.Close()
-		httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-		return rawBody, nil
-	}
-
 	switch {
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -469,11 +447,10 @@ func (s *Accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 
 			res.PushOption = &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 401:
@@ -491,7 +468,7 @@ func (s *Accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 	case httpRes.StatusCode == 503:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
@@ -503,28 +480,25 @@ func (s *Accounts) GetCreateModel(ctx context.Context, request operations.GetCre
 
 			return nil, &out
 		default:
-			rawBody, err := getRawBody()
+			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
 				return nil, err
 			}
-
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
 		fallthrough
 	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
 	default:
-		rawBody, err := getRawBody()
+		rawBody, err := utils.ConsumeRawBody(httpRes)
 		if err != nil {
 			return nil, err
 		}
-
 		return nil, sdkerrors.NewSDKError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
 	}
 

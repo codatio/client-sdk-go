@@ -3,12 +3,13 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
 type UpdateReimbursableExpenseTransactionRequest struct {
-	ContactRef ReimbursementContactRef `json:"contactRef"`
+	ApAccountRef *ApAccountRef           `json:"apAccountRef,omitempty"`
+	ContactRef   ReimbursementContactRef `json:"contactRef"`
 	// Currency the transaction was recorded in.
 	Currency string `json:"currency"`
 	// Rate to convert the total amount of the payment into the base currency for the company at the time of the payment.
@@ -101,6 +102,13 @@ func (u *UpdateReimbursableExpenseTransactionRequest) UnmarshalJSON(data []byte)
 		return err
 	}
 	return nil
+}
+
+func (o *UpdateReimbursableExpenseTransactionRequest) GetApAccountRef() *ApAccountRef {
+	if o == nil {
+		return nil
+	}
+	return o.ApAccountRef
 }
 
 func (o *UpdateReimbursableExpenseTransactionRequest) GetContactRef() ReimbursementContactRef {

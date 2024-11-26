@@ -82,11 +82,12 @@ sources:
             - main
     sync-for-expenses-source:
         sourceNamespace: sync-for-expenses-source
-        sourceRevisionDigest: sha256:20f3897e882714662e3768287cdf2248e93501b8666560ffc0f1f629208c7a9f
-        sourceBlobDigest: sha256:7f399328e7bf537a3e5ee884667234673d34c00e889182df4e2b0500bb91dcfd
+        sourceRevisionDigest: sha256:d69350f6d8e4f6ebb0a04f04b9e215e7d64062828000ce204d3feda231a87c7d
+        sourceBlobDigest: sha256:abe56a70fc7e5c5883c7e8a6bef59d69ceb2dc4eddbb3106ae06b6c5acb38408
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1732640755
+            - prealpha
     sync-for-expenses-version-1-source:
         sourceNamespace: sync-for-expenses-version-1-source
         sourceRevisionDigest: sha256:b7665f9d81681000f18313ff0a4271b992c3309a663767bc753ba872c5e44916
@@ -182,8 +183,10 @@ targets:
     sync-for-expenses-library:
         source: sync-for-expenses-source
         sourceNamespace: sync-for-expenses-source
-        sourceRevisionDigest: sha256:20f3897e882714662e3768287cdf2248e93501b8666560ffc0f1f629208c7a9f
-        sourceBlobDigest: sha256:7f399328e7bf537a3e5ee884667234673d34c00e889182df4e2b0500bb91dcfd
+        sourceRevisionDigest: sha256:d69350f6d8e4f6ebb0a04f04b9e215e7d64062828000ce204d3feda231a87c7d
+        sourceBlobDigest: sha256:abe56a70fc7e5c5883c7e8a6bef59d69ceb2dc4eddbb3106ae06b6c5acb38408
+        codeSamplesNamespace: sync-for-expenses-source-code-samples
+        codeSamplesRevisionDigest: sha256:97518e4415b66e452d3ad365060fa01c30b3756fdcec8f6ce678a869845cf825
     sync-for-expenses-version-1-library:
         source: sync-for-expenses-version-1-source
         sourceNamespace: sync-for-expenses-version-1-source

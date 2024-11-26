@@ -3,55 +3,72 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"encoding/json"
+	"fmt"
 )
 
-type Transaction struct {
-	// Type of transaction that has been processed e.g. Expense or Bank Feed.
-	IntegrationType *IntegrationType `default:"expenses" json:"integrationType"`
-	// Metadata such as validation errors or the resulting record created in the accounting software.
-	Message *string `json:"message,omitempty"`
-	// Status of the transaction.
-	Status *TransactionStatus `json:"status,omitempty"`
-	// Your unique idenfier of the transaction.
-	TransactionID *string `json:"transactionId,omitempty"`
-}
+// TransactionDefinitionsStatus - Status of transaction.
+type TransactionDefinitionsStatus string
 
-func (t Transaction) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(t, "", false)
-}
+const (
+	TransactionDefinitionsStatusUnknown   TransactionDefinitionsStatus = "Unknown"
+	TransactionDefinitionsStatusPushError TransactionDefinitionsStatus = "PushError"
+	TransactionDefinitionsStatusCompleted TransactionDefinitionsStatus = "Completed"
+	TransactionDefinitionsStatusFailed    TransactionDefinitionsStatus = "Failed"
+	TransactionDefinitionsStatusPending   TransactionDefinitionsStatus = "Pending"
+)
 
-func (t *Transaction) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, false); err != nil {
+func (e TransactionDefinitionsStatus) ToPointer() *TransactionDefinitionsStatus {
+	return &e
+}
+func (e *TransactionDefinitionsStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
-	return nil
+	switch v {
+	case "Unknown":
+		fallthrough
+	case "PushError":
+		fallthrough
+	case "Completed":
+		fallthrough
+	case "Failed":
+		fallthrough
+	case "Pending":
+		*e = TransactionDefinitionsStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TransactionDefinitionsStatus: %v", v)
+	}
 }
 
-func (o *Transaction) GetIntegrationType() *IntegrationType {
+type Transaction struct {
+	// Error message for failed transaction.
+	ErrorMessage *string `json:"errorMessage,omitempty"`
+	// Unique identifier of the transaction.
+	ID *string `json:"id,omitempty"`
+	// Status of transaction.
+	Status *TransactionDefinitionsStatus `json:"status,omitempty"`
+}
+
+func (o *Transaction) GetErrorMessage() *string {
 	if o == nil {
 		return nil
 	}
-	return o.IntegrationType
+	return o.ErrorMessage
 }
 
-func (o *Transaction) GetMessage() *string {
+func (o *Transaction) GetID() *string {
 	if o == nil {
 		return nil
 	}
-	return o.Message
+	return o.ID
 }
 
-func (o *Transaction) GetStatus() *TransactionStatus {
+func (o *Transaction) GetStatus() *TransactionDefinitionsStatus {
 	if o == nil {
 		return nil
 	}
 	return o.Status
-}
-
-func (o *Transaction) GetTransactionID() *string {
-	if o == nil {
-		return nil
-	}
-	return o.TransactionID
 }

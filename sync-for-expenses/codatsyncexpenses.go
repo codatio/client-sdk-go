@@ -5,10 +5,10 @@ package syncforexpenses
 import (
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/internal/hooks"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/internal/hooks"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -113,6 +113,8 @@ type CodatSyncExpenses struct {
 	Suppliers *Suppliers
 	// Control and monitor the retrieval of data from an integration.
 	ManageData *ManageData
+	// View the company information of your customers' linked accounting software.
+	CompanyInfo *CompanyInfo
 	// View historic push operations.
 	PushOperations *PushOperations
 	// Create transactions that represent your adjustments to your customers' spend.
@@ -211,9 +213,9 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "prealpha",
-			SDKVersion:        "4.3.0",
-			GenVersion:        "2.415.7",
-			UserAgent:         "speakeasy-sdk/go 4.3.0 2.415.7 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
+			SDKVersion:        "5.0.0",
+			GenVersion:        "2.463.0",
+			UserAgent:         "speakeasy-sdk/go 5.0.0 2.463.0 prealpha github.com/codatio/client-sdk-go/sync-for-expenses",
 			Hooks:             hooks.New(),
 		},
 	}
@@ -246,6 +248,8 @@ func New(opts ...SDKOption) *CodatSyncExpenses {
 	sdk.Suppliers = newSuppliers(sdk.sdkConfiguration)
 
 	sdk.ManageData = newManageData(sdk.sdkConfiguration)
+
+	sdk.CompanyInfo = newCompanyInfo(sdk.sdkConfiguration)
 
 	sdk.PushOperations = newPushOperations(sdk.sdkConfiguration)
 

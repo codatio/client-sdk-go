@@ -22,8 +22,6 @@ The *Create supplier* endpoint creates a new [supplier](https://docs.codat.io/sy
 
 Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-update-suppliers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating an account.
-
 
 ### Example Usage
 
@@ -31,10 +29,10 @@ Check out our [coverage explorer](https://knowledge.codat.io/supported-features/
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -80,19 +78,16 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Get
 
 The *Get supplier* endpoint returns a single supplier for a given supplierId.
 
 [Suppliers](https://docs.codat.io/sync-for-expenses-api#/schemas/Supplier) are people or organizations that provide something, such as a product or service.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support getting a specific supplier.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-expenses-api#/operations/refresh-company-data).
 
@@ -103,9 +98,9 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -142,11 +137,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -163,9 +157,9 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -205,11 +199,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## Update
 
@@ -221,19 +214,16 @@ The *Update supplier* endpoint updates an existing [supplier](https://docs.codat
 
 Required data may vary by integration. To see what data to post, first call [Get create/update supplier model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-update-suppliers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=suppliers) for integrations that support creating an account.
-
-
 ### Example Usage
 
 ```go
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -309,7 +299,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

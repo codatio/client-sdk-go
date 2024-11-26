@@ -4,8 +4,8 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/retry"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/retry"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/utils"
 	"time"
 )
 

@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type SyncCompleteResponse struct {
+type ExpensesSyncUnsuccessfulResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -15,21 +15,21 @@ type SyncCompleteResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *SyncCompleteResponse) GetContentType() string {
+func (o *ExpensesSyncUnsuccessfulResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *SyncCompleteResponse) GetStatusCode() int {
+func (o *ExpensesSyncUnsuccessfulResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *SyncCompleteResponse) GetRawResponse() *http.Response {
+func (o *ExpensesSyncUnsuccessfulResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

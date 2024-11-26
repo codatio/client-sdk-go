@@ -22,19 +22,16 @@ The *Create customer* endpoint creates a new [customer](https://docs.codat.io/sy
 
 Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-update-customers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
-
-
 ### Example Usage
 
 ```go
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -49,10 +46,10 @@ func main() {
             Contacts: []shared.Contact{
                 shared.Contact{
                     ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-                    Phone: []shared.Phone{
-                        shared.Phone{
+                    Phone: []shared.PhoneNumberItems{
+                        shared.PhoneNumberItems{
                             Number: syncforexpenses.String("01224 658 999"),
-                            Type: shared.PhoneNumberTypeMobile,
+                            Type: shared.PhoneNumberTypeUnknown,
                         },
                     },
                     Status: shared.CustomerStatusUnknown,
@@ -89,19 +86,16 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## Get
 
 The *Get customer* endpoint returns a single customer for a given customerId.
 
 [Customers](https://docs.codat.io/sync-for-expenses-api#/schemas/Customer) are people or organizations that buy goods or services from the SMB.
-
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support getting a specific customer.
 
 Before using this endpoint, you must have [retrieved data for the company](https://docs.codat.io/sync-for-expenses-api#/operations/refresh-company-data).
 
@@ -112,9 +106,9 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -126,7 +120,7 @@ func main() {
     ctx := context.Background()
     res, err := s.Customers.Get(ctx, operations.GetCustomerRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
-        CustomerID: "<value>",
+        CustomerID: "7110701885",
     })
     if err != nil {
         log.Fatal(err)
@@ -151,11 +145,10 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 401,402,403,404,409,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
-
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 401, 402, 403, 404, 409, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
 ## List
 
@@ -172,9 +165,9 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -214,11 +207,10 @@ func main() {
 
 ### Errors
 
-| Error Object                        | Status Code                         | Content Type                        |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| sdkerrors.ErrorMessage              | 400,401,402,403,404,409,429,500,503 | application/json                    |
-| sdkerrors.SDKError                  | 4xx-5xx                             | */*                                 |
-
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
 
 ## Update
 
@@ -230,19 +222,16 @@ The *Update customer* endpoint updates an existing [customer](https://docs.codat
 
 Required data may vary by integration. To see what data to post, first call [Get create/update customer model](https://docs.codat.io/sync-for-expenses-api#/operations/get-create-update-customers-model).
 
-Check out our [coverage explorer](https://knowledge.codat.io/supported-features/accounting?view=tab-by-data-type&dataType=customers) for integrations that support creating an account.
-
-
 ### Example Usage
 
 ```go
 package main
 
 import(
-	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v4"
+	syncforexpenses "github.com/codatio/client-sdk-go/sync-for-expenses/v5"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-expenses/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/sync-for-expenses/v4/pkg/models/operations"
 	"log"
 )
 
@@ -257,13 +246,13 @@ func main() {
             Contacts: []shared.Contact{
                 shared.Contact{
                     ModifiedDate: syncforexpenses.String("2022-10-23T00:00:00Z"),
-                    Phone: []shared.Phone{
-                        shared.Phone{
-                            Number: syncforexpenses.String("+44 25691 154789"),
-                            Type: shared.PhoneNumberTypeLandline,
+                    Phone: []shared.PhoneNumberItems{
+                        shared.PhoneNumberItems{
+                            Number: syncforexpenses.String("(877) 492-8687"),
+                            Type: shared.PhoneNumberTypeUnknown,
                         },
                     },
-                    Status: shared.CustomerStatusArchived,
+                    Status: shared.CustomerStatusUnknown,
                 },
             },
             DefaultCurrency: syncforexpenses.String("EUR"),
@@ -273,7 +262,7 @@ func main() {
         },
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
-        CustomerID: "<value>",
+        CustomerID: "EILBDVJVNUAGVKRQ",
     })
     if err != nil {
         log.Fatal(err)
@@ -298,7 +287,7 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                             | Status Code                            | Content Type                           |
+| -------------------------------------- | -------------------------------------- | -------------------------------------- |
+| sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
+| sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |

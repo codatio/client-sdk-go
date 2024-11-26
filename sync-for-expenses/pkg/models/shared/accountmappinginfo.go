@@ -58,6 +58,8 @@ type AccountMappingInfo struct {
 	Name *string `json:"name,omitempty"`
 	// Code used to identify each nominal account in the accounting software.
 	NominalCode *string `json:"nominalCode,omitempty"`
+	// Supported endpoints for the account.
+	ValidFor []ValidFor `json:"validFor,omitempty"`
 	// Supported transaction types for the account.
 	ValidTransactionTypes []ValidTransactionTypes `json:"validTransactionTypes,omitempty"`
 }
@@ -109,6 +111,13 @@ func (o *AccountMappingInfo) GetNominalCode() *string {
 		return nil
 	}
 	return o.NominalCode
+}
+
+func (o *AccountMappingInfo) GetValidFor() []ValidFor {
+	if o == nil {
+		return nil
+	}
+	return o.ValidFor
 }
 
 func (o *AccountMappingInfo) GetValidTransactionTypes() []ValidTransactionTypes {

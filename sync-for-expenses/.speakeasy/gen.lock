@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e2492906-821b-42bf-87aa-d2e0a13ba8fa
 management:
-  docChecksum: 05894ed5d629c7c3f5209e037a7061bc
+  docChecksum: c99953b67f6a5e5522a0340e273decdb
   docVersion: prealpha
-  speakeasyVersion: 1.396.9
-  generationVersion: 2.415.7
-  releaseVersion: 4.3.0
-  configChecksum: a533c11614feef69b515a47678c79b0f
+  speakeasyVersion: 1.447.0
+  generationVersion: 2.463.0
+  releaseVersion: 5.0.0
+  configChecksum: f8685bb1026874cb0fcc3ec9e19c7dd5
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: sync-for-expenses
   installationURL: https://github.com/codatio/client-sdk-go/sync-for-expenses
@@ -15,11 +15,11 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.8
+    core: 3.5.17
     decimal: 0.1.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
-    envVarSecurityUsage: 0.3.1
+    envVarSecurityUsage: 0.3.2
     examples: 2.81.3
     globalSecurity: 2.82.10
     globalSecurityCallbacks: 0.1.0
@@ -30,7 +30,7 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.0
     responseFormat: 0.1.2
-    retries: 2.83.0
+    retries: 2.83.1
     sdkHooks: 0.1.0
     serverEventsSentinels: 0.1.0
     uploadStreams: 0.1.0
@@ -52,6 +52,7 @@ generatedFiles:
   - /pkg/models/operations/deleteconnection.go
   - /pkg/models/operations/getcompany.go
   - /pkg/models/operations/getcompanyconfiguration.go
+  - /pkg/models/operations/getcompanyinfo.go
   - /pkg/models/operations/getconnection.go
   - /pkg/models/operations/getcreatebankaccountsmodel.go
   - /pkg/models/operations/getcreatechartofaccountsmodel.go
@@ -92,6 +93,7 @@ generatedFiles:
   - /pkg/models/shared/adjustmenttransactionline.go
   - /pkg/models/shared/adjustmenttransactionrequest.go
   - /pkg/models/shared/adjustmenttransactionresponse.go
+  - /pkg/models/shared/apaccountref.go
   - /pkg/models/shared/attachment.go
   - /pkg/models/shared/attachmentupload.go
   - /pkg/models/shared/bankaccount.go
@@ -107,6 +109,8 @@ generatedFiles:
   - /pkg/models/shared/companies.go
   - /pkg/models/shared/company.go
   - /pkg/models/shared/companyconfiguration.go
+  - /pkg/models/shared/companyinformation.go
+  - /pkg/models/shared/companyreference.go
   - /pkg/models/shared/companyrequestbody.go
   - /pkg/models/shared/companysyncstatus.go
   - /pkg/models/shared/connection.go
@@ -129,6 +133,8 @@ generatedFiles:
   - /pkg/models/shared/errorvalidation.go
   - /pkg/models/shared/errorvalidationitem.go
   - /pkg/models/shared/expensecontactref.go
+  - /pkg/models/shared/expensessyncwebhook.go
+  - /pkg/models/shared/expensessyncwebhookpayload.go
   - /pkg/models/shared/expensetransaction.go
   - /pkg/models/shared/expensetransactionline.go
   - /pkg/models/shared/halref.go
@@ -139,6 +145,7 @@ generatedFiles:
   - /pkg/models/shared/links.go
   - /pkg/models/shared/mappingoptions.go
   - /pkg/models/shared/metadata.go
+  - /pkg/models/shared/phonenumberitems.go
   - /pkg/models/shared/phonenumbertype.go
   - /pkg/models/shared/pulloperation.go
   - /pkg/models/shared/pulloperations.go
@@ -159,6 +166,7 @@ generatedFiles:
   - /pkg/models/shared/reimbursableexpensetransactionline.go
   - /pkg/models/shared/reimbursementcontactref.go
   - /pkg/models/shared/schemadatatype.go
+  - /pkg/models/shared/schematransaction.go
   - /pkg/models/shared/security.go
   - /pkg/models/shared/status.go
   - /pkg/models/shared/supplementaldata.go
@@ -186,10 +194,13 @@ generatedFiles:
   - /pkg/models/shared/updatesupplierresponse.go
   - /pkg/models/shared/validation.go
   - /pkg/models/shared/validationitem.go
+  - /pkg/models/shared/validfor.go
   - /pkg/models/shared/validtransactiontypes.go
   - /pkg/models/webhooks/clientratelimitreached.go
   - /pkg/models/webhooks/clientratelimitreset.go
-  - /pkg/models/webhooks/synccomplete.go
+  - /pkg/models/webhooks/expensessyncsuccessful.go
+  - /pkg/models/webhooks/expensessyncunsuccessful.go
+  - /pkg/models/webhooks/synccompleted.go
   - /pkg/models/webhooks/syncfailed.go
   - CONTRIBUTING.md
   - USAGE.md
@@ -199,6 +210,7 @@ generatedFiles:
   - bankaccounts.go
   - codatsyncexpenses.go
   - companies.go
+  - companyinfo.go
   - configuration.go
   - connections.go
   - customers.go
@@ -230,6 +242,8 @@ generatedFiles:
   - docs/pkg/models/operations/deleteconnectionresponse.md
   - docs/pkg/models/operations/getcompanyconfigurationrequest.md
   - docs/pkg/models/operations/getcompanyconfigurationresponse.md
+  - docs/pkg/models/operations/getcompanyinforequest.md
+  - docs/pkg/models/operations/getcompanyinforesponse.md
   - docs/pkg/models/operations/getcompanyrequest.md
   - docs/pkg/models/operations/getcompanyresponse.md
   - docs/pkg/models/operations/getconnectionrequest.md
@@ -313,6 +327,7 @@ generatedFiles:
   - docs/pkg/models/shared/adjustmenttransactionline.md
   - docs/pkg/models/shared/adjustmenttransactionrequest.md
   - docs/pkg/models/shared/adjustmenttransactionresponse.md
+  - docs/pkg/models/shared/apaccountref.md
   - docs/pkg/models/shared/attachment.md
   - docs/pkg/models/shared/attachmentupload.md
   - docs/pkg/models/shared/bankaccount.md
@@ -330,6 +345,10 @@ generatedFiles:
   - docs/pkg/models/shared/companies.md
   - docs/pkg/models/shared/company.md
   - docs/pkg/models/shared/companyconfiguration.md
+  - docs/pkg/models/shared/companyinformation.md
+  - docs/pkg/models/shared/companyinformationtype.md
+  - docs/pkg/models/shared/companyreference.md
+  - docs/pkg/models/shared/companyreferencelinks.md
   - docs/pkg/models/shared/companyrequestbody.md
   - docs/pkg/models/shared/companysyncstatus.md
   - docs/pkg/models/shared/connection.md
@@ -341,7 +360,6 @@ generatedFiles:
   - docs/pkg/models/shared/createbankaccountresponse.md
   - docs/pkg/models/shared/createbankaccountresponsebankaccounttype.md
   - docs/pkg/models/shared/createcustomerresponse.md
-  - docs/pkg/models/shared/createcustomerresponseaccountingaddress.md
   - docs/pkg/models/shared/createexpenseresponse.md
   - docs/pkg/models/shared/createreimbursableexpenseresponse.md
   - docs/pkg/models/shared/createsupplierresponse.md
@@ -359,11 +377,12 @@ generatedFiles:
   - docs/pkg/models/shared/errorvalidation.md
   - docs/pkg/models/shared/errorvalidationitem.md
   - docs/pkg/models/shared/expensecontactref.md
+  - docs/pkg/models/shared/expensessyncwebhook.md
+  - docs/pkg/models/shared/expensessyncwebhookpayload.md
   - docs/pkg/models/shared/expensetransaction.md
   - docs/pkg/models/shared/expensetransactionline.md
   - docs/pkg/models/shared/expensetransactiontype.md
   - docs/pkg/models/shared/from.md
-  - docs/pkg/models/shared/groupreference.md
   - docs/pkg/models/shared/halref.md
   - docs/pkg/models/shared/integrationtype.md
   - docs/pkg/models/shared/invoiceto.md
@@ -374,6 +393,7 @@ generatedFiles:
   - docs/pkg/models/shared/mappingoptions.md
   - docs/pkg/models/shared/metadata.md
   - docs/pkg/models/shared/phone.md
+  - docs/pkg/models/shared/phonenumberitems.md
   - docs/pkg/models/shared/phonenumbertype.md
   - docs/pkg/models/shared/pulloperation.md
   - docs/pkg/models/shared/pulloperations.md
@@ -394,6 +414,7 @@ generatedFiles:
   - docs/pkg/models/shared/reimbursableexpensetransactionline.md
   - docs/pkg/models/shared/reimbursementcontactref.md
   - docs/pkg/models/shared/schemadatatype.md
+  - docs/pkg/models/shared/schematransaction.md
   - docs/pkg/models/shared/security.md
   - docs/pkg/models/shared/sourcetype.md
   - docs/pkg/models/shared/status.md
@@ -406,7 +427,6 @@ generatedFiles:
   - docs/pkg/models/shared/synccompletewebhookdata.md
   - docs/pkg/models/shared/syncfailedwebhook.md
   - docs/pkg/models/shared/syncfailedwebhookdata.md
-  - docs/pkg/models/shared/tags.md
   - docs/pkg/models/shared/taxratemappinginfo.md
   - docs/pkg/models/shared/to.md
   - docs/pkg/models/shared/trackingcategorymappinginfo.md
@@ -415,6 +435,7 @@ generatedFiles:
   - docs/pkg/models/shared/trackingrefadjustmenttransactiondatatype.md
   - docs/pkg/models/shared/trackingrefdatatype.md
   - docs/pkg/models/shared/transaction.md
+  - docs/pkg/models/shared/transactiondefinitionsstatus.md
   - docs/pkg/models/shared/transactions.md
   - docs/pkg/models/shared/transactionstatus.md
   - docs/pkg/models/shared/transfertransactionrequest.md
@@ -422,7 +443,6 @@ generatedFiles:
   - docs/pkg/models/shared/transfertransactionresponse.md
   - docs/pkg/models/shared/type.md
   - docs/pkg/models/shared/updatecustomerresponse.md
-  - docs/pkg/models/shared/updatecustomerresponseaccountingaddress.md
   - docs/pkg/models/shared/updatecustomerresponseaccountingcustomer.md
   - docs/pkg/models/shared/updateexpenserequest.md
   - docs/pkg/models/shared/updateexpenserequestbankaccountreference.md
@@ -434,12 +454,16 @@ generatedFiles:
   - docs/pkg/models/shared/validation.md
   - docs/pkg/models/shared/validationitem.md
   - docs/pkg/models/shared/validdatatypelinks.md
+  - docs/pkg/models/shared/validfor.md
   - docs/pkg/models/shared/validtransactiontypes.md
+  - docs/pkg/models/shared/weblink.md
   - docs/pkg/models/webhooks/clientratelimitreachedresponse.md
   - docs/pkg/models/webhooks/clientratelimitreachedresponse1.md
   - docs/pkg/models/webhooks/clientratelimitresetresponse.md
   - docs/pkg/models/webhooks/clientratelimitresetresponse1.md
-  - docs/pkg/models/webhooks/synccompleteresponse.md
+  - docs/pkg/models/webhooks/expensessyncsuccessfulresponse.md
+  - docs/pkg/models/webhooks/expensessyncunsuccessfulresponse.md
+  - docs/pkg/models/webhooks/synccompletedresponse.md
   - docs/pkg/models/webhooks/syncfailedresponse.md
   - docs/sdks/accounts/README.md
   - docs/sdks/adjustments/README.md
@@ -447,6 +471,7 @@ generatedFiles:
   - docs/sdks/bankaccounts/README.md
   - docs/sdks/codatsyncexpenses/README.md
   - docs/sdks/companies/README.md
+  - docs/sdks/companyinfo/README.md
   - docs/sdks/configuration/README.md
   - docs/sdks/connections/README.md
   - docs/sdks/customers/README.md
@@ -473,6 +498,7 @@ generatedFiles:
   - pkg/types/decimal.go
   - pkg/types/pointers.go
   - pkg/utils/contenttype.go
+  - pkg/utils/env.go
   - pkg/utils/form.go
   - pkg/utils/headers.go
   - pkg/utils/json.go
@@ -492,17 +518,17 @@ examples:
   create-company:
     With no description:
       requestBody:
-        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Technicalium"}
+        application/json: {"description": "Requested early access to the new financing scheme.", "name": "Technicalium"}
       responses:
         "200":
-          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": []}
         "400": {}
     With a description:
       requestBody:
-        application/json: {"description": "Technology services, including web and app design and development", "groups": [], "name": "Technicalium"}
+        application/json: {"description": "Technology services, including web and app design and development", "name": "Technicalium"}
       responses:
         "200":
-          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "Technology services, including web and app design and development", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "Technology services, including web and app design and development", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": []}
         "400": {}
     With a group:
       requestBody:
@@ -513,10 +539,16 @@ examples:
         "400": {}
     Malformed query:
       requestBody:
-        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Bank of Dave"}
+        application/json: {"description": "Requested early access to the new financing scheme.", "name": "Bank of Dave"}
       responses:
         "400":
           application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+    With a tag:
+      requestBody:
+        application/json: {"description": "Requested early access to the new financing scheme.", "name": "Bank of Dave"}
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18.1950523Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "name": "Technicalium", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": [], "tags": {"region": "us"}}
   delete-company:
     Unauthorized:
       parameters:
@@ -532,7 +564,7 @@ examples:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       responses:
         "200":
-          application/json: {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "My First Company", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0"}
+          application/json: {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "lastSync": "2022-10-23T00:00:00Z", "name": "Toft stores holdings", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": []}
     With groups:
       parameters:
         path:
@@ -547,6 +579,20 @@ examples:
       responses:
         "401":
           application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+    Parent multi-entity company:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "description": "", "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "name": "Toft stores", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": [{"id": "c8d3af58-7011-47ce-b3f2-89faf300ef6d", "links": {"portal": "https://app.codat.io/companies/c8d3af58-7011-47ce-b3f2-89faf300ef6d/summary"}, "name": "Toft stores UK"}, {"id": "db94eddc-9212-4568-9b5c-3eab0e325913", "links": {"portal": "https://app.codat.io/companies/db94eddc-9212-4568-9b5c-3eab0e325913/summary"}, "name": "Toft stores US"}]}
+    Subsidiary multi-entity company:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "200":
+          application/json: {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "d5ab61b7-1ad0-46fd-9f9f-b6761047941e", "integrationId": "cc750323-5a47-4f28-8d8e-30fbbf2ce137", "integrationKey": "akxx", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/c8d3af58-7011-47ce-b3f2-89faf300ef6d/connections/d5ab61b7-1ad0-46fd-9f9f-b6761047941e/start", "platformName": "Oracle NetSuite", "sourceId": "9815b998-024d-4415-a40b-89903b2cad6f", "sourceType": "Accounting", "status": "Linked"}], "description": "", "id": "c8d3af58-7011-47ce-b3f2-89faf300ef6d", "name": "Toft stores UK", "redirect": "https://link.codat.io/company/c8d3af58-7011-47ce-b3f2-89faf300ef6d", "referenceParentCompany": {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "links": {"portal": "https://app.codat.io/companies/ab12c58d-a678-4ebf-a159-ae99e1807bd0/summary"}, "name": "Toft stores"}, "referenceSubsidiaryCompanies": []}
   list-companies:
     "":
       parameters:
@@ -568,7 +614,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Mike Smith", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "dataConnectionErrors": [], "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/3fa85f64-5717-4562-b3fc-2c963f66afa6/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "My Test Company make testing software", "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "lastSync": "2022-01-01T12:30:00.000Z", "name": "My Test Company", "redirect": "https://link.codat.io/company/3fa85f64-5717-4562-b3fc-2c963f66afa6"}], "totalResults": 1}
+          application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Mike Smith", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/3fa85f64-5717-4562-b3fc-2c963f66afa6/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "My Test Company make testing software", "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "lastSync": "2022-01-01T12:30:00.000Z", "name": "My Test Company", "redirect": "https://link.codat.io/company/3fa85f64-5717-4562-b3fc-2c963f66afa6", "referenceSubsidiaryCompanies": []}], "totalResults": 1}
     List of Companies:
       parameters:
         query:
@@ -578,7 +624,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Joe Bloggs", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "dataConnectionErrors": [], "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/d1568dde-adf6-11ed-afa1-0242ac120002/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "Technology services, including web and app design and development", "id": "d1568dde-adf6-11ed-afa1-0242ac120002", "lastSync": "2022-01-01T12:30:00.000Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/d1568dde-adf6-11ed-afa1-0242ac120002"}, {"created": "2022-01-01T11:30:00Z", "createdByUserName": "Mike Smith", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "dataConnectionErrors": [], "id": "a70bc148-dc21-46b2-a257-d9c58ac15cbb", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/096db70b-78de-4ff0-aa98-299cb5fe17a0/connections/a70bc148-dc21-46b2-a257-d9c58ac15cbb/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "A new digital agency with a passion for creating amazing digital experiences", "id": "096db70b-78de-4ff0-aa98-299cb5fe17a0", "lastSync": "2022-01-01T12:30:00.000Z", "name": "Godata", "redirect": "https://link.codat.io/company/096db70b-78de-4ff0-aa98-299cb5fe17a0"}], "totalResults": 2}
+          application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Joe Bloggs", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/d1568dde-adf6-11ed-afa1-0242ac120002/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "Technology services, including web and app design and development", "id": "d1568dde-adf6-11ed-afa1-0242ac120002", "lastSync": "2022-01-01T12:30:00.000Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/d1568dde-adf6-11ed-afa1-0242ac120002", "referenceSubsidiaryCompanies": []}, {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "name": "Toft stores", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": [{"id": "c8d3af58-7011-47ce-b3f2-89faf300ef6d", "links": {"portal": "https://app.codat.io/companies/c8d3af58-7011-47ce-b3f2-89faf300ef6d/summary"}, "name": "Toft stores UK"}, {"id": "db94eddc-9212-4568-9b5c-3eab0e325913", "links": {"portal": "https://app.codat.io/companies/db94eddc-9212-4568-9b5c-3eab0e325913/summary"}, "name": "Toft stores US"}]}, {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "d5ab61b7-1ad0-46fd-9f9f-b6761047941e", "integrationId": "cc750323-5a47-4f28-8d8e-30fbbf2ce137", "integrationKey": "akxx", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/c8d3af58-7011-47ce-b3f2-89faf300ef6d/connections/d5ab61b7-1ad0-46fd-9f9f-b6761047941e/start", "platformName": "Oracle NetSuite", "sourceId": "9815b998-024d-4415-a40b-89903b2cad6f", "sourceType": "Accounting", "status": "Linked"}], "id": "c8d3af58-7011-47ce-b3f2-89faf300ef6d", "name": "Toft stores UK", "redirect": "https://link.codat.io/company/c8d3af58-7011-47ce-b3f2-89faf300ef6d", "referenceParentCompany": {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "links": {"portal": "https://app.codat.io/companies/ab12c58d-a678-4ebf-a159-ae99e1807bd0/summary"}, "name": "Toft stores"}, "referenceSubsidiaryCompanies": []}, {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "1e5c8c9e-27fd-4ba9-9a2a-d02ba65bc2fb", "integrationId": "cc750323-5a47-4f28-8d8e-30fbbf2ce137", "integrationKey": "akxx", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/db94eddc-9212-4568-9b5c-3eab0e325913/connections/1e5c8c9e-27fd-4ba9-9a2a-d02ba65bc2fb/start", "platformName": "Oracle NetSuite", "sourceId": "9815b998-024d-4415-a40b-89903b2cad6f", "sourceType": "Accounting", "status": "Linked"}], "id": "db94eddc-9212-4568-9b5c-3eab0e325913", "name": "Toft stores US", "redirect": "https://link.codat.io/company/db94eddc-9212-4568-9b5c-3eab0e325913", "referenceParentCompany": {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "links": {"portal": "https://app.codat.io/companies/ab12c58d-a678-4ebf-a159-ae99e1807bd0/summary"}, "name": "Toft stores"}, "referenceSubsidiaryCompanies": []}], "totalResults": 3}
     Malformed query:
       parameters:
         query:
@@ -605,27 +651,27 @@ examples:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "New Name"}
+        application/json: {"description": "Requested early access to the new financing scheme.", "name": "New Name"}
       responses:
         "200":
-          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}
+          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739", "tags": {"region": "us", "uid": "f6b0c253-16c7-4da1-a0c5-9c871e9c9d6c"}}
         "401": {}
     Update description:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: {"description": "Additional documents required", "groups": [], "name": "Same name"}
+        application/json: {"description": "Additional documents required", "name": "Same name"}
       responses:
         "200":
-          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}
+          application/json: {"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739", "tags": {"region": "us", "uid": "f6b0c253-16c7-4da1-a0c5-9c871e9c9d6c"}}
         "401": {}
     Unauthorized:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: {"description": "Requested early access to the new financing scheme.", "groups": [], "name": "Bank of Dave"}
+        application/json: {"description": "Requested early access to the new financing scheme.", "name": "Bank of Dave"}
       responses:
         "401":
           application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
@@ -707,7 +753,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "string"}, "next": {"href": "string"}, "previous": {"href": "string"}, "self": {"href": "string"}}, "pageNumber": 0, "pageSize": 0, "results": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "totalResults": 0}
+          application/json: {"_links": {"current": {"href": "string"}, "next": {"href": "string"}, "previous": {"href": "string"}, "self": {"href": "string"}}, "pageNumber": 0, "pageSize": 0, "results": [{"created": "2022-10-27T09:53:29Z", "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "totalResults": 0}
     Malformed query:
       parameters:
         path:
@@ -987,23 +1033,23 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "7110701885"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "Fernandohaven", "country": "United Kingdom", "line1": "Suite 214", "line2": "8439 Lueilwitz Passage", "postalCode": "JG04 7PV", "region": "Northern Ireland", "type": "Delivery"}, {"city": "Juliochester", "country": "United Kingdom", "line1": "Suite 096", "line2": "864 Halie Course", "postalCode": "DZ8 4BF", "region": "England", "type": "Delivery"}, {"city": "Naderborough", "country": "United Kingdom", "line1": "Suite 001", "line2": "416 Stokes Fords", "postalCode": "XG25 0XX", "region": "Wales", "type": "Delivery"}], "contactName": "Werner Langworth", "contacts": [{"address": {"city": "Hortenseville", "country": "United Kingdom", "line1": "Apt. 145", "line2": "317 Williamson Freeway", "postalCode": "CV4 2HR", "region": "Scotland", "type": "Delivery"}, "email": "Werner_Langworth@hotmail.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Werner Langworth", "phone": [], "status": "Active"}, {"address": {"city": "South Ali", "country": "United Kingdom", "line1": "Suite 075", "line2": "9921 Dickens Walk", "postalCode": "TI04 4OO", "region": "Scotland", "type": "Delivery"}, "email": "Belle51@yahoo.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Belle Glover", "phone": [], "status": "Active"}], "customerName": "Arjun Kuvalis", "defaultCurrency": "GBP", "emailAddress": "Arjun34@hotmail.com", "id": "c8180244-74ac-40cf-a5df-6d83661c44d7", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T12:38:16Z", "phone": "014605 64820", "registrationNumber": "NI7JEJVM", "sourceModifiedDate": "2022-07-03T01:27:00", "status": "Active", "taxNumber": "7505220209.583549"}
+          application/json: {"addresses": [{"city": "Fernandohaven", "country": "United Kingdom", "line1": "Suite 214", "line2": "8439 Lueilwitz Passage", "postalCode": "JG04 7PV", "region": "Northern Ireland", "type": "Delivery"}, {"city": "Juliochester", "country": "United Kingdom", "line1": "Suite 096", "line2": "864 Halie Course", "postalCode": "DZ8 4BF", "region": "England", "type": "Delivery"}, {"city": "Naderborough", "country": "United Kingdom", "line1": "Suite 001", "line2": "416 Stokes Fords", "postalCode": "XG25 0XX", "region": "Wales", "type": "Delivery"}], "contactName": "Werner Langworth", "contacts": [{"address": {"city": "Hortenseville", "country": "United Kingdom", "line1": "Apt. 145", "line2": "317 Williamson Freeway", "postalCode": "CV4 2HR", "region": "Scotland", "type": "Delivery"}, "email": "Werner_Langworth@hotmail.com", "name": "Werner Langworth", "phone": [], "status": "Active"}, {"address": {"city": "South Ali", "country": "United Kingdom", "line1": "Suite 075", "line2": "9921 Dickens Walk", "postalCode": "TI04 4OO", "region": "Scotland", "type": "Delivery"}, "email": "Belle51@yahoo.com", "name": "Belle Glover", "phone": [], "status": "Active"}], "customerName": "Arjun Kuvalis", "defaultCurrency": "GBP", "emailAddress": "Arjun34@hotmail.com", "id": "c8180244-74ac-40cf-a5df-6d83661c44d7", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T12:38:16Z", "phone": "014605 64820", "registrationNumber": "NI7JEJVM", "sourceModifiedDate": "2022-07-03T01:27:00", "status": "Active", "taxNumber": "7505220209.583549"}
     Dynamics 365 Business Central:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "7110701885"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "contacts": [{"address": {"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}, "email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "", "phone": [], "status": "Active"}], "customerName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "0e2f7751-7696-ed11-bff5-6045bd0d2ad6", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:25Z", "phone": "", "sourceModifiedDate": "2023-01-17T14:50:54Z", "status": "Active", "taxNumber": ""}
+          application/json: {"addresses": [{"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "contacts": [{"address": {"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}, "email": "", "name": "", "phone": [], "status": "Active"}], "customerName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "0e2f7751-7696-ed11-bff5-6045bd0d2ad6", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:25Z", "phone": "", "sourceModifiedDate": "2023-01-17T14:50:54Z", "status": "Active", "taxNumber": ""}
     Exact (Netherlands):
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "7110701885"
       responses:
         "200":
           application/json: {"addresses": [{"country": "NL", "type": "Billing"}], "contacts": [], "customerName": "Ab Netherlands", "defaultCurrency": "EUR", "id": "555f8251-c65a-433a-a813-5dbe04321d1e", "modifiedDate": "2022-10-26T13:32:05Z", "sourceModifiedDate": "2021-06-14T15:26:37Z", "status": "Active"}
@@ -1011,7 +1057,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "7110701885"
       responses:
         "200":
           application/json: {"addresses": [{"city": "London", "country": "GB", "line1": "Ink Rooms", "postalCode": "WC1X 0BE", "type": "Billing"}], "contacts": [], "customerName": "Abdi 99", "defaultCurrency": "GBP", "emailAddress": "email@codat.io", "id": "5f20075a-a28e-434d-81a6-2db0dc170e87", "modifiedDate": "2022-10-26T13:33:08Z", "registrationNumber": "123456789", "sourceModifiedDate": "2020-02-26T11:23:50Z", "status": "Active", "taxNumber": "GB339 0727 47"}
@@ -1019,31 +1065,31 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Test 1", "phone": [], "status": "Unknown"}], "customerName": "-", "defaultCurrency": "USD", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:12Z", "sourceModifiedDate": "2023-04-17T06:02:46Z", "status": "Active"}
+          application/json: {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}, "name": "Test 1", "phone": [], "status": "Unknown"}], "customerName": "-", "defaultCurrency": "USD", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:12Z", "sourceModifiedDate": "2023-04-17T06:02:46Z", "status": "Active"}
     FreshBooks:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "Some city", "country": "Country 1", "line1": "Line 1", "line2": "Line 2", "postalCode": "SW1 2JQ", "region": "A region", "type": "Billing"}], "contactName": "test person name", "contacts": [{"email": "test14A@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person1", "phone": [{"number": "24681012", "type": "Primary"}, {"number": "121086420", "type": "Unknown"}], "status": "Active"}, {"email": "test14B@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person2", "phone": [{"number": "123456789", "type": "Primary"}, {"number": "987654321", "type": "Unknown"}], "status": "Active"}, {"email": "test14@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person name", "phone": [{"number": "01876 541245", "type": "Unknown"}], "status": "Active"}], "customerName": "A test customer 14 (updated)", "defaultCurrency": "GBP", "emailAddress": "test14@example.com", "id": "634509", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:23Z", "phone": "01876 541245", "sourceModifiedDate": "2022-05-18T09:23:56", "status": "Active"}
+          application/json: {"addresses": [{"city": "Some city", "country": "Country 1", "line1": "Line 1", "line2": "Line 2", "postalCode": "SW1 2JQ", "region": "A region", "type": "Billing"}], "contactName": "test person name", "contacts": [{"email": "test14A@example.com", "name": "test person1", "phone": [{"number": "24681012", "type": "Primary"}, {"number": "121086420", "type": "Unknown"}], "status": "Active"}, {"email": "test14B@example.com", "name": "test person2", "phone": [{"number": "123456789", "type": "Primary"}, {"number": "987654321", "type": "Unknown"}], "status": "Active"}, {"email": "test14@example.com", "name": "test person name", "phone": [{"number": "01876 541245", "type": "Unknown"}], "status": "Active"}], "customerName": "A test customer 14 (updated)", "defaultCurrency": "GBP", "emailAddress": "test14@example.com", "id": "634509", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:23Z", "phone": "01876 541245", "sourceModifiedDate": "2022-05-18T09:23:56", "status": "Active"}
     KashFlow:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
-          application/json: {"addresses": [], "contactName": "", "contacts": [{"email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "", "phone": [], "status": "Active"}], "customerName": "Chekko Customer Test 01", "defaultCurrency": "EUR", "emailAddress": "", "id": "92227673", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "", "sourceModifiedDate": "0001-01-01T00:00:00", "status": "Active", "taxNumber": ""}
+          application/json: {"addresses": [], "contactName": "", "contacts": [{"email": "", "name": "", "phone": [], "status": "Active"}], "customerName": "Chekko Customer Test 01", "defaultCurrency": "EUR", "emailAddress": "", "id": "92227673", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "", "sourceModifiedDate": "0001-01-01T00:00:00", "status": "Active", "taxNumber": ""}
     Oracle NetSuite:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
           application/json: {"addresses": [], "contactName": "Mr Test  Customer", "contacts": [], "customerName": "119 Test Customer", "defaultCurrency": "GBP", "id": "773", "modifiedDate": "2023-01-30T14:48:02Z", "sourceModifiedDate": "2022-01-11T12:28:49", "status": "Active"}
@@ -1051,39 +1097,39 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Delivery"}, {"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"email": "kristy@samplename.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abercrombie, Kristy", "phone": [{"number": "415-555-6579", "type": "Primary"}], "status": "Active"}, {"modifiedDate": "2022-10-23T00:00:00Z", "name": "Kristy Abercrombie", "phone": [], "status": "Active"}, {"modifiedDate": "2022-10-23T00:00:00Z", "name": "Steve Darcangelo", "phone": [], "status": "Active"}], "customerName": "Abercrombie, Kristy", "defaultCurrency": "GBP", "emailAddress": "kristy@samplename.com", "id": "150000-933272658", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:07:55Z", "phone": "415-555-6579", "sourceModifiedDate": "2023-12-16T05:06:42", "status": "Active"}
+          application/json: {"addresses": [{"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Delivery"}, {"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"email": "kristy@samplename.com", "name": "Abercrombie, Kristy", "phone": [{"number": "415-555-6579", "type": "Primary"}], "status": "Active"}, {"name": "Kristy Abercrombie", "phone": [], "status": "Active"}, {"name": "Steve Darcangelo", "phone": [], "status": "Active"}], "customerName": "Abercrombie, Kristy", "defaultCurrency": "GBP", "emailAddress": "kristy@samplename.com", "id": "150000-933272658", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:07:55Z", "phone": "415-555-6579", "sourceModifiedDate": "2023-12-16T05:06:42", "status": "Active"}
     QuickBooks Online:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
-          application/json: {"addresses": [], "contactName": "Abraham's Company", "contacts": [{"email": "ab@email.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abe", "phone": [{"number": "01111111111", "type": "Mobile"}], "status": "Active"}], "customerName": "Abe", "defaultCurrency": "GBP", "emailAddress": "ab@email.com", "id": "9", "modifiedDate": "2023-01-18T11:02:35Z", "registrationNumber": "XXXX9900001", "sourceModifiedDate": "2022-12-08T15:42:59Z", "status": "Active", "taxNumber": "XXXX9900001"}
+          application/json: {"addresses": [], "contactName": "Abraham's Company", "contacts": [{"email": "ab@email.com", "name": "Abe", "phone": [{"number": "01111111111", "type": "Mobile"}], "status": "Active"}], "customerName": "Abe", "defaultCurrency": "GBP", "emailAddress": "ab@email.com", "id": "9", "modifiedDate": "2023-01-18T11:02:35Z", "registrationNumber": "XXXX9900001", "sourceModifiedDate": "2022-12-08T15:42:59Z", "status": "Active", "taxNumber": "XXXX9900001"}
     QuickBooks Online Sandbox:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"address": {"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abercrombie International Group (deleted)", "phone": [], "status": "Archived"}], "customerName": "Abercrombie International Group", "defaultCurrency": "GBP", "id": "66", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:56Z", "sourceModifiedDate": "2016-09-12T18:53:19Z", "status": "Archived"}
+          application/json: {"addresses": [{"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"address": {"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}, "name": "Abercrombie International Group (deleted)", "phone": [], "status": "Archived"}], "customerName": "Abercrombie International Group", "defaultCurrency": "GBP", "id": "66", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:56Z", "sourceModifiedDate": "2016-09-12T18:53:19Z", "status": "Archived"}
     Sage 200cloud:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "Blackpool", "country": "", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Delivery"}, {"city": "Manchester", "country": "", "line1": "23a Union Street", "line2": "", "postalCode": "M2 6JK", "region": "", "type": "Delivery"}, {"city": "Blackpool", "country": "Great Britain", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Billing"}], "contactName": "Lee Dalkin", "contacts": [{"email": "newbusinessadvice@sage.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Lee Dalkin", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Landline"}, {"number": "01742 876 236", "type": "Fax"}], "status": "Active"}, {"email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Malcolm Leverret", "phone": [], "status": "Active"}, {"email": "Jim@a1designservices.co.uk", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Jim Thomas", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Fax"}], "status": "Active"}, {"email": "Jullian@a1designservices.co.uk", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Jullian Plawsworth", "phone": [{"number": "0151 349 3939", "type": "Landline"}, {"number": "0151 349 3940", "type": "Fax"}], "status": "Active"}], "customerName": "A1 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D001", "modifiedDate": "2022-10-14T09:35:53Z", "phone": "01742 876 234", "registrationNumber": "", "sourceModifiedDate": "2022-04-27T15:17:36Z", "status": "Active", "taxNumber": "GB238 3839 38"}
+          application/json: {"addresses": [{"city": "Blackpool", "country": "", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Delivery"}, {"city": "Manchester", "country": "", "line1": "23a Union Street", "line2": "", "postalCode": "M2 6JK", "region": "", "type": "Delivery"}, {"city": "Blackpool", "country": "Great Britain", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Billing"}], "contactName": "Lee Dalkin", "contacts": [{"email": "newbusinessadvice@sage.com", "name": "Lee Dalkin", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Landline"}, {"number": "01742 876 236", "type": "Fax"}], "status": "Active"}, {"email": "", "name": "Malcolm Leverret", "phone": [], "status": "Active"}, {"email": "Jim@a1designservices.co.uk", "name": "Jim Thomas", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Fax"}], "status": "Active"}, {"email": "Jullian@a1designservices.co.uk", "name": "Jullian Plawsworth", "phone": [{"number": "0151 349 3939", "type": "Landline"}, {"number": "0151 349 3940", "type": "Fax"}], "status": "Active"}], "customerName": "A1 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D001", "modifiedDate": "2022-10-14T09:35:53Z", "phone": "01742 876 234", "registrationNumber": "", "sourceModifiedDate": "2022-04-27T15:17:36Z", "status": "Active", "taxNumber": "GB238 3839 38"}
     Sage 50 (UK):
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
           application/json: {"addresses": [{"city": "Blackpool", "country": "GB", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Delivery"}, {"city": "Manchester", "country": "GB", "line1": "23a Union Street", "line2": "", "postalCode": "M2 6JK", "region": "", "type": "Delivery"}, {"city": "Blackpool", "country": "GB", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Unknown"}], "contactName": "Ian Cairns", "contacts": [], "customerName": "A1 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D001", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-30T14:42:41Z", "phone": "01742 876 234", "sourceModifiedDate": "2022-11-25T09:43:54Z", "status": "Active", "taxNumber": "GB238 3839 38"}
@@ -1091,23 +1137,23 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "Aruba City", "country": "Aruba (AW)", "line1": "Aruba Address line 1", "line2": "Aruba Address line 2", "postalCode": "Aruba Post", "region": "Aruba Province", "type": "Billing"}], "contactName": "Main Contact", "contacts": [{"modifiedDate": "2022-10-23T00:00:00Z", "phone": [{"number": "contact mobile number", "type": "Mobile"}, {"number": "contact fax number", "type": "Fax"}], "status": "Unknown"}], "customerName": "100 test name", "defaultCurrency": "GBP", "emailAddress": "email@codat.io", "id": "260f6a3f94a243738f2d5e08496a41a8", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "contact phone number", "sourceModifiedDate": "2021-05-10T16:31:51Z", "status": "Active"}
+          application/json: {"addresses": [{"city": "Aruba City", "country": "Aruba (AW)", "line1": "Aruba Address line 1", "line2": "Aruba Address line 2", "postalCode": "Aruba Post", "region": "Aruba Province", "type": "Billing"}], "contactName": "Main Contact", "contacts": [{"phone": [{"number": "contact mobile number", "type": "Mobile"}, {"number": "contact fax number", "type": "Fax"}], "status": "Unknown"}], "customerName": "100 test name", "defaultCurrency": "GBP", "emailAddress": "email@codat.io", "id": "260f6a3f94a243738f2d5e08496a41a8", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "contact phone number", "sourceModifiedDate": "2021-05-10T16:31:51Z", "status": "Active"}
     Sage Intacct:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
-          application/json: {"addresses": [{"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}], "contactName": "Yuna Conn", "contacts": [{"address": {"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Conn, Yuna", "phone": [{"number": "520-393-4468", "type": "Primary"}], "status": "Unknown"}], "customerName": "33Across", "defaultCurrency": "USD", "id": "188", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-04T16:32:21Z", "phone": "520-393-4468", "sourceModifiedDate": "2022-09-06T12:58:27", "status": "Active", "taxNumber": ""}
+          application/json: {"addresses": [{"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}], "contactName": "Yuna Conn", "contacts": [{"address": {"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}, "name": "Conn, Yuna", "phone": [{"number": "520-393-4468", "type": "Primary"}], "status": "Unknown"}], "customerName": "33Across", "defaultCurrency": "USD", "id": "188", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-04T16:32:21Z", "phone": "520-393-4468", "sourceModifiedDate": "2022-09-06T12:58:27", "status": "Active", "taxNumber": ""}
     Wave:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
           application/json: {"addresses": [], "contactName": "", "contacts": [], "customerName": "ABC Textiles", "defaultCurrency": "USD", "emailAddress": "c.taylor@codat.io", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O0N1c3RvbWVyOjMyMzkzNTA4", "modifiedDate": "2022-11-16T18:15:30Z", "sourceModifiedDate": "2019-10-17T07:59:04Z", "status": "Active"}
@@ -1115,7 +1161,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "7110701885"
       responses:
         "200":
           application/json: {"addresses": [], "contacts": [], "customerName": "24 Locks", "defaultCurrency": "USD", "emailAddress": "", "id": "e4c9d0e2-c285-4e85-b579-6d28b180c730", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:35:10Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active"}
@@ -1123,15 +1169,15 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
-          application/json: {"addresses": [], "contactName": "Contact (First Name) Contact (Last Name)", "contacts": [{"email": "contactperson@whateveryouwantidontcare12345.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Contact (First Name) Contact (Last Name)", "phone": [{"number": "Work Phone", "type": "Landline"}, {"number": "Mobile", "type": "Mobile"}], "status": "Active"}], "customerName": "A B", "defaultCurrency": "GBP", "emailAddress": "contactperson@whateveryouwantidontcare12345.com", "id": "104957000000032105", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "Work Phone", "sourceModifiedDate": "2022-06-09T14:36:47", "status": "Active"}
+          application/json: {"addresses": [], "contactName": "Contact (First Name) Contact (Last Name)", "contacts": [{"email": "contactperson@whateveryouwantidontcare12345.com", "name": "Contact (First Name) Contact (Last Name)", "phone": [{"number": "Work Phone", "type": "Landline"}, {"number": "Mobile", "type": "Mobile"}], "status": "Active"}], "customerName": "A B", "defaultCurrency": "GBP", "emailAddress": "contactperson@whateveryouwantidontcare12345.com", "id": "104957000000032105", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "Work Phone", "sourceModifiedDate": "2022-06-09T14:36:47", "status": "Active"}
     Unauthorized:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          customerId: "<value>"
+          customerId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "401":
           application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
@@ -1160,7 +1206,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/354a121b-855f-4d25-90ad-0905b498c1c0/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/354a121b-855f-4d25-90ad-0905b498c1c0/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/354a121b-855f-4d25-90ad-0905b498c1c0/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Fernandohaven", "country": "United Kingdom", "line1": "Suite 214", "line2": "8439 Lueilwitz Passage", "postalCode": "JG04 7PV", "region": "Northern Ireland", "type": "Delivery"}, {"city": "Juliochester", "country": "United Kingdom", "line1": "Suite 096", "line2": "864 Halie Course", "postalCode": "DZ8 4BF", "region": "England", "type": "Delivery"}, {"city": "Naderborough", "country": "United Kingdom", "line1": "Suite 001", "line2": "416 Stokes Fords", "postalCode": "XG25 0XX", "region": "Wales", "type": "Delivery"}], "contactName": "Werner Langworth", "contacts": [{"address": {"city": "Hortenseville", "country": "United Kingdom", "line1": "Apt. 145", "line2": "317 Williamson Freeway", "postalCode": "CV4 2HR", "region": "Scotland", "type": "Delivery"}, "email": "Werner_Langworth@hotmail.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Werner Langworth", "phone": [], "status": "Active"}, {"address": {"city": "South Ali", "country": "United Kingdom", "line1": "Suite 075", "line2": "9921 Dickens Walk", "postalCode": "TI04 4OO", "region": "Scotland", "type": "Delivery"}, "email": "Belle51@yahoo.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Belle Glover", "phone": [], "status": "Active"}], "customerName": "Arjun Kuvalis", "defaultCurrency": "GBP", "emailAddress": "Arjun34@hotmail.com", "id": "c8180244-74ac-40cf-a5df-6d83661c44d7", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T12:38:16Z", "phone": "014605 64820", "registrationNumber": "NI7JEJVM", "sourceModifiedDate": "2022-07-03T01:27:00", "status": "Active", "taxNumber": "7505220209.583549"}, {"addresses": [{"city": "East Khalid", "country": "United Kingdom", "line1": "Apt. 184", "line2": "60578 Louie Springs", "postalCode": "XW89 7NT", "region": "Wales", "type": "Billing"}], "contactName": "Miguel Hahn", "contacts": [{"address": {"city": "Reingerton", "country": "United Kingdom", "line1": "Suite 400", "line2": "21930 Milan Lane", "postalCode": "QG10 2DL", "region": "Wales", "type": "Delivery"}, "email": "Miguel.Hahn@gmail.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Miguel Hahn", "phone": [{"number": "018555 09614", "type": "Landline"}], "status": "Active"}], "customerName": "Breitenberg, Emard and Schiller", "defaultCurrency": "GBP", "emailAddress": "contact@BreitenbergEmardandSchiller.biz", "id": "6d162ee4-47b4-46c6-a2e6-aa9edd0fe6b0", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T12:38:16Z", "phone": "0800 445 6957", "registrationNumber": "KME0AMIL", "sourceModifiedDate": "2022-12-03T11:05:01", "status": "Archived", "taxNumber": "8560920952.553111"}], "totalResults": 20}
+          application/json: {"_links": {"current": {"href": "/companies/354a121b-855f-4d25-90ad-0905b498c1c0/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/354a121b-855f-4d25-90ad-0905b498c1c0/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/354a121b-855f-4d25-90ad-0905b498c1c0/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Fernandohaven", "country": "United Kingdom", "line1": "Suite 214", "line2": "8439 Lueilwitz Passage", "postalCode": "JG04 7PV", "region": "Northern Ireland", "type": "Delivery"}, {"city": "Juliochester", "country": "United Kingdom", "line1": "Suite 096", "line2": "864 Halie Course", "postalCode": "DZ8 4BF", "region": "England", "type": "Delivery"}, {"city": "Naderborough", "country": "United Kingdom", "line1": "Suite 001", "line2": "416 Stokes Fords", "postalCode": "XG25 0XX", "region": "Wales", "type": "Delivery"}], "contactName": "Werner Langworth", "contacts": [{"address": {"city": "Hortenseville", "country": "United Kingdom", "line1": "Apt. 145", "line2": "317 Williamson Freeway", "postalCode": "CV4 2HR", "region": "Scotland", "type": "Delivery"}, "email": "Werner_Langworth@hotmail.com", "name": "Werner Langworth", "phone": [], "status": "Active"}, {"address": {"city": "South Ali", "country": "United Kingdom", "line1": "Suite 075", "line2": "9921 Dickens Walk", "postalCode": "TI04 4OO", "region": "Scotland", "type": "Delivery"}, "email": "Belle51@yahoo.com", "name": "Belle Glover", "phone": [], "status": "Active"}], "customerName": "Arjun Kuvalis", "defaultCurrency": "GBP", "emailAddress": "Arjun34@hotmail.com", "id": "c8180244-74ac-40cf-a5df-6d83661c44d7", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T12:38:16Z", "phone": "014605 64820", "registrationNumber": "NI7JEJVM", "sourceModifiedDate": "2022-07-03T01:27:00", "status": "Active", "taxNumber": "7505220209.583549"}, {"addresses": [{"city": "East Khalid", "country": "United Kingdom", "line1": "Apt. 184", "line2": "60578 Louie Springs", "postalCode": "XW89 7NT", "region": "Wales", "type": "Billing"}], "contactName": "Miguel Hahn", "contacts": [{"address": {"city": "Reingerton", "country": "United Kingdom", "line1": "Suite 400", "line2": "21930 Milan Lane", "postalCode": "QG10 2DL", "region": "Wales", "type": "Delivery"}, "email": "Miguel.Hahn@gmail.com", "name": "Miguel Hahn", "phone": [{"number": "018555 09614", "type": "Landline"}], "status": "Active"}], "customerName": "Breitenberg, Emard and Schiller", "defaultCurrency": "GBP", "emailAddress": "contact@BreitenbergEmardandSchiller.biz", "id": "6d162ee4-47b4-46c6-a2e6-aa9edd0fe6b0", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T12:38:16Z", "phone": "0800 445 6957", "registrationNumber": "KME0AMIL", "sourceModifiedDate": "2022-12-03T11:05:01", "status": "Archived", "taxNumber": "8560920952.553111"}], "totalResults": 20}
     Dynamics 365 Business Central:
       parameters:
         path:
@@ -1172,7 +1218,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/d6849caf-c146-41be-8335-b73346e3bd84/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/d6849caf-c146-41be-8335-b73346e3bd84/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/d6849caf-c146-41be-8335-b73346e3bd84/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "contacts": [{"address": {"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}, "email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "", "phone": [], "status": "Active"}], "customerName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "0e2f7751-7696-ed11-bff5-6045bd0d2ad6", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:25Z", "phone": "", "sourceModifiedDate": "2023-01-17T14:50:54Z", "status": "Active", "taxNumber": ""}, {"addresses": [{"city": "", "country": "GB", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "contacts": [{"address": {"city": "", "country": "GB", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}, "email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "", "phone": [], "status": "Active"}], "customerName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "0ef95175-48c4-eb11-9f0a-0022481b4343", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:25Z", "phone": "", "sourceModifiedDate": "2021-06-03T08:48:36Z", "status": "Active", "taxNumber": ""}], "totalResults": 42}
+          application/json: {"_links": {"current": {"href": "/companies/d6849caf-c146-41be-8335-b73346e3bd84/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/d6849caf-c146-41be-8335-b73346e3bd84/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/d6849caf-c146-41be-8335-b73346e3bd84/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "contacts": [{"address": {"city": "", "country": "", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}, "email": "", "name": "", "phone": [], "status": "Active"}], "customerName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "0e2f7751-7696-ed11-bff5-6045bd0d2ad6", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:25Z", "phone": "", "sourceModifiedDate": "2023-01-17T14:50:54Z", "status": "Active", "taxNumber": ""}, {"addresses": [{"city": "", "country": "GB", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "contacts": [{"address": {"city": "", "country": "GB", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}, "email": "", "name": "", "phone": [], "status": "Active"}], "customerName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "0ef95175-48c4-eb11-9f0a-0022481b4343", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:25Z", "phone": "", "sourceModifiedDate": "2021-06-03T08:48:36Z", "status": "Active", "taxNumber": ""}], "totalResults": 42}
     Exact (Netherlands):
       parameters:
         path:
@@ -1208,7 +1254,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Test 1", "phone": [], "status": "Unknown"}], "customerName": "-", "defaultCurrency": "GBP", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:12Z", "sourceModifiedDate": "2023-04-17T06:02:46Z", "status": "Active"}, {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Test 1", "phone": [], "status": "Unknown"}], "customerName": "-", "defaultCurrency": "GBP", "id": "9677150", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:12Z", "sourceModifiedDate": "2023-04-24T06:19:23Z", "status": "Active"}], "totalResults": 159}
+          application/json: {"_links": {"current": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}, "name": "Test 1", "phone": [], "status": "Unknown"}], "customerName": "-", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:12Z", "sourceModifiedDate": "2023-04-17T06:02:46Z", "status": "Active"}, {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}, "name": "Test 1", "phone": [], "status": "Unknown"}], "customerName": "-", "id": "9677150", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:12Z", "sourceModifiedDate": "2023-04-24T06:19:23Z", "status": "Active"}], "totalResults": 159}
     FreshBooks:
       parameters:
         path:
@@ -1220,7 +1266,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Some city", "country": "Country 1", "line1": "Line 1", "line2": "Line 2", "postalCode": "SW1 2JQ", "region": "A region", "type": "Billing"}], "contactName": "test person name", "contacts": [{"email": "test14A@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person1", "phone": [{"number": "24681012", "type": "Primary"}, {"number": "121086420", "type": "Unknown"}], "status": "Active"}, {"email": "test14B@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person2", "phone": [{"number": "1234 56789", "type": "Primary"}, {"number": "9876 54321", "type": "Unknown"}], "status": "Active"}, {"email": "test14@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person name", "phone": [{"number": "01876 541245", "type": "Unknown"}], "status": "Active"}], "customerName": "A test customer 14 (updated)", "defaultCurrency": "GBP", "emailAddress": "test14@example.com", "id": "634509", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:23Z", "phone": "01876 541245", "sourceModifiedDate": "2022-05-18T09:23:56", "status": "Active"}, {"addresses": [{"city": "Some city", "country": "Country 1", "line1": "Line 1", "line2": "Line 2", "postalCode": "SW1 2JQ", "region": "A region", "type": "Billing"}], "contactName": "test person name", "contacts": [{"email": "test9@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person1", "phone": [{"number": "24681012", "type": "Primary"}, {"number": "121086420", "type": "Unknown"}], "status": "Active"}, {"email": "test10@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person2", "phone": [{"number": "123456789", "type": "Primary"}, {"number": "987654321", "type": "Unknown"}], "status": "Active"}, {"email": "test8@example.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "test person name", "phone": [{"number": "01876 541245", "type": "Unknown"}], "status": "Active"}], "customerName": "A test customer name 2", "defaultCurrency": "GBP", "emailAddress": "test8@example.com", "id": "634486", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:23Z", "phone": "01876 541245", "sourceModifiedDate": "2022-05-11T11:39:58", "status": "Active"}], "totalResults": 39}
+          application/json: {"_links": {"current": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Some city", "country": "Country 1", "line1": "Line 1", "line2": "Line 2", "postalCode": "SW1 2JQ", "region": "A region", "type": "Billing"}], "contactName": "test person name", "contacts": [{"email": "test14A@example.com", "name": "test person1", "phone": [{"number": "24681012", "type": "Primary"}, {"number": "121086420", "type": "Unknown"}], "status": "Active"}, {"email": "test14B@example.com", "name": "test person2", "phone": [{"number": "1234 56789", "type": "Primary"}, {"number": "9876 54321", "type": "Unknown"}], "status": "Active"}, {"email": "test14@example.com", "name": "test person name", "phone": [{"number": "01876 541245", "type": "Unknown"}], "status": "Active"}], "customerName": "A test customer 14 (updated)", "defaultCurrency": "GBP", "emailAddress": "test14@example.com", "id": "634509", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:23Z", "phone": "01876 541245", "sourceModifiedDate": "2022-05-18T09:23:56", "status": "Active"}, {"addresses": [{"city": "Some city", "country": "Country 1", "line1": "Line 1", "line2": "Line 2", "postalCode": "SW1 2JQ", "region": "A region", "type": "Billing"}], "contactName": "test person name", "contacts": [{"email": "test9@example.com", "name": "test person1", "phone": [{"number": "24681012", "type": "Primary"}, {"number": "121086420", "type": "Unknown"}], "status": "Active"}, {"email": "test10@example.com", "name": "test person2", "phone": [{"number": "123456789", "type": "Primary"}, {"number": "987654321", "type": "Unknown"}], "status": "Active"}, {"email": "test8@example.com", "name": "test person name", "phone": [{"number": "01876 541245", "type": "Unknown"}], "status": "Active"}], "customerName": "A test customer name 2", "defaultCurrency": "GBP", "emailAddress": "test8@example.com", "id": "634486", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:23Z", "phone": "01876 541245", "sourceModifiedDate": "2022-05-11T11:39:58", "status": "Active"}], "totalResults": 39}
     KashFlow:
       parameters:
         path:
@@ -1232,7 +1278,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/3a707a99-89da-4b16-a5d6-595333a16352/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/3a707a99-89da-4b16-a5d6-595333a16352/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/3a707a99-89da-4b16-a5d6-595333a16352/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "", "contacts": [{"email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "", "phone": [], "status": "Active"}], "customerName": "Chekko Customer Test 01", "defaultCurrency": "GBP", "emailAddress": "", "id": "92227673", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "", "sourceModifiedDate": "0001-01-01T00:00:00", "status": "Active", "taxNumber": ""}, {"addresses": [{"city": "Billing line 4", "country": "United Kingdom", "line1": "Billing Address", "line2": "Billing line 2 Billing line 3", "postalCode": "123321", "type": "Billing"}, {"city": "Delivery line4", "country": "United Kingdom", "line1": "Delivery Address", "line2": "Delivery line2 Delivery line3", "postalCode": "123321", "type": "Delivery"}], "contactName": "Mr Diogo Sousa", "contacts": [{"address": {"city": "Billing line 4", "country": "United Kingdom", "line1": "Billing Address", "line2": "Billing line 2 Billing line 3", "postalCode": "123321", "type": "Billing"}, "email": "diogomail@mail.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Mr Diogo Sousa", "phone": [{"number": "123123123", "type": "Landline"}, {"number": "321321321", "type": "Mobile"}], "status": "Active"}, {"address": {"city": "Delivery line4", "country": "United Kingdom", "line1": "Delivery Address", "line2": "Delivery line2 Delivery line3", "postalCode": "123321", "type": "Delivery"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Mr Diogo Sousa", "phone": [], "status": "Active"}], "customerName": "Diogo Sousa", "defaultCurrency": "EUR", "emailAddress": "diogomail@mail.com", "id": "88459410", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "123123123", "sourceModifiedDate": "2021-05-04T13:22:19", "status": "Active", "taxNumber": ""}], "totalResults": 10}
+          application/json: {"_links": {"current": {"href": "/companies/3a707a99-89da-4b16-a5d6-595333a16352/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/3a707a99-89da-4b16-a5d6-595333a16352/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/3a707a99-89da-4b16-a5d6-595333a16352/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "", "contacts": [{"email": "", "name": "", "phone": [], "status": "Active"}], "customerName": "Chekko Customer Test 01", "emailAddress": "", "id": "92227673", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "", "sourceModifiedDate": "0001-01-01T00:00:00", "status": "Active", "taxNumber": ""}, {"addresses": [{"city": "Billing line 4", "country": "United Kingdom", "line1": "Billing Address", "line2": "Billing line 2 Billing line 3", "postalCode": "123321", "type": "Billing"}, {"city": "Delivery line4", "country": "United Kingdom", "line1": "Delivery Address", "line2": "Delivery line2 Delivery line3", "postalCode": "123321", "type": "Delivery"}], "contactName": "Mr Diogo Sousa", "contacts": [{"address": {"city": "Billing line 4", "country": "United Kingdom", "line1": "Billing Address", "line2": "Billing line 2 Billing line 3", "postalCode": "123321", "type": "Billing"}, "email": "diogomail@mail.com", "name": "Mr Diogo Sousa", "phone": [{"number": "123123123", "type": "Landline"}, {"number": "321321321", "type": "Mobile"}], "status": "Active"}, {"address": {"city": "Delivery line4", "country": "United Kingdom", "line1": "Delivery Address", "line2": "Delivery line2 Delivery line3", "postalCode": "123321", "type": "Delivery"}, "name": "Mr Diogo Sousa", "phone": [], "status": "Active"}], "customerName": "Diogo Sousa", "emailAddress": "diogomail@mail.com", "id": "88459410", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "123123123", "sourceModifiedDate": "2021-05-04T13:22:19", "status": "Active", "taxNumber": ""}], "totalResults": 10}
     Oracle NetSuite:
       parameters:
         path:
@@ -1256,7 +1302,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/fc72ba08-af13-4474-b28a-01dcfa6cfb51/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/fc72ba08-af13-4474-b28a-01dcfa6cfb51/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/fc72ba08-af13-4474-b28a-01dcfa6cfb51/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Delivery"}, {"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"email": "kristy@samplename.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abercrombie, Kristy", "phone": [{"number": "415-555-6579", "type": "Primary"}], "status": "Active"}, {"modifiedDate": "2022-10-23T00:00:00Z", "name": "Kristy Abercrombie", "phone": [], "status": "Active"}, {"modifiedDate": "2022-10-23T00:00:00Z", "name": "Steve Darcangelo", "phone": [], "status": "Active"}], "customerName": "Abercrombie, Kristy", "defaultCurrency": "GBP", "emailAddress": "kristy@samplename.com", "id": "150000-933272658", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:07:55Z", "phone": "415-555-6579", "sourceModifiedDate": "2023-12-16T05:06:42", "status": "Active"}, {"addresses": [{"city": "Millbrae", "line1": "Robert Allard", "line2": "92834 Chandler St.", "postalCode": "94030", "region": "CA", "type": "Delivery"}, {"city": "Millbrae", "line1": "Robert Allard", "line2": "92834 Chandler St.", "postalCode": "94030", "region": "CA", "type": "Billing"}], "contactName": "Amanda Roberts", "contacts": [{"email": "rallard@myemail.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Allard, Robert", "phone": [{"number": "650-555-3422", "type": "Primary"}, {"number": "650-555-9804", "type": "Fax"}, {"number": "650-555-8349", "type": "Unknown"}], "status": "Active"}, {"modifiedDate": "2022-10-23T00:00:00Z", "name": "Robert Allard", "phone": [], "status": "Active"}, {"modifiedDate": "2022-10-23T00:00:00Z", "name": "Rachel Fisher", "phone": [], "status": "Active"}], "customerName": "Allard, Robert", "defaultCurrency": "GBP", "emailAddress": "rallard@myemail.com", "id": "800000D0-1182061376", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:07:55Z", "phone": "650-555-3422", "sourceModifiedDate": "2023-12-16T05:06:42", "status": "Active"}], "totalResults": 64}
+          application/json: {"_links": {"current": {"href": "/companies/fc72ba08-af13-4474-b28a-01dcfa6cfb51/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/fc72ba08-af13-4474-b28a-01dcfa6cfb51/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/fc72ba08-af13-4474-b28a-01dcfa6cfb51/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Delivery"}, {"city": "Bayshore", "line1": "Kristy Abercrombie", "line2": "5647 Cypress Hill Rd", "postalCode": "94326", "region": "CA", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"email": "kristy@samplename.com", "name": "Abercrombie, Kristy", "phone": [{"number": "415-555-6579", "type": "Primary"}], "status": "Active"}, {"name": "Kristy Abercrombie", "phone": [], "status": "Active"}, {"name": "Steve Darcangelo", "phone": [], "status": "Active"}], "customerName": "Abercrombie, Kristy", "defaultCurrency": "GBP", "emailAddress": "kristy@samplename.com", "id": "150000-933272658", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:07:55Z", "phone": "415-555-6579", "sourceModifiedDate": "2023-12-16T05:06:42", "status": "Active"}, {"addresses": [{"city": "Millbrae", "line1": "Robert Allard", "line2": "92834 Chandler St.", "postalCode": "94030", "region": "CA", "type": "Delivery"}, {"city": "Millbrae", "line1": "Robert Allard", "line2": "92834 Chandler St.", "postalCode": "94030", "region": "CA", "type": "Billing"}], "contactName": "Amanda Roberts", "contacts": [{"email": "rallard@myemail.com", "name": "Allard, Robert", "phone": [{"number": "650-555-3422", "type": "Primary"}, {"number": "650-555-9804", "type": "Fax"}, {"number": "650-555-8349", "type": "Unknown"}], "status": "Active"}, {"name": "Robert Allard", "phone": [], "status": "Active"}, {"name": "Rachel Fisher", "phone": [], "status": "Active"}], "customerName": "Allard, Robert", "defaultCurrency": "GBP", "emailAddress": "rallard@myemail.com", "id": "800000D0-1182061376", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:07:55Z", "phone": "650-555-3422", "sourceModifiedDate": "2023-12-16T05:06:42", "status": "Active"}], "totalResults": 64}
     QuickBooks Online:
       parameters:
         path:
@@ -1268,7 +1314,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "Abraham's Company", "contacts": [{"email": "ab@email.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abe", "phone": [{"number": "01111111111", "type": "Mobile"}], "status": "Active"}], "customerName": "Abe", "defaultCurrency": "GBP", "emailAddress": "ab@email.com", "id": "9", "modifiedDate": "2023-01-18T11:02:35Z", "registrationNumber": "XXXX9900001", "sourceModifiedDate": "2022-12-08T15:42:59Z", "status": "Active", "taxNumber": "XXXX9900001"}, {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "4 Privet Drive", "postalCode": "WD25 7LR", "type": "Billing"}, {"city": "London", "country": "United Kingdom", "line1": "4 Privet Drive", "postalCode": "WD25 7LR", "type": "Delivery"}], "contactName": "Adeel test", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "4 Privet Drive", "postalCode": "WD25 7LR", "type": "Billing"}, "email": "adeel@adeel.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Adeel test", "phone": [{"number": "123456789", "type": "Primary"}, {"number": "07546543216", "type": "Mobile"}], "status": "Active"}], "customerName": "adeel qbo child test", "defaultCurrency": "GBP", "emailAddress": "adeel@adeel.com", "id": "49", "modifiedDate": "2023-01-18T11:02:35Z", "phone": "123456789", "sourceModifiedDate": "2022-08-22T09:21:09Z", "status": "Active"}], "totalResults": 40}
+          application/json: {"_links": {"current": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "Abraham's Company", "contacts": [{"email": "ab@email.com", "name": "Abe", "phone": [{"number": "01111111111", "type": "Mobile"}], "status": "Active"}], "customerName": "Abe", "defaultCurrency": "GBP", "emailAddress": "ab@email.com", "id": "9", "modifiedDate": "2023-01-18T11:02:35Z", "registrationNumber": "XXXX9900001", "sourceModifiedDate": "2022-12-08T15:42:59Z", "status": "Active", "taxNumber": "XXXX9900001"}, {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "4 Privet Drive", "postalCode": "WD25 7LR", "type": "Billing"}, {"city": "London", "country": "United Kingdom", "line1": "4 Privet Drive", "postalCode": "WD25 7LR", "type": "Delivery"}], "contactName": "Adeel test", "contacts": [{"address": {"city": "London", "country": "United Kingdom", "line1": "4 Privet Drive", "postalCode": "WD25 7LR", "type": "Billing"}, "email": "adeel@adeel.com", "name": "Adeel test", "phone": [{"number": "123456789", "type": "Primary"}, {"number": "07546543216", "type": "Mobile"}], "status": "Active"}], "customerName": "adeel qbo child test", "defaultCurrency": "GBP", "emailAddress": "adeel@adeel.com", "id": "49", "modifiedDate": "2023-01-18T11:02:35Z", "phone": "123456789", "sourceModifiedDate": "2022-08-22T09:21:09Z", "status": "Active"}], "totalResults": 40}
     QuickBooks Online Sandbox:
       parameters:
         path:
@@ -1280,7 +1326,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"address": {"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abercrombie International Group (deleted)", "phone": [], "status": "Archived"}], "customerName": "Abercrombie International Group", "defaultCurrency": "GBP", "id": "66", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:56Z", "sourceModifiedDate": "2016-09-12T18:53:19Z", "status": "Archived"}, {"addresses": [{"type": "Billing"}, {"type": "Delivery"}], "contactName": "Natalie Watts", "contacts": [{"address": {"type": "Billing"}, "email": "n.watts@google.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Abercrombie International Group", "phone": [], "status": "Active"}], "customerName": "Abercrombie International Group", "defaultCurrency": "USD", "emailAddress": "n.watts@google.com", "id": "67", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:56Z", "registrationNumber": "XXXXVat123456", "sourceModifiedDate": "2023-03-29T01:12:55Z", "status": "Active", "taxNumber": "XXXXVat123456"}], "totalResults": 243}
+          application/json: {"_links": {"current": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}], "contactName": "Kristy Abercrombie", "contacts": [{"address": {"city": "New York, NY", "line1": "123 Main St", "type": "Billing"}, "name": "Abercrombie International Group (deleted)", "phone": [], "status": "Archived"}], "customerName": "Abercrombie International Group", "defaultCurrency": "GBP", "id": "66", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:56Z", "sourceModifiedDate": "2016-09-12T18:53:19Z", "status": "Archived"}, {"addresses": [{"type": "Billing"}, {"type": "Delivery"}], "contactName": "Natalie Watts", "contacts": [{"address": {"type": "Billing"}, "email": "n.watts@google.com", "name": "Abercrombie International Group", "phone": [], "status": "Active"}], "customerName": "Abercrombie International Group", "defaultCurrency": "USD", "emailAddress": "n.watts@google.com", "id": "67", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:56Z", "registrationNumber": "XXXXVat123456", "sourceModifiedDate": "2023-03-29T01:12:55Z", "status": "Active", "taxNumber": "XXXXVat123456"}], "totalResults": 243}
     Sage 200cloud:
       parameters:
         path:
@@ -1292,7 +1338,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Blackpool", "country": "", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Delivery"}, {"city": "Manchester", "country": "", "line1": "23a Union Street", "line2": "", "postalCode": "M2 6JK", "region": "", "type": "Delivery"}, {"city": "Blackpool", "country": "Great Britain", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Billing"}], "contactName": "Lee Dalkin", "contacts": [{"email": "newbusinessadvice@sage.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Lee Dalkin", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Landline"}, {"number": "01742 876 236", "type": "Fax"}], "status": "Active"}, {"email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Malcolm Leverret", "phone": [], "status": "Active"}, {"email": "Jim@a1designservices.co.uk", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Jim Thomas", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Fax"}], "status": "Active"}, {"email": "Jullian@a1designservices.co.uk", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Jullian Plawsworth", "phone": [{"number": "0151 349 3939", "type": "Landline"}, {"number": "0151 349 3940", "type": "Fax"}], "status": "Active"}], "customerName": "A1 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D001", "modifiedDate": "2022-10-14T09:35:53Z", "phone": "01742 876 234", "registrationNumber": "", "sourceModifiedDate": "2022-04-27T15:17:36Z", "status": "Active", "taxNumber": "GB238 3839 38"}, {"addresses": [{"city": "Blackpool", "country": "Great Britain", "line1": "77a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Billing"}], "contactName": "Lee Dalkin", "contacts": [{"email": "newbusinessadvice@sage.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Lee Dalkin", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Landline"}, {"number": "01742 876 236", "type": "Fax"}], "status": "Active"}, {"email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Malcolm Leverret", "phone": [], "status": "Active"}, {"email": "Jim@a1designservices.co.uk", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Jim Thomas", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Fax"}], "status": "Active"}, {"email": "Jullian@a1designservices.co.uk", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Jullian Plawsworth", "phone": [{"number": "0151 349 3939", "type": "Landline"}, {"number": "0151 349 3940", "type": "Fax"}], "status": "Active"}], "customerName": "A2 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D002", "modifiedDate": "2022-10-14T09:35:53Z", "phone": "01742 876 234", "registrationNumber": "", "sourceModifiedDate": "2020-09-23T10:28:58Z", "status": "Active", "taxNumber": "GB238 3839 40"}], "totalResults": 43}
+          application/json: {"_links": {"current": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Blackpool", "country": "", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Delivery"}, {"city": "Manchester", "country": "", "line1": "23a Union Street", "line2": "", "postalCode": "M2 6JK", "region": "", "type": "Delivery"}, {"city": "Blackpool", "country": "Great Britain", "line1": "67a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Billing"}], "contactName": "Lee Dalkin", "contacts": [{"email": "newbusinessadvice@sage.com", "name": "Lee Dalkin", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Landline"}, {"number": "01742 876 236", "type": "Fax"}], "status": "Active"}, {"email": "", "name": "Malcolm Leverret", "phone": [], "status": "Active"}, {"email": "Jim@a1designservices.co.uk", "name": "Jim Thomas", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Fax"}], "status": "Active"}, {"email": "Jullian@a1designservices.co.uk", "name": "Jullian Plawsworth", "phone": [{"number": "0151 349 3939", "type": "Landline"}, {"number": "0151 349 3940", "type": "Fax"}], "status": "Active"}], "customerName": "A1 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D001", "modifiedDate": "2022-10-14T09:35:53Z", "phone": "01742 876 234", "registrationNumber": "", "sourceModifiedDate": "2022-04-27T15:17:36Z", "status": "Active", "taxNumber": "GB238 3839 38"}, {"addresses": [{"city": "Blackpool", "country": "Great Britain", "line1": "77a Station Road", "line2": "", "postalCode": "BP12 7HT", "region": "Lancashire", "type": "Billing"}], "contactName": "Lee Dalkin", "contacts": [{"email": "newbusinessadvice@sage.com", "name": "Lee Dalkin", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Landline"}, {"number": "01742 876 236", "type": "Fax"}], "status": "Active"}, {"email": "", "name": "Malcolm Leverret", "phone": [], "status": "Active"}, {"email": "Jim@a1designservices.co.uk", "name": "Jim Thomas", "phone": [{"number": "01742 876 234", "type": "Landline"}, {"number": "01742 876 235", "type": "Fax"}], "status": "Active"}, {"email": "Jullian@a1designservices.co.uk", "name": "Jullian Plawsworth", "phone": [{"number": "0151 349 3939", "type": "Landline"}, {"number": "0151 349 3940", "type": "Fax"}], "status": "Active"}], "customerName": "A2 Design Services", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "A1D002", "modifiedDate": "2022-10-14T09:35:53Z", "phone": "01742 876 234", "registrationNumber": "", "sourceModifiedDate": "2020-09-23T10:28:58Z", "status": "Active", "taxNumber": "GB238 3839 40"}], "totalResults": 43}
     Sage 50 (UK):
       parameters:
         path:
@@ -1316,7 +1362,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Aruba City", "country": "Aruba (AW)", "line1": "Aruba Address line 1", "line2": "Aruba Address line 2", "postalCode": "Aruba Post", "region": "Aruba Province", "type": "Billing"}], "contactName": "Main Contact", "contacts": [{"modifiedDate": "2022-10-23T00:00:00Z", "phone": [{"number": "contact mobile number", "type": "Mobile"}, {"number": "contact fax number", "type": "Fax"}], "status": "Unknown"}], "customerName": "100 test name", "defaultCurrency": "GBP", "emailAddress": "email@codat.io", "id": "260f6a3f94a243738f2d5e08496a41a8", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "contact phone number", "sourceModifiedDate": "2021-05-10T16:31:51Z", "status": "Active"}, {"addresses": [{"city": "POST - Aruba City", "country": "Aruba (AW)", "line1": "POST - Aruba Address line 1", "line2": "POST - Aruba Address line 2", "postalCode": "Aruba Post", "region": "Aruba Province", "type": "Billing"}], "contactName": "Main Contact", "contacts": [], "customerName": "100 test name DS", "defaultCurrency": "GBP", "emailAddress": "DCemail@codat.io", "id": "44a5d9461d9e4f6d90a5ace251c5cf35", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "contact phone number", "sourceModifiedDate": "2021-06-10T14:22:46Z", "status": "Active"}], "totalResults": 168}
+          application/json: {"_links": {"current": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Aruba City", "country": "Aruba (AW)", "line1": "Aruba Address line 1", "line2": "Aruba Address line 2", "postalCode": "Aruba Post", "region": "Aruba Province", "type": "Billing"}], "contactName": "Main Contact", "contacts": [{"phone": [{"number": "contact mobile number", "type": "Mobile"}, {"number": "contact fax number", "type": "Fax"}], "status": "Unknown"}], "customerName": "100 test name", "defaultCurrency": "GBP", "emailAddress": "email@codat.io", "id": "260f6a3f94a243738f2d5e08496a41a8", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "contact phone number", "sourceModifiedDate": "2021-05-10T16:31:51Z", "status": "Active"}, {"addresses": [{"city": "POST - Aruba City", "country": "Aruba (AW)", "line1": "POST - Aruba Address line 1", "line2": "POST - Aruba Address line 2", "postalCode": "Aruba Post", "region": "Aruba Province", "type": "Billing"}], "contactName": "Main Contact", "contacts": [], "customerName": "100 test name DS", "defaultCurrency": "GBP", "emailAddress": "DCemail@codat.io", "id": "44a5d9461d9e4f6d90a5ace251c5cf35", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "contact phone number", "sourceModifiedDate": "2021-06-10T14:22:46Z", "status": "Active"}], "totalResults": 168}
     Sage Intacct:
       parameters:
         path:
@@ -1328,7 +1374,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/df02b289-cb16-4964-ac4d-9fd60b04538e/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/df02b289-cb16-4964-ac4d-9fd60b04538e/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/df02b289-cb16-4964-ac4d-9fd60b04538e/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}], "contactName": "Yuna Conn", "contacts": [{"address": {"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "Conn, Yuna", "phone": [{"number": "520-393-4468", "type": "Primary"}], "status": "Unknown"}], "customerName": "33Across", "defaultCurrency": "USD", "id": "188", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-04T16:32:21Z", "phone": "520-393-4468", "sourceModifiedDate": "2022-09-06T12:58:27", "status": "Active", "taxNumber": ""}, {"addresses": [{"city": "Sparwood", "country": "Canada", "line1": "7 Lerdahl Junction", "line2": "", "postalCode": "L4R", "region": "British Columbia", "type": "Unknown"}], "contactName": "Lauri O'Heagertie", "contacts": [{"address": {"city": "Sparwood", "country": "Canada", "line1": "7 Lerdahl Junction", "line2": "", "postalCode": "L4R", "region": "British Columbia", "type": "Unknown"}, "modifiedDate": "2022-10-23T00:00:00Z", "name": "O'Heagertie, Lauri", "phone": [{"number": "410-309-3976", "type": "Primary"}], "status": "Unknown"}], "customerName": "3Way International Logistics", "defaultCurrency": "CAD", "id": "324", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-04T16:32:21Z", "phone": "410-309-3976", "sourceModifiedDate": "2020-10-20T05:01:49", "status": "Active", "taxNumber": ""}], "totalResults": 530}
+          application/json: {"_links": {"current": {"href": "/companies/df02b289-cb16-4964-ac4d-9fd60b04538e/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/df02b289-cb16-4964-ac4d-9fd60b04538e/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/df02b289-cb16-4964-ac4d-9fd60b04538e/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}], "contactName": "Yuna Conn", "contacts": [{"address": {"city": "Albuquerque", "country": "United States", "line1": "155 Westend Point", "line2": "", "postalCode": "87140", "region": "NM", "type": "Unknown"}, "name": "Conn, Yuna", "phone": [{"number": "520-393-4468", "type": "Primary"}], "status": "Unknown"}], "customerName": "33Across", "defaultCurrency": "USD", "id": "188", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-04T16:32:21Z", "phone": "520-393-4468", "sourceModifiedDate": "2022-09-06T12:58:27", "status": "Active", "taxNumber": ""}, {"addresses": [{"city": "Sparwood", "country": "Canada", "line1": "7 Lerdahl Junction", "line2": "", "postalCode": "L4R", "region": "British Columbia", "type": "Unknown"}], "contactName": "Lauri O'Heagertie", "contacts": [{"address": {"city": "Sparwood", "country": "Canada", "line1": "7 Lerdahl Junction", "line2": "", "postalCode": "L4R", "region": "British Columbia", "type": "Unknown"}, "name": "O'Heagertie, Lauri", "phone": [{"number": "410-309-3976", "type": "Primary"}], "status": "Unknown"}], "customerName": "3Way International Logistics", "defaultCurrency": "CAD", "id": "324", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-04T16:32:21Z", "phone": "410-309-3976", "sourceModifiedDate": "2020-10-20T05:01:49", "status": "Active", "taxNumber": ""}], "totalResults": 530}
     Wave:
       parameters:
         path:
@@ -1340,7 +1386,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "", "contacts": [], "customerName": "ABC Textiles", "defaultCurrency": "USD", "emailAddress": "c.taylor@codat.io", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O0N1c3RvbWVyOjMyMzkzNTA4", "modifiedDate": "2022-11-16T18:15:30Z", "sourceModifiedDate": "2019-10-17T07:59:04Z", "status": "Active"}, {"addresses": [{"city": "Coffee City", "country": "United Kingdom", "line1": "11 Coffee Lane", "line2": "Coffee Town", "postalCode": "CC1 1CC", "region": "Hampshire", "type": "Billing"}], "contactName": "Coffee Carl", "contacts": [{"modifiedDate": "2022-10-23T00:00:00Z", "name": "Coffee Carl", "phone": [{"number": "07733", "type": "Mobile"}], "status": "Active"}], "customerName": "Coffee Cart", "defaultCurrency": "GBP", "emailAddress": "coffee.cart@example.com", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O0N1c3RvbWVyOjM3MTUzNDI2", "modifiedDate": "2022-11-16T18:15:30Z", "phone": "0201111", "sourceModifiedDate": "2020-03-17T19:12:39Z", "status": "Active"}], "totalResults": 10}
+          application/json: {"_links": {"current": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "", "contacts": [], "customerName": "ABC Textiles", "defaultCurrency": "USD", "emailAddress": "c.taylor@codat.io", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O0N1c3RvbWVyOjMyMzkzNTA4", "modifiedDate": "2022-11-16T18:15:30Z", "sourceModifiedDate": "2019-10-17T07:59:04Z", "status": "Active"}, {"addresses": [{"city": "Coffee City", "country": "United Kingdom", "line1": "11 Coffee Lane", "line2": "Coffee Town", "postalCode": "CC1 1CC", "region": "Hampshire", "type": "Billing"}], "contactName": "Coffee Carl", "contacts": [{"name": "Coffee Carl", "phone": [{"number": "07733", "type": "Mobile"}], "status": "Active"}], "customerName": "Coffee Cart", "defaultCurrency": "GBP", "emailAddress": "coffee.cart@example.com", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O0N1c3RvbWVyOjM3MTUzNDI2", "modifiedDate": "2022-11-16T18:15:30Z", "phone": "0201111", "sourceModifiedDate": "2020-03-17T19:12:39Z", "status": "Active"}], "totalResults": 10}
     Xero:
       parameters:
         path:
@@ -1352,7 +1398,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contacts": [], "customerName": "24 Locks", "defaultCurrency": "USD", "emailAddress": "", "id": "e4c9d0e2-c285-4e85-b579-6d28b180c730", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:35:10Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active"}, {"addresses": [], "contacts": [], "customerName": "7-Eleven", "defaultCurrency": "GBP", "emailAddress": "", "id": "bab779bc-c5fb-42cb-a888-953e8309711c", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:35:10Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active"}], "totalResults": 48}
+          application/json: {"_links": {"current": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contacts": [], "customerName": "24 Locks", "emailAddress": "", "id": "e4c9d0e2-c285-4e85-b579-6d28b180c730", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:35:10Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active"}, {"addresses": [], "contacts": [], "customerName": "7-Eleven", "emailAddress": "", "id": "bab779bc-c5fb-42cb-a888-953e8309711c", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:35:10Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active"}], "totalResults": 48}
     Zoho Books:
       parameters:
         path:
@@ -1364,7 +1410,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "Contact (First Name) Contact (Last Name)", "contacts": [{"email": "contactperson@whateveryouwantidontcare12345.com", "modifiedDate": "2022-10-23T00:00:00Z", "name": "Contact (First Name) Contact (Last Name)", "phone": [{"number": "Work Phone", "type": "Landline"}, {"number": "Mobile", "type": "Mobile"}], "status": "Active"}], "customerName": "A B", "defaultCurrency": "GBP", "emailAddress": "contactperson@whateveryouwantidontcare12345.com", "id": "104957000000032105", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "Work Phone", "sourceModifiedDate": "2022-06-09T14:36:47", "status": "Active"}, {"addresses": [], "contactName": "John Doe", "contacts": [{"email": "", "modifiedDate": "2022-10-23T00:00:00Z", "name": "John Doe", "phone": [], "status": "Active"}], "customerName": "Doe, John", "defaultCurrency": "GBP", "emailAddress": "", "id": "104957000000054050", "modifiedDate": "2022-10-03T08:40:37Z", "sourceModifiedDate": "2022-09-28T15:09:22", "status": "Active"}], "totalResults": 14}
+          application/json: {"_links": {"current": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/customers?page=1&pageSize=2"}, "next": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/customers?page=2&pageSize=2"}, "self": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/customers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "Contact (First Name) Contact (Last Name)", "contacts": [{"email": "contactperson@whateveryouwantidontcare12345.com", "name": "Contact (First Name) Contact (Last Name)", "phone": [{"number": "Work Phone", "type": "Landline"}, {"number": "Mobile", "type": "Mobile"}], "status": "Active"}], "customerName": "A B", "defaultCurrency": "GBP", "emailAddress": "contactperson@whateveryouwantidontcare12345.com", "id": "104957000000032105", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "Work Phone", "sourceModifiedDate": "2022-06-09T14:36:47", "status": "Active"}, {"addresses": [], "contactName": "John Doe", "contacts": [{"email": "", "name": "John Doe", "phone": [], "status": "Active"}], "customerName": "Doe, John", "defaultCurrency": "GBP", "emailAddress": "", "id": "104957000000054050", "modifiedDate": "2022-10-03T08:40:37Z", "sourceModifiedDate": "2022-09-28T15:09:22", "status": "Active"}], "totalResults": 14}
     Malformed query:
       parameters:
         path:
@@ -1395,7 +1441,7 @@ examples:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
           connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
-          customerId: "<value>"
+          customerId: "EILBDVJVNUAGVKRQ"
         query: {}
       requestBody:
         application/json: {"contacts": [], "defaultCurrency": "EUR", "modifiedDate": "2022-10-23T00:00:00Z", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Unknown"}
@@ -1439,7 +1485,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
+          supplierId: "7110701885"
       responses:
         "200":
           application/json: {"addresses": [{"city": "", "country": "GB", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Billing"}], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "78623f13-931e-eb11-bbf8-0022481b3585", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-27T14:21:12Z", "phone": "", "sourceModifiedDate": "2020-11-04T11:44:22Z", "status": "Active", "supplierName": "", "taxNumber": ""}
@@ -1455,7 +1501,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "EILBDVJVNUAGVKRQ"
+          supplierId: "7110701885"
       responses:
         "200":
           application/json: {"addresses": [{"country": "GB", "type": "Billing"}], "defaultCurrency": "GBP", "id": "0185fea2-0298-445b-909a-0db685118a9e", "modifiedDate": "2022-10-26T13:33:13Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2017-08-02T10:58:54Z", "status": "Active", "supplierName": "a"}
@@ -1463,7 +1509,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "7110701885"
+          supplierId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
           application/json: {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:08Z", "phone": "(877) 492-8687", "sourceModifiedDate": "2023-04-17T06:02:46", "status": "Active", "supplierName": "-"}
@@ -1471,7 +1517,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "EILBDVJVNUAGVKRQ"
+          supplierId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
           application/json: {"addresses": [], "id": "api vendor", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:25Z", "phone": "(877) 492-8687", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Active", "supplierName": "api vendor"}
@@ -1479,7 +1525,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "7110701885"
+          supplierId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
           application/json: {"addresses": [], "contactName": "", "emailAddress": "", "id": "6202387", "modifiedDate": "2022-09-30T10:29:15Z", "phone": "", "sourceModifiedDate": "2017-05-09T00:00:00", "status": "Unknown", "supplierName": "Dell", "taxNumber": ""}
@@ -1487,7 +1533,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
+          supplierId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "200":
           application/json: {"addresses": [], "contactName": "Test Vendor", "defaultCurrency": "GBP", "emailAddress": "", "id": "779", "modifiedDate": "2023-01-30T14:47:02Z", "phone": "", "sourceModifiedDate": "2022-02-04T14:24:43", "status": "Active", "supplierName": "Test Vendor"}
@@ -1495,7 +1541,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "EILBDVJVNUAGVKRQ"
+          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
           application/json: {"addresses": [{"city": "Berkeley", "line1": "A Cheung Limited, Angela Cheung", "line2": "3818 Bear Rd. West", "postalCode": "94688", "region": "CA", "type": "Billing"}], "contactName": "Angela Cheung", "defaultCurrency": "GBP", "emailAddress": "AC@CheungLimited.com", "id": "A60000-1197760912", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:09:03Z", "phone": "510 555 5723", "sourceModifiedDate": "2023-12-16T05:06:44", "status": "Active", "supplierName": "A Cheung Limited"}
@@ -1519,7 +1565,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "7110701885"
+          supplierId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
           application/json: {"addresses": [{"city": "", "country": "Great Britain", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Unknown"}], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "776", "metadata": {"isDeleted": true}, "modifiedDate": "2022-10-14T09:35:58Z", "phone": "", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Archived", "supplierName": "Aaren", "taxNumber": ""}
@@ -1527,7 +1573,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
+          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
           application/json: {"addresses": [{"city": "Newcastle Upon Tyne", "country": "GB", "line1": "66 New Street", "line2": "Ridgeway", "postalCode": "NE1 4GF", "region": "", "type": "Delivery"}, {"city": "Newcastle upon Tyne", "country": "GB", "line1": "66 New Street", "line2": "Ridgeway", "postalCode": "NE1 4GF", "region": "", "type": "Unknown"}], "contactName": "Mark Ramsay", "defaultCurrency": "GBP", "emailAddress": "newbusinessadvice@sage.com", "id": "CON001", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-30T14:42:38Z", "phone": "0191 643 4343", "sourceModifiedDate": "2022-11-25T09:43:54Z", "status": "Active", "supplierName": "Concept Stationery Supplies", "taxNumber": "GB988 3453 23"}
@@ -1535,7 +1581,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
+          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
           application/json: {"addresses": [{"country": "United Kingdom (GB)", "type": "Billing"}], "contactName": "Main Contact", "defaultCurrency": "GBP", "id": "65179671e9ef424caff8b9006cd111c8", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "01224 658 999", "sourceModifiedDate": "2020-02-25T17:23:33Z", "status": "Active", "supplierName": "5555 Abdul's Test Name"}
@@ -1551,7 +1597,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "EILBDVJVNUAGVKRQ"
+          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
       responses:
         "200":
           application/json: {"addresses": [], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O1ZlbmRvcjo2NjA0Nzk0", "modifiedDate": "2022-11-16T18:15:24Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2020-04-07T13:28:02Z", "status": "Active", "supplierName": "Computer Shop"}
@@ -1559,7 +1605,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
+          supplierId: "7110701885"
       responses:
         "200":
           application/json: {"addresses": [], "emailAddress": "", "id": "e4c9d0e2-c285-4e85-b579-6d28b180c730", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:36:09Z", "phone": "(877) 492-8687", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active", "supplierName": "24 Locks"}
@@ -1567,7 +1613,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "13d946f0-c5d5-42bc-b092-97ece17923ab"
+          supplierId: "EILBDVJVNUAGVKRQ"
       responses:
         "200":
           application/json: {"addresses": [], "defaultCurrency": "GBP", "emailAddress": "", "id": "104957000001494001", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2022-09-16T13:09:56", "status": "Active", "supplierName": "Acme Corporation"}
@@ -1575,7 +1621,7 @@ examples:
       parameters:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
-          supplierId: "EILBDVJVNUAGVKRQ"
+          supplierId: "9wg4lep4ush5cxs79pl8sozmsndbaukll3ind4g7buqbm1h2"
       responses:
         "401":
           application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
@@ -1640,7 +1686,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/d95030cd-22b2-482b-9c7b-2980dcc2b1ce/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/d95030cd-22b2-482b-9c7b-2980dcc2b1ce/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/d95030cd-22b2-482b-9c7b-2980dcc2b1ce/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"country": "GB", "type": "Billing"}], "defaultCurrency": "GBP", "id": "0185fea2-0298-445b-909a-0db685118a9e", "modifiedDate": "2022-10-26T13:33:13Z", "phone": "01224 658 999", "sourceModifiedDate": "2017-08-02T10:58:54Z", "status": "Active", "supplierName": "a"}, {"addresses": [{"country": "GB", "type": "Billing"}], "defaultCurrency": "GBP", "id": "64ae712f-4155-48bb-9fce-98232c51d979", "modifiedDate": "2022-10-26T13:33:13Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2020-05-01T14:05:46Z", "status": "Active", "supplierName": "aa"}], "totalResults": 118}
+          application/json: {"_links": {"current": {"href": "/companies/d95030cd-22b2-482b-9c7b-2980dcc2b1ce/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/d95030cd-22b2-482b-9c7b-2980dcc2b1ce/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/d95030cd-22b2-482b-9c7b-2980dcc2b1ce/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"country": "GB", "type": "Billing"}], "defaultCurrency": "GBP", "id": "0185fea2-0298-445b-909a-0db685118a9e", "modifiedDate": "2022-10-26T13:33:13Z", "sourceModifiedDate": "2017-08-02T10:58:54Z", "status": "Active", "supplierName": "a"}, {"addresses": [{"country": "GB", "type": "Billing"}], "defaultCurrency": "GBP", "id": "64ae712f-4155-48bb-9fce-98232c51d979", "modifiedDate": "2022-10-26T13:33:13Z", "sourceModifiedDate": "2020-05-01T14:05:46Z", "status": "Active", "supplierName": "aa"}], "totalResults": 118}
     FreeAgent:
       parameters:
         path:
@@ -1652,7 +1698,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:08Z", "phone": "(877) 492-8687", "sourceModifiedDate": "2023-04-17T06:02:46", "status": "Active", "supplierName": "-"}, {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "id": "9677150", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:08Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2023-04-24T06:19:23", "status": "Active", "supplierName": "-"}], "totalResults": 159}
+          application/json: {"_links": {"current": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/071ad738-68f3-4561-afd0-69bab9df0803/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "id": "11526230", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:08Z", "sourceModifiedDate": "2023-04-17T06:02:46", "status": "Active", "supplierName": "-"}, {"addresses": [{"city": "London", "country": "United Kingdom", "line1": "1 Place House", "line2": "", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Test 1", "id": "9677150", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-25T14:19:08Z", "sourceModifiedDate": "2023-04-24T06:19:23", "status": "Active", "supplierName": "-"}], "totalResults": 159}
     FreshBooks:
       parameters:
         path:
@@ -1664,7 +1710,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "id": "api vendor", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:25Z", "phone": "01224 658 999", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Active", "supplierName": "api vendor"}, {"addresses": [], "id": "DUndsRykrmy8kFsc+FvYk29YkJze4zSjGecoF4YcUEhVU7auJ5JkQA0VjXptZ7XQ+D4n6WoxFIkaGY2V/t4flA==", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:25Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Active", "supplierName": "Chekko Test merchant 100 - Test Very long name: ORIG CO NAME:AMERICAN EXPRESS       ORIG ID:9493560001 DESC DATE:220307 CO ENTRY DESCR:ACH PMT   SEC:CCD    TRACE#:021000023255482 EED:220307   IND ID:A4670                        IND NAME:Rick Sanchez"}], "totalResults": 7}
+          application/json: {"_links": {"current": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/3691c49e-0db4-4172-b3ab-e4084c365013/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "id": "api vendor", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:25Z", "status": "Active", "supplierName": "api vendor"}, {"addresses": [], "id": "DUndsRykrmy8kFsc+FvYk29YkJze4zSjGecoF4YcUEhVU7auJ5JkQA0VjXptZ7XQ+D4n6WoxFIkaGY2V/t4flA==", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-24T16:07:25Z", "status": "Active", "supplierName": "Chekko Test merchant 100 - Test Very long name: ORIG CO NAME:AMERICAN EXPRESS       ORIG ID:9493560001 DESC DATE:220307 CO ENTRY DESCR:ACH PMT   SEC:CCD    TRACE#:021000023255482 EED:220307   IND ID:A4670                        IND NAME:Rick Sanchez"}], "totalResults": 7}
     KashFlow:
       parameters:
         path:
@@ -1712,7 +1758,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"country": "Djibouti", "line1": "test", "region": "string", "type": "Billing"}], "contactName": "AI Support", "defaultCurrency": "GBP", "id": "41", "modifiedDate": "2023-01-18T11:02:36Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2022-12-07T10:48:18Z", "status": "Active", "supplierName": "AI Support"}, {"addresses": [{"country": "DJ", "line1": "test", "region": "string", "type": "Billing"}], "contactName": "AI Support 2", "defaultCurrency": "GBP", "id": "42", "modifiedDate": "2023-01-18T11:02:36Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2021-08-31T08:45:02Z", "status": "Active", "supplierName": "AI Support 2"}], "totalResults": 23}
+          application/json: {"_links": {"current": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/10818b5e-6e6a-4ed4-a1c5-3e3efe626e87/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"country": "Djibouti", "line1": "test", "region": "string", "type": "Billing"}], "contactName": "AI Support", "defaultCurrency": "GBP", "id": "41", "modifiedDate": "2023-01-18T11:02:36Z", "sourceModifiedDate": "2022-12-07T10:48:18Z", "status": "Active", "supplierName": "AI Support"}, {"addresses": [{"country": "DJ", "line1": "test", "region": "string", "type": "Billing"}], "contactName": "AI Support 2", "defaultCurrency": "GBP", "id": "42", "modifiedDate": "2023-01-18T11:02:36Z", "sourceModifiedDate": "2021-08-31T08:45:02Z", "status": "Active", "supplierName": "AI Support 2"}], "totalResults": 23}
     QuickBooks Online Sandbox:
       parameters:
         path:
@@ -1724,7 +1770,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "London", "country": "England", "line1": "100 London Road", "line2": "Angel", "postalCode": "EC1M", "region": "Greater London", "type": "Billing"}], "contactName": "Miss Smith", "defaultCurrency": "GBP", "id": "129", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:55Z", "phone": "0728 38474", "sourceModifiedDate": "2023-04-13T01:51:08Z", "status": "Active", "supplierName": "Ally Johnson"}, {"addresses": [], "defaultCurrency": "GBP", "id": "88", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:55Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2022-07-06T15:55:28Z", "status": "Active", "supplierName": "Andrew Haberbosch"}], "totalResults": 64}
+          application/json: {"_links": {"current": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/5a7f3597-36e1-4216-86fe-289ad36088a6/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "London", "country": "England", "line1": "100 London Road", "line2": "Angel", "postalCode": "EC1M", "region": "Greater London", "type": "Billing"}], "contactName": "Miss Smith", "defaultCurrency": "GBP", "id": "129", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:55Z", "phone": "0728 38474", "sourceModifiedDate": "2023-04-13T01:51:08Z", "status": "Active", "supplierName": "Ally Johnson"}, {"addresses": [], "defaultCurrency": "GBP", "id": "88", "metadata": {"isDeleted": false}, "modifiedDate": "2023-04-26T09:35:55Z", "sourceModifiedDate": "2022-07-06T15:55:28Z", "status": "Active", "supplierName": "Andrew Haberbosch"}], "totalResults": 64}
     Sage 200cloud:
       parameters:
         path:
@@ -1736,7 +1782,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "", "country": "Great Britain", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Unknown"}], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "776", "metadata": {"isDeleted": true}, "modifiedDate": "2022-10-14T09:35:58Z", "phone": "", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Archived", "supplierName": "Aaren", "taxNumber": ""}, {"addresses": [{"city": "", "country": "Great Britain", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Unknown"}], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "914", "metadata": {"isDeleted": true}, "modifiedDate": "2022-10-14T09:35:58Z", "phone": "", "sourceModifiedDate": "2022-10-23T00:00:00Z", "status": "Archived", "supplierName": "Aaren", "taxNumber": ""}], "totalResults": 943}
+          application/json: {"_links": {"current": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/93c21e2d-049c-4d24-b41b-57e61c30b69e/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"city": "", "country": "Great Britain", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Unknown"}], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "776", "metadata": {"isDeleted": true}, "modifiedDate": "2022-10-14T09:35:58Z", "phone": "", "status": "Archived", "supplierName": "Aaren", "taxNumber": ""}, {"addresses": [{"city": "", "country": "Great Britain", "line1": "", "line2": "", "postalCode": "", "region": "", "type": "Unknown"}], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "914", "metadata": {"isDeleted": true}, "modifiedDate": "2022-10-14T09:35:58Z", "phone": "", "status": "Archived", "supplierName": "Aaren", "taxNumber": ""}], "totalResults": 943}
     Sage 50 (UK):
       parameters:
         path:
@@ -1760,7 +1806,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"country": "United Kingdom (GB)", "type": "Billing"}], "contactName": "Main Contact", "defaultCurrency": "GBP", "id": "65179671e9ef424caff8b9006cd111c8", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "01224 658 999", "sourceModifiedDate": "2020-02-25T17:23:33Z", "status": "Active", "supplierName": "5555 Abdul's Test Name"}, {"addresses": [{"city": "London", "country": "United Kingdom (GB)", "line1": "1 Place House", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Abdi", "defaultCurrency": "GBP", "emailAddress": "abdisupplier@company.com", "id": "cf7f44d693904944a6a7cf3de0887964", "modifiedDate": "2022-10-24T14:52:54Z", "phone": "(877) 492-8687", "sourceModifiedDate": "2020-02-13T10:38:19Z", "status": "Active", "supplierName": "Abdi Supplier"}], "totalResults": 64}
+          application/json: {"_links": {"current": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/390083e2-351b-407c-a3be-55081c36c182/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [{"country": "United Kingdom (GB)", "type": "Billing"}], "contactName": "Main Contact", "defaultCurrency": "GBP", "id": "65179671e9ef424caff8b9006cd111c8", "modifiedDate": "2022-10-24T14:52:54Z", "sourceModifiedDate": "2020-02-25T17:23:33Z", "status": "Active", "supplierName": "5555 Abdul's Test Name"}, {"addresses": [{"city": "London", "country": "United Kingdom (GB)", "line1": "1 Place House", "postalCode": "WC1X 1AH", "type": "Billing"}], "contactName": "Abdi", "defaultCurrency": "GBP", "emailAddress": "abdisupplier@company.com", "id": "cf7f44d693904944a6a7cf3de0887964", "modifiedDate": "2022-10-24T14:52:54Z", "sourceModifiedDate": "2020-02-13T10:38:19Z", "status": "Active", "supplierName": "Abdi Supplier"}], "totalResults": 64}
     Sage Intacct:
       parameters:
         path:
@@ -1784,7 +1830,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O1ZlbmRvcjo2NjA0Nzk0", "modifiedDate": "2022-11-16T18:15:24Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2020-04-07T13:28:02Z", "status": "Active", "supplierName": "Computer Shop"}, {"addresses": [], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O1ZlbmRvcjo2NjA0NzQx", "modifiedDate": "2022-11-16T18:15:24Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2020-04-07T13:12:40Z", "status": "Active", "supplierName": "Flour Mill"}], "totalResults": 9}
+          application/json: {"_links": {"current": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/0b22b59d-b4e5-4c35-b03f-88bbbcb41256/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O1ZlbmRvcjo2NjA0Nzk0", "modifiedDate": "2022-11-16T18:15:24Z", "sourceModifiedDate": "2020-04-07T13:28:02Z", "status": "Active", "supplierName": "Computer Shop"}, {"addresses": [], "contactName": "", "defaultCurrency": "GBP", "emailAddress": "", "id": "QnVzaW5lc3M6ZTI0OGQyZDctMWE5Ni00YTk4LWFkOTEtMDdlMGYyMmNhNmE2O1ZlbmRvcjo2NjA0NzQx", "modifiedDate": "2022-11-16T18:15:24Z", "sourceModifiedDate": "2020-04-07T13:12:40Z", "status": "Active", "supplierName": "Flour Mill"}], "totalResults": 9}
     Xero:
       parameters:
         path:
@@ -1796,7 +1842,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "emailAddress": "", "id": "e4c9d0e2-c285-4e85-b579-6d28b180c730", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:36:09Z", "phone": "01224 658 999", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active", "supplierName": "24 Locks"}, {"addresses": [], "emailAddress": "", "id": "bab779bc-c5fb-42cb-a888-953e8309711c", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:36:09Z", "phone": "01224 658 999", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active", "supplierName": "7-Eleven"}], "totalResults": 48}
+          application/json: {"_links": {"current": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/5ced9667-a310-443a-a711-958d36377141/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "emailAddress": "", "id": "e4c9d0e2-c285-4e85-b579-6d28b180c730", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:36:09Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active", "supplierName": "24 Locks"}, {"addresses": [], "emailAddress": "", "id": "bab779bc-c5fb-42cb-a888-953e8309711c", "metadata": {"isDeleted": false}, "modifiedDate": "2023-03-15T20:36:09Z", "sourceModifiedDate": "2023-02-17T18:03:42", "status": "Active", "supplierName": "7-Eleven"}], "totalResults": 48}
     Zoho Books:
       parameters:
         path:
@@ -1808,7 +1854,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "defaultCurrency": "GBP", "emailAddress": "", "id": "104957000001494001", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "01224 658 999", "sourceModifiedDate": "2022-09-16T13:09:56", "status": "Active", "supplierName": "Acme Corporation"}, {"addresses": [], "contactName": "Dre", "defaultCurrency": "CAD", "emailAddress": "", "id": "104957000000648001", "modifiedDate": "2022-10-03T08:40:37Z", "phone": "+44 25691 154789", "sourceModifiedDate": "2022-06-10T09:07:16", "status": "Active", "supplierName": "Cool company"}], "totalResults": 6}
+          application/json: {"_links": {"current": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/suppliers?page=1&pageSize=2"}, "next": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/suppliers?page=2&pageSize=2"}, "self": {"href": "/companies/d0b68840-db50-4bc3-b88c-96e225333fea/data/suppliers"}}, "pageNumber": 1, "pageSize": 2, "results": [{"addresses": [], "defaultCurrency": "GBP", "emailAddress": "", "id": "104957000001494001", "modifiedDate": "2022-10-03T08:40:37Z", "sourceModifiedDate": "2022-09-16T13:09:56", "status": "Active", "supplierName": "Acme Corporation"}, {"addresses": [], "contactName": "Dre", "defaultCurrency": "CAD", "emailAddress": "", "id": "104957000000648001", "modifiedDate": "2022-10-03T08:40:37Z", "sourceModifiedDate": "2022-06-10T09:07:16", "status": "Active", "supplierName": "Cool company"}], "totalResults": 6}
     Malformed query:
       parameters:
         path:
@@ -1895,7 +1941,7 @@ examples:
           orderBy: "-modifiedDate"
       responses:
         "200":
-          application/json: {"_links": {"current": {"href": "/companies/17129e41-5389-4f10-ac06-e0a37e47d177/data/history?page=1&pageSize=2"}, "next": {"href": "/companies/17129e41-5389-4f10-ac06-e0a37e47d177/data/history?page=2&pageSize=2"}, "self": {"href": "/companies/17129e41-5389-4f10-ac06-e0a37e47d177/data/history"}}, "pageNumber": 0, "pageSize": 0, "results": [{"companyId": "4645bd78-8988-45bc-ac9e-67ba5df6e4e5", "completed": "2022-10-23T00:00:00Z", "connectionId": "51baa045-4836-4317-a42e-3542e991e581", "dataType": "invoices", "id": "97d60846-f07a-4d42-b5a0-0bdcc6ebf56b", "isCompleted": false, "isErrored": false, "progress": 10, "requested": "2022-11-14T11:18:37.2798351Z", "status": "Initial", "statusDescription": "Paused until 2022-10-23T00:00:00.000Z"}], "totalResults": 0}
+          application/json: {"_links": {"current": {"href": "/companies/17129e41-5389-4f10-ac06-e0a37e47d177/data/history?page=1&pageSize=2"}, "next": {"href": "/companies/17129e41-5389-4f10-ac06-e0a37e47d177/data/history?page=2&pageSize=2"}, "self": {"href": "/companies/17129e41-5389-4f10-ac06-e0a37e47d177/data/history"}}, "pageNumber": 0, "pageSize": 0, "results": [{"companyId": "4645bd78-8988-45bc-ac9e-67ba5df6e4e5", "connectionId": "51baa045-4836-4317-a42e-3542e991e581", "dataType": "invoices", "id": "97d60846-f07a-4d42-b5a0-0bdcc6ebf56b", "isCompleted": false, "isErrored": false, "progress": 10, "requested": "2022-11-14T11:18:37.2798351Z", "status": "Initial"}], "totalResults": 0}
     Malformed query:
       parameters:
         path:
@@ -1991,7 +2037,7 @@ examples:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: [{"currency": "USD", "currencyRate": 1, "date": "2024-05-21T00:00:00+00:00", "id": "3357b3df-5f2e-465d-b9ba-226519dbb8f1", "lines": [{"accountRef": {"id": "80000018-1671793811"}, "amount": 50, "description": "debit line", "invoiceTo": {"id": "80000002-1674552702", "type": "customer"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "80000003-1674553958"}]}, {"accountRef": {"id": "80000028-1671794219"}, "amount": -50, "description": "credit line", "invoiceTo": {"id": "80000002-1674552702", "type": "customer"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "80000003-1674553958"}]}], "reference": "test reference"}]
+        application/json: [{"currency": "USD", "currencyRate": 1, "date": "2024-05-21T00:00:00+00:00", "id": "3357b3df-5f2e-465d-b9ba-226519dbb8f1", "lines": [{"accountRef": {"id": "80000018-1671793811"}, "amount": 50, "description": "debit line", "invoiceTo": {"id": "80000002-1674552702", "type": "customer"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "80000003-1674553958"}]}, {"accountRef": {"id": "80000028-1671794219"}, "amount": -50, "description": "credit line", "trackingRefs": [{"dataType": "trackingCategories", "id": "80000003-1674553958"}]}], "reference": "test reference"}]
       responses:
         "200":
           application/json: {"syncId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
@@ -2038,7 +2084,7 @@ examples:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: [{"bankAccountRef": {"id": "97"}, "contactRef": {"id": "430", "type": "Supplier"}, "currency": "GBP", "currencyRate": 1, "id": "4d7c6929-7770-412b-91bb-44d3bc71d111", "issueDate": "2024-05-21T00:00:00+00:00", "lines": [{"accountRef": {"id": "35"}, "invoiceTo": {"id": "504", "type": "customer"}, "itemRef": {"id": "80000002-1675158984"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Payment"}]
+        application/json: [{"bankAccountRef": {"id": "97"}, "contactRef": {"id": "430", "type": "Supplier"}, "currency": "GBP", "currencyRate": 1, "id": "4d7c6929-7770-412b-91bb-44d3bc71d111", "issueDate": "2024-05-21T00:00:00+00:00", "lines": [{"accountRef": {"id": "35"}, "invoiceTo": {"id": "504", "type": "customer"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Payment"}]
       responses:
         "200":
           application/json: {"syncId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
@@ -2048,7 +2094,7 @@ examples:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: [{"bankAccountRef": {"id": "97"}, "contactRef": {"id": "430", "type": "Supplier"}, "currency": "GBP", "id": "7008d3f2-aeb4-11ed-afa1-0242ac120002", "issueDate": "2024-02-17T00:00:00+00:00", "lines": [{"accountRef": {"id": "42"}, "invoiceTo": {"id": "80000002-1674552702", "type": "customer"}, "itemRef": {"id": "80000002-1675158984"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_6"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Refund"}]
+        application/json: [{"bankAccountRef": {"id": "97"}, "contactRef": {"id": "430", "type": "Supplier"}, "currency": "GBP", "id": "7008d3f2-aeb4-11ed-afa1-0242ac120002", "issueDate": "2024-02-17T00:00:00+00:00", "lines": [{"accountRef": {"id": "42"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"id": "DEPARTMENT_6"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Refund"}]
       responses:
         "200":
           application/json: {"syncId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
@@ -2078,7 +2124,7 @@ examples:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
           transactionId: "336694d8-2dca-4cb5-a28d-3ccb83e55eee"
       requestBody:
-        application/json: {"bankAccountRef": {"id": "97"}, "contactRef": {"id": "430", "type": "Supplier"}, "currency": "GBP", "currencyRate": 1, "issueDate": "2024-05-21T00:00:00+00:00", "lines": [{"accountRef": {"id": "35"}, "invoiceTo": {"id": "504", "type": "customer"}, "itemRef": {"id": "80000002-1675158984"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Payment"}
+        application/json: {"bankAccountRef": {"id": "97"}, "contactRef": {"id": "430", "type": "Supplier"}, "currency": "GBP", "currencyRate": 1, "issueDate": "2024-05-21T00:00:00+00:00", "lines": [{"accountRef": {"id": "35"}, "invoiceTo": {"id": "504", "type": "customer"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "merchantName": "Amazon UK", "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "type": "Payment"}
     Malformed query:
       parameters:
         path:
@@ -2103,7 +2149,7 @@ examples:
         path:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
       requestBody:
-        application/json: [{"contactRef": {"id": "752"}, "currency": "GBP", "currencyRate": 1, "dueDate": "2024-05-21", "id": "4d7c6929-7770-412b-91bb-44d3bc71d111", "issueDate": "2024-05-21", "lines": [{"accountRef": {"id": "35"}, "description": "Hotel", "invoiceTo": {"id": "504", "type": "customer"}, "itemRef": {"id": "80000002-1675158984"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "reference": "expenses w/c 01/07"}]
+        application/json: [{"contactRef": {"id": "752"}, "currency": "GBP", "currencyRate": 1, "dueDate": "2024-05-21", "id": "4d7c6929-7770-412b-91bb-44d3bc71d111", "issueDate": "2024-05-21", "lines": [{"accountRef": {"id": "35"}, "description": "Hotel", "invoiceTo": {"id": "504", "type": "customer"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "reference": "expenses w/c 01/07"}]
       responses:
         "200":
           application/json: {"syncId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
@@ -2133,7 +2179,7 @@ examples:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
           transactionId: "336694d8-2dca-4cb5-a28d-3ccb83e55eee"
       requestBody:
-        application/json: {"contactRef": {"id": "752"}, "currency": "GBP", "currencyRate": 1, "dueDate": "2024-05-21", "issueDate": "2024-05-21", "lines": [{"accountRef": {"id": "35"}, "description": "Hotel", "invoiceTo": {"id": "504", "type": "customer"}, "itemRef": {"id": "80000002-1675158984"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "reference": "expenses w/c 01/07"}
+        application/json: {"contactRef": {"id": "752"}, "currency": "GBP", "currencyRate": 1, "dueDate": "2024-05-21", "issueDate": "2024-05-21", "lines": [{"accountRef": {"id": "35"}, "description": "Hotel", "invoiceTo": {"id": "504", "type": "customer"}, "netAmount": 100, "taxAmount": 20, "taxRateRef": {"id": "23_Bills"}, "trackingRefs": [{"dataType": "trackingCategories", "id": "DEPARTMENT_5"}]}], "notes": "APPLE.COM/BILL - 09001077498 - Card Ending: 4590", "reference": "expenses w/c 01/07"}
       responses:
         "200":
           application/json: {"syncId": "cd937d46-8e41-43a9-9477-a79158ffd98a"}
@@ -2266,3 +2312,19 @@ examples:
       responses:
         "400":
           application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+  get-company-info:
+    Example 1:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "200":
+          application/json: {"accountingPlatformRef": "1700060034_ETD", "addresses": [{"city": "London", "country": "United Kingdom", "line1": "301 Ink Rooms", "line2": "28 Easton Street", "postalCode": "WC1X 0BE", "region": "England", "type": "Billing"}, {"city": "London", "country": "UK", "line1": "28 Easton Street", "postalCode": "WC1X 0BE", "type": "Delivery"}], "baseCurrency": "GBP", "companyLegalName": "Codat Ltd", "companyName": "Codat", "createdDate": "2020-03-09T15:19:26", "financialYearStartDate": "2023-04-01T00:00:00", "phoneNumbers": [{"number": "02012 345678", "type": "Landline"}, {"number": "07123 456789", "type": "Mobile"}, {"number": "02012 345678", "type": "Fax"}], "registrationNumber": "5590111724", "sourceUrls": {"Api": "https://api.codat.io"}, "taxNumber": "74111622555799035846", "webLinks": [{"type": "Website", "url": "https://www.codat.io/"}, {"type": "Social", "url": "https://www.linkedin.com/company/codat-limited/"}]}
+    Unauthorized:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+      responses:
+        "401":
+          application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+generatedTests: {}
