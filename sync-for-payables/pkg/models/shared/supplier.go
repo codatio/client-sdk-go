@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/utils"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 

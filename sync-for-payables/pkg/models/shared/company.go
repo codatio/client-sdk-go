@@ -61,8 +61,11 @@ type Company struct {
 	// An array of products that are currently enabled for the company.
 	Products []string `json:"products,omitempty"`
 	// A collection of user-defined key-value pairs that store custom metadata against the company.
-	Tags            map[string]string `json:"tags,omitempty"`
-	DataConnections []Connection      `json:"dataConnections,omitempty"`
+	Tags                   map[string]string `json:"tags,omitempty"`
+	ReferenceParentCompany *CompanyReference `json:"referenceParentCompany,omitempty"`
+	// A list of subsidiary companies owned or controlled by this entity. Empty if the company has no children.
+	ReferenceSubsidiaryCompanies []CompanyReference `json:"referenceSubsidiaryCompanies,omitempty"`
+	DataConnections              []Connection       `json:"dataConnections,omitempty"`
 }
 
 func (o *Company) GetID() string {
@@ -126,6 +129,20 @@ func (o *Company) GetTags() map[string]string {
 		return nil
 	}
 	return o.Tags
+}
+
+func (o *Company) GetReferenceParentCompany() *CompanyReference {
+	if o == nil {
+		return nil
+	}
+	return o.ReferenceParentCompany
+}
+
+func (o *Company) GetReferenceSubsidiaryCompanies() []CompanyReference {
+	if o == nil {
+		return nil
+	}
+	return o.ReferenceSubsidiaryCompanies
 }
 
 func (o *Company) GetDataConnections() []Connection {

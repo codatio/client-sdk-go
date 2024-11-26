@@ -23,10 +23,10 @@ Create new and manage existing data connections for a company.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -77,7 +77,7 @@ func main() {
 
 ﻿Creates a connection for the company by providing a valid `platformKey`. 
 
-Use the [List Integrations](https://docs.codat.io/sync-for-payables-api#/operations/list-integrations) endpoint to access valid platform keys. 
+Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-integrations) endpoint to access valid platform keys. 
 
 ### Example Usage
 
@@ -85,10 +85,10 @@ Use the [List Integrations](https://docs.codat.io/sync-for-payables-api#/operati
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -144,10 +144,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -202,10 +202,10 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 
@@ -259,10 +259,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/shared"
-	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v4"
+	syncforpayables "github.com/codatio/client-sdk-go/sync-for-payables/v5"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/sync-for-payables/v5/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/sync-for-payables/v4/pkg/models/operations"
 	"log"
 )
 

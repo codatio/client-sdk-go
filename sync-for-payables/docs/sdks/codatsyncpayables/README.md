@@ -32,3 +32,5 @@ The bill pay kit is an API and a set of supporting tools designed to integrate a
 | Suppliers | Get, create, and update Suppliers. |
 | Bank accounts | Create a bank account for a given company's connection. |
 <!-- End Codat Tags Table -->
+
+### Available Operations
