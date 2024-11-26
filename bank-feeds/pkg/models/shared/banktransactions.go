@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
@@ -86,7 +86,7 @@ func (e *BankTransactionType) UnmarshalJSON(data []byte) error {
 
 type BankTransactions struct {
 	// The amount transacted in the bank transaction.
-	Amount *decimal.Big `decimal:"number" json:"amount"`
+	Amount *decimal.Big `decimal:"number" json:"amount,omitempty"`
 	// The remaining balance in the account with ID `accountId`. This field is optional for QuickBooks Online but is required for Xero, Sage, NetSuite, Exact, and FreeAgent.
 	Balance *decimal.Big `decimal:"number" json:"balance,omitempty"`
 	// The giving or receiving party such as a person or organization.
@@ -110,11 +110,11 @@ type BankTransactions struct {
 	// >
 	// > Not all dates from Codat will contain information about time zones.
 	// > Where it is not available from the underlying platform, Codat will return these as times local to the business whose data has been synced.
-	Date string `json:"date"`
+	Date *string `json:"date,omitempty"`
 	// Description of the bank transaction.
 	Description *string `json:"description,omitempty"`
 	// Identifier for the bank account transaction, unique for the company in the accounting software.
-	ID string `json:"id"`
+	ID *string `json:"id,omitempty"`
 	// `True` if the bank transaction has been [reconciled](https://www.xero.com/uk/guides/what-is-bank-reconciliation/) in the accounting software.
 	Reconciled *bool `json:"reconciled,omitempty"`
 	// An optional reference to the bank transaction.
@@ -136,7 +136,7 @@ func (b *BankTransactions) UnmarshalJSON(data []byte) error {
 
 func (o *BankTransactions) GetAmount() *decimal.Big {
 	if o == nil {
-		return new(decimal.Big).SetFloat64(0.0)
+		return nil
 	}
 	return o.Amount
 }
@@ -155,9 +155,9 @@ func (o *BankTransactions) GetCounterparty() *string {
 	return o.Counterparty
 }
 
-func (o *BankTransactions) GetDate() string {
+func (o *BankTransactions) GetDate() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.Date
 }
@@ -169,9 +169,9 @@ func (o *BankTransactions) GetDescription() *string {
 	return o.Description
 }
 
-func (o *BankTransactions) GetID() string {
+func (o *BankTransactions) GetID() *string {
 	if o == nil {
-		return ""
+		return nil
 	}
 	return o.ID
 }

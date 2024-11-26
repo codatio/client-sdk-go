@@ -61,8 +61,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"log"
 )
 
@@ -112,6 +112,7 @@ func main() {
 * [Create](docs/sdks/companies/README.md#create) - Create company
 * [Delete](docs/sdks/companies/README.md#delete) - Delete a company
 * [Get](docs/sdks/companies/README.md#get) - Get company
+* [GetAccessToken](docs/sdks/companies/README.md#getaccesstoken) - Get company access token
 * [List](docs/sdks/companies/README.md#list) - List companies
 * [Update](docs/sdks/companies/README.md#update) - Update company
 
@@ -134,7 +135,8 @@ func main() {
 
 ### [SourceAccounts](docs/sdks/sourceaccounts/README.md)
 
-* [Create](docs/sdks/sourceaccounts/README.md#create) - Create source account
+* [Create](docs/sdks/sourceaccounts/README.md#create) - Create single source account
+* [CreateBatch](docs/sdks/sourceaccounts/README.md#createbatch) - Create source accounts
 * [Delete](docs/sdks/sourceaccounts/README.md#delete) - Delete source account
 * [DeleteCredentials](docs/sdks/sourceaccounts/README.md#deletecredentials) - Delete all source account credentials
 * [GenerateCredentials](docs/sdks/sourceaccounts/README.md#generatecredentials) - Generate source account credentials
@@ -148,6 +150,7 @@ func main() {
 ### [Transactions](docs/sdks/transactions/README.md)
 
 * [Create](docs/sdks/transactions/README.md#create) - Create bank transactions
+* [GetCreateModel](docs/sdks/transactions/README.md#getcreatemodel) - Get create bank transactions model
 * [GetCreateOperation](docs/sdks/transactions/README.md#getcreateoperation) - Get create operation
 * [ListCreateOperations](docs/sdks/transactions/README.md#listcreateoperations) - List create operations
 
@@ -171,9 +174,9 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
@@ -216,9 +219,9 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
 	"log"
 )
 
@@ -267,10 +270,10 @@ By Default, an API error will return `sdkerrors.SDKError`. When custom error res
 
 For example, the `Create` function may return the following errors:
 
-| Error Type                        | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| sdkerrors.ErrorMessage            | 400, 401, 402, 403, 429, 500, 503 | application/json                  |
-| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
+| Error Type             | Status Code                       | Content Type     |
+| ---------------------- | --------------------------------- | ---------------- |
+| sdkerrors.ErrorMessage | 400, 401, 402, 403, 429, 500, 503 | application/json |
+| sdkerrors.SDKError     | 4XX, 5XX                          | \*/\*            |
 
 ### Example
 
@@ -280,9 +283,9 @@ package main
 import (
 	"context"
 	"errors"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"log"
 )
 
@@ -322,60 +325,16 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.codat.io` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	"log"
-)
-
-func main() {
-	s := bankfeeds.New(
-		bankfeeds.WithServerIndex(0),
-		bankfeeds.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
-	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Technicalium",
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.Company != nil {
-		// handle response
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"log"
 )
 
@@ -443,9 +402,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `AuthHeader` | apiKey       | API key      |
+| Name         | Type   | Scheme  |
+| ------------ | ------ | ------- |
+| `AuthHeader` | apiKey | API key |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -453,8 +412,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"log"
 )
 

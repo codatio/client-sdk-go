@@ -25,10 +25,10 @@ Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -85,10 +85,10 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -142,10 +142,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -199,10 +199,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -259,10 +259,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 

@@ -10,6 +10,7 @@ Create and manage your SMB users' companies.
 * [Create](#create) - Create company
 * [Delete](#delete) - Delete a company
 * [Get](#get) - Get company
+* [GetAccessToken](#getaccesstoken) - Get company access token
 * [List](#list) - List companies
 * [Update](#update) - Update company
 
@@ -28,8 +29,8 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"context"
 	"log"
 )
@@ -88,10 +89,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -148,10 +149,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -194,6 +195,63 @@ func main() {
 | sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
 | sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
 
+## GetAccessToken
+
+Use the _Get company access token_ endpoint to return an access token for the specified company ID to use in Codat's embedded UI products.
+
+
+### Example Usage
+
+```go
+package main
+
+import(
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.Companies.GetAccessToken(ctx, operations.GetCompanyAccessTokenRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CompanyAccessToken != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetCompanyAccessTokenRequest](../../pkg/models/operations/getcompanyaccesstokenrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+
+### Response
+
+**[*operations.GetCompanyAccessTokenResponse](../../pkg/models/operations/getcompanyaccesstokenresponse.md), error**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |
+
 ## List
 
 ﻿The *List companies* endpoint returns a list of [companies](https://docs.codat.io/bank-feeds-api#/schemas/Company) associated to your instances.
@@ -207,10 +265,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -269,10 +327,10 @@ Each company can have multiple [connections](https://docs.codat.io/bank-feeds-ap
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 

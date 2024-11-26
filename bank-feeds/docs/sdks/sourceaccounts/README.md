@@ -7,7 +7,8 @@ Provide and manage lists of source bank accounts.
 
 ### Available Operations
 
-* [Create](#create) - Create source account
+* [Create](#create) - Create single source account
+* [CreateBatch](#createbatch) - Create source accounts
 * [Delete](#delete) - Delete source account
 * [DeleteCredentials](#deletecredentials) - Delete all source account credentials
 * [GenerateCredentials](#generatecredentials) - Generate source account credentials
@@ -18,27 +19,6 @@ Provide and manage lists of source bank accounts.
 
 The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. The company can then map the source account to an existing or new target account in their accounting software.
 
-#### Account mapping variability
-
-The method of mapping the source account to the target account varies depending on the accounting software your company uses.
-
-#### Mapping options:
-
-1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
-2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
-3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
-
-### Integration-specific behaviour
-
-| Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
-| --------------------- | ----------- | ---------------- | --------------------------- |
-| Xero                  | ✅          | ✅               |                             |
-| FreeAgent             | ✅          | ✅               |                             |
-| Oracle NetSuite       | ✅          | ✅               |                             |
-| Exact Online (NL)     | ✅          | ✅               |                             |
-| QuickBooks Online     |             |                  | ✅                          |
-| Sage                  |             |                  | ✅                          |
-
 > ### Versioning
 > If you are integrating the Bank Feeds API with Codat after August 1, 2024, please use the v2 version of the API, as detailed in the schema below. For integrations completed before August 1, 2024, select the v1 version from the schema dropdown below.
 
@@ -48,11 +28,11 @@ The method of mapping the source account to the target account varies depending 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -119,6 +99,93 @@ func main() {
 | sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
 | sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
 
+## CreateBatch
+
+The _Batch create source accounts_ endpoint allows you to create multiple representations of your SMB's bank accounts within Codat's domain. The company can then map the source account to an existing or new target account in their accounting software.
+
+> ### Versioning
+> If you are integrating the Bank Feeds API with Codat after August 1, 2024, please use the v2 version of the API, as detailed in the schema below. For integrations completed before August 1, 2024, select the v1 version from the schema dropdown below.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
+	"context"
+	"log"
+)
+
+func main() {
+    s := bankfeeds.New(
+        bankfeeds.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    ctx := context.Background()
+    res, err := s.SourceAccounts.CreateBatch(ctx, operations.CreateBatchSourceAccountRequest{
+        RequestBody: bankfeeds.Pointer(operations.CreateCreateBatchSourceAccountRequestBodyArrayOfSourceAccount(
+            []shared.SourceAccount{
+                shared.SourceAccount{
+                    AccountName: bankfeeds.String("account-081"),
+                    AccountNumber: bankfeeds.String("12345670"),
+                    AccountType: bankfeeds.String("Credit"),
+                    Balance: types.MustNewDecimalFromString("99.99"),
+                    Currency: bankfeeds.String("GBP"),
+                    ID: "acc-002",
+                    ModifiedDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
+                    SortCode: bankfeeds.String("123456"),
+                    Status: shared.StatusPending.ToPointer(),
+                },
+                shared.SourceAccount{
+                    AccountName: bankfeeds.String("account-095"),
+                    AccountNumber: bankfeeds.String("12345671"),
+                    AccountType: bankfeeds.String("Credit"),
+                    Balance: types.MustNewDecimalFromString("0"),
+                    Currency: bankfeeds.String("USD"),
+                    ID: "acc-003",
+                    ModifiedDate: bankfeeds.String("2023-01-09T14:14:14.1057478Z"),
+                    SortCode: bankfeeds.String("123456"),
+                    Status: shared.StatusPending.ToPointer(),
+                },
+            },
+        )),
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.TwoHundredApplicationJSONOneOf != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `request`                                                                                                    | [operations.CreateBatchSourceAccountRequest](../../pkg/models/operations/createbatchsourceaccountrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
+| `opts`                                                                                                       | [][operations.Option](../../pkg/models/operations/option.md)                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
+
+### Response
+
+**[*operations.CreateBatchSourceAccountResponse](../../pkg/models/operations/createbatchsourceaccountresponse.md), error**
+
+### Errors
+
+| Error Type                                  | Status Code                                 | Content Type                                |
+| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| sdkerrors.ErrorMessage                      | 400, 401, 402, 403, 404, 409, 429, 500, 503 | application/json                            |
+| sdkerrors.SDKError                          | 4XX, 5XX                                    | \*/\*                                       |
+
 ## Delete
 
 The _Delete source account_ endpoint enables you to remove a source account.
@@ -132,10 +199,10 @@ Removing a source account will also remove any mapping between the source bank f
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -192,10 +259,10 @@ In cases where multiple credential sets have been generated, a single API call t
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -255,11 +322,11 @@ The old credentials will still be valid until the revoke credentials endpoint is
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"os"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"log"
 )
 
@@ -324,10 +391,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -386,11 +453,11 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 

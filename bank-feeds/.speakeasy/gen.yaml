@@ -12,10 +12,11 @@ generation:
     oAuth2PasswordEnabled: false
   telemetryEnabled: true
 go:
-  version: 6.0.0
+  version: 7.0.0
   additionalDependencies: {}
   allowUnknownFieldsInWeakUnions: false
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
   flattenGlobalSecurity: false
   imports:
     option: openapi

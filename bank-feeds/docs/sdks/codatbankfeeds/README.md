@@ -21,3 +21,5 @@ A bank feed is a connection between a source bank account in your application an
 | Company information | Get detailed information about a company from the underlying platform. |
 | Transactions | Create new bank account transactions for a company's connections, and see previous operations. |
 <!-- End Codat Tags Table -->
+
+### Available Operations

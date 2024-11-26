@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
 	"net/http"
 )
 
@@ -37,6 +36,27 @@ func newAccountMapping(sdkConfig sdkConfiguration) *AccountMapping {
 // > **For custom builds only**
 // >
 // > Only use this endpoint if you are building your own account management UI.
+//
+// #### Account mapping variability
+//
+// The method of mapping the source account to the target account varies depending on the accounting software your company uses.
+//
+// #### Mapping options:
+//
+// 1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
+// 2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
+// 3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
+//
+// ### Integration-specific behaviour
+//
+// | Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
+// | --------------------- | ----------- | ---------------- | --------------------------- |
+// | Xero                  | ✅          | ✅               |                             |
+// | FreeAgent             | ✅          | ✅               |                             |
+// | Oracle NetSuite       | ✅          | ✅               |                             |
+// | Exact Online (NL)     | ✅          | ✅               |                             |
+// | QuickBooks Online     |             |                  | ✅                          |
+// | Sage                  |             |                  | ✅                          |
 func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBankAccountMappingRequest, opts ...operations.Option) (*operations.CreateBankAccountMappingResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -129,7 +149,11 @@ func (s *AccountMapping) Create(ctx context.Context, request operations.CreateBa
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -361,7 +385,11 @@ func (s *AccountMapping) Get(ctx context.Context, request operations.GetBankAcco
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
