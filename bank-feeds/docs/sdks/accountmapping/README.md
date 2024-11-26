@@ -22,16 +22,37 @@ To find valid target account options, first call the [List bank feed account map
 >
 > Only use this endpoint if you are building your own account management UI.
 
+#### Account mapping variability
+
+The method of mapping the source account to the target account varies depending on the accounting software your company uses.
+
+#### Mapping options:
+
+1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
+2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
+3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
+
+### Integration-specific behaviour
+
+| Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
+| --------------------- | ----------- | ---------------- | --------------------------- |
+| Xero                  | ✅          | ✅               |                             |
+| FreeAgent             | ✅          | ✅               |                             |
+| Oracle NetSuite       | ✅          | ✅               |                             |
+| Exact Online (NL)     | ✅          | ✅               |                             |
+| QuickBooks Online     |             |                  | ✅                          |
+| Sage                  |             |                  | ✅                          |
+
 ### Example Usage
 
 ```go
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 
@@ -95,10 +116,10 @@ A bank feed account mapping is a specified link between the source account (prov
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 

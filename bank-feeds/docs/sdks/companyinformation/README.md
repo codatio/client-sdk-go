@@ -21,10 +21,10 @@ Use the *Get company information* endpoint to return information about the compa
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
 	"log"
 )
 

@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
 	"net/http"
 )
 
@@ -115,7 +114,11 @@ func (s *Configuration) Get(ctx context.Context, request operations.GetConfigura
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -345,7 +348,11 @@ func (s *Configuration) Set(ctx context.Context, request operations.SetConfigura
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

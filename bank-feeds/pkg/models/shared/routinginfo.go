@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
 )
 
 // Type - The type of routing number.

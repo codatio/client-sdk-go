@@ -4,8 +4,8 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v6"
-	"github.com/codatio/client-sdk-go/bank-feeds/v6/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
+	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
 	"log"
 )
 
