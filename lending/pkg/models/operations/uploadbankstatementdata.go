@@ -5,8 +5,8 @@ package operations
 import (
 	"errors"
 	"fmt"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/utils"
 	"net/http"
 )
 

@@ -24,11 +24,11 @@ Required data may vary by integration. To see what data to post, first call [Get
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -67,19 +67,6 @@ func main() {
                     SubTotal: types.MustNewDecimalFromString("99"),
                     TaxAmount: types.MustNewDecimalFromString("360"),
                     TotalAmount: types.MustNewDecimalFromString("70"),
-                    Tracking: &shared.Tracking{
-                        InvoiceTo: &shared.AccountingRecordRef{
-                            DataType: lending.String("invoice"),
-                        },
-                        RecordRefs: []shared.TrackingRecordRef{
-                            shared.TrackingRecordRef{
-                                DataType: shared.TrackingRecordRefDataTypeTrackingCategories.ToPointer(),
-                            },
-                            shared.TrackingRecordRef{
-                                DataType: shared.TrackingRecordRefDataTypeTrackingCategories.ToPointer(),
-                            },
-                        },
-                    },
                     TrackingCategoryRefs: []shared.TrackingCategoryRef{
                         shared.TrackingCategoryRef{
                             ID: "80000001-1674553252",
@@ -94,7 +81,6 @@ func main() {
                 shared.AccountingPaymentAllocation{
                     Allocation: shared.Allocation{
                         AllocatedOnDate: lending.String("2023-01-29T10:19:52.223Z"),
-                        Currency: lending.String("USD"),
                         CurrencyRate: types.MustNewDecimalFromString("0"),
                         TotalAmount: types.MustNewDecimalFromString("88"),
                     },
@@ -103,7 +89,6 @@ func main() {
                             ID: lending.String("80000028-1671794219"),
                             Name: lending.String("Bank Account 1"),
                         },
-                        Currency: lending.String("GBP"),
                         Note: lending.String("payment allocations note"),
                         PaidOnDate: lending.String("2023-01-28T10:19:52.223Z"),
                         Reference: lending.String("payment allocations reference"),
@@ -162,10 +147,10 @@ See the *response examples* for integration-specific indicative models.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

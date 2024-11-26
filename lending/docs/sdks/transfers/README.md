@@ -24,11 +24,11 @@ Required data may vary by integration. To see what data to post, first call [Get
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -49,7 +49,7 @@ func main() {
             Date: lending.String("2023-01-26T11:51:18.104Z"),
             DepositedRecordRefs: []shared.AccountingRecordRef{
                 shared.AccountingRecordRef{
-                    DataType: lending.String("invoice"),
+                    DataType: lending.String("accountTransaction"),
                 },
             },
             Description: lending.String("test transfers push 20230126 12.08"),
@@ -130,10 +130,10 @@ See the *response examples* for integration-specific indicative models.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

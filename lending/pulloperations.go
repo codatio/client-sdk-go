@@ -6,13 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/cenkalti/backoff/v4"
-	"github.com/codatio/client-sdk-go/lending/v7/internal/hooks"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/retry"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/lending/v8/internal/hooks"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/retry"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/utils"
 	"net/http"
 )
 
@@ -114,7 +113,11 @@ func (s *PullOperations) Get(ctx context.Context, request operations.GetPullOper
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)
@@ -342,7 +345,11 @@ func (s *PullOperations) List(ctx context.Context, request operations.ListPullOp
 
 			req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 			if err != nil {
-				return nil, backoff.Permanent(err)
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
 			}
 
 			httpRes, err := s.sdkConfiguration.Client.Do(req)

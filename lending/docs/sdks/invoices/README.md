@@ -26,10 +26,10 @@ The *Download invoice attachment* endpoint downloads a specific attachment for a
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -85,10 +85,10 @@ func main() {
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -151,10 +151,10 @@ To access the `paymentAllocations` property, ensure that the `payments` data typ
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -211,10 +211,10 @@ The *Get invoice attachment* endpoint returns a specific attachment for a given 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -286,10 +286,10 @@ To access the `paymentAllocations` property, ensure that the `payments` data typ
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -348,10 +348,10 @@ The *List invoice attachments* endpoint returns a list of attachments available 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -406,10 +406,10 @@ Gets a list of invoices linked to the corresponding banking transaction
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

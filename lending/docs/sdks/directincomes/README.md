@@ -23,10 +23,10 @@ The *Download direct income attachment* endpoint downloads a specific attachment
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -87,10 +87,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -147,10 +147,10 @@ The *Get direct income attachment* endpoint returns a specific attachment for a 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -211,10 +211,10 @@ Before using this endpoint, you must have [retrieved data for the company](https
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -275,10 +275,10 @@ The *List direct income attachments* endpoint returns a list of attachments avai
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

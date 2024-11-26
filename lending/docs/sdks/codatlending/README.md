@@ -29,3 +29,5 @@ The Lending API is built on top of the latest accounting, commerce, and banking 
 | File upload | Endpoints to manage uploaded files. |
 | Loan writeback | Implement the [loan writeback](https://docs.codat.io/lending/guides/loan-writeback/introduction) procedure in your lending process to maintain an accurate position of a loan during the entire lending cycle. |
 <!-- End Codat Tags Table -->
+
+### Available Operations

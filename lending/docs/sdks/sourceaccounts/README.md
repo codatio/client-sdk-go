@@ -12,27 +12,6 @@
 
 The _Create Source Account_ endpoint allows you to create a representation of a bank account within Codat's domain. The company can then map the source account to an existing or new target account in their accounting software.
 
-#### Account mapping variability
-
-The method of mapping the source account to the target account varies depending on the accounting software your company uses.
-
-#### Mapping options:
-
-1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
-2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
-3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
-
-### Integration-specific behaviour
-
-| Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
-| --------------------- | ----------- | ---------------- | --------------------------- |
-| Xero                  | ✅          | ✅               |                             |
-| FreeAgent             | ✅          | ✅               |                             |
-| Oracle NetSuite       | ✅          | ✅               |                             |
-| Exact Online (NL)     | ✅          | ✅               |                             |
-| QuickBooks Online     |             |                  | ✅                          |
-| Sage                  |             |                  | ✅                          |
-
 > ### Versioning
 > If you are integrating the Bank Feeds API with Codat after August 1, 2024, please use the v2 version of the API, as detailed in the schema below. For integrations completed before August 1, 2024, select the v1 version from the schema dropdown below.
 
@@ -42,11 +21,11 @@ The method of mapping the source account to the target account varies depending 
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/types"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 
@@ -125,16 +104,37 @@ To find valid target account options, first call the [List bank feed account map
 >
 > Only use this endpoint if you are building your own account management UI.
 
+#### Account mapping variability
+
+The method of mapping the source account to the target account varies depending on the accounting software your company uses.
+
+#### Mapping options:
+
+1. **API Mapping**: Integrate the mapping journey directly into your application for a seamless user experience.
+2. **Codat UI Mapping**: If you prefer a quicker setup, you can utilize Codat's provided user interface for mapping.
+3. **Accounting Platform Mapping**: For some accounting software, the mapping process must be conducted within the software itself.
+
+### Integration-specific behaviour
+
+| Bank Feed Integration | API Mapping | Codat UI Mapping | Accounting Platform Mapping |
+| --------------------- | ----------- | ---------------- | --------------------------- |
+| Xero                  | ✅          | ✅               |                             |
+| FreeAgent             | ✅          | ✅               |                             |
+| Oracle NetSuite       | ✅          | ✅               |                             |
+| Exact Online (NL)     | ✅          | ✅               |                             |
+| QuickBooks Online     |             |                  | ✅                          |
+| Sage                  |             |                  | ✅                          |
+
 ### Example Usage
 
 ```go
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/shared"
-	lending "github.com/codatio/client-sdk-go/lending/v7"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
 	"context"
-	"github.com/codatio/client-sdk-go/lending/v7/pkg/models/operations"
 	"log"
 )
 

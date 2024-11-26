@@ -6,7 +6,7 @@ package shared
 //
 // > **Company information or companies?**
 // >
-// > Company profile is standard information that is held in the accounting software about a company. `Companies` is an endpoint that lists businesses in the Codat system that have linked and shared their data sources.
+// > Company information is standard information that is held in the accounting software about a company. `Companies` is an endpoint that lists businesses in the Codat system that have linked and shared their data sources.
 type AccountingCompanyInfo struct {
 	// Identifier or reference for the company in the accounting software.
 	AccountingPlatformRef *string `json:"accountingPlatformRef,omitempty"`
