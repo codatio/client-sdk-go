@@ -1,4 +1,4 @@
-speakeasyVersion: 1.447.0
+speakeasyVersion: 1.448.0
 sources:
     accounting-source:
         sourceNamespace: accounting-source
@@ -53,11 +53,11 @@ sources:
             - main
     lending-source:
         sourceNamespace: lending-source
-        sourceRevisionDigest: sha256:2e482750393395f0c836854c3e4517d56fe43599c806928a7f9f86355f943029
+        sourceRevisionDigest: sha256:4736b89dab43c763af99c3ca1e9bc66ef6408d4f63bf37586e101742753d3c77
         sourceBlobDigest: sha256:b52d78f87b496418a9a1d7ee5f4b78f4ee3ed0a257fba5a6bd13e82a5ed3548f
         tags:
             - latest
-            - speakeasy-sdk-regen-1732640789
+            - speakeasy-sdk-regen-1732702287
             - 3.0.0
     platform-source:
         sourceNamespace: platform-source
@@ -161,10 +161,10 @@ targets:
     lending-library:
         source: lending-source
         sourceNamespace: lending-source
-        sourceRevisionDigest: sha256:2e482750393395f0c836854c3e4517d56fe43599c806928a7f9f86355f943029
+        sourceRevisionDigest: sha256:4736b89dab43c763af99c3ca1e9bc66ef6408d4f63bf37586e101742753d3c77
         sourceBlobDigest: sha256:b52d78f87b496418a9a1d7ee5f4b78f4ee3ed0a257fba5a6bd13e82a5ed3548f
-        codeSamplesNamespace: lending-source-code-samples
-        codeSamplesRevisionDigest: sha256:e26ac02090975bf9afc933255c57521097bc1bf8c10e0d52126ca085112d674c
+        codeSamplesNamespace: lending-source-go-code-samples
+        codeSamplesRevisionDigest: sha256:18fee8b1139be562f8e4c3531476cca66023493ee387e5765499f1d444bbd54d
     platform-library:
         source: platform-source
         sourceNamespace: platform-source
@@ -302,7 +302,7 @@ workflow:
             output: previous-versions/accounting
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/accounting-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/accounting-source-go-code-samples
                 blocking: false
         assess-library:
             target: go
@@ -310,7 +310,7 @@ workflow:
             output: previous-versions/assess
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/assess-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/assess-source-go-code-samples
                 blocking: false
         bank-feeds-library:
             target: go
@@ -318,7 +318,7 @@ workflow:
             output: bank-feeds
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/bank-feeds-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/bank-feeds-source-go-code-samples
                 blocking: false
         banking-library:
             target: go
@@ -326,7 +326,7 @@ workflow:
             output: previous-versions/banking
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/banking-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/banking-source-go-code-samples
                 blocking: false
         commerce-library:
             target: go
@@ -334,7 +334,7 @@ workflow:
             output: previous-versions/commerce
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/commerce-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/commerce-source-go-code-samples
                 blocking: false
         common-library:
             target: go
@@ -342,7 +342,7 @@ workflow:
             output: previous-versions/common
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/common-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/common-source-go-code-samples
                 blocking: false
         files-library:
             target: go
@@ -350,7 +350,7 @@ workflow:
             output: previous-versions/files
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/files-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/files-source-go-code-samples
                 blocking: false
         lending-library:
             target: go
@@ -358,7 +358,7 @@ workflow:
             output: lending
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/lending-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/lending-source-go-code-samples
                 blocking: false
         platform-library:
             target: go
@@ -366,7 +366,7 @@ workflow:
             output: platform
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/platform-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/platform-source-go-code-samples
                 blocking: false
         sync-for-commerce-library:
             target: go
@@ -374,7 +374,7 @@ workflow:
             output: sync-for-commerce
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-source-go-code-samples
                 blocking: false
         sync-for-commerce-version-1-library:
             target: go
@@ -382,7 +382,7 @@ workflow:
             output: previous-versions/sync-for-commerce-version-1
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-version-1-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-commerce-version-1-source-go-code-samples
                 blocking: false
         sync-for-expenses-library:
             target: go
@@ -390,7 +390,7 @@ workflow:
             output: sync-for-expenses
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-source-go-code-samples
                 blocking: false
         sync-for-expenses-version-1-library:
             target: go
@@ -398,7 +398,7 @@ workflow:
             output: previous-versions/sync-for-expenses-version-1
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-version-1-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-expenses-version-1-source-go-code-samples
                 blocking: false
         sync-for-payables-library:
             target: go
@@ -406,7 +406,7 @@ workflow:
             output: sync-for-payables
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-payables-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-payables-source-go-code-samples
                 blocking: false
         sync-for-payables-version-1-library:
             target: go
@@ -414,7 +414,7 @@ workflow:
             output: previous-versions/sync-for-payables-version-1
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-payables-version-1-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-payables-version-1-source-go-code-samples
                 blocking: false
         sync-for-payroll-library:
             target: go
@@ -422,5 +422,5 @@ workflow:
             output: sync-for-payroll
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/codat/codat/sync-for-payroll-source-code-samples
+                    location: registry.speakeasyapi.dev/codat/codat/sync-for-payroll-source-go-code-samples
                 blocking: false

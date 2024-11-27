@@ -139,3 +139,13 @@ Based on:
 - [go v8.0.0] lending
 ### Releases
 - [Go v8.0.0] https://github.com/codatio/client-sdk-go/releases/tag/lending/v8.0.0 - lending
+
+## 2024-11-27 10:11:19
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.448.0 (2.466.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [go v8.0.1] lending
+### Releases
+- [Go v8.0.1] https://github.com/codatio/client-sdk-go/releases/tag/lending/v8.0.1 - lending
