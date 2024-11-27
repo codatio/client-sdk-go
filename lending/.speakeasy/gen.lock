@@ -3,10 +3,10 @@ id: 38fc8a31-15d9-4bd1-b91d-cc3fc015d0f0
 management:
   docChecksum: 9d2203249a565b88959fb122711a1f33
   docVersion: 3.0.0
-  speakeasyVersion: 1.447.0
-  generationVersion: 2.463.0
-  releaseVersion: 8.0.0
-  configChecksum: 23e3b2b45055c2a540c8de3615278331
+  speakeasyVersion: 1.448.0
+  generationVersion: 2.466.0
+  releaseVersion: 8.0.1
+  configChecksum: 58896a1bb0213f149f26460b9a8a9375
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: lending
   installationURL: https://github.com/codatio/client-sdk-go/lending
