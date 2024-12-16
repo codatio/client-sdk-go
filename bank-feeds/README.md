@@ -30,15 +30,19 @@ A bank feed is a connection between a source bank account in your application an
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Bank Feeds](#bank-feeds)
+  * [Endpoints](#endpoints)
+  * [SDK Installation](#sdk-installation)
+  * [Example Usage](#example-usage)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -61,27 +65,49 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/types"
 	"log"
 )
 
 func main() {
-	s := bankfeeds.New(
-		bankfeeds.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
 	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: bankfeeds.String("Requested early access to the new financing scheme."),
-		Name:        "Technicalium",
+
+	s := bankfeeds.New()
+
+	res, err := s.BankFeedsSourceAccountConnected(ctx, &shared.SourceAccountWebhook{
+		EventType:     bankfeeds.String("bankFeeds.sourceAccount.connected"),
+		GeneratedDate: bankfeeds.String("2022-10-23T00:00:00Z"),
+		ID:            bankfeeds.String("ba29118f-5406-4e59-b05c-ba307ca38d01"),
+		Payload: &shared.SourceAccountWebhookPayload{
+			ConnectionID: bankfeeds.String("2e9d2c44-f675-40ba-8049-353bfcb5e171"),
+			ReferenceCompany: &shared.CompanyReference{
+				Description: bankfeeds.String("Requested early access to the new financing scheme."),
+				ID:          bankfeeds.String("0498e921-9b53-4396-a412-4f2f5983b0a2"),
+				Links: &shared.CompanyReferenceLinks{
+					Portal: bankfeeds.String("https://app.codat.io/companies/0498e921-9b53-4396-a412-4f2f5983b0a2/summary"),
+				},
+				Name: bankfeeds.String("Toft stores"),
+			},
+			SourceAccount: bankfeeds.Pointer(shared.CreateSourceAccountWebhookPayloadSourceAccountSourceAccount(
+				shared.SourceAccount{
+					AccountName:   bankfeeds.String("account-081"),
+					AccountNumber: bankfeeds.String("12345678"),
+					Balance:       types.MustNewDecimalFromString("99.99"),
+					Currency:      bankfeeds.String("GBP"),
+					ID:            "acc-002",
+					ModifiedDate:  bankfeeds.String("2023-01-09T14:14:14.105Z"),
+					SortCode:      bankfeeds.String("040004"),
+					Status:        shared.StatusPending.ToPointer(),
+				},
+			)),
+		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Company != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -174,21 +200,22 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
 	"log"
 	"pkg/models/operations"
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := bankfeeds.New(
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -219,13 +246,15 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
 	"log"
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := bankfeeds.New(
 		bankfeeds.WithRetryConfig(
 			retry.Config{
@@ -243,7 +272,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -283,20 +311,21 @@ package main
 import (
 	"context"
 	"errors"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
 	"log"
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := bankfeeds.New(
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -333,12 +362,14 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
 	"log"
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := bankfeeds.New(
 		bankfeeds.WithServerURL("https://api.codat.io"),
 		bankfeeds.WithSecurity(shared.Security{
@@ -346,7 +377,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -412,19 +442,20 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
 	"log"
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := bankfeeds.New(
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",

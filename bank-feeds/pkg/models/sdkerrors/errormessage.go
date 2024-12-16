@@ -4,7 +4,7 @@ package sdkerrors
 
 import (
 	"encoding/json"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
 )
 
 // ErrorMessage - Your `query` parameter was not correctly formed

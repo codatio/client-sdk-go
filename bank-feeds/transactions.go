@@ -6,12 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 )
 
@@ -91,6 +91,10 @@ func (s *Transactions) Create(ctx context.Context, request operations.CreateBank
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -329,6 +333,10 @@ func (s *Transactions) GetCreateModel(ctx context.Context, request operations.Ge
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -559,6 +567,10 @@ func (s *Transactions) GetCreateOperation(ctx context.Context, request operation
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -795,6 +807,10 @@ func (s *Transactions) ListCreateOperations(ctx context.Context, request operati
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

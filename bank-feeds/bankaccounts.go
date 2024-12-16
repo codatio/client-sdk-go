@@ -6,12 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 )
 
@@ -90,6 +90,10 @@ func (s *BankAccounts) Create(ctx context.Context, request operations.CreateBank
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -328,6 +332,10 @@ func (s *BankAccounts) GetCreateModel(ctx context.Context, request operations.Ge
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -562,6 +570,10 @@ func (s *BankAccounts) List(ctx context.Context, request operations.ListBankAcco
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

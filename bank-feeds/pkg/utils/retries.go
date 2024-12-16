@@ -6,7 +6,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
 	"math"
 	"math/rand"
 	"net/http"

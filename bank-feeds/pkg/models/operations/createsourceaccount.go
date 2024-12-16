@@ -5,56 +5,56 @@ package operations
 import (
 	"errors"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 )
 
 type CreateSourceAccountRequestBodyType string
 
 const (
-	CreateSourceAccountRequestBodyTypeSourceAccountV2 CreateSourceAccountRequestBodyType = "SourceAccountV2"
-	CreateSourceAccountRequestBodyTypeSourceAccount   CreateSourceAccountRequestBodyType = "SourceAccount"
+	CreateSourceAccountRequestBodyTypeSourceAccountV2Prototype CreateSourceAccountRequestBodyType = "sourceAccountV2Prototype"
+	CreateSourceAccountRequestBodyTypeSourceAccountPrototype   CreateSourceAccountRequestBodyType = "sourceAccountPrototype"
 )
 
 type CreateSourceAccountRequestBody struct {
-	SourceAccountV2 *shared.SourceAccountV2
-	SourceAccount   *shared.SourceAccount
+	SourceAccountV2Prototype *shared.SourceAccountV2Prototype `queryParam:"inline"`
+	SourceAccountPrototype   *shared.SourceAccountPrototype   `queryParam:"inline"`
 
 	Type CreateSourceAccountRequestBodyType
 }
 
-func CreateCreateSourceAccountRequestBodySourceAccountV2(sourceAccountV2 shared.SourceAccountV2) CreateSourceAccountRequestBody {
-	typ := CreateSourceAccountRequestBodyTypeSourceAccountV2
+func CreateCreateSourceAccountRequestBodySourceAccountV2Prototype(sourceAccountV2Prototype shared.SourceAccountV2Prototype) CreateSourceAccountRequestBody {
+	typ := CreateSourceAccountRequestBodyTypeSourceAccountV2Prototype
 
 	return CreateSourceAccountRequestBody{
-		SourceAccountV2: &sourceAccountV2,
-		Type:            typ,
+		SourceAccountV2Prototype: &sourceAccountV2Prototype,
+		Type:                     typ,
 	}
 }
 
-func CreateCreateSourceAccountRequestBodySourceAccount(sourceAccount shared.SourceAccount) CreateSourceAccountRequestBody {
-	typ := CreateSourceAccountRequestBodyTypeSourceAccount
+func CreateCreateSourceAccountRequestBodySourceAccountPrototype(sourceAccountPrototype shared.SourceAccountPrototype) CreateSourceAccountRequestBody {
+	typ := CreateSourceAccountRequestBodyTypeSourceAccountPrototype
 
 	return CreateSourceAccountRequestBody{
-		SourceAccount: &sourceAccount,
-		Type:          typ,
+		SourceAccountPrototype: &sourceAccountPrototype,
+		Type:                   typ,
 	}
 }
 
 func (u *CreateSourceAccountRequestBody) UnmarshalJSON(data []byte) error {
 
-	var sourceAccount shared.SourceAccount = shared.SourceAccount{}
-	if err := utils.UnmarshalJSON(data, &sourceAccount, "", true, true); err == nil {
-		u.SourceAccount = &sourceAccount
-		u.Type = CreateSourceAccountRequestBodyTypeSourceAccount
+	var sourceAccountPrototype shared.SourceAccountPrototype = shared.SourceAccountPrototype{}
+	if err := utils.UnmarshalJSON(data, &sourceAccountPrototype, "", true, true); err == nil {
+		u.SourceAccountPrototype = &sourceAccountPrototype
+		u.Type = CreateSourceAccountRequestBodyTypeSourceAccountPrototype
 		return nil
 	}
 
-	var sourceAccountV2 shared.SourceAccountV2 = shared.SourceAccountV2{}
-	if err := utils.UnmarshalJSON(data, &sourceAccountV2, "", true, true); err == nil {
-		u.SourceAccountV2 = &sourceAccountV2
-		u.Type = CreateSourceAccountRequestBodyTypeSourceAccountV2
+	var sourceAccountV2Prototype shared.SourceAccountV2Prototype = shared.SourceAccountV2Prototype{}
+	if err := utils.UnmarshalJSON(data, &sourceAccountV2Prototype, "", true, true); err == nil {
+		u.SourceAccountV2Prototype = &sourceAccountV2Prototype
+		u.Type = CreateSourceAccountRequestBodyTypeSourceAccountV2Prototype
 		return nil
 	}
 
@@ -62,12 +62,12 @@ func (u *CreateSourceAccountRequestBody) UnmarshalJSON(data []byte) error {
 }
 
 func (u CreateSourceAccountRequestBody) MarshalJSON() ([]byte, error) {
-	if u.SourceAccountV2 != nil {
-		return utils.MarshalJSON(u.SourceAccountV2, "", true)
+	if u.SourceAccountV2Prototype != nil {
+		return utils.MarshalJSON(u.SourceAccountV2Prototype, "", true)
 	}
 
-	if u.SourceAccount != nil {
-		return utils.MarshalJSON(u.SourceAccount, "", true)
+	if u.SourceAccountPrototype != nil {
+		return utils.MarshalJSON(u.SourceAccountPrototype, "", true)
 	}
 
 	return nil, errors.New("could not marshal union type CreateSourceAccountRequestBody: all fields are null")
@@ -111,8 +111,8 @@ const (
 
 // CreateSourceAccountResponseBody - Success
 type CreateSourceAccountResponseBody struct {
-	SourceAccountV2 *shared.SourceAccountV2
-	SourceAccount   *shared.SourceAccount
+	SourceAccountV2 *shared.SourceAccountV2 `queryParam:"inline"`
+	SourceAccount   *shared.SourceAccount   `queryParam:"inline"`
 
 	Type CreateSourceAccountResponseBodyType
 }

@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 )
 
@@ -17,6 +17,8 @@ type ListCompaniesRequest struct {
 	PageSize *int `default:"100" queryParam:"style=form,explode=true,name=pageSize"`
 	// Codat query string. [Read more](https://docs.codat.io/using-the-api/querying).
 	Query *string `queryParam:"style=form,explode=true,name=query"`
+	// Filter companies by tags using the "equals" (=), "not equals" (!=), and "contains" (~) operators with [Codat’s query language](https://docs.codat.io/using-the-api/querying).
+	Tags *string `queryParam:"style=form,explode=true,name=tags"`
 }
 
 func (l ListCompaniesRequest) MarshalJSON() ([]byte, error) {
@@ -56,6 +58,13 @@ func (o *ListCompaniesRequest) GetQuery() *string {
 		return nil
 	}
 	return o.Query
+}
+
+func (o *ListCompaniesRequest) GetTags() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Tags
 }
 
 type ListCompaniesResponse struct {

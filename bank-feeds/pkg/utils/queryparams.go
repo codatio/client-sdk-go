@@ -14,7 +14,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/types"
 )
 
 func PopulateQueryParams(_ context.Context, req *http.Request, queryParams interface{}, globals interface{}) error {
@@ -214,7 +214,11 @@ func populateDeepObjectParamsStruct(qsValues url.Values, priorScope string, stru
 			continue
 		}
 
-		scope := priorScope + "[" + qpTag.ParamName + "]"
+		scope := priorScope
+
+		if !qpTag.Inline {
+			scope = priorScope + "[" + qpTag.ParamName + "]"
+		}
 
 		switch fieldValue.Kind() {
 		case reflect.Array, reflect.Slice:
@@ -252,6 +256,13 @@ type paramTag struct {
 	Explode       bool
 	ParamName     string
 	Serialization string
+
+	// Inline is a special case for union/oneOf. When a wrapper struct type is
+	// used, each union/oneOf value field should be inlined (e.g. not appended
+	// in deepObject style with the name) as if the value was directly on the
+	// parent struct field. Without this annotation, the value would not be
+	// encoded by downstream logic that requires the struct field tag.
+	Inline bool
 }
 
 func parseQueryParamTag(field reflect.StructField) *paramTag {

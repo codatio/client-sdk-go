@@ -6,12 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/internal/hooks"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/sdkerrors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/internal/hooks"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/sdkerrors"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 	"net/url"
 )
@@ -86,6 +86,10 @@ func (s *Companies) Create(ctx context.Context, request *shared.CompanyRequestBo
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -319,6 +323,10 @@ func (s *Companies) Delete(ctx context.Context, request operations.DeleteCompany
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -528,6 +536,10 @@ func (s *Companies) Get(ctx context.Context, request operations.GetCompanyReques
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -758,6 +770,10 @@ func (s *Companies) GetAccessToken(ctx context.Context, request operations.GetCo
 		return nil, err
 	}
 
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
 	retryConfig := o.Retries
 	if retryConfig == nil {
@@ -941,6 +957,19 @@ func (s *Companies) GetAccessToken(ctx context.Context, request operations.GetCo
 //
 // A [company](https://docs.codat.io/bank-feeds-api#/schemas/Company) represents a business sharing access to their data.
 // Each company can have multiple [connections](https://docs.codat.io/bank-feeds-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
+//
+// ## Filter by tags
+//
+// The *List companies* endpoint supports the filtering of companies using [tags](https://docs.codat.io/using-the-api/managing-companies#add-metadata-to-a-company). It supports the following operators with [Codat’s query language](https://docs.codat.io/using-the-api/querying):
+//
+// - equals (`=`)
+// - not equals (`!=`)
+// - contains (`~`)
+//
+// For example, you can use the querying to filter companies tagged with a specific foreign key, region, or owning team:
+// - Foreign key: `uid = {yourCustomerId}`
+// - Region: `region != uk`
+// - Owning team and region: `region = uk && owningTeam = invoice-finance`
 func (s *Companies) List(ctx context.Context, request operations.ListCompaniesRequest, opts ...operations.Option) (*operations.ListCompaniesResponse, error) {
 	hookCtx := hooks.HookContext{
 		Context:        ctx,
@@ -991,6 +1020,10 @@ func (s *Companies) List(ctx context.Context, request operations.ListCompaniesRe
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig
@@ -1230,6 +1263,10 @@ func (s *Companies) Update(ctx context.Context, request operations.UpdateCompany
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
 	}
 
 	globalRetryConfig := s.sdkConfiguration.RetryConfig

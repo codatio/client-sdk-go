@@ -4,8 +4,8 @@ package operations
 
 import (
 	"errors"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/retry"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/retry"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"time"
 )
 
@@ -24,6 +24,7 @@ type Options struct {
 	Retries     *retry.Config
 	Timeout     *time.Duration
 	URLOverride *string
+	SetHeaders  map[string]string
 }
 
 type Option func(*Options, ...string) error
@@ -88,6 +89,15 @@ func WithURLOverride(urlOverride string) Option {
 		}
 
 		opts.URLOverride = &urlOverride
+		return nil
+	}
+}
+
+// WithSetHeaders takes a map of headers that will applied to a request. If the
+// request contains headers that are in the map then they will be overwritten.
+func WithSetHeaders(hdrs map[string]string) Option {
+	return func(opts *Options, supportedOptions ...string) error {
+		opts.SetHeaders = hdrs
 		return nil
 	}
 }

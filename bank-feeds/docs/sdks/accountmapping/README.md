@@ -49,21 +49,22 @@ The method of mapping the source account to the target account varies depending 
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.AccountMapping.Create(ctx, operations.CreateBankAccountMappingRequest{
         BankFeedAccountMapping: &shared.BankFeedAccountMapping{
             SourceAccountID: "acc-002",
@@ -116,21 +117,22 @@ A bank feed account mapping is a specified link between the source account (prov
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.AccountMapping.Get(ctx, operations.GetBankAccountMappingRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

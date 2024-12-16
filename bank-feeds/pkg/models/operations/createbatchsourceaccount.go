@@ -5,8 +5,8 @@ package operations
 import (
 	"errors"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 )
 
@@ -18,8 +18,8 @@ const (
 )
 
 type CreateBatchSourceAccountRequestBody struct {
-	ArrayOfSourceAccountV2 []shared.SourceAccountV2
-	ArrayOfSourceAccount   []shared.SourceAccount
+	ArrayOfSourceAccountV2 []shared.SourceAccountV2 `queryParam:"inline"`
+	ArrayOfSourceAccount   []shared.SourceAccount   `queryParam:"inline"`
 
 	Type CreateBatchSourceAccountRequestBodyType
 }
@@ -111,9 +111,9 @@ const (
 )
 
 type CreateBatchSourceAccount1 struct {
-	SourceAccountV2BatchCreateResponse *shared.SourceAccountV2BatchCreateResponse
-	SourceAccountBatchCreateResponse   *shared.SourceAccountBatchCreateResponse
-	SourceAccountBatchErrorResponse    *shared.SourceAccountBatchErrorResponse
+	SourceAccountV2BatchCreateResponse *shared.SourceAccountV2BatchCreateResponse `queryParam:"inline"`
+	SourceAccountBatchCreateResponse   *shared.SourceAccountBatchCreateResponse   `queryParam:"inline"`
+	SourceAccountBatchErrorResponse    *shared.SourceAccountBatchErrorResponse    `queryParam:"inline"`
 
 	Type CreateBatchSourceAccount1Type
 }
@@ -195,7 +195,7 @@ const (
 
 // CreateBatchSourceAccountSourceAccountsResponseBody - Multi-Status
 type CreateBatchSourceAccountSourceAccountsResponseBody struct {
-	ArrayOfCreateBatchSourceAccount1 []CreateBatchSourceAccount1
+	ArrayOfCreateBatchSourceAccount1 []CreateBatchSourceAccount1 `queryParam:"inline"`
 
 	Type CreateBatchSourceAccountSourceAccountsResponseBodyType
 }
@@ -237,8 +237,8 @@ const (
 )
 
 type One struct {
-	SourceAccountV2BatchCreateResponse *shared.SourceAccountV2BatchCreateResponse
-	SourceAccountBatchCreateResponse   *shared.SourceAccountBatchCreateResponse
+	SourceAccountV2BatchCreateResponse *shared.SourceAccountV2BatchCreateResponse `queryParam:"inline"`
+	SourceAccountBatchCreateResponse   *shared.SourceAccountBatchCreateResponse   `queryParam:"inline"`
 
 	Type OneType
 }
@@ -300,7 +300,7 @@ const (
 
 // CreateBatchSourceAccountResponseBody - Success
 type CreateBatchSourceAccountResponseBody struct {
-	ArrayOf1 []One
+	ArrayOf1 []One `queryParam:"inline"`
 
 	Type CreateBatchSourceAccountResponseBodyType
 }

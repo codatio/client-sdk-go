@@ -4,19 +4,20 @@ package main
 
 import (
 	"context"
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
 	"log"
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := bankfeeds.New(
 		bankfeeds.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: bankfeeds.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",

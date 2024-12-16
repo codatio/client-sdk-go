@@ -29,22 +29,23 @@ Alternatively, you can view the [Get create bank transaction model](https://docs
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Transactions.Create(ctx, operations.CreateBankTransactionsRequest{
         CreateBankTransactions: &shared.CreateBankTransactions{
             AccountID: "49cd5a42-b311-4750-9361-52e2ed1d4653",
@@ -132,21 +133,22 @@ See the *response examples* for integration-specific indicative models.
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Transactions.GetCreateModel(ctx, operations.GetCreateBankTransactionsModelRequest{
         AccountID: "13d946f0-c5d5-42bc-b092-97ece17923ab",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -194,21 +196,22 @@ For bank feeds, your push operations will only relate to the `bankTransactions` 
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Transactions.GetCreateOperation(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PushOperationKey: "1fb73c31-a851-46c2-ab8a-5ce6e25b57b8",
@@ -255,21 +258,22 @@ For bank feeds, use this endpoint to view write operations related to the `bankT
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Transactions.ListCreateOperations(ctx, operations.ListCreateOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: bankfeeds.String("-modifiedDate"),

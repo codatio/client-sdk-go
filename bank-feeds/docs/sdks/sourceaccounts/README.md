@@ -28,44 +28,30 @@ The _Create Source Account_ endpoint allows you to create a representation of a 
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
-        RequestBody: bankfeeds.Pointer(operations.CreateCreateSourceAccountRequestBodySourceAccountV2(
-            shared.SourceAccountV2{
+        RequestBody: bankfeeds.Pointer(operations.CreateCreateSourceAccountRequestBodySourceAccountV2Prototype(
+            shared.SourceAccountV2Prototype{
                 AccountInfo: &shared.AccountInfo{
-                    AccountOpenDate: bankfeeds.String("2023-05-06T00:00:00Z"),
-                    AvailableBalance: types.MustNewDecimalFromString("10"),
-                    Description: bankfeeds.String("account description 1"),
-                    Nickname: bankfeeds.String("account 123"),
+                    AccountOpenDate: bankfeeds.String("2022-10-23"),
                 },
-                AccountName: "account-081",
-                AccountNumber: "12345670",
-                AccountType: shared.AccountTypeChecking,
-                Balance: types.MustNewDecimalFromString("99.99"),
-                Currency: "GBP",
-                FeedStartDate: bankfeeds.String("2024-05-01T00:00:00Z"),
-                ID: "acc-001",
-                ModifiedDate: bankfeeds.String("2024-08-02T00:00:00.000Z"),
-                RoutingInfo: &shared.RoutingInfo{
-                    BankCode: bankfeeds.String("21001088"),
-                    Type: shared.TypeBankcode.ToPointer(),
-                },
-                Status: shared.SourceAccountV2StatusPending.ToPointer(),
+                Currency: bankfeeds.String("USD"),
+                ModifiedDate: bankfeeds.String("2022-10-23T00:00:00Z"),
             },
         )),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -112,22 +98,23 @@ The _Batch create source accounts_ endpoint allows you to create multiple repres
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SourceAccounts.CreateBatch(ctx, operations.CreateBatchSourceAccountRequest{
         RequestBody: bankfeeds.Pointer(operations.CreateCreateBatchSourceAccountRequestBodyArrayOfSourceAccount(
             []shared.SourceAccount{
@@ -199,21 +186,22 @@ Removing a source account will also remove any mapping between the source bank f
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SourceAccounts.Delete(ctx, operations.DeleteSourceAccountRequest{
         AccountID: "7110701885",
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -259,21 +247,22 @@ In cases where multiple credential sets have been generated, a single API call t
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SourceAccounts.DeleteCredentials(ctx, operations.DeleteBankFeedCredentialsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -322,15 +311,17 @@ The old credentials will still be valid until the revoke credentials endpoint is
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"os"
 	"context"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"os"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
@@ -342,7 +333,7 @@ func main() {
         panic(fileErr)
     }
 
-    ctx := context.Background()
+
     res, err := s.SourceAccounts.GenerateCredentials(ctx, operations.GenerateCredentialsRequest{
         RequestBody: requestBody,
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -391,21 +382,22 @@ func main() {
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SourceAccounts.List(ctx, operations.ListSourceAccountsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -453,22 +445,23 @@ func main() {
 package main
 
 import(
-	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v7"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/types"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/operations"
 	"context"
+	bankfeeds "github.com/codatio/client-sdk-go/bank-feeds/v8"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/types"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := bankfeeds.New(
         bankfeeds.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SourceAccounts.Update(ctx, operations.UpdateSourceAccountRequest{
         SourceAccount: &shared.SourceAccount{
             AccountName: bankfeeds.String("account-095"),
