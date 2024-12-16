@@ -2,6 +2,11 @@
 
 package shared
 
+import (
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
+	"github.com/ericlagergren/decimal"
+)
+
 // BankFeedMapping - A bank feed connection between a source account and a target account, including potential target accounts.
 type BankFeedMapping struct {
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -31,7 +36,7 @@ type BankFeedMapping struct {
 	// Account number for the source account.
 	SourceAccountNumber *string `json:"sourceAccountNumber,omitempty"`
 	// Balance for the source account.
-	SourceBalance *string `json:"sourceBalance,omitempty"`
+	SourceBalance *decimal.Big `decimal:"number" json:"sourceBalance,omitempty"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
 	//
 	// ## Unknown currencies
@@ -48,6 +53,17 @@ type BankFeedMapping struct {
 	TargetAccountName *string `json:"targetAccountName,omitempty"`
 	// An array of potential target accounts.
 	TargetAccountOptions []TargetAccountOption `json:"targetAccountOptions,omitempty"`
+}
+
+func (b BankFeedMapping) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(b, "", false)
+}
+
+func (b *BankFeedMapping) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &b, "", false, false); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (o *BankFeedMapping) GetFeedStartDate() *string {
@@ -78,7 +94,7 @@ func (o *BankFeedMapping) GetSourceAccountNumber() *string {
 	return o.SourceAccountNumber
 }
 
-func (o *BankFeedMapping) GetSourceBalance() *string {
+func (o *BankFeedMapping) GetSourceBalance() *decimal.Big {
 	if o == nil {
 		return nil
 	}

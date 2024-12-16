@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: bdb0eb46-d457-4d7c-bcaf-83814a78f76b
 management:
-  docChecksum: af010093774a298b2b6a17e641f9cd1b
+  docChecksum: 66b0b2a05ab126aac947c52e5cee36e3
   docVersion: 3.0.0
-  speakeasyVersion: 1.446.1
-  generationVersion: 2.462.1
-  releaseVersion: 7.0.0
-  configChecksum: 8267ae06408469d7d31e428fe6d10956
+  speakeasyVersion: 1.455.5
+  generationVersion: 2.479.3
+  releaseVersion: 8.0.0
+  configChecksum: 7f1df201e1b59f0a99eb127d7956ad6a
   repoURL: https://github.com/codatio/client-sdk-go.git
   repoSubDirectory: bank-feeds
   installationURL: https://github.com/codatio/client-sdk-go/bank-feeds
@@ -15,7 +15,7 @@ features:
   go:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.6
-    core: 3.5.17
+    core: 3.6.0
     decimal: 0.1.0
     defaultEnabledRetries: 0.2.0
     deprecations: 2.81.1
@@ -70,6 +70,7 @@ generatedFiles:
   - /pkg/models/operations/updatesourceaccount.go
   - /pkg/models/sdkerrors/errormessage.go
   - /pkg/models/shared/accountinfo.go
+  - /pkg/models/shared/accounttype.go
   - /pkg/models/shared/bankaccountcreateresponse.go
   - /pkg/models/shared/bankaccountcredentials.go
   - /pkg/models/shared/bankaccountoption.go
@@ -126,8 +127,10 @@ generatedFiles:
   - /pkg/models/shared/sourceaccount.go
   - /pkg/models/shared/sourceaccountbatchcreateresponse.go
   - /pkg/models/shared/sourceaccountbatcherrorresponse.go
+  - /pkg/models/shared/sourceaccountprototype.go
   - /pkg/models/shared/sourceaccountv2.go
   - /pkg/models/shared/sourceaccountv2batchcreateresponse.go
+  - /pkg/models/shared/sourceaccountv2prototype.go
   - /pkg/models/shared/sourceaccountwebhook.go
   - /pkg/models/shared/sourceaccountwebhookpayload.go
   - /pkg/models/shared/syncasbankfeeds.go
@@ -292,11 +295,15 @@ generatedFiles:
   - docs/pkg/models/shared/sourceaccount.md
   - docs/pkg/models/shared/sourceaccountbatchcreateresponse.md
   - docs/pkg/models/shared/sourceaccountbatcherrorresponse.md
+  - docs/pkg/models/shared/sourceaccountprototype.md
   - docs/pkg/models/shared/sourceaccountv2.md
+  - docs/pkg/models/shared/sourceaccountv2accounttype.md
   - docs/pkg/models/shared/sourceaccountv2batchcreateresponse.md
+  - docs/pkg/models/shared/sourceaccountv2prototype.md
   - docs/pkg/models/shared/sourceaccountv2status.md
   - docs/pkg/models/shared/sourceaccountwebhook.md
   - docs/pkg/models/shared/sourceaccountwebhookpayload.md
+  - docs/pkg/models/shared/sourceaccountwebhookpayloadsourceaccount.md
   - docs/pkg/models/shared/sourcetype.md
   - docs/pkg/models/shared/status.md
   - docs/pkg/models/shared/supplementaldata.md
@@ -434,6 +441,7 @@ examples:
           pageSize: 100
           query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
           orderBy: "-modifiedDate"
+          tags: "region=uk && team=invoice-finance"
       responses:
         "200":
           application/json: {"_links": {"current": {"href": "/companies/{id}/data/{dataType}?page=1&pageSize=10"}, "self": {"href": "/companies/{id}/data/{dataType}"}}, "pageNumber": 1, "pageSize": 10, "results": [{"created": "2022-01-01T12:00:00.000Z", "createdByUserName": "string", "dataConnections": [{"created": "2022-10-27T09:53:29Z", "dataConnectionErrors": [], "id": "ee2eb431-c0fa-4dc9-93fa-d29781c12bcd", "integrationId": "bf083d72-62c7-493e-aec9-81b4dbba7e2c", "integrationKey": "dfxm", "lastSync": "2022-10-27T10:22:43.6464237Z", "linkUrl": "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/ee2eb431-c0fa-4dc9-93fa-d29781c12bcd/start", "platformName": "Basiq", "sourceId": "bdd831ce-eebd-4896-89a7-20e5ee8989ee", "sourceType": "Banking", "status": "Linked"}], "description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "lastSync": "2022-01-01T12:00:00.000Z", "name": "string", "redirect": "https://link.codat.io/company/27628208-459c-46a2-a705-5641ce25f739"}], "totalResults": 1}
@@ -445,6 +453,7 @@ examples:
           pageSize: 100
           query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
           orderBy: "-modifiedDate"
+          tags: "region=uk && team=invoice-finance"
       responses:
         "200":
           application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Mike Smith", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/3fa85f64-5717-4562-b3fc-2c963f66afa6/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "My Test Company make testing software", "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "lastSync": "2022-01-01T12:30:00.000Z", "name": "My Test Company", "redirect": "https://link.codat.io/company/3fa85f64-5717-4562-b3fc-2c963f66afa6", "referenceSubsidiaryCompanies": []}], "totalResults": 1}
@@ -455,6 +464,7 @@ examples:
           pageSize: 100
           query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
           orderBy: "-modifiedDate"
+          tags: "region=uk && team=invoice-finance"
       responses:
         "200":
           application/json: {"_links": {"current": {"href": "/companies?page=1&pageSize=100"}, "self": {"href": "/companies"}}, "pageNumber": 1, "pageSize": 100, "results": [{"created": "2022-01-01T11:30:00Z", "createdByUserName": "Joe Bloggs", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "51baa045-4836-4317-a42e-3542e991e581", "integrationId": "1c312d69-e638-46d4-ad31-72e6c3ba8390", "integrationKey": "vjms", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/d1568dde-adf6-11ed-afa1-0242ac120002/connections/51baa045-4836-4317-a42e-3542e991e581/start", "platformName": "Pandle", "sourceId": "396c3158-5dd7-481b-a7c4-a795ca31792b", "sourceType": "Accounting", "status": "Linked"}], "description": "Technology services, including web and app design and development", "id": "d1568dde-adf6-11ed-afa1-0242ac120002", "lastSync": "2022-01-01T12:30:00.000Z", "name": "Technicalium", "redirect": "https://link.codat.io/company/d1568dde-adf6-11ed-afa1-0242ac120002", "referenceSubsidiaryCompanies": []}, {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [], "id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "name": "Toft stores", "redirect": "https://link.codat.io/company/ab12c58d-a678-4ebf-a159-ae99e1807bd0", "referenceSubsidiaryCompanies": [{"id": "c8d3af58-7011-47ce-b3f2-89faf300ef6d", "links": {"portal": "https://app.codat.io/companies/c8d3af58-7011-47ce-b3f2-89faf300ef6d/summary"}, "name": "Toft stores UK"}, {"id": "db94eddc-9212-4568-9b5c-3eab0e325913", "links": {"portal": "https://app.codat.io/companies/db94eddc-9212-4568-9b5c-3eab0e325913/summary"}, "name": "Toft stores US"}]}, {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "d5ab61b7-1ad0-46fd-9f9f-b6761047941e", "integrationId": "cc750323-5a47-4f28-8d8e-30fbbf2ce137", "integrationKey": "akxx", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/c8d3af58-7011-47ce-b3f2-89faf300ef6d/connections/d5ab61b7-1ad0-46fd-9f9f-b6761047941e/start", "platformName": "Oracle NetSuite", "sourceId": "9815b998-024d-4415-a40b-89903b2cad6f", "sourceType": "Accounting", "status": "Linked"}], "id": "c8d3af58-7011-47ce-b3f2-89faf300ef6d", "name": "Toft stores UK", "redirect": "https://link.codat.io/company/c8d3af58-7011-47ce-b3f2-89faf300ef6d", "referenceParentCompany": {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "links": {"portal": "https://app.codat.io/companies/ab12c58d-a678-4ebf-a159-ae99e1807bd0/summary"}, "name": "Toft stores"}, "referenceSubsidiaryCompanies": []}, {"created": "2022-11-10T10:45:18Z", "createdByUserName": "Dan Tzabar", "dataConnections": [{"created": "2022-01-01T11:30:00Z", "id": "1e5c8c9e-27fd-4ba9-9a2a-d02ba65bc2fb", "integrationId": "cc750323-5a47-4f28-8d8e-30fbbf2ce137", "integrationKey": "akxx", "lastSync": "2022-01-01T12:30:00.000Z", "linkUrl": "https://link-api.codat.io/companies/db94eddc-9212-4568-9b5c-3eab0e325913/connections/1e5c8c9e-27fd-4ba9-9a2a-d02ba65bc2fb/start", "platformName": "Oracle NetSuite", "sourceId": "9815b998-024d-4415-a40b-89903b2cad6f", "sourceType": "Accounting", "status": "Linked"}], "id": "db94eddc-9212-4568-9b5c-3eab0e325913", "name": "Toft stores US", "redirect": "https://link.codat.io/company/db94eddc-9212-4568-9b5c-3eab0e325913", "referenceParentCompany": {"id": "ab12c58d-a678-4ebf-a159-ae99e1807bd0", "links": {"portal": "https://app.codat.io/companies/ab12c58d-a678-4ebf-a159-ae99e1807bd0/summary"}, "name": "Toft stores"}, "referenceSubsidiaryCompanies": []}], "totalResults": 3}
@@ -465,6 +475,7 @@ examples:
           pageSize: 100
           query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
           orderBy: "-modifiedDate"
+          tags: "region=uk && team=invoice-finance"
       responses:
         "400":
           application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error parsing query - Malformed query.", "service": "ClientsApi", "statusCode": 400}
@@ -475,6 +486,7 @@ examples:
           pageSize: 100
           query: "id=e3334455-1aed-4e71-ab43-6bccf12092ee"
           orderBy: "-modifiedDate"
+          tags: "region=uk && team=invoice-finance"
       responses:
         "400":
           application/json: {"canBeRetried": "Unknown", "correlationId": "98457fb9956b7f9b4b2fd4f6e23bb5c8", "detailedErrorCode": 0, "error": "Error parsing query - Could not resolve property isCompleted on Dataset", "service": "PullApi", "statusCode": 400}
@@ -661,7 +673,7 @@ examples:
           connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
       responses:
         "200":
-          application/json: [{"sourceAccountId": "account-001", "sourceAccountName": "account-001", "sourceAccountNumber": "12345670", "sourceBalance": "99.99", "sourceCurrency": "GBP", "status": "pending", "targetAccountOptions": [{"accountNumber": "789", "id": "d21e25d6-98c5-4bfb-b469-105833bea3c8", "name": "Money Bank account", "sortCode": "123456"}, {"accountNumber": "99887766", "id": "d06ff4b2-e4f2-4681-9841-014bd008cdab", "name": "Bank of Dave account", "sortCode": "998866"}, {"accountNumber": "123456789", "id": "c8f252fc-84f3-4a8b-ace8-ae99f41a81ae", "name": "LuxLend account", "sortCode": "123456"}]}]
+          application/json: [{"sourceAccountId": "account-001", "sourceAccountName": "account-001", "sourceAccountNumber": "12345670", "sourceBalance": 99.99, "sourceCurrency": "GBP", "status": "pending", "targetAccountOptions": [{"accountNumber": "789", "id": "d21e25d6-98c5-4bfb-b469-105833bea3c8", "name": "Money Bank account", "sortCode": "123456"}, {"accountNumber": "99887766", "id": "d06ff4b2-e4f2-4681-9841-014bd008cdab", "name": "Bank of Dave account", "sortCode": "998866"}, {"accountNumber": "123456789", "id": "c8f252fc-84f3-4a8b-ace8-ae99f41a81ae", "name": "LuxLend account", "sortCode": "123456"}]}]
   get-company-information:
     Malformed query:
       parameters:
@@ -678,10 +690,32 @@ examples:
           companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
           connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
       requestBody:
-        application/json: {"accountInfo": {"accountOpenDate": "2023-05-06T00:00:00Z", "availableBalance": 10, "description": "account description 1", "nickname": "account 123"}, "accountName": "account-081", "accountNumber": "12345670", "accountType": "checking", "balance": 99.99, "currency": "GBP", "feedStartDate": "2024-05-01T00:00:00Z", "id": "acc-001", "modifiedDate": "2024-08-02T00:00:00.000Z", "routingInfo": {"bankCode": "21001088", "type": "bankcode"}, "status": "pending"}
+        application/json: {"accountInfo": {"accountOpenDate": "2022-10-23"}, "currency": "GBP", "modifiedDate": "2022-10-23T00:00:00Z"}
       responses:
         "400":
           application/json: {"canBeRetried": "Unknown", "correlationId": "bc997528a9d7abb9161ef45f05d38599", "detailedErrorCode": 0, "error": "Error processing request - not valid.", "service": "PublicApi", "statusCode": 400}
+    Version 2:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      requestBody:
+        application/json: {"accountInfo": {"accountOpenDate": "2022-10-23"}, "currency": "USD", "modifiedDate": "2022-10-23T00:00:00Z"}
+      responses:
+        "200":
+          application/json: {"accountInfo": {"accountOpenDate": "2023-05-06T00:00:00Z", "availableBalance": 10, "description": "account description 1", "nickname": "account 123"}, "accountName": "account-081", "accountNumber": "12345670", "accountType": "checking", "balance": 99.99, "currency": "GBP", "feedStartDate": "2024-05-01T00:00:00Z", "id": "acc-001", "modifiedDate": "2024-08-02T00:00:00.000Z", "routingInfo": {"bankCode": "21001088", "type": "bankcode"}, "status": "pending"}
+        "400": {}
+    Version 1:
+      parameters:
+        path:
+          companyId: "8a210b68-6988-11ed-a1eb-0242ac120002"
+          connectionId: "2e9d2c44-f675-40ba-8049-353bfcb5e171"
+      requestBody:
+        application/json: {"accountName": "account-081", "accountNumber": "12345670", "accountType": "Credit", "balance": 99.99, "currency": "GBP", "id": "acc-002", "modifiedDate": "2023-01-09T14:14:14.1057478Z", "sortCode": "123456"}
+      responses:
+        "200":
+          application/json: {"accountName": "account-095", "accountNumber": "12345671", "accountType": "Credit", "balance": 0, "currency": "USD", "id": "acc-003", "modifiedDate": "2023-01-09T14:14:14.1057478Z", "sortCode": "123456", "status": "pending"}
+        "400": {}
   delete-source-account:
     Unauthorized:
       parameters:
@@ -1195,4 +1229,28 @@ examples:
       responses:
         "401":
           application/json: {"canBeRetried": "Unknown", "correlationId": "7eb40d6b415d7bcd99ce658268284056", "detailedErrorCode": 0, "error": "Unauthorized", "service": "PublicApi", "statusCode": 401}
+  Client rate limit reached:
+    speakeasy-default-client-rate-limit-reached:
+      requestBody:
+        application/json: {"AlertId": "a9367074-b5c3-42c4-9be4-be129f43577e", "ClientId": "bae71d36-ff47-420a-b4a6-f8c9ddf41140", "ClientName": "Bank of Dave", "Data": {"DailyQuota": 1000, "ExpiresUtc": "2022-10-23T00:00:00Z"}, "Message": "The current daily rate limit quota of 1000 requests for bae71d36-ff47-420a-b4a6-f8c9ddf41140 has been reached.", "RuleId": "70af3071-65d9-4ec3-b3cb-5283e8d55dac", "RuleType": "Rate Limit Reached"}
+  Client rate limit reset:
+    speakeasy-default-client-rate-limit-reset:
+      requestBody:
+        application/json: {"AlertId": "a9367074-b5c3-42c4-9be4-be129f43577e", "ClientId": "bae71d36-ff47-420a-b4a6-f8c9ddf41140", "ClientName": "Bank of Dave", "Data": {"DailyQuota": 1000, "ExpiresUtc": "2022-10-23T00:00:00Z", "QuotaRemaining": 1000, "ResetReason": "The quota was reset because it is a new day."}, "Message": "The current daily rate limit quota for client 30e0f9d2-52c0-4c9f-a806-bcd98a3bcd7e has been reset to 1000 requests.", "RuleId": "70af3071-65d9-4ec3-b3cb-5283e8d55dac", "RuleType": "Rate Limit Reset"}
+  bankFeeds.sourceAccount.connected:
+    Connected:
+      requestBody:
+        application/json: {"eventType": "bankFeeds.sourceAccount.connected", "generatedDate": "2022-10-23T00:00:00Z", "id": "ba29118f-5406-4e59-b05c-ba307ca38d01", "payload": {"connectionId": "2e9d2c44-f675-40ba-8049-353bfcb5e171", "referenceCompany": {"description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "links": {"portal": "https://app.codat.io/companies/0498e921-9b53-4396-a412-4f2f5983b0a2/summary"}, "name": "Toft stores"}, "sourceAccount": {"accountName": "account-081", "accountNumber": "12345678", "balance": 99.99, "currency": "GBP", "id": "acc-002", "modifiedDate": "2023-01-09T14:14:14.105Z", "sortCode": "040004", "status": "pending"}}}
+  bankFeeds.sourceAccount.disconnected:
+    Disconnected:
+      requestBody:
+        application/json: {"eventType": "bankFeeds.sourceAccount.disconnected", "generatedDate": "2022-10-23T00:00:00Z", "id": "ba29118f-5406-4e59-b05c-ba307ca38d01", "payload": {"connectionId": "2e9d2c44-f675-40ba-8049-353bfcb5e171", "referenceCompany": {"description": "Requested early access to the new financing scheme.", "id": "0498e921-9b53-4396-a412-4f2f5983b0a2", "links": {"portal": "https://app.codat.io/companies/0498e921-9b53-4396-a412-4f2f5983b0a2/summary"}, "name": "Toft stores"}, "sourceAccount": {"accountName": "account-081", "accountNumber": "12345678", "balance": 99.99, "currency": "GBP", "id": "acc-002", "modifiedDate": "2023-01-09T14:14:14.105Z", "sortCode": "040004", "status": "pending"}}}
+  client.rateLimit.reached:
+    Reached:
+      requestBody:
+        application/json: {"eventType": "client.rateLimit.reached", "generatedDate": "2024-09-01T00:00:00Z", "id": "743ec94a-8aa4-44bb-8bd4-e1855ee0e74b", "payload": {"dailyQuota": 12000, "expiryDate": "2024-09-01T12:14:14Z", "quotaRemaining": 0}}
+  client.rateLimit.reset:
+    Reset:
+      requestBody:
+        application/json: {"eventType": "client.rateLimit.reset", "generatedDate": "2024-09-01T00:00:00Z", "id": "743ec94a-8aa4-44bb-8bd4-e1855ee0e74b", "payload": {"dailyQuota": 12000, "expiryDate": "2024-09-01T23:59:99Z", "quotaRemaining": 11993}}
 generatedTests: {}

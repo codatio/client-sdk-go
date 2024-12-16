@@ -5,8 +5,8 @@ package operations
 import (
 	"errors"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"net/http"
 )
 
@@ -40,8 +40,8 @@ const (
 
 // ListSourceAccountsResponseBody - Success
 type ListSourceAccountsResponseBody struct {
-	ArrayOfSourceAccountV2 []shared.SourceAccountV2
-	ArrayOfSourceAccount   []shared.SourceAccount
+	ArrayOfSourceAccountV2 []shared.SourceAccountV2 `queryParam:"inline"`
+	ArrayOfSourceAccount   []shared.SourceAccount   `queryParam:"inline"`
 
 	Type ListSourceAccountsResponseBodyType
 }

@@ -2,14 +2,82 @@
 
 package shared
 
+import (
+	"errors"
+	"fmt"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
+)
+
+type SourceAccountWebhookPayloadSourceAccountType string
+
+const (
+	SourceAccountWebhookPayloadSourceAccountTypeSourceAccountV2 SourceAccountWebhookPayloadSourceAccountType = "SourceAccountV2"
+	SourceAccountWebhookPayloadSourceAccountTypeSourceAccount   SourceAccountWebhookPayloadSourceAccountType = "SourceAccount"
+)
+
+type SourceAccountWebhookPayloadSourceAccount struct {
+	SourceAccountV2 *SourceAccountV2 `queryParam:"inline"`
+	SourceAccount   *SourceAccount   `queryParam:"inline"`
+
+	Type SourceAccountWebhookPayloadSourceAccountType
+}
+
+func CreateSourceAccountWebhookPayloadSourceAccountSourceAccountV2(sourceAccountV2 SourceAccountV2) SourceAccountWebhookPayloadSourceAccount {
+	typ := SourceAccountWebhookPayloadSourceAccountTypeSourceAccountV2
+
+	return SourceAccountWebhookPayloadSourceAccount{
+		SourceAccountV2: &sourceAccountV2,
+		Type:            typ,
+	}
+}
+
+func CreateSourceAccountWebhookPayloadSourceAccountSourceAccount(sourceAccount SourceAccount) SourceAccountWebhookPayloadSourceAccount {
+	typ := SourceAccountWebhookPayloadSourceAccountTypeSourceAccount
+
+	return SourceAccountWebhookPayloadSourceAccount{
+		SourceAccount: &sourceAccount,
+		Type:          typ,
+	}
+}
+
+func (u *SourceAccountWebhookPayloadSourceAccount) UnmarshalJSON(data []byte) error {
+
+	var sourceAccount SourceAccount = SourceAccount{}
+	if err := utils.UnmarshalJSON(data, &sourceAccount, "", true, true); err == nil {
+		u.SourceAccount = &sourceAccount
+		u.Type = SourceAccountWebhookPayloadSourceAccountTypeSourceAccount
+		return nil
+	}
+
+	var sourceAccountV2 SourceAccountV2 = SourceAccountV2{}
+	if err := utils.UnmarshalJSON(data, &sourceAccountV2, "", true, true); err == nil {
+		u.SourceAccountV2 = &sourceAccountV2
+		u.Type = SourceAccountWebhookPayloadSourceAccountTypeSourceAccountV2
+		return nil
+	}
+
+	return fmt.Errorf("could not unmarshal `%s` into any supported union types for SourceAccountWebhookPayloadSourceAccount", string(data))
+}
+
+func (u SourceAccountWebhookPayloadSourceAccount) MarshalJSON() ([]byte, error) {
+	if u.SourceAccountV2 != nil {
+		return utils.MarshalJSON(u.SourceAccountV2, "", true)
+	}
+
+	if u.SourceAccount != nil {
+		return utils.MarshalJSON(u.SourceAccount, "", true)
+	}
+
+	return nil, errors.New("could not marshal union type SourceAccountWebhookPayloadSourceAccount: all fields are null")
+}
+
 type SourceAccountWebhookPayload struct {
 	// Unique identifier for your SMB in Codat.
 	CompanyID *string `json:"companyId,omitempty"`
 	// Unique identifier for a company's data connection.
-	ConnectionID     *string           `json:"connectionId,omitempty"`
-	ReferenceCompany *CompanyReference `json:"referenceCompany,omitempty"`
-	// The target bank account in a supported accounting software for ingestion into a bank feed.
-	SourceAccount *SourceAccount `json:"sourceAccount,omitempty"`
+	ConnectionID     *string                                   `json:"connectionId,omitempty"`
+	ReferenceCompany *CompanyReference                         `json:"referenceCompany,omitempty"`
+	SourceAccount    *SourceAccountWebhookPayloadSourceAccount `json:"sourceAccount,omitempty"`
 }
 
 func (o *SourceAccountWebhookPayload) GetCompanyID() *string {
@@ -33,7 +101,7 @@ func (o *SourceAccountWebhookPayload) GetReferenceCompany() *CompanyReference {
 	return o.ReferenceCompany
 }
 
-func (o *SourceAccountWebhookPayload) GetSourceAccount() *SourceAccount {
+func (o *SourceAccountWebhookPayload) GetSourceAccount() *SourceAccountWebhookPayloadSourceAccount {
 	if o == nil {
 		return nil
 	}

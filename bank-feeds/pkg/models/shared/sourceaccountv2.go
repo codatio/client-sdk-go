@@ -5,25 +5,25 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/codatio/client-sdk-go/bank-feeds/v7/pkg/utils"
+	"github.com/codatio/client-sdk-go/bank-feeds/v8/pkg/utils"
 	"github.com/ericlagergren/decimal"
 )
 
-// AccountType - The type of bank account e.g. checking, savings, loan, creditCard, prepaidCard.
-type AccountType string
+// SourceAccountV2AccountType - The type of bank account e.g. checking, savings, loan, creditCard, prepaidCard.
+type SourceAccountV2AccountType string
 
 const (
-	AccountTypeChecking    AccountType = "checking"
-	AccountTypeSavings     AccountType = "savings"
-	AccountTypeLoan        AccountType = "loan"
-	AccountTypeCreditCard  AccountType = "creditCard"
-	AccountTypePrepaidCard AccountType = "prepaidCard"
+	SourceAccountV2AccountTypeChecking    SourceAccountV2AccountType = "checking"
+	SourceAccountV2AccountTypeSavings     SourceAccountV2AccountType = "savings"
+	SourceAccountV2AccountTypeLoan        SourceAccountV2AccountType = "loan"
+	SourceAccountV2AccountTypeCreditCard  SourceAccountV2AccountType = "creditCard"
+	SourceAccountV2AccountTypePrepaidCard SourceAccountV2AccountType = "prepaidCard"
 )
 
-func (e AccountType) ToPointer() *AccountType {
+func (e SourceAccountV2AccountType) ToPointer() *SourceAccountV2AccountType {
 	return &e
 }
-func (e *AccountType) UnmarshalJSON(data []byte) error {
+func (e *SourceAccountV2AccountType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -38,10 +38,10 @@ func (e *AccountType) UnmarshalJSON(data []byte) error {
 	case "creditCard":
 		fallthrough
 	case "prepaidCard":
-		*e = AccountType(v)
+		*e = SourceAccountV2AccountType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for AccountType: %v", v)
+		return fmt.Errorf("invalid value for SourceAccountV2AccountType: %v", v)
 	}
 }
 
@@ -89,7 +89,7 @@ type SourceAccountV2 struct {
 	// The account number.
 	AccountNumber string `json:"accountNumber"`
 	// The type of bank account e.g. checking, savings, loan, creditCard, prepaidCard.
-	AccountType AccountType `json:"accountType"`
+	AccountType SourceAccountV2AccountType `json:"accountType"`
 	// The latest balance for the bank account.
 	Balance *decimal.Big `decimal:"number" json:"balance"`
 	// The currency data type in Codat is the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code, e.g. _GBP_.
@@ -129,6 +129,8 @@ type SourceAccountV2 struct {
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Routing information for the bank. This does not include account number.
 	RoutingInfo *RoutingInfo `json:"routingInfo,omitempty"`
+	// The sort code.
+	SortCode *string `json:"sortCode,omitempty"`
 	// Status of the source account.
 	Status *SourceAccountV2Status `json:"status,omitempty"`
 }
@@ -165,9 +167,9 @@ func (o *SourceAccountV2) GetAccountNumber() string {
 	return o.AccountNumber
 }
 
-func (o *SourceAccountV2) GetAccountType() AccountType {
+func (o *SourceAccountV2) GetAccountType() SourceAccountV2AccountType {
 	if o == nil {
-		return AccountType("")
+		return SourceAccountV2AccountType("")
 	}
 	return o.AccountType
 }
@@ -212,6 +214,13 @@ func (o *SourceAccountV2) GetRoutingInfo() *RoutingInfo {
 		return nil
 	}
 	return o.RoutingInfo
+}
+
+func (o *SourceAccountV2) GetSortCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SortCode
 }
 
 func (o *SourceAccountV2) GetStatus() *SourceAccountV2Status {
