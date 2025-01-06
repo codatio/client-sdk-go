@@ -4,7 +4,7 @@ package shared
 
 type FileUpload struct {
 	// The file to be uploaded as an attachment.
-	File CodatFile `multipartForm:"file"`
+	File CodatFile `multipartForm:"file,name=file"`
 }
 
 func (o *FileUpload) GetFile() CodatFile {

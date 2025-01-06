@@ -129,6 +129,8 @@ type SourceAccountV2 struct {
 	ModifiedDate *string `json:"modifiedDate,omitempty"`
 	// Routing information for the bank. This does not include account number.
 	RoutingInfo *RoutingInfo `json:"routingInfo,omitempty"`
+	// The sort code.
+	SortCode *string `json:"sortCode,omitempty"`
 	// Status of the source account.
 	Status *SourceAccountV2Status `json:"status,omitempty"`
 }
@@ -212,6 +214,13 @@ func (o *SourceAccountV2) GetRoutingInfo() *RoutingInfo {
 		return nil
 	}
 	return o.RoutingInfo
+}
+
+func (o *SourceAccountV2) GetSortCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SortCode
 }
 
 func (o *SourceAccountV2) GetStatus() *SourceAccountV2Status {

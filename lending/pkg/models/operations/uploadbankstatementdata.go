@@ -19,9 +19,9 @@ const (
 )
 
 type UploadBankStatementDataRequestBody struct {
-	BankingAccount      *shared.BankingAccount
-	BankingTransactions *shared.BankingTransactions
-	Any                 any
+	BankingAccount      *shared.BankingAccount      `queryParam:"inline"`
+	BankingTransactions *shared.BankingTransactions `queryParam:"inline"`
+	Any                 any                         `queryParam:"inline"`
 
 	Type UploadBankStatementDataRequestBodyType
 }

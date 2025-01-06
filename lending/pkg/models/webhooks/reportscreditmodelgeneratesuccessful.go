@@ -7,37 +7,7 @@ import (
 	"net/http"
 )
 
-type ReportCategorizedBankStatementGenerateSuccessfulResponse struct {
-	// HTTP response content type for this operation
-	ContentType string
-	// HTTP response status code for this operation
-	StatusCode int
-	// Raw HTTP response; suitable for custom response parsing
-	RawResponse *http.Response
-}
-
-func (o *ReportCategorizedBankStatementGenerateSuccessfulResponse) GetContentType() string {
-	if o == nil {
-		return ""
-	}
-	return o.ContentType
-}
-
-func (o *ReportCategorizedBankStatementGenerateSuccessfulResponse) GetStatusCode() int {
-	if o == nil {
-		return 0
-	}
-	return o.StatusCode
-}
-
-func (o *ReportCategorizedBankStatementGenerateSuccessfulResponse) GetRawResponse() *http.Response {
-	if o == nil {
-		return nil
-	}
-	return o.RawResponse
-}
-
-type ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook struct {
+type ReportsCreditModelGenerateSuccessfulReportGenerationWebhook struct {
 	// The type of event.
 	EventType *string `json:"eventType,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
@@ -65,30 +35,60 @@ type ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook str
 	Payload *shared.ReportGenerationPayload `json:"payload,omitempty"`
 }
 
-func (o *ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook) GetEventType() *string {
+func (o *ReportsCreditModelGenerateSuccessfulReportGenerationWebhook) GetEventType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.EventType
 }
 
-func (o *ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook) GetGeneratedDate() *string {
+func (o *ReportsCreditModelGenerateSuccessfulReportGenerationWebhook) GetGeneratedDate() *string {
 	if o == nil {
 		return nil
 	}
 	return o.GeneratedDate
 }
 
-func (o *ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook) GetID() *string {
+func (o *ReportsCreditModelGenerateSuccessfulReportGenerationWebhook) GetID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook) GetPayload() *shared.ReportGenerationPayload {
+func (o *ReportsCreditModelGenerateSuccessfulReportGenerationWebhook) GetPayload() *shared.ReportGenerationPayload {
 	if o == nil {
 		return nil
 	}
 	return o.Payload
+}
+
+type ReportsCreditModelGenerateSuccessfulResponse struct {
+	// HTTP response content type for this operation
+	ContentType string
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
+	RawResponse *http.Response
+}
+
+func (o *ReportsCreditModelGenerateSuccessfulResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *ReportsCreditModelGenerateSuccessfulResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *ReportsCreditModelGenerateSuccessfulResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

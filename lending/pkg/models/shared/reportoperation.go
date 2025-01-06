@@ -42,6 +42,7 @@ type ReportOperationType string
 
 const (
 	ReportOperationTypeCategorizedBankStatement ReportOperationType = "categorizedBankStatement"
+	ReportOperationTypeCreditModel              ReportOperationType = "creditModel"
 )
 
 func (e ReportOperationType) ToPointer() *ReportOperationType {
@@ -54,6 +55,8 @@ func (e *ReportOperationType) UnmarshalJSON(data []byte) error {
 	}
 	switch v {
 	case "categorizedBankStatement":
+		fallthrough
+	case "creditModel":
 		*e = ReportOperationType(v)
 		return nil
 	default:

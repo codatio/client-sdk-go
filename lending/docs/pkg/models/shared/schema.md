@@ -1,4 +1,4 @@
-# ReportCategorizedBankStatementGenerateSuccessfulReportGenerationWebhook
+# Schema
 
 
 ## Fields

@@ -1,4 +1,4 @@
-# ReportCategorizedBankStatementGenerateSuccessfulResponse
+# ReportsCategorizedBankStatementGenerateSuccessfulResponse
 
 
 ## Fields
