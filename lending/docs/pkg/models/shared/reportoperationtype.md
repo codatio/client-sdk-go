@@ -8,3 +8,4 @@ The name of the report generated.
 | Name                                          | Value                                         |
 | --------------------------------------------- | --------------------------------------------- |
 | `ReportOperationTypeCategorizedBankStatement` | categorizedBankStatement                      |
+| `ReportOperationTypeCreditModel`              | creditModel                                   |

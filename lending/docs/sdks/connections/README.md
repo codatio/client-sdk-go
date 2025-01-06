@@ -25,21 +25,22 @@ Use the [List Integrations](https://docs.codat.io/platform-api#/operations/list-
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Connections.Create(ctx, operations.CreateConnectionRequest{
         RequestBody: &operations.CreateConnectionRequestBody{
             PlatformKey: lending.String("gbol"),
@@ -85,21 +86,22 @@ This operation is not reversible. The end user would need to reauthorize a new d
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Connections.Delete(ctx, operations.DeleteConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -142,21 +144,22 @@ func main() {
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Connections.Get(ctx, operations.GetConnectionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -199,21 +202,22 @@ func main() {
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Connections.List(ctx, operations.ListConnectionsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: lending.String("-modifiedDate"),
@@ -259,21 +263,22 @@ func main() {
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Connections.Unlink(ctx, operations.UnlinkConnectionRequest{
         RequestBody: &operations.UnlinkConnectionUpdateConnection{
             Status: shared.DataConnectionStatusUnlinked.ToPointer(),

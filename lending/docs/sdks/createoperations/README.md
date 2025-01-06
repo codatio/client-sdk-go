@@ -18,21 +18,22 @@ Retrieve create operation.
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.LoanWriteback.CreateOperations.Get(ctx, operations.GetCreateOperationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         PushOperationKey: "b18d8d81-fd7b-4764-a31e-475cb1f36591",
@@ -75,21 +76,22 @@ List create operations.
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.LoanWriteback.CreateOperations.List(ctx, operations.ListCreateOperationsRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         OrderBy: lending.String("-modifiedDate"),

@@ -7,6 +7,7 @@
 
 * [Create](#create) - Create source account
 * [CreateMapping](#createmapping) - Create bank feed account mapping
+* [ListMappings](#listmappings) - List bank feed account mappings
 
 ## Create
 
@@ -21,44 +22,30 @@ The _Create Source Account_ endpoint allows you to create a representation of a 
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
-	"github.com/codatio/client-sdk-go/lending/v8/pkg/types"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.LoanWriteback.SourceAccounts.Create(ctx, operations.CreateSourceAccountRequest{
-        RequestBody: lending.Pointer(operations.CreateCreateSourceAccountRequestBodySourceAccountV2(
-            shared.SourceAccountV2{
+        RequestBody: lending.Pointer(operations.CreateCreateSourceAccountRequestBodySourceAccountV2Prototype(
+            shared.SourceAccountV2Prototype{
                 AccountInfo: &shared.AccountInfo{
-                    AccountOpenDate: lending.String("2023-05-23T00:00:00Z"),
-                    AvailableBalance: types.MustNewDecimalFromString("400"),
-                    Description: lending.String("account description 2"),
-                    Nickname: lending.String("account 1290"),
+                    AccountOpenDate: lending.String("2022-10-23"),
                 },
-                AccountName: "account-083",
-                AccountNumber: "23456789",
-                AccountType: shared.SourceAccountV2AccountTypeSavings,
-                Balance: types.MustNewDecimalFromString("400"),
-                Currency: "GBP",
-                FeedStartDate: lending.String("2024-05-01T00:00:00Z"),
-                ID: "acc-002",
-                ModifiedDate: lending.String("2024-08-02T00:00:00.000Z"),
-                RoutingInfo: &shared.RoutingInfo{
-                    BankCode: lending.String("21001088"),
-                    Type: shared.TypeBankcode.ToPointer(),
-                },
-                Status: shared.SourceAccountV2StatusPending.ToPointer(),
+                Currency: lending.String("USD"),
+                ModifiedDate: lending.String("2022-10-23T00:00:00Z"),
             },
         )),
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
@@ -131,21 +118,22 @@ The method of mapping the source account to the target account varies depending 
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.LoanWriteback.SourceAccounts.CreateMapping(ctx, operations.CreateBankAccountMappingRequest{
         BankFeedBankAccountMapping: &shared.BankFeedBankAccountMapping{
             SourceAccountID: "acc-002",
@@ -181,3 +169,67 @@ func main() {
 | -------------------------------------- | -------------------------------------- | -------------------------------------- |
 | sdkerrors.ErrorMessage                 | 400, 401, 402, 403, 404, 429, 500, 503 | application/json                       |
 | sdkerrors.SDKError                     | 4XX, 5XX                               | \*/\*                                  |
+
+## ListMappings
+
+﻿The *List bank accounts* endpoint returns information about a source bank account and any current or potential target mapping accounts.
+
+A bank feed account mapping is a specified link between the source account (provided by the Codat user) and the target account (the end user's account in the underlying software).
+
+> **For custom builds only**
+> 
+> Only use this endpoint if you are building your own account management UI.
+
+### Example Usage
+
+```go
+package main
+
+import(
+	"context"
+	lending "github.com/codatio/client-sdk-go/lending/v8"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
+	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+    
+    s := lending.New(
+        lending.WithSecurity(shared.Security{
+            AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
+        }),
+    )
+
+    res, err := s.LoanWriteback.SourceAccounts.ListMappings(ctx, operations.GetBankAccountMappingRequest{
+        CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
+        ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.BankFeedMappings != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
+| `request`                                                                                              | [operations.GetBankAccountMappingRequest](../../pkg/models/operations/getbankaccountmappingrequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+| `opts`                                                                                                 | [][operations.Option](../../pkg/models/operations/option.md)                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+
+### Response
+
+**[*operations.GetBankAccountMappingResponse](../../pkg/models/operations/getbankaccountmappingresponse.md), error**
+
+### Errors
+
+| Error Type                        | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| sdkerrors.ErrorMessage            | 401, 402, 403, 404, 429, 500, 503 | application/json                  |
+| sdkerrors.SDKError                | 4XX, 5XX                          | \*/\*                             |

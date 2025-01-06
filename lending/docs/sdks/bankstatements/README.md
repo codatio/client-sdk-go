@@ -25,21 +25,22 @@ A session is a one-time process that enables you to upload bank statements to Co
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.BankStatements.EndUploadSession(ctx, operations.EndBankStatementUploadSessionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -87,21 +88,22 @@ When you use the [*Upload data*](https://docs.codat.io/lending-api#/operations/u
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.BankStatements.GetUploadConfiguration(ctx, operations.GetBankStatementUploadConfigurationRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -148,21 +150,22 @@ Each data connection can only have one configuration for each company and extern
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.BankStatements.SetUploadConfiguration(ctx, operations.SetBankStatementUploadConfigurationRequest{
         BankStatementUploadConfiguration: &shared.BankStatementUploadConfiguration{
             AccountID: lending.String("abc123-ABC"),
@@ -213,21 +216,22 @@ You can only have one active session per data type at a time. You can complete o
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.BankStatements.StartUploadSession(ctx, operations.StartBankStatementUploadSessionRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",
@@ -272,21 +276,22 @@ Make sure you created configuration for the account using the [*Set upload confi
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.BankStatements.UploadBankStatementData(ctx, operations.UploadBankStatementDataRequest{
         RequestBody: operations.CreateUploadBankStatementDataRequestBodyAny(
             map[string]any{

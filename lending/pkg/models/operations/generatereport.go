@@ -31,7 +31,7 @@ func (o *GenerateReportRequest) GetReportType() shared.ReportType {
 type GenerateReportResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// Success
+	// Accepted (pending)
 	ReportOperation *shared.ReportOperation
 	// HTTP response status code for this operation
 	StatusCode int

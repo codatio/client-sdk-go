@@ -38,16 +38,20 @@ The Lending API is built on top of the latest accounting, commerce, and banking 
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Lending](#lending)
+  * [Endpoints](#endpoints)
+  * [SDK Installation](#sdk-installation)
+  * [Example Usage](#example-usage)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Special Types](#special-types)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -76,21 +80,27 @@ import (
 )
 
 func main() {
-	s := lending.New(
-		lending.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
 	ctx := context.Background()
-	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
-		Description: lending.String("Requested early access to the new financing scheme."),
-		Name:        "Technicalium",
+
+	s := lending.New()
+
+	res, err := s.AccountCategoriesUpdated(ctx, &shared.AccountCategoriesUpdatedWebhook{
+		AlertID:    lending.String("a9367074-b5c3-42c4-9be4-be129f43577e"),
+		ClientID:   lending.String("bae71d36-ff47-420a-b4a6-f8c9ddf41140"),
+		ClientName: lending.String("Bank of Dave"),
+		CompanyID:  lending.String("8a210b68-6988-11ed-a1eb-0242ac120002"),
+		Data: &shared.AccountCategoriesUpdatedWebhookData{
+			ModifiedDate: lending.String("2022-10-23"),
+		},
+		DataConnectionID: lending.String("2e9d2c44-f675-40ba-8049-353bfcb5e171"),
+		Message:          lending.String("Account categories updated for company f1c35bdc-1546-41b9-baf4-3f31135af968."),
+		RuleID:           lending.String("70af3071-65d9-4ec3-b3cb-5283e8d55dac"),
+		RuleType:         lending.String("Account Categories Updated"),
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.Company != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -328,6 +338,7 @@ func main() {
 
 * [Create](docs/sdks/sourceaccounts/README.md#create) - Create source account
 * [CreateMapping](docs/sdks/sourceaccounts/README.md#createmapping) - Create bank feed account mapping
+* [ListMappings](docs/sdks/sourceaccounts/README.md#listmappings) - List bank feed account mappings
 
 #### [LoanWriteback.Suppliers](docs/sdks/codatlendingsuppliers/README.md)
 
@@ -500,13 +511,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := lending.New(
 		lending.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -544,6 +556,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := lending.New(
 		lending.WithRetryConfig(
 			retry.Config{
@@ -561,7 +575,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -606,13 +619,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := lending.New(
 		lending.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -653,6 +667,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := lending.New(
 		lending.WithServerURL("https://api.codat.io"),
 		lending.WithSecurity(shared.Security{
@@ -660,7 +676,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",
@@ -728,13 +743,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := lending.New(
 		lending.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",

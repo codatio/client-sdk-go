@@ -24,22 +24,23 @@ Required data may vary by integration. To see what data to post, first call [Get
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/types"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.LoanWriteback.Accounts.Create(ctx, operations.CreateAccountRequest{
         AccountPrototype: &shared.AccountPrototype{
             Currency: lending.String("USD"),
@@ -99,21 +100,22 @@ See the *response examples* for integration-specific indicative models.
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.LoanWriteback.Accounts.GetCreateModel(ctx, operations.GetCreateChartOfAccountsModelRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
         ConnectionID: "2e9d2c44-f675-40ba-8049-353bfcb5e171",

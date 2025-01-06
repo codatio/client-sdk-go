@@ -10,13 +10,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := lending.New(
 		lending.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
 		Description: lending.String("Requested early access to the new financing scheme."),
 		Name:        "Technicalium",

@@ -3,15 +3,15 @@
 
 ## Supported Types
 
-### SourceAccountV2
+### SourceAccountV2Prototype
 
 ```go
-createSourceAccountRequestBody := operations.CreateCreateSourceAccountRequestBodySourceAccountV2(shared.SourceAccountV2{/* values here */})
+createSourceAccountRequestBody := operations.CreateCreateSourceAccountRequestBodySourceAccountV2Prototype(shared.SourceAccountV2Prototype{/* values here */})
 ```
 
-### SourceAccount
+### SourceAccountPrototype
 
 ```go
-createSourceAccountRequestBody := operations.CreateCreateSourceAccountRequestBodySourceAccount(shared.SourceAccount{/* values here */})
+createSourceAccountRequestBody := operations.CreateCreateSourceAccountRequestBodySourceAccountPrototype(shared.SourceAccountPrototype{/* values here */})
 ```
 

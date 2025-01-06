@@ -6,3 +6,4 @@
 | Name                                 | Value                                |
 | ------------------------------------ | ------------------------------------ |
 | `ReportTypeCategorizedBankStatement` | categorizedBankStatement             |
+| `ReportTypeCreditModel`              | creditModel                          |

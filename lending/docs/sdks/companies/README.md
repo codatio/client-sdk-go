@@ -28,20 +28,21 @@ If forbidden characters (see `name` pattern) are present in the request, a compa
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Companies.Create(ctx, &shared.CompanyRequestBody{
         Description: lending.String("Requested early access to the new financing scheme."),
         Name: "Technicalium",
@@ -88,21 +89,22 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Companies.Delete(ctx, operations.DeleteCompanyRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -148,21 +150,22 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Companies.Get(ctx, operations.GetCompanyRequest{
         CompanyID: "8a210b68-6988-11ed-a1eb-0242ac120002",
     })
@@ -201,32 +204,47 @@ func main() {
 A [company](https://docs.codat.io/lending-api#/schemas/Company) represents a business sharing access to their data.
 Each company can have multiple [connections](https://docs.codat.io/lending-api#/schemas/Connection) to different data sources, such as one connection to Xero for accounting data, two connections to Plaid for two bank accounts, and a connection to Zettle for POS data.
 
+## Filter by tags
+
+The *List companies* endpoint supports the filtering of companies using [tags](https://docs.codat.io/using-the-api/managing-companies#add-metadata-to-a-company). It supports the following operators with [Codat’s query language](https://docs.codat.io/using-the-api/querying):
+
+- equals (`=`)
+- not equals (`!=`)
+- contains (`~`)
+
+For example, you can use the querying to filter companies tagged with a specific foreign key, region, or owning team: 
+- Foreign key: `uid = {yourCustomerId}`
+- Region: `region != uk`
+- Owning team and region: `region = uk && owningTeam = invoice-finance`
+
 ### Example Usage
 
 ```go
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Companies.List(ctx, operations.ListCompaniesRequest{
         OrderBy: lending.String("-modifiedDate"),
         Page: lending.Int(1),
         PageSize: lending.Int(100),
         Query: lending.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
+        Tags: lending.String("region=uk && team=invoice-finance"),
     })
     if err != nil {
         log.Fatal(err)
@@ -269,21 +287,22 @@ Each company can have multiple [connections](https://docs.codat.io/lending-api#/
 package main
 
 import(
+	"context"
 	lending "github.com/codatio/client-sdk-go/lending/v8"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/lending/v8/pkg/models/operations"
-	"context"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+    
     s := lending.New(
         lending.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Companies.Update(ctx, operations.UpdateCompanyRequest{
         CompanyRequestBody: &shared.CompanyRequestBody{
             Description: lending.String("Requested early access to the new financing scheme."),
