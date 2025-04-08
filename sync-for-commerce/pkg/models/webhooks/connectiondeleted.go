@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type SyncConnectionDeletedResponse struct {
+type ConnectionDeletedResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
@@ -15,21 +15,21 @@ type SyncConnectionDeletedResponse struct {
 	RawResponse *http.Response
 }
 
-func (o *SyncConnectionDeletedResponse) GetContentType() string {
+func (o *ConnectionDeletedResponse) GetContentType() string {
 	if o == nil {
 		return ""
 	}
 	return o.ContentType
 }
 
-func (o *SyncConnectionDeletedResponse) GetStatusCode() int {
+func (o *ConnectionDeletedResponse) GetStatusCode() int {
 	if o == nil {
 		return 0
 	}
 	return o.StatusCode
 }
 
-func (o *SyncConnectionDeletedResponse) GetRawResponse() *http.Response {
+func (o *ConnectionDeletedResponse) GetRawResponse() *http.Response {
 	if o == nil {
 		return nil
 	}

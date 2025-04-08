@@ -1,4 +1,4 @@
-# SyncConnectionDeletedResponse
+# ConnectionDeletedResponse
 
 
 ## Fields

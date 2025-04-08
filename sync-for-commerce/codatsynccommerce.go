@@ -72,7 +72,7 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 //
 // Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
 //
-// [Explore product](https://docs.codat.io/commerce/overview) | [See our OpenAPI spec](https://github.com/codatio/oas)
+// [Explore solution](https://docs.codat.io/commerce/overview) | [See our OpenAPI spec](https://github.com/codatio/oas)
 //
 // Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/).
 //
@@ -177,9 +177,9 @@ func New(opts ...SDKOption) *CodatSyncCommerce {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "1.1",
-			SDKVersion:        "2.4.0",
-			GenVersion:        "2.415.6",
-			UserAgent:         "speakeasy-sdk/go 2.4.0 2.415.6 1.1 github.com/codatio/client-sdk-go/sync-for-commerce",
+			SDKVersion:        "2.5.0",
+			GenVersion:        "2.568.2",
+			UserAgent:         "speakeasy-sdk/go 2.5.0 2.568.2 1.1 github.com/codatio/client-sdk-go/sync-for-commerce",
 			Hooks:             hooks.New(),
 		},
 	}

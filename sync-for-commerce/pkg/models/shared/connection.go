@@ -13,8 +13,7 @@ package shared
 //
 // Before you can use a data connection to pull or push data, the company must grant you access to their business data by [linking the connection](https://docs.codat.io/auth-flow/overview).
 type Connection struct {
-	AdditionalProperties any               `json:"additionalProperties,omitempty"`
-	ConnectionInfo       map[string]string `json:"connectionInfo,omitempty"`
+	ConnectionInfo map[string]string `json:"connectionInfo,omitempty"`
 	// In Codat's data model, dates and times are represented using the <a class="external" href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601 standard</a>. Date and time fields are formatted as strings; for example:
 	//
 	// ```
@@ -72,13 +71,6 @@ type Connection struct {
 	SourceType SourceType `json:"sourceType"`
 	// The current authorization status of the data connection.
 	Status DataConnectionStatus `json:"status"`
-}
-
-func (o *Connection) GetAdditionalProperties() any {
-	if o == nil {
-		return nil
-	}
-	return o.AdditionalProperties
 }
 
 func (o *Connection) GetConnectionInfo() map[string]string {

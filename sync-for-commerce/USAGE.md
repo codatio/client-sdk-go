@@ -11,13 +11,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := syncforcommerce.New(
 		syncforcommerce.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	})

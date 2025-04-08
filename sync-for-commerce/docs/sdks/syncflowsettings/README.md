@@ -22,21 +22,22 @@ Return preferences set for the text fields on sync flow.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"context"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+
     s := syncforcommerce.New(
         syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
         Locale: shared.LocaleEnUs,
     })
@@ -63,11 +64,11 @@ func main() {
 
 ### Errors
 
-| Error Object            | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
-| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
-
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| sdkerrors.ErrorMessage | 401, 402, 403, 429     | application/json       |
+| sdkerrors.ErrorMessage | 500, 503               | application/json       |
+| sdkerrors.SDKError     | 4XX, 5XX               | \*/\*                  |
 
 ## GetVisibleAccounts
 
@@ -79,23 +80,24 @@ Return accounts which are visible on sync flow.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"context"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+
     s := syncforcommerce.New(
         syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SyncFlowSettings.GetVisibleAccounts(ctx, operations.GetVisibleAccountsRequest{
-        ClientID: "86fe9741-738d-4f2c-8e96-9c3f84156e91",
+        ClientID: "8f9478fc-e6cf-445e-b122-74136f8fd7ab",
         PlatformKey: "gbol",
     })
     if err != nil {
@@ -121,11 +123,11 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401, 402, 403, 404, 429 | application/json        |
+| sdkerrors.ErrorMessage  | 500, 503                | application/json        |
+| sdkerrors.SDKError      | 4XX, 5XX                | \*/\*                   |
 
 ## UpdateConfigTextSyncFlow
 
@@ -137,21 +139,22 @@ Set preferences for the text fields on sync flow.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"context"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+
     s := syncforcommerce.New(
         syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SyncFlowSettings.UpdateConfigTextSyncFlow(ctx, operations.UpdateConfigTextSyncFlowRequest{
         Locale: shared.LocaleEnUs,
     })
@@ -178,11 +181,11 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 400, 401, 402, 403, 429 | application/json        |
+| sdkerrors.ErrorMessage  | 500, 503                | application/json        |
+| sdkerrors.SDKError      | 4XX, 5XX                | \*/\*                   |
 
 ## UpdateVisibleAccountsSyncFlow
 
@@ -194,21 +197,22 @@ Update which accounts are visible on sync flow.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"context"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+
     s := syncforcommerce.New(
         syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.SyncFlowSettings.UpdateVisibleAccountsSyncFlow(ctx, operations.UpdateVisibleAccountsSyncFlowRequest{
         PlatformKey: "gbol",
     })
@@ -235,7 +239,8 @@ func main() {
 
 ### Errors
 
-| Error Object                    | Status Code                     | Content Type                    |
-| ------------------------------- | ------------------------------- | ------------------------------- |
-| sdkerrors.ErrorMessage          | 400,401,402,403,404,429,500,503 | application/json                |
-| sdkerrors.SDKError              | 4xx-5xx                         | */*                             |
+| Error Type                   | Status Code                  | Content Type                 |
+| ---------------------------- | ---------------------------- | ---------------------------- |
+| sdkerrors.ErrorMessage       | 400, 401, 402, 403, 404, 429 | application/json             |
+| sdkerrors.ErrorMessage       | 500, 503                     | application/json             |
+| sdkerrors.SDKError           | 4XX, 5XX                     | \*/\*                        |
