@@ -7,7 +7,7 @@ import (
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 )
 
-// ErrorMessage - Your `query` parameter was not correctly formed
+// ErrorMessage - Your API request was not properly authorized.
 type ErrorMessage struct {
 	// `True` if the error occurred transiently and can be retried.
 	CanBeRetried *string `json:"canBeRetried,omitempty"`

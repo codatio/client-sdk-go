@@ -11,7 +11,7 @@ Sync for Commerce: The API for Sync for Commerce.
 
 Sync for Commerce automatically replicates and reconciles sales data from a merchant’s source PoS, Payments, and eCommerce systems into their accounting software. This eliminates manual processing by merchants and transforms their ability to run and grow their business.
   
-[Explore product](https://docs.codat.io/commerce/overview) | [See our OpenAPI spec](https://github.com/codatio/oas)
+[Explore solution](https://docs.codat.io/commerce/overview) | [See our OpenAPI spec](https://github.com/codatio/oas)
 
 Not seeing the endpoints you're expecting? We've [reorganized our products](https://docs.codat.io/updates/230901-new-products), and you may be using a [different version of Sync for Commerce](https://docs.codat.io/sync-for-commerce-v1-api#/).
 
@@ -32,16 +32,19 @@ Not seeing the endpoints you're expecting? We've [reorganized our products](http
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Sync for Commerce](#sync-for-commerce)
+  * [Endpoints](#endpoints)
+  * [SDK Installation](#sdk-installation)
+  * [Example Usage](#example-usage)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Special Types](#special-types)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -65,26 +68,53 @@ package main
 import (
 	"context"
 	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"log"
 )
 
 func main() {
-	s := syncforcommerce.New(
-		syncforcommerce.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
 	ctx := context.Background()
-	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
-		Locale: shared.LocaleEnUs,
+
+	s := syncforcommerce.New()
+
+	res, err := s.ConnectionDeleted(ctx, &shared.ConnectionWebhook{
+		EventType:     syncforcommerce.String("connection.created"),
+		GeneratedDate: syncforcommerce.String("2022-10-23T00:00:00Z"),
+		ID:            syncforcommerce.String("ba29118f-5406-4e59-b05c-ba307ca38d01"),
+		Payload: &shared.ConnectionWebhookPayload{
+			Connection: &shared.Connection{
+				Created: "2022-10-23T00:00:00Z",
+				DataConnectionErrors: []shared.DataConnectionError{
+					shared.DataConnectionError{
+						ErroredOnUtc:  syncforcommerce.String("2022-10-23T00:00:00Z"),
+						ResolvedOnUtc: syncforcommerce.String("2022-10-23T00:00:00Z"),
+					},
+					shared.DataConnectionError{
+						ErroredOnUtc:  syncforcommerce.String("2022-10-23T00:00:00Z"),
+						ResolvedOnUtc: syncforcommerce.String("2022-10-23T00:00:00Z"),
+					},
+				},
+				ID:             "2e9d2c44-f675-40ba-8049-353bfcb5e171",
+				IntegrationID:  "fd321cb6-7963-4506-b873-e99593a45e30",
+				IntegrationKey: "dfxm",
+				LastSync:       syncforcommerce.String("2022-10-23T00:00:00Z"),
+				LinkURL:        "https://link-api.codat.io/companies/86bd88cb-44ab-4dfb-b32f-87b19b14287f/connections/2e2eb431-c1fa-4dc9-93fa-d29781c12bcd/start",
+				PlatformName:   "Basiq",
+				SourceID:       "35b92968-9851-4095-ad60-395c95cbcba4",
+				SourceType:     shared.SourceTypeAccounting,
+				Status:         shared.DataConnectionStatusLinked,
+			},
+			ReferenceCompany: &shared.CompanyReference{
+				Description: syncforcommerce.String("Requested early access to the new financing scheme."),
+				ID:          syncforcommerce.String("8a210b68-6988-11ed-a1eb-0242ac120002"),
+				Name:        syncforcommerce.String("Codat Ltd."),
+			},
+		},
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.LocalizationInfo != nil {
+	if res != nil {
 		// handle response
 	}
 }
@@ -143,12 +173,6 @@ func main() {
 
 
 
-<!-- Start Special Types [types] -->
-## Special Types
-
-
-<!-- End Special Types [types] -->
-
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -169,13 +193,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := syncforcommerce.New(
 		syncforcommerce.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	}, operations.WithRetries(
@@ -213,6 +238,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := syncforcommerce.New(
 		syncforcommerce.WithRetryConfig(
 			retry.Config{
@@ -230,7 +257,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	})
@@ -248,12 +274,17 @@ func main() {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or an error, they will never return both.  When specified by the OpenAPI spec document, the SDK will return the appropriate subclass.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or an error, they will never return both.
 
-| Error Object            | Status Code             | Content Type            |
-| ----------------------- | ----------------------- | ----------------------- |
-| sdkerrors.ErrorMessage  | 401,402,403,429,500,503 | application/json        |
-| sdkerrors.SDKError      | 4xx-5xx                 | */*                     |
+By Default, an API error will return `sdkerrors.SDKError`. When custom error responses are specified for an operation, the SDK may also return their associated error. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation.
+
+For example, the `GetConfigTextSyncFlow` function may return the following errors:
+
+| Error Type             | Status Code        | Content Type     |
+| ---------------------- | ------------------ | ---------------- |
+| sdkerrors.ErrorMessage | 401, 402, 403, 429 | application/json |
+| sdkerrors.ErrorMessage | 500, 503           | application/json |
+| sdkerrors.SDKError     | 4XX, 5XX           | \*/\*            |
 
 ### Example
 
@@ -271,17 +302,24 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := syncforcommerce.New(
 		syncforcommerce.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	})
 	if err != nil {
+
+		var e *sdkerrors.ErrorMessage
+		if errors.As(err, &e) {
+			// handle error
+			log.Fatal(e.Error())
+		}
 
 		var e *sdkerrors.ErrorMessage
 		if errors.As(err, &e) {
@@ -303,53 +341,9 @@ func main() {
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally using the `WithServerIndex` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.codat.io` | None |
-
-#### Example
-
-```go
-package main
-
-import (
-	"context"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	"log"
-)
-
-func main() {
-	s := syncforcommerce.New(
-		syncforcommerce.WithServerIndex(0),
-		syncforcommerce.WithSecurity(shared.Security{
-			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
-		}),
-	)
-
-	ctx := context.Background()
-	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
-		Locale: shared.LocaleEnUs,
-	})
-	if err != nil {
-		log.Fatal(err)
-	}
-	if res.LocalizationInfo != nil {
-		// handle response
-	}
-}
-
-```
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally using the `WithServerURL` option when initializing the SDK client instance. For example:
+The default server can be overridden globally using the `WithServerURL(serverURL string)` option when initializing the SDK client instance. For example:
 ```go
 package main
 
@@ -362,6 +356,8 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := syncforcommerce.New(
 		syncforcommerce.WithServerURL("https://api.codat.io"),
 		syncforcommerce.WithSecurity(shared.Security{
@@ -369,7 +365,6 @@ func main() {
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	})
@@ -420,9 +415,9 @@ This can be a convenient way to configure timeouts, cookies, proxies, custom hea
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `AuthHeader` | apiKey       | API key      |
+| Name         | Type   | Scheme  |
+| ------------ | ------ | ------- |
+| `AuthHeader` | apiKey | API key |
 
 You can configure it using the `WithSecurity` option when initializing the SDK client instance. For example:
 ```go
@@ -437,13 +432,14 @@ import (
 )
 
 func main() {
+	ctx := context.Background()
+
 	s := syncforcommerce.New(
 		syncforcommerce.WithSecurity(shared.Security{
 			AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
 		}),
 	)
 
-	ctx := context.Background()
 	res, err := s.SyncFlowSettings.GetConfigTextSyncFlow(ctx, operations.GetConfigTextSyncFlowRequest{
 		Locale: shared.LocaleEnUs,
 	})

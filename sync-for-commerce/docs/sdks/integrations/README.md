@@ -20,21 +20,22 @@ Retrieve Integration branding assets.
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"context"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+
     s := syncforcommerce.New(
         syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Integrations.GetBranding(ctx, operations.GetIntegrationBrandingRequest{
         PlatformKey: "gbol",
     })
@@ -61,11 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 401,402,403,404,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
-
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 401, 402, 403, 404, 429 | application/json        |
+| sdkerrors.ErrorMessage  | 500, 503                | application/json        |
+| sdkerrors.SDKError      | 4XX, 5XX                | \*/\*                   |
 
 ## List
 
@@ -77,25 +78,24 @@ Retrieve a list of available integrations support by data type and state of rele
 package main
 
 import(
-	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
-	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
 	"context"
+	syncforcommerce "github.com/codatio/client-sdk-go/sync-for-commerce/v2"
+	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/shared"
 	"github.com/codatio/client-sdk-go/sync-for-commerce/v2/pkg/models/operations"
 	"log"
 )
 
 func main() {
+    ctx := context.Background()
+
     s := syncforcommerce.New(
         syncforcommerce.WithSecurity(shared.Security{
             AuthHeader: "Basic BASE_64_ENCODED(API_KEY)",
         }),
     )
 
-    ctx := context.Background()
     res, err := s.Integrations.List(ctx, operations.ListIntegrationsRequest{
         OrderBy: syncforcommerce.String("-modifiedDate"),
-        Page: syncforcommerce.Int(1),
-        PageSize: syncforcommerce.Int(100),
         Query: syncforcommerce.String("id=e3334455-1aed-4e71-ab43-6bccf12092ee"),
     })
     if err != nil {
@@ -121,7 +121,8 @@ func main() {
 
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| sdkerrors.ErrorMessage      | 400,401,402,403,429,500,503 | application/json            |
-| sdkerrors.SDKError          | 4xx-5xx                     | */*                         |
+| Error Type              | Status Code             | Content Type            |
+| ----------------------- | ----------------------- | ----------------------- |
+| sdkerrors.ErrorMessage  | 400, 401, 402, 403, 429 | application/json        |
+| sdkerrors.ErrorMessage  | 500, 503                | application/json        |
+| sdkerrors.SDKError      | 4XX, 5XX                | \*/\*                   |
